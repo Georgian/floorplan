@@ -1,9 +1,12 @@
 package com.ansis.floorplan.app;
 
 import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
+
+import com.ansis.floorplan.core.OpenEditorAction;
 
 
 public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
@@ -23,6 +26,10 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 
 	@Override
 	protected void fillMenuBar(final IMenuManager menuBar) {
+		MenuManager fileMenu = new MenuManager("&File", "file"); 
+    	fileMenu.add(new OpenEditorAction());
+    	menuBar.add(fileMenu);
+    	
 	}
 
 }
