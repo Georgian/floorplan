@@ -20,11 +20,14 @@ import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.gef.palette.SelectionToolEntry;
+import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.ZoomInAction;
 import org.eclipse.gef.ui.actions.ZoomOutAction;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithPalette;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
+import com.ansis.floorplan.action.RenameAction;
 import com.ansis.floorplan.app.Activator;
 import com.ansis.floorplan.app.MyTemplateTransferDropTargetListener;
 import com.ansis.floorplan.factory.ModelTestCreationFactory;
@@ -186,6 +189,17 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		return canvas;
 	}
 
+	// For rename
+	@SuppressWarnings("unchecked")
+	@Override
+	public void createActions() {
+		super.createActions(); 
+		final ActionRegistry registry = getActionRegistry();
+		final IAction action = new RenameAction(this);
+		registry.registerAction(action);
+		getSelectionActions().add(action.getId());
+	}
+
 
 	// ==================== 6. Action Methods ====================
 
@@ -283,6 +297,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 	}
 
 	// For zooming
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(final Class type) {
 		if (type == ZoomManager.class)

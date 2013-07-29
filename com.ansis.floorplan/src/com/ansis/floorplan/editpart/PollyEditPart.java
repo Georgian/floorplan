@@ -7,6 +7,7 @@ import org.eclipse.gef.EditPolicy;
 
 import com.ansis.floorplan.editpolicy.AppDeletePolicy;
 import com.ansis.floorplan.editpolicy.AppEditLayoutPolicy;
+import com.ansis.floorplan.editpolicy.AppRenamePolicy;
 import com.ansis.floorplan.figure.PollyFigure;
 import com.ansis.floorplan.model.ModelTest;
 import com.ansis.floorplan.model.Polly;
@@ -24,8 +25,7 @@ public class PollyEditPart extends AppAbstractEditPart {
 		figure.setName( ((Polly)getModel()).getName());
 		figure.setEtage( ((Polly)getModel()).getEtage());
 
-		System.out.println(((Polly)getModel()).getList().size());
-		System.out.println("Hi, you are now in the createFigure method, in the PollyEditPart class :)");
+//		System.out.println(((Polly)getModel()).getList().size()+"\nHi, you are now in the createFigure method, in the PollyEditPart class :)");
 
 		return figure;
 	}
@@ -34,6 +34,9 @@ public class PollyEditPart extends AppAbstractEditPart {
 	protected void createEditPolicies() {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new AppEditLayoutPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppDeletePolicy());
+
+		// Rename
+		installEditPolicy(EditPolicy.NODE_ROLE, new AppRenamePolicy());
 	}
 
 
@@ -59,6 +62,10 @@ public class PollyEditPart extends AppAbstractEditPart {
 			refreshChildren();
 		if (evt.getPropertyName().equals(ModelTest.PROPERTY_REMOVE))
 			refreshChildren();
+
+		// Rename
+		if (evt.getPropertyName().equals(Polly.PROPERTY_RENAME))
+			refreshVisuals();
 	}
 
 }

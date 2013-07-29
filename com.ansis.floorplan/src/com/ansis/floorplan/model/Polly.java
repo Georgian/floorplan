@@ -6,6 +6,11 @@ import org.eclipse.draw2d.geometry.Rectangle;
 
 public class Polly extends ModelTest {
 
+	// ==================== 1. Static Fields ========================
+
+	public static final String PROPERTY_RENAME = "NodeRename"; //$NON-NLS-1$
+
+
 	// ====================== 2. Instance Fields =============================
 
 	private PointList list;
@@ -26,7 +31,9 @@ public class Polly extends ModelTest {
 	// ==================== 7. Getters & Setters ====================
 
 	public void setName(final String name) {
+		final String oldName = this.name;
 		this.name = name;
+		getListeners().firePropertyChange(PROPERTY_RENAME, oldName, this.name);
 	}
 
 	public String getName() {

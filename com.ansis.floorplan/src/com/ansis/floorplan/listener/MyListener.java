@@ -11,7 +11,6 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
 
 import com.ansis.floorplan.model.Canvas;
-import com.ansis.floorplan.model.ModelTest;
 import com.ansis.floorplan.model.Polly;
 
 
@@ -21,9 +20,9 @@ public class MyListener {
 
 	private boolean isShiftPressed = false;
 
-	private boolean isControlPressed = false;
+//	private boolean isControlPressed = false;
 
-	private int i = 0;
+//	private int i = 0;
 
 	private PointList pointList = new PointList();
 
@@ -41,13 +40,13 @@ public class MyListener {
 
 			@Override
 			public void keyPressed(final KeyEvent ke) {
-				System.out.println("key pressed "+(++i));
+//				System.out.println("key pressed "+(++i));
 				if (ke.keycode == SWT.SHIFT) {
 					isShiftPressed = true;
-					System.out.println("SHIFT is pressed: "+isShiftPressed);
+					/*System.out.println("SHIFT is pressed: "+isShiftPressed);
 				} else if (ke.keycode == SWT.CONTROL) {
 					isControlPressed = true;
-					System.out.println("CONTROL is pressed: "+isControlPressed);
+					System.out.println("CONTROL is pressed: "+isControlPressed);*/
 				}
 			}
 
@@ -55,10 +54,10 @@ public class MyListener {
 			public void keyReleased(final KeyEvent ke) {
 				if (ke.keycode == SWT.SHIFT) {
 					isShiftPressed = false;
-					System.out.println("SHIFT is released: "+isShiftPressed);
+					/*System.out.println("SHIFT is released: "+isShiftPressed);
 				} else if (ke.keycode == SWT.CONTROL) {
 					isControlPressed = false;
-					System.out.println("CONTROL is released: "+isControlPressed);
+					System.out.println("CONTROL is released: "+isControlPressed);*/
 				}
 			}
 
@@ -75,7 +74,7 @@ public class MyListener {
 			public void mousePressed(final MouseEvent me) {
 
 				if(me.button == 1 && isShiftPressed == true) {
-					System.out.println("SHIFT + Mouse 1");
+//					System.out.println("SHIFT + Mouse 1");
 					if (pointList.size() > 0) {	
 						if(Math.abs(Math.abs(lastPoint.x)-Math.abs(me.x)) > Math.abs(Math.abs(lastPoint.y)-Math.abs(me.y)))	{
 							pointList.addPoint(new Point(me.x, lastPoint.y));
@@ -90,7 +89,7 @@ public class MyListener {
 						}
 					}
 				} else if (me.button == 1 && isShiftPressed == false) {
-					System.out.println("Mouse 1");
+//					System.out.println("Mouse 1");
 				}
 
 				if (me.button == 2 /*&& isControlPressed == true*/) {
@@ -100,9 +99,7 @@ public class MyListener {
 					pointList.addPoint(new Point(me.x, me.y));
 					lastPoint = new Point(me.x, me.y);
 
-					System.out.println(pointList.size());
-					System.out.println(me.x);
-					System.out.println(me.y);
+//					System.out.println(pointList.size() + me.x + me.y);
 				}
 
 				if (me.button == 3 && pointList.size() > 2 /*&& isControlPressed == true*/) {
@@ -163,7 +160,7 @@ public class MyListener {
 					final Polly polly3 = new Polly();
 					polly3.setList(pointList);
 
-					polly3.setName("polly test"); //$NON-NLS-1$
+					polly3.setName("New polly"); //$NON-NLS-1$
 					polly3.setEtage(3);
 					polly3.setBounds(rect);
 					polly3.setR(rect);
@@ -173,7 +170,7 @@ public class MyListener {
 
 					pointList = new PointList();
 
-					System.out.println("Number of children: " + ModelTest.getChildren().size());
+//					System.out.println("Number of children: " + ModelTest.getChildren().size());
 				}
 			}
 

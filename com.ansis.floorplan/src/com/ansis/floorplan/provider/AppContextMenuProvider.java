@@ -38,6 +38,10 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 
 		action = getActionRegistry().getAction(ActionFactory.DELETE.getId());
 		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
+
+		// Rename
+		action = getActionRegistry().getAction(ActionFactory.RENAME.getId());
+		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
 	}
 
 

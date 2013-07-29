@@ -69,6 +69,7 @@ public class ModelTest {
 		listeners.removePropertyChangeListener(listener);
 	}
 
+	@SuppressWarnings("static-access")
 	public boolean addChild(final Polly figure) {
 		final boolean b = this.children.add(figure);
 		
@@ -84,6 +85,7 @@ public class ModelTest {
 		return b;
 	}
 
+	@SuppressWarnings("static-access")
 	public boolean removeChild(final ModelTest child) {
 		final boolean b = this.children.remove(child);
 		
