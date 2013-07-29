@@ -6,7 +6,6 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPolicy;
 
-import com.ansis.floorplan.editpolicy.AppDeletePolicy;
 import com.ansis.floorplan.editpolicy.AppEditLayoutPolicy;
 import com.ansis.floorplan.figure.CanvasFigure;
 import com.ansis.floorplan.listener.MyListener;
@@ -22,7 +21,6 @@ public class CanvasEditPart extends AppAbstractEditPart {
 	@Override
 	protected void createEditPolicies() {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new AppEditLayoutPolicy());
-		installEditPolicy(EditPolicy.COMPONENT_ROLE,new AppDeletePolicy());
 	}
 
 	@Override

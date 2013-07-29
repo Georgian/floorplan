@@ -10,7 +10,7 @@ public class DeleteCommand extends Command {
 
 	// ====================== 2. Instance Fields =============================
 
-	private ModelTest model;
+	private Polly model;
 
 	private ModelTest parentModel;
 
@@ -31,7 +31,7 @@ public class DeleteCommand extends Command {
 	// ==================== 7. Getters & Setters ====================
 
 	public void setModel(final Object model) {
-		this.model = (ModelTest)model;
+		this.model = (Polly)model;
 	}
 
 	public void setParentModel(final Object model) {

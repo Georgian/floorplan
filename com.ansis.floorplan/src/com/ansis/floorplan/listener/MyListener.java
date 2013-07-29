@@ -144,11 +144,13 @@ public class MyListener {
 					model.addChild(polly3);
 
 					pointList = new PointList();
+
 					System.out.println("Number of children");
 					System.out.println(ModelTest.getChildren().size());
 				}
 
 				if(me.button == 1 && isShiftPressed == true) {
+					System.out.println("SHIFT + Mouse 1");
 					if (pointList.size() > 0) {	
 						if(Math.abs(Math.abs(lastPoint.x)-Math.abs(me.x)) > Math.abs(Math.abs(lastPoint.y)-Math.abs(me.y)))	{
 							pointList.addPoint(new Point(me.x, lastPoint.y));
