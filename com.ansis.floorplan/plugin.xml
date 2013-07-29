@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="com.ansis.floorplan.app.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="RCP Perspective"
+            class="com.ansis.floorplan.app.Perspective"
+            id="com.jorj.gef4.test2.perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.ansis.floorplan.core.MyGraphicalEditor"
+            contributorClass="com.ansis.floorplan.core.MyGraphicalEditorActionBarContributor"
+            default="true"
+            id="myEditor"
+            name="Editor">
+      </editor>
+   </extension>
+
+</plugin>

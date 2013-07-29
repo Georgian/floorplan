@@ -1,0 +1,17 @@
+package com.ansis.floorplan.editpolicy;
+
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editpolicies.ComponentEditPolicy;
+import org.eclipse.gef.requests.GroupRequest;
+
+import com.ansis.floorplan.command.DeleteCommand;
+
+public class AppDeletePolicy extends ComponentEditPolicy{
+	@Override
+	protected Command createDeleteCommand(final GroupRequest deleteRequest) {
+		final DeleteCommand command = new DeleteCommand();
+		command.setModel(getHost().getModel());
+		command.setParentModel(getHost().getParent().getModel());
+		return command;
+	}
+}

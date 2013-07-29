@@ -1,0 +1,55 @@
+package com.ansis.floorplan.figure;
+
+import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.XYLayout;
+import org.eclipse.draw2d.geometry.Rectangle;
+
+
+public class CanvasFigure extends Figure {
+
+	// ====================== 2. Instance Fields =============================
+
+	private Label labelName = new Label();
+
+	private Label labelAddress = new Label();
+
+	private Label labelCapital = new Label();
+
+
+	// ==================== 4. Constructors ====================
+
+	public CanvasFigure() {
+		final XYLayout layout = new XYLayout();
+		setLayoutManager(layout);
+		labelName.setForegroundColor(ColorConstants.darkGreen);
+		add(labelName);
+		setConstraint(labelName, new Rectangle(5, 5, -1, -1));
+		labelAddress.setForegroundColor(ColorConstants.lightBlue);
+		add(labelAddress);
+		setConstraint(labelAddress, new Rectangle(5, 17, -1, -1));
+		labelCapital.setForegroundColor(ColorConstants.lightBlue);
+		add(labelCapital);
+		setConstraint(labelCapital, new Rectangle(5, 30, -1, -1));
+	}
+
+	// ==================== 7. Getters & Setters ====================
+
+	public void setLayout(final Rectangle rect) {
+		setBounds(rect);
+	}
+
+	public void setName(final String text) {
+		labelName.setText(text);
+	}
+
+	public void setAddress(final String text) {
+		labelAddress.setText(text);
+	}
+
+	public void setCapital(final int capital) {
+		labelCapital.setText("Capital : "+capital);
+	}
+
+}

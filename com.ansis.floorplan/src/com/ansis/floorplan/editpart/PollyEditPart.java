@@ -1,0 +1,61 @@
+package com.ansis.floorplan.editpart;
+
+import java.beans.PropertyChangeEvent;
+
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.gef.EditPolicy;
+
+import com.ansis.floorplan.editpolicy.AppDeletePolicy;
+import com.ansis.floorplan.editpolicy.AppEditLayoutPolicy;
+import com.ansis.floorplan.figure.PollyFigure;
+import com.ansis.floorplan.model.ModelTest;
+import com.ansis.floorplan.model.Polly;
+
+
+public class PollyEditPart extends AppAbstractEditPart {
+
+
+	// ==================== 5. Creators ====================
+
+	@Override
+	protected IFigure createFigure() {
+
+		final PollyFigure figure = new PollyFigure( ((Polly)getModel()).getG() );
+		figure.setBounds( ((Polly)getModel()).getR());
+		figure.setList( ((Polly)getModel()).getList() );
+		figure.setName( ((Polly)getModel()).getName());
+		figure.setEtage( ((Polly)getModel()).getEtage());
+
+		System.out.println(((Polly)getModel()).getList().size());
+		System.out.println("Hi, you are now in the createFigure method :)");
+
+		return figure;
+	}
+	@Override
+	public void refreshVisuals() {
+		final PollyFigure figure = (PollyFigure)getFigure();
+		final Polly model = (Polly)getModel();
+
+		//		figure.setG(model.getG());
+		figure.setBounds(model.getR());
+		figure.setName(model.getName());
+		figure.setEtage(model.getEtage());
+		figure.setLayout(model.getLayout());
+	}
+
+	@Override
+	protected void createEditPolicies() {
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new AppEditLayoutPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppDeletePolicy());
+
+	}
+
+	@Override
+	public void propertyChange(final PropertyChangeEvent evt) {
+		if (evt.getPropertyName().equals(ModelTest.PROPERTY_LAYOUT)) refreshVisuals();
+		if (evt.getPropertyName().equals(ModelTest.PROPERTY_ADD)) refreshChildren();
+		if (evt.getPropertyName().equals(ModelTest.PROPERTY_REMOVE)) refreshChildren();
+
+	}
+
+}

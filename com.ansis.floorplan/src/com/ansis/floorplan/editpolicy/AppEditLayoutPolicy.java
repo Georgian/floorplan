@@ -1,0 +1,55 @@
+package com.ansis.floorplan.editpolicy;
+
+import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editpolicies.XYLayoutEditPolicy;
+import org.eclipse.gef.requests.CreateRequest;
+
+import com.ansis.floorplan.command.AbstractLayoutCommand;
+import com.ansis.floorplan.command.CanvasChangeLayoutCommand;
+import com.ansis.floorplan.command.PollyChangeLayoutCommand;
+import com.ansis.floorplan.command.PollyCreateCommand;
+import com.ansis.floorplan.editpart.CanvasEditPart;
+import com.ansis.floorplan.editpart.PollyEditPart;
+import com.ansis.floorplan.figure.PollyFigure;
+
+public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
+
+	// ==================== 5. Creators ====================
+
+	@Override
+	protected Command createChangeConstraintCommand(final EditPart child, final Object constraint) {
+		AbstractLayoutCommand command = null;
+		
+		if (child instanceof CanvasEditPart) {
+			command = new CanvasChangeLayoutCommand();
+		} else if (child instanceof PollyEditPart) {
+			command = new PollyChangeLayoutCommand();
+		}
+		command.setModel(child.getModel());
+		command.setConstraint((Rectangle)constraint);
+		return command;
+	}
+
+	// ==================== 7. Getters & Setters ====================
+
+	@Override
+	protected Command getCreateCommand(final CreateRequest request) {
+		if (request.getType() == REQ_CREATE && getHost() instanceof CanvasEditPart) {
+			final PollyCreateCommand cmd = new PollyCreateCommand();
+			cmd.setCanvas(getHost().getModel());
+			cmd.setPolly(request.getNewObject());
+			final Rectangle constraint = (Rectangle)getConstraintFor(request);
+			constraint.x = (constraint.x < 0) ? 0 : constraint.x;
+			constraint.y = (constraint.y < 0) ? 0 : constraint.y;
+			constraint.width = (constraint.width <= 0) ? PollyFigure.POLLY_FIGURE_DEFWIDTH : constraint.width;
+			constraint.height = (constraint.height <= 0) ? PollyFigure.POLLY_FIGURE_DEFHEIGHT : constraint.height;
+			cmd.setLayout(constraint);
+			return cmd;
+		}
+
+		return null;
+	}
+
+}
