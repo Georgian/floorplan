@@ -27,9 +27,8 @@ public class CanvasEditPart extends AppAbstractEditPart {
 	protected IFigure createFigure() {
 		final IFigure figure = new CanvasFigure();
 
-		//		figure.requestFocus();
+		// TODO setFocusTraversable
 		figure.setFocusTraversable(true);
-		//		figure.setRequestFocusEnabled(true);
 
 		new MyListener( ((Canvas)getModel()), figure );
 		return figure;
@@ -45,7 +44,7 @@ public class CanvasEditPart extends AppAbstractEditPart {
 		if (evt.getPropertyName().equals(ModelTest.PROPERTY_REMOVE))
 			refreshChildren();
 
-		System.out.println("CanvasEditPart: " + evt.toString());
+		//		System.out.println("CanvasEditPart: " + evt.toString());
 
 		refreshChildren();
 	}

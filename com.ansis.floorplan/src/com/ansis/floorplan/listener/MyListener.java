@@ -21,6 +21,8 @@ public class MyListener {
 
 	private boolean isShiftPressed = false;
 
+	private boolean isControlPressed = false;
+
 	private int i = 0;
 
 	private PointList pointList = new PointList();
@@ -43,6 +45,9 @@ public class MyListener {
 				if (ke.keycode == SWT.SHIFT) {
 					isShiftPressed = true;
 					System.out.println("SHIFT is pressed: "+isShiftPressed);
+				} else if (ke.keycode == SWT.CONTROL) {
+					isControlPressed = true;
+					System.out.println("CONTROL is pressed: "+isControlPressed);
 				}
 			}
 
@@ -51,12 +56,16 @@ public class MyListener {
 				if (ke.keycode == SWT.SHIFT) {
 					isShiftPressed = false;
 					System.out.println("SHIFT is released: "+isShiftPressed);
+				} else if (ke.keycode == SWT.CONTROL) {
+					isControlPressed = false;
+					System.out.println("CONTROL is released: "+isControlPressed);
 				}
 			}
 
 		});
 
 		figure.addMouseListener(new MouseListener() {
+
 			@Override
 			public void mouseDoubleClicked(final MouseEvent me) {
 
@@ -65,7 +74,26 @@ public class MyListener {
 			@Override
 			public void mousePressed(final MouseEvent me) {
 
-				if (me.button == 2) {
+				if(me.button == 1 && isShiftPressed == true) {
+					System.out.println("SHIFT + Mouse 1");
+					if (pointList.size() > 0) {	
+						if(Math.abs(Math.abs(lastPoint.x)-Math.abs(me.x)) > Math.abs(Math.abs(lastPoint.y)-Math.abs(me.y)))	{
+							pointList.addPoint(new Point(me.x, lastPoint.y));
+							lastPoint = new Point(me.x, lastPoint.y);
+							//							final Rectangle r = new Rectangle(lastPoint, new Point(me.x,lastPoint.y));
+							//							add(new PolyFigure(pointList, r));
+						} else {
+							pointList.addPoint(new Point(lastPoint.x,me.y));
+							lastPoint = new Point(lastPoint.x, me.y);
+							//							final Rectangle r = new Rectangle(lastPoint, new Point(lastPoint.x,me.y));
+							//							add(new PolyFigure(pointList, r));
+						}
+					}
+				} else if (me.button == 1 && isShiftPressed == false) {
+					System.out.println("Mouse 1");
+				}
+
+				if (me.button == 2 /*&& isControlPressed == true*/) {
 					//// ==================== left click add point ====================
 
 					//Remember click in point list
@@ -77,7 +105,7 @@ public class MyListener {
 					System.out.println(me.y);
 				}
 
-				if (me.button == 3 && pointList.size() > 2) {
+				if (me.button == 3 && pointList.size() > 2 /*&& isControlPressed == true*/) {
 
 					Point pointmin = null, pointmax = null, point = null;
 					final Point pointg = new Point (0,0), pointk = new Point(0,0);
@@ -145,25 +173,7 @@ public class MyListener {
 
 					pointList = new PointList();
 
-					System.out.println("Number of children");
-					System.out.println(ModelTest.getChildren().size());
-				}
-
-				if(me.button == 1 && isShiftPressed == true) {
-					System.out.println("SHIFT + Mouse 1");
-					if (pointList.size() > 0) {	
-						if(Math.abs(Math.abs(lastPoint.x)-Math.abs(me.x)) > Math.abs(Math.abs(lastPoint.y)-Math.abs(me.y)))	{
-							pointList.addPoint(new Point(me.x, lastPoint.y));
-							lastPoint = new Point(me.x, lastPoint.y);
-							//							final Rectangle r = new Rectangle(lastPoint, new Point(me.x,lastPoint.y));
-							//							add(new PolyFigure(pointList, r));
-						} else {
-							pointList.addPoint(new Point(lastPoint.x,me.y));
-							lastPoint = new Point(lastPoint.x, me.y);
-							//							final Rectangle r = new Rectangle(lastPoint, new Point(lastPoint.x,me.y));
-							//							add(new PolyFigure(pointList, r));
-						}
-					}
+					System.out.println("Number of children: " + ModelTest.getChildren().size());
 				}
 			}
 

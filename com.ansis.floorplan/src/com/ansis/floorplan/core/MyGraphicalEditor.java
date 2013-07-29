@@ -2,6 +2,7 @@ package com.ansis.floorplan.core;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.geometry.Point;
@@ -12,12 +13,15 @@ import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.dnd.TemplateTransferDragSourceListener;
 import org.eclipse.gef.editparts.ScalableRootEditPart;
+import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.MarqueeToolEntry;
 import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.gef.palette.SelectionToolEntry;
+import org.eclipse.gef.ui.actions.ZoomInAction;
+import org.eclipse.gef.ui.actions.ZoomOutAction;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithPalette;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
@@ -222,6 +226,9 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 	@Override
 	protected void configureGraphicalViewer() {
+		final double[] zoomLevels;
+		final ArrayList<String> zoomContributions;
+
 		super.configureGraphicalViewer();
 
 		final GraphicalViewer viewer = getGraphicalViewer(); 
@@ -231,6 +238,19 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final ScalableRootEditPart rootEditPart = new ScalableRootEditPart();
 		viewer.setRootEditPart(rootEditPart);
 
+		// Zooming START
+		final ZoomManager manager = rootEditPart.getZoomManager();
+		getActionRegistry().registerAction(new ZoomInAction(manager));
+		getActionRegistry().registerAction(new ZoomOutAction(manager));
+		zoomLevels = new double[] {0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0};
+		manager.setZoomLevels(zoomLevels);
+		zoomContributions = new ArrayList<String>();
+		/*zoomContributions.add(ZoomManager.FIT_ALL); 
+		zoomContributions.add(ZoomManager.FIT_HEIGHT); 
+		zoomContributions.add(ZoomManager.FIT_WIDTH);*/
+		manager.setZoomLevelContributions(zoomContributions);
+		//Zooming END
+
 		final ContextMenuProvider provider = new AppContextMenuProvider(viewer, getActionRegistry());
 		viewer.setContextMenu(provider);
 	}
@@ -239,6 +259,9 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 	public void doSave(final IProgressMonitor monitor) {
 
 	}
+
+
+	// ==================== 7. Getters & Setters ====================
 
 	@Override
 	protected PaletteRoot getPaletteRoot() {
@@ -257,6 +280,15 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 		root.setDefaultEntry(selectionToolEntry);
 		return root;
+	}
+
+	// For zooming
+	@Override
+	public Object getAdapter(final Class type) {
+		if (type == ZoomManager.class)
+			return ((ScalableRootEditPart) getGraphicalViewer().getRootEditPart()).getZoomManager();
+		else
+			return super.getAdapter(type);
 	}
 
 }
