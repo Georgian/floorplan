@@ -70,7 +70,7 @@ public class ModelTest {
 	}
 
 	public boolean addChild(final Polly figure) {
-		final boolean b = this.children.add(figure);
+		final boolean b = ModelTest.children.add(figure);
 		
 		if (b) {
 			figure.setParent(this);
@@ -85,7 +85,7 @@ public class ModelTest {
 	}
 
 	public boolean removeChild(final ModelTest child) {
-		final boolean b = this.children.remove(child);
+		final boolean b = ModelTest.children.remove(child);
 		
 		if (b)
 			getListeners().firePropertyChange(PROPERTY_REMOVE, child, null);
