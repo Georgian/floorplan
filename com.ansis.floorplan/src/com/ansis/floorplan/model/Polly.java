@@ -4,7 +4,7 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 
-public class Polly extends ModelTest{
+public class Polly extends ModelTest {
 
 	// ====================== 2. Instance Fields =============================
 
@@ -61,7 +61,7 @@ public class Polly extends ModelTest{
 		this.bounds = bounds;
 	}
 
-	public Rectangle getBounds(){
+	public Rectangle getBounds() {
 		return bounds;
 
 	}
@@ -70,7 +70,7 @@ public class Polly extends ModelTest{
 		return r;
 	}
 
-	public void setR(final Rectangle r){
+	public void setR(final Rectangle r) {
 		this.r = r;
 	}
 

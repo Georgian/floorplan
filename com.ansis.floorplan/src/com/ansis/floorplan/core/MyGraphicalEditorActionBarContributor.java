@@ -30,4 +30,5 @@ public class MyGraphicalEditorActionBarContributor extends ActionBarContributor 
 		toolBarManager.add(getAction(ActionFactory.REDO.getId()));
 		toolBarManager.add(getAction(ActionFactory.DELETE.getId()));
 	}
+
 }

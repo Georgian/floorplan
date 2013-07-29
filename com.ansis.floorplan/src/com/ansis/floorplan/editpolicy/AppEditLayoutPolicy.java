@@ -14,6 +14,7 @@ import com.ansis.floorplan.editpart.CanvasEditPart;
 import com.ansis.floorplan.editpart.PollyEditPart;
 import com.ansis.floorplan.figure.PollyFigure;
 
+
 public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 
 	// ==================== 5. Creators ====================
@@ -21,7 +22,7 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 	@Override
 	protected Command createChangeConstraintCommand(final EditPart child, final Object constraint) {
 		AbstractLayoutCommand command = null;
-		
+
 		if (child instanceof CanvasEditPart) {
 			command = new CanvasChangeLayoutCommand();
 		} else if (child instanceof PollyEditPart) {
@@ -31,6 +32,7 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 		command.setConstraint((Rectangle)constraint);
 		return command;
 	}
+
 
 	// ==================== 7. Getters & Setters ====================
 

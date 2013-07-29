@@ -26,13 +26,16 @@ public class CanvasFigure extends Figure {
 		labelName.setForegroundColor(ColorConstants.darkGreen);
 		add(labelName);
 		setConstraint(labelName, new Rectangle(5, 5, -1, -1));
+
 		labelAddress.setForegroundColor(ColorConstants.lightBlue);
 		add(labelAddress);
 		setConstraint(labelAddress, new Rectangle(5, 17, -1, -1));
+
 		labelCapital.setForegroundColor(ColorConstants.lightBlue);
 		add(labelCapital);
 		setConstraint(labelCapital, new Rectangle(5, 30, -1, -1));
 	}
+
 
 	// ==================== 7. Getters & Setters ====================
 
@@ -49,7 +52,7 @@ public class CanvasFigure extends Figure {
 	}
 
 	public void setCapital(final int capital) {
-		labelCapital.setText("Capital : "+capital);
+		labelCapital.setText("Capital : "+capital); //$NON-NLS-1$
 	}
 
 }

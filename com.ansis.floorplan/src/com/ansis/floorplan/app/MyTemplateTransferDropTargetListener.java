@@ -6,6 +6,7 @@ import org.eclipse.gef.requests.CreationFactory;
 
 import com.ansis.floorplan.factory.ModelTestCreationFactory;
 
+
 public class MyTemplateTransferDropTargetListener extends TemplateTransferDropTargetListener {
 
 	// ==================== 4. Constructors ====================

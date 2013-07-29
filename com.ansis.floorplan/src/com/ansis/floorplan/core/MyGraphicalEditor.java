@@ -29,14 +29,22 @@ import com.ansis.floorplan.model.Canvas;
 import com.ansis.floorplan.model.Polly;
 import com.ansis.floorplan.provider.AppContextMenuProvider;
 
+
 public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 	// ==================== 1. Static Fields ========================
 
 	public static final String ID = "myEditor"; //$NON-NLS-1$
 
-	public Rectangle r,g;
+
+	// ====================== 2. Instance Fields =============================
+
+	private Rectangle r;
+
+	private Rectangle g;
+
 	private Canvas model;
+
 
 	// ==================== 4. Constructors ====================
 
@@ -44,18 +52,16 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		setEditDomain(new DefaultEditDomain(this));
 	}
 
+
 	// ==================== 5. Creators ====================
 
-
 	public Canvas createContent() {
-
 		final Canvas canvas = new Canvas();
-
 		final Polly polly = new Polly();
 
 		polly.setList(new PointList(new int[] { 50, 50, 200, 200, 150, 50 }));
 
-		polly.setName("works!");
+		polly.setName("works!"); //$NON-NLS-1$
 		polly.setEtage(1);
 
 		Point point = null, pointmin = null, pointmax = null, pointg = new Point(0,0);
@@ -68,10 +74,8 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 			if (pointmax == null)
 				pointmax = polly.getList().getPoint(i);
 
-
 			point = polly.getList().getPoint(i);
 
-			
 			if(point.x < pointmin.x)
 				pointmin.x = point.x;
 			if(point.x > pointmax.x)
@@ -80,31 +84,28 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 				pointmin.y = point.y;
 			if(point.y > pointmax.y)
 				pointmax.y = point.y;
-
 		}
+
 		if(pointmin.x != 0)
 			for (int i = 0; i < polly.getList().size(); i++) {
 				point = polly.getList().getPoint(i);
 				point.x = point.x - pointmin.x;
 				polly.getList().setPoint(point, i);
 				pointg.x = pointg.x + point.x;
-				
 			}
+
 		if(pointmin.y != 0)
 			for (int i = 0; i < polly.getList().size(); i++) {
 				point = polly.getList().getPoint(i);
 				point.y = point.y - pointmin.y;
 				polly.getList().setPoint(point, i);
 				pointg.y = pointg.y + point.y;
-				
 			}
-
 
 		pointg.x = (pointg.x/polly.getList().size()-35);
 		pointg.y = (pointg.y/polly.getList().size());
 		pointk.x = pointg.x+70;
 		pointk.y = pointg.y+15;
-
 
 		g = new Rectangle(pointg, pointk);
 		r = new Rectangle(pointmin,pointmax);
@@ -115,12 +116,12 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 		point = null; pointmin = null; pointmax = null; pointg = new Point(0,0);
 		pointk = new Point(0,0);
-		
+
 		final Polly polly2 = new Polly();
 
 		polly2.setList(new PointList(new int[] { 20, 20, 20, 100 , 100, 100, 100, 20}));
 		polly2.setEtage(2);
-		polly2.setName("also works!");
+		polly2.setName("also works!"); //$NON-NLS-1$
 
 		// Find min/max points. Compute bounds for our new figure
 
@@ -133,7 +134,6 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 			point = polly2.getList().getPoint(i);
 
-
 			if(point.x < pointmin.x)
 				pointmin.x = point.x;
 			if(point.x > pointmax.x)
@@ -142,10 +142,10 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 				pointmin.y = point.y;
 			if(point.y > pointmax.y)
 				pointmax.y = point.y;
-
 		}
-		System.out.println("pointmax"+pointmax);
-		System.out.println("pointmin"+pointmin);
+
+		//		System.out.println("pointmax"+pointmax);
+		//		System.out.println("pointmin"+pointmin);
 
 		if(pointmin.x != 0)
 			for (int i = 0; i < polly2.getList().size(); i++) {
@@ -154,22 +154,19 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 				polly2.getList().setPoint(point, i);
 				pointg.x = pointg.x + point.x;
 			}
+
 		if(pointmin.y != 0)
 			for (int i = 0; i < polly2.getList().size(); i++) {
 				point = polly2.getList().getPoint(i);
 				point.y = point.y - pointmin.y;
 				polly2.getList().setPoint(point, i);
 				pointg.y = pointg.y + point.y;
-
 			}
-		
-		
-		
+
 		pointg.x = (pointg.x/polly2.getList().size()-35);
 		pointg.y = (pointg.y/polly2.getList().size());
 		pointk.x = pointg.x+70;
 		pointk.y = pointg.y+15;
-		
 
 		g = new Rectangle(pointg, pointk);
 		r = new Rectangle(pointmin,pointmax);
@@ -178,13 +175,13 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 		canvas.addChild(polly2);
 
-
-		canvas.setName("FloorPlan");
-		canvas.setAddress("Canvas Lable Test");
+		canvas.setName("FloorPlan"); //$NON-NLS-1$
+		canvas.setAddress("Canvas Lable Test"); //$NON-NLS-1$
 		canvas.setCapital(1000);
 
 		return canvas;
 	}
+
 
 	// ==================== 6. Action Methods ====================
 
@@ -192,26 +189,26 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 	protected void initializeGraphicalViewer() {
 		final GraphicalViewer viewer = getGraphicalViewer();
 		model = createContent();
-		
-//		addPropertyListener(new IPropertyListener() {
-//			
-//			@Override
-//			public void propertyChanged(final Object source, final int propId) {
-//
-//				viewer.setContents(model);
-//				
-//			}
-//		});
+
+		//		addPropertyListener(new IPropertyListener() {
+		//			
+		//			@Override
+		//			public void propertyChanged(final Object source, final int propId) {
+		//
+		//				viewer.setContents(model);
+		//				
+		//			}
+		//		});
 		// Add the created model here
 		viewer.setContents(model);
 		viewer.addDropTargetListener(new MyTemplateTransferDropTargetListener(viewer));
-		
+
 		model.addPropertyChangeListener(new PropertyChangeListener() {
-			
+
 			@Override
 			public void propertyChange(final PropertyChangeEvent evt) {
-//				viewContents(model);
-				
+				//				viewContents(model);
+
 			}
 		});
 	}
@@ -233,9 +230,9 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 		final ScalableRootEditPart rootEditPart = new ScalableRootEditPart();
 		viewer.setRootEditPart(rootEditPart);
-		
+
 		final ContextMenuProvider provider = new AppContextMenuProvider(viewer, getActionRegistry());
-				viewer.setContextMenu(provider);
+		viewer.setContextMenu(provider);
 	}
 
 	@Override
@@ -254,11 +251,12 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 		final PaletteSeparator sep2 = new PaletteSeparator();
 		root.add(sep2);
-		final PaletteGroup instGroup = new PaletteGroup("Element Creation");
+		final PaletteGroup instGroup = new PaletteGroup("Element Creation"); //$NON-NLS-1$
 		root.add(instGroup);
-		instGroup.add(new CombinedTemplateCreationEntry("Polly", "Creating a Polly", Polly.class, new ModelTestCreationFactory(Polly.class), AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/services-low.png"),	AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID,	"icons/services-high.png")));
+		instGroup.add(new CombinedTemplateCreationEntry("Polly", "Creating a Polly", Polly.class, new ModelTestCreationFactory(Polly.class), AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/services-low.png"),	AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID,	"icons/services-high.png"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 
 		root.setDefaultEntry(selectionToolEntry);
 		return root;
 	}
+
 }

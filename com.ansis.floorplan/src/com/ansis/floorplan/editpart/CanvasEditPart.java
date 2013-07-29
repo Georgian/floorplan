@@ -17,18 +17,12 @@ import com.ansis.floorplan.model.Polly;
 
 public class CanvasEditPart extends AppAbstractEditPart {
 
-	// ====================== 2. Instance Fields =============================
-
-	private boolean isShiftPressed = false;
-
-
 	// ==================== 5. Creators ====================
 
 	@Override
 	protected void createEditPolicies() {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new AppEditLayoutPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE,new AppDeletePolicy());
-
 	}
 
 	@Override
@@ -39,7 +33,6 @@ public class CanvasEditPart extends AppAbstractEditPart {
 		figure.setFocusTraversable(true);
 		//		figure.setRequestFocusEnabled(true);
 
-
 		new MyListener( ((Canvas)getModel()), figure );
 		return figure;
 	}
@@ -49,14 +42,18 @@ public class CanvasEditPart extends AppAbstractEditPart {
 
 	@Override
 	public void propertyChange(final PropertyChangeEvent evt) {
-		if (evt.getPropertyName().equals(ModelTest.PROPERTY_ADD)) refreshChildren();
-		if (evt.getPropertyName().equals(ModelTest.PROPERTY_REMOVE)) refreshChildren();
-			System.out.println("CanvasEditPart: " + evt.toString());
+		if (evt.getPropertyName().equals(ModelTest.PROPERTY_ADD))
+			refreshChildren();
+		if (evt.getPropertyName().equals(ModelTest.PROPERTY_REMOVE))
+			refreshChildren();
+
+		System.out.println("CanvasEditPart: " + evt.toString());
+
 		refreshChildren();
 	}
 
 	@Override
-	protected void refreshVisuals(){
+	protected void refreshVisuals() {
 		final CanvasFigure figure = (CanvasFigure)getFigure();
 		final Canvas model = (Canvas)getModel();
 

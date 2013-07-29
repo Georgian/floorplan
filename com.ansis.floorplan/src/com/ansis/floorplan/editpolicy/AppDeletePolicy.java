@@ -6,7 +6,11 @@ import org.eclipse.gef.requests.GroupRequest;
 
 import com.ansis.floorplan.command.DeleteCommand;
 
-public class AppDeletePolicy extends ComponentEditPolicy{
+
+public class AppDeletePolicy extends ComponentEditPolicy {
+
+	// ==================== 5. Creators ====================
+
 	@Override
 	protected Command createDeleteCommand(final GroupRequest deleteRequest) {
 		final DeleteCommand command = new DeleteCommand();
@@ -14,4 +18,5 @@ public class AppDeletePolicy extends ComponentEditPolicy{
 		command.setParentModel(getHost().getParent().getModel());
 		return command;
 	}
+
 }

@@ -10,11 +10,22 @@ import org.eclipse.ui.actions.ActionFactory;
 
 
 public class AppContextMenuProvider extends ContextMenuProvider{
+
+	// ====================== 2. Instance Fields =============================
+
 	private ActionRegistry actionRegistry;
+
+
+	// ==================== 4. Constructors ====================
+
 	public AppContextMenuProvider(final EditPartViewer viewer, final ActionRegistry registry) {
 		super(viewer);
 		setActionRegistry(registry);
 	}
+
+
+	// ==================== 6. Action Methods ====================
+
 	@Override
 	public void buildContextMenu(final IMenuManager menu) {
 		IAction action;
@@ -26,10 +37,16 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		action = getActionRegistry().getAction(ActionFactory.DELETE.getId());
 		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
 	}
+
+
+	// ==================== 7. Getters & Setters ====================
+
 	private ActionRegistry getActionRegistry() {
 		return actionRegistry;
 	}
+
 	private void setActionRegistry(final ActionRegistry registry) {
 		actionRegistry = registry;
 	}
+
 }

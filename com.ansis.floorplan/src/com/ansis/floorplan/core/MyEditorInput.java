@@ -9,7 +9,7 @@ public class MyEditorInput implements IEditorInput {
 
 	// ====================== 2. Instance Fields =============================
 
-	public String name = null;
+	private String name = null;
 
 
 	// ==================== 4. Constructors ====================
@@ -17,7 +17,7 @@ public class MyEditorInput implements IEditorInput {
 	public MyEditorInput(final String name) {
 		this.name = name;
 	}
-	
+
 
 	// ==================== 6. Action Methods ====================
 
@@ -32,6 +32,9 @@ public class MyEditorInput implements IEditorInput {
 			return false;
 		return ((MyEditorInput)o).getName().equals(getName());
 	}
+
+
+	// ==================== 7. Getters & Setters ====================
 
 	@Override
 	public ImageDescriptor getImageDescriptor() {

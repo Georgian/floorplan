@@ -14,12 +14,10 @@ import com.ansis.floorplan.model.Polly;
 
 public class PollyEditPart extends AppAbstractEditPart {
 
-
 	// ==================== 5. Creators ====================
 
 	@Override
 	protected IFigure createFigure() {
-
 		final PollyFigure figure = new PollyFigure( ((Polly)getModel()).getG() );
 		figure.setBounds( ((Polly)getModel()).getR());
 		figure.setList( ((Polly)getModel()).getList() );
@@ -27,10 +25,20 @@ public class PollyEditPart extends AppAbstractEditPart {
 		figure.setEtage( ((Polly)getModel()).getEtage());
 
 		System.out.println(((Polly)getModel()).getList().size());
-		System.out.println("Hi, you are now in the createFigure method :)");
+		System.out.println("Hi, you are now in the createFigure method, in the PollyEditPart class :)");
 
 		return figure;
 	}
+
+	@Override
+	protected void createEditPolicies() {
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new AppEditLayoutPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppDeletePolicy());
+	}
+
+
+	// ==================== 6. Action Methods ====================
+
 	@Override
 	public void refreshVisuals() {
 		final PollyFigure figure = (PollyFigure)getFigure();
@@ -44,18 +52,13 @@ public class PollyEditPart extends AppAbstractEditPart {
 	}
 
 	@Override
-	protected void createEditPolicies() {
-		installEditPolicy(EditPolicy.LAYOUT_ROLE, new AppEditLayoutPolicy());
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppDeletePolicy());
-
-	}
-
-	@Override
 	public void propertyChange(final PropertyChangeEvent evt) {
-		if (evt.getPropertyName().equals(ModelTest.PROPERTY_LAYOUT)) refreshVisuals();
-		if (evt.getPropertyName().equals(ModelTest.PROPERTY_ADD)) refreshChildren();
-		if (evt.getPropertyName().equals(ModelTest.PROPERTY_REMOVE)) refreshChildren();
-
+		if (evt.getPropertyName().equals(ModelTest.PROPERTY_LAYOUT))
+			refreshVisuals();
+		if (evt.getPropertyName().equals(ModelTest.PROPERTY_ADD))
+			refreshChildren();
+		if (evt.getPropertyName().equals(ModelTest.PROPERTY_REMOVE))
+			refreshChildren();
 	}
 
 }

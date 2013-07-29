@@ -56,7 +56,6 @@ public class MyListener {
 
 		});
 
-		
 		figure.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseDoubleClicked(final MouseEvent me) {
@@ -66,32 +65,25 @@ public class MyListener {
 			@Override
 			public void mousePressed(final MouseEvent me) {
 
-
 				if (me.button == 2) {
 					//// ==================== left click add point ====================
-
 
 					//Remember click in point list
 					pointList.addPoint(new Point(me.x, me.y));
 					lastPoint = new Point(me.x, me.y);
-					
+
 					System.out.println(pointList.size());
 					System.out.println(me.x);
 					System.out.println(me.y);
-
 				}
-				if (me.button == 3 && pointList.size() > 2) {
 
+				if (me.button == 3 && pointList.size() > 2) {
 
 					Point pointmin = null, pointmax = null, point = null;
 					final Point pointg = new Point (0,0), pointk = new Point(0,0);
 
 					/////////////////
-
-
 					// Find min/max points. Compute bounds for our new figure
-
-
 
 					for (int i = 0; i < pointList.size(); i++) {
 						if (pointmin == null)
@@ -102,7 +94,6 @@ public class MyListener {
 
 						point = pointList.getPoint(i);
 
-
 						if(point.x < pointmin.x)
 							pointmin.x = point.x;
 						if(point.x > pointmax.x)
@@ -111,8 +102,6 @@ public class MyListener {
 							pointmin.y = point.y;
 						if(point.y > pointmax.y)
 							pointmax.y = point.y;
-
-
 					}
 
 					if(pointmin.x != 0)
@@ -121,8 +110,8 @@ public class MyListener {
 							point.x = point.x - pointmin.x;
 							pointList.setPoint(point, i);
 							pointg.x = pointg.x + point.x;
-
 						}
+
 					if(pointmin.y != 0)
 						for (int i = 0; i < pointList.size(); i++) {
 							point = pointList.getPoint(i);
@@ -143,11 +132,10 @@ public class MyListener {
 
 					////////////////
 
-
 					final Polly polly3 = new Polly();
 					polly3.setList(pointList);
 
-					polly3.setName("polly test");
+					polly3.setName("polly test"); //$NON-NLS-1$
 					polly3.setEtage(3);
 					polly3.setBounds(rect);
 					polly3.setR(rect);
@@ -155,40 +143,26 @@ public class MyListener {
 
 					model.addChild(polly3);
 
-
 					pointList = new PointList();
 					System.out.println("Number of children");
 					System.out.println(ModelTest.getChildren().size());
-					
 				}
 
-				if(me.button == 1 && isShiftPressed == true){
-
-					if (pointList.size() > 0)
-					{	
-
-						if(Math.abs(Math.abs(lastPoint.x)-Math.abs(me.x)) > Math.abs(Math.abs(lastPoint.y)-Math.abs(me.y)))
-						{
+				if(me.button == 1 && isShiftPressed == true) {
+					if (pointList.size() > 0) {	
+						if(Math.abs(Math.abs(lastPoint.x)-Math.abs(me.x)) > Math.abs(Math.abs(lastPoint.y)-Math.abs(me.y)))	{
 							pointList.addPoint(new Point(me.x, lastPoint.y));
 							lastPoint = new Point(me.x, lastPoint.y);
-
 							//							final Rectangle r = new Rectangle(lastPoint, new Point(me.x,lastPoint.y));
 							//							add(new PolyFigure(pointList, r));
-
-						}
-
-						else
-						{
+						} else {
 							pointList.addPoint(new Point(lastPoint.x,me.y));
 							lastPoint = new Point(lastPoint.x, me.y);
-
 							//							final Rectangle r = new Rectangle(lastPoint, new Point(lastPoint.x,me.y));
 							//							add(new PolyFigure(pointList, r));
 						}
-
 					}
 				}
-
 			}
 
 			@Override
@@ -197,7 +171,5 @@ public class MyListener {
 			}
 		});
 	}
+
 }
-
-
-

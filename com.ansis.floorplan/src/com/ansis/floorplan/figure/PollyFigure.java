@@ -3,8 +3,8 @@ package com.ansis.floorplan.figure;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.OrderedLayout;
 import org.eclipse.draw2d.PolygonShape;
-import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -12,7 +12,14 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 
 
-public class PollyFigure extends PolygonShape implements IFigure{
+public class PollyFigure extends PolygonShape implements IFigure {
+
+	// ==================== 1. Static Fields ========================
+
+	public static final int POLLY_FIGURE_DEFWIDTH = 250;
+
+	public static final int POLLY_FIGURE_DEFHEIGHT = 150;
+
 
 	// ====================== 2. Instance Fields =============================
 
@@ -22,13 +29,9 @@ public class PollyFigure extends PolygonShape implements IFigure{
 
 	private Label labelEtage = new Label();
 
-	Rectangle r;
+	private Rectangle r;
 
-	Rectangle g2;
-	
-	public static final int POLLY_FIGURE_DEFWIDTH = 250;
-
-	public static final int POLLY_FIGURE_DEFHEIGHT = 150;
+	private Rectangle g2;
 
 
 	// ==================== 4. Constructors ====================
@@ -37,52 +40,42 @@ public class PollyFigure extends PolygonShape implements IFigure{
 
 		final XYLayout layout = new XYLayout();
 		setLayoutManager(layout);
-		
-//		g2 = new Rectangle(0,0,100,100);
-//		
-//		if (g == null)
-//			g = g2;
-		
+
+		//		g2 = new Rectangle(0,0,100,100);
+		//		
+		//		if (g == null)
+		//			g = g2;
+
 		g2 = new Rectangle(g);
-		
+
 		g2.y = g2.y + 15;
-		
+
 		g2.height = g2.height +20;
-		
+
 		labelName.setForegroundColor(ColorConstants.black);
 		labelName.setOpaque(true);
 		labelName.setBackgroundColor(ColorConstants.lightBlue);
-//		final Font classFont = new Font(null, "Arial", 12, SWT.BOLD);
-		labelName.setFont(new Font(null, "Lucida Handwriting", 7, SWT.BOLD));
-		
-		add(labelName, ToolbarLayout.ALIGN_CENTER);
+		//		final Font classFont = new Font(null, "Arial", 12, SWT.BOLD);
+		labelName.setFont(new Font(null, "Lucida Handwriting", 7, SWT.BOLD)); //$NON-NLS-1$
+		add(labelName, OrderedLayout.ALIGN_CENTER);
 		setConstraint(labelName, g);
 
-		
 		labelEtage.setForegroundColor(ColorConstants.black);
 		labelEtage.setOpaque(true);
-		labelEtage.setFont(new Font(null, "Lucida Handwriting", 10, SWT.NORMAL));
+		labelEtage.setFont(new Font(null, "Lucida Handwriting", 10, SWT.NORMAL)); //$NON-NLS-1$
 		labelEtage.setBackgroundColor(ColorConstants.lightBlue);
-		
-		add(labelEtage, ToolbarLayout.ALIGN_CENTER);
+		add(labelEtage, OrderedLayout.ALIGN_CENTER);
 		setConstraint(labelEtage, g2);
-		
-		
-	
-		
+
 		setBackgroundColor(ColorConstants.yellow);
-		  setForegroundColor(ColorConstants.green);
-		  setLineStyle(2);
-		  setLineWidth(3);
-		
-		
-		
-		
-		
-		System.out.println("LOOK HERE");
-		System.out.println(g);
-		System.out.println(g2);
-		
+		setForegroundColor(ColorConstants.green);
+		setLineStyle(2);
+		setLineWidth(3);
+
+		//		System.out.println("LOOK HERE");
+		//		System.out.println(g);
+		//		System.out.println(g2);
+
 		setPoints(list);
 	}
 
@@ -102,7 +95,7 @@ public class PollyFigure extends PolygonShape implements IFigure{
 	}
 
 	public void setEtage(final int etage) {
-		labelEtage.setText("Etage:"+etage);
+		labelEtage.setText("Etage:"+etage); //$NON-NLS-1$
 	}
 
 	public void setLayout(final Rectangle rect) {

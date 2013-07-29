@@ -17,11 +17,11 @@ public class ModelTest {
 
 	public static final String PROPERTY_MODEL_CHANGED = "ModelTest"; //$NON-NLS-1$
 
+	public static final String PROPERTY_ADD = "ModelTestAddChild"; //$NON-NLS-1$
+
+	public static final String PROPERTY_REMOVE = "ModelTestRemoveChild"; //$NON-NLS-1$
+
 	private static List<Polly> children = new ArrayList<>();
-
-	public static final String PROPERTY_ADD = "ModelTestAddChild";
-
-	public static final String PROPERTY_REMOVE = "ModelTestRemoveChild";
 
 
 	// ====================== 2. Instance Fields =============================
@@ -48,33 +48,6 @@ public class ModelTest {
 
 	public Rectangle getLayout() {
 		return this.layout;
-
-	}
-
-
-	public boolean removeChild(final ModelTest child) {
-		final boolean b = this.children.remove(child);
-		if (b)
-			getListeners().firePropertyChange(PROPERTY_REMOVE, child, null);
-		return b;
-	}
-
-
-
-	public boolean addChild(final Polly figure) {
-		final boolean b = this.children.add(figure);
-		if (b) {
-			figure.setParent(this);
-			getListeners().firePropertyChange(PROPERTY_ADD, null, figure);
-		}
-		else{
-
-			figure.setParent(this);
-			children.add(figure);
-			getListeners().firePropertyChange(new PropertyChangeEvent(this, "", null, null));
-		}
-		return b;
-
 	}
 
 	public static List<Polly> getChildren() {
@@ -94,6 +67,26 @@ public class ModelTest {
 
 	public void removePropertyChangeListener(final PropertyChangeListener listener) {
 		listeners.removePropertyChangeListener(listener);
+	}
+
+	public boolean addChild(final Polly figure) {
+		final boolean b = this.children.add(figure);
+		if (b) {
+			figure.setParent(this);
+			getListeners().firePropertyChange(PROPERTY_ADD, null, figure);
+		} else {
+			figure.setParent(this);
+			children.add(figure);
+			getListeners().firePropertyChange(new PropertyChangeEvent(this, "", null, null)); //$NON-NLS-1$
+		}
+		return b;
+	}
+
+	public boolean removeChild(final ModelTest child) {
+		final boolean b = this.children.remove(child);
+		if (b)
+			getListeners().firePropertyChange(PROPERTY_REMOVE, child, null);
+		return b;
 	}
 
 }

@@ -41,5 +41,5 @@ public class CanvasChangeLayoutCommand  extends AbstractLayoutCommand {
 		this.model = (Canvas)model;
 		this.oldLayout = ((Canvas)model).getLayout();
 	}
-	
+
 }
