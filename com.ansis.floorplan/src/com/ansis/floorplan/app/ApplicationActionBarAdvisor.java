@@ -26,7 +26,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 
 	@Override
 	protected void fillMenuBar(final IMenuManager menuBar) {
-		MenuManager fileMenu = new MenuManager("&File", "file"); 
+		final MenuManager fileMenu = new MenuManager("&File", "file");  //$NON-NLS-1$ //$NON-NLS-2$
     	fileMenu.add(new OpenEditorAction());
     	menuBar.add(fileMenu);
     	
