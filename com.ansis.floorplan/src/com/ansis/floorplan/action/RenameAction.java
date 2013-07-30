@@ -45,7 +45,7 @@ public class RenameAction extends SelectionAction {
 		setText("Rename..."); //$NON-NLS-1$
 		setToolTipText("Rename"); //$NON-NLS-1$
 		setId(ActionFactory.RENAME.getId());
-		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("TutoGEF", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
+		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)
 			setImageDescriptor(icon);
 		setEnabled(false);
@@ -61,8 +61,8 @@ public class RenameAction extends SelectionAction {
 
 	@Override
 	public void run() {
-		final Polly node = getSelectedNode();
-		final RenameWizard wizard = new RenameWizard(node.getName());
+		final Polly polly = getSelectedNode();
+		final RenameWizard wizard = new RenameWizard(polly.getName());
 		final WizardDialog dialog = new WizardDialog(getWorkbenchPart().getSite().getShell(), wizard);
 		dialog.create(); 
 		dialog.getShell().setSize(480, 360);

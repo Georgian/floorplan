@@ -13,7 +13,7 @@ public class Activator extends AbstractUIPlugin {
 	// ==================== 1. Static Fields ========================
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "com.ansis.practing.gef.tut2"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "com.ansis.floorplan"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

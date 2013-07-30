@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Test2
+Bundle-Name: FloorPlan
 Bundle-SymbolicName: com.ansis.floorplan;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.ansis.floorplan.app.Activator
-Bundle-Vendor: JORJ
+Bundle-Vendor: ANSIS
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.draw2d;bundle-version="3.9.0",

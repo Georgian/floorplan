@@ -9,7 +9,7 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 
 	// ==================== 1. Static Fields ========================
 
-	private static final String PERSPECTIVE_ID = "com.jorj.gef4.test2.perspective"; //$NON-NLS-1$
+	private static final String PERSPECTIVE_ID = "com.ansis.floorplan.perspective"; //$NON-NLS-1$
 
 
 	// ==================== 5. Creators ====================
@@ -22,15 +22,15 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 
 	// ==================== 6. Action Methods ====================
 
-//	@Override
-//	public void postStartup() {
-//		try {
-//			final IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-//			page.openEditor(new MyEditorInput("TutoGEF"), MyGraphicalEditor.ID, false); //$NON-NLS-1$
-//		} catch (final Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
+	/*@Override
+	public void postStartup() {
+		try {
+			final IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			page.openEditor(new MyEditorInput("TutoGEF"), MyGraphicalEditor.ID, false); //$NON-NLS-1$
+		} catch (final Exception e) {
+			e.printStackTrace();
+		}
+	}*/
 
 
 	// ==================== 7. Getters & Setters ====================

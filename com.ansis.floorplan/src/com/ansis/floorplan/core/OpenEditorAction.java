@@ -12,7 +12,7 @@ public class OpenEditorAction extends Action {
 
 		try {
 			final IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-			page.openEditor(new MyEditorInput("TutoGEF"), MyGraphicalEditor.ID, false); //$NON-NLS-1$
+			page.openEditor(new MyEditorInput("FloorPlan"), MyGraphicalEditor.ID, false); //$NON-NLS-1$
 		} catch (final Exception e) {
 			e.printStackTrace();
 		}

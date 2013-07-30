@@ -16,7 +16,7 @@
       <perspective
             name="RCP Perspective"
             class="com.ansis.floorplan.app.Perspective"
-            id="com.jorj.gef4.test2.perspective">
+            id="com.ansis.floorplan.perspective">
       </perspective>
    </extension>
    <extension
@@ -25,7 +25,7 @@
             class="com.ansis.floorplan.core.MyGraphicalEditor"
             contributorClass="com.ansis.floorplan.core.MyGraphicalEditorActionBarContributor"
             default="true"
-            id="myEditor"
+            id="myGraphicalEditor"
             name="Editor">
       </editor>
    </extension>

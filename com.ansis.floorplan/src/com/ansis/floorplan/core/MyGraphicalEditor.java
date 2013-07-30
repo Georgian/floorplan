@@ -41,7 +41,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String ID = "myEditor"; //$NON-NLS-1$
+	public static final String ID = "myGraphicalEditor"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
