@@ -8,7 +8,7 @@ public class Polly extends ModelTest {
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String PROPERTY_RENAME = "NodeRename"; //$NON-NLS-1$
+	public static final String PROPERTY_RENAME = "PollyRename"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
@@ -70,7 +70,6 @@ public class Polly extends ModelTest {
 
 	public Rectangle getBounds() {
 		return bounds;
-
 	}
 
 	public Rectangle getR() {
