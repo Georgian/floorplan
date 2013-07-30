@@ -71,9 +71,8 @@ public class ModelTest {
 		listeners.removePropertyChangeListener(listener);
 	}
 
-	@SuppressWarnings("static-access")
 	public boolean addChild(final Polly figure) {
-		final boolean b = this.children.add(figure);
+		final boolean b = ModelTest.getChildren().add(figure);
 		
 		if (b) {
 			figure.setParent(this);
@@ -87,9 +86,8 @@ public class ModelTest {
 		return b;
 	}
 
-	@SuppressWarnings("static-access")
 	public boolean removeChild(final ModelTest child) {
-		final boolean b = this.children.remove(child);
+		final boolean b = ModelTest.getChildren().remove(child);
 		
 		if (b)
 			getListeners().firePropertyChange(PROPERTY_REMOVE, child, null);
