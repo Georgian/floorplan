@@ -26,12 +26,13 @@ public class ModelTestCreationFactory implements CreationFactory {
 	public Object getNewObject() {
 		if (template == null)
 			return null;
+		
 		if (template == Polly.class) {
 			final Polly srv = new Polly();
 			srv.setName("3rd figure"); //$NON-NLS-1$
 			srv.setEtage(23);
 
-			//Not sure if it works. Too affraid to delete
+			//Doesn't work. No need to delete yet
 			srv.setList(srv.getList());
 			return srv;
 		}

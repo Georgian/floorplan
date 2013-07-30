@@ -75,7 +75,7 @@ public class RenameWizard extends Wizard {
 			final Composite composite = new Composite(parent, SWT.NONE);
 
 			final Label nameLabel = new Label(composite, SWT.NONE);
-			nameLabel.setText("Rename 'Name' to: "); //$NON-NLS-1$
+			nameLabel.setText("Rename to: "); //$NON-NLS-1$
 
 			nameText = new Text(composite, SWT.NONE);
 			nameText.setText(oldName);

@@ -30,12 +30,16 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 	public void buildContextMenu(final IMenuManager menu) {
 		IAction action;
 		GEFActionConstants.addStandardActionGroups(menu);
+		
+		// Undo
 		action = getActionRegistry().getAction(ActionFactory.UNDO.getId());
 		menu.appendToGroup(GEFActionConstants.GROUP_UNDO, action);
 
+		// Redo
 		action = getActionRegistry().getAction(ActionFactory.REDO.getId());
 		menu.appendToGroup(GEFActionConstants.GROUP_UNDO, action);
 
+		// Delete
 		action = getActionRegistry().getAction(ActionFactory.DELETE.getId());
 		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
 

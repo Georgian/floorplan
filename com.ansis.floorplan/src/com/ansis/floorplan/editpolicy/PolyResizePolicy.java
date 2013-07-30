@@ -5,10 +5,9 @@ import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 
 /**
  * 
- * Not sure if this has to be implemented
+ * Not sure if this has to be implemented (yet)
  *
  */
-// Not sure if we should implement this yet
 
 public class PolyResizePolicy extends ResizableEditPolicy {
 

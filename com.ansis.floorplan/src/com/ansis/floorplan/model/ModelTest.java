@@ -42,7 +42,9 @@ public class ModelTest {
 
 	public void setLayout(final Rectangle newLayout) { 
 		final Rectangle oldLayout = this.layout;
+		
 		this.layout = newLayout;
+		
 		getListeners().firePropertyChange(PROPERTY_LAYOUT, oldLayout, newLayout);
 	}
 

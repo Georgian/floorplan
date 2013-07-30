@@ -20,19 +20,24 @@ public class PollyEditPart extends AppAbstractEditPart {
 	@Override
 	protected IFigure createFigure() {
 		final PollyFigure figure = new PollyFigure( ((Polly)getModel()).getG() );
+		
 		figure.setBounds( ((Polly)getModel()).getR());
 		figure.setList( ((Polly)getModel()).getList() );
 		figure.setName( ((Polly)getModel()).getName());
 		figure.setEtage( ((Polly)getModel()).getEtage());
 
-//		System.out.println(((Polly)getModel()).getList().size()+"\nHi, you are now in the createFigure method, in the PollyEditPart class :)");
+//		System.out.println(((Polly)getModel()).getList().size()+"\ncreateFigure method called");
 
 		return figure;
 	}
 
 	@Override
 	protected void createEditPolicies() {
+		
+		// Move
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new AppEditLayoutPolicy());
+		
+		// Create
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppDeletePolicy());
 
 		// Rename
@@ -47,6 +52,7 @@ public class PollyEditPart extends AppAbstractEditPart {
 		final PollyFigure figure = (PollyFigure)getFigure();
 		final Polly model = (Polly)getModel();
 
+		//		G should be used when the figure is refreshed
 		//		figure.setG(model.getG());
 		figure.setBounds(model.getR());
 		figure.setName(model.getName());
@@ -56,10 +62,16 @@ public class PollyEditPart extends AppAbstractEditPart {
 
 	@Override
 	public void propertyChange(final PropertyChangeEvent evt) {
+		
+		// Move
 		if (evt.getPropertyName().equals(ModelTest.PROPERTY_LAYOUT))
 			refreshVisuals();
+	
+		// Create
 		if (evt.getPropertyName().equals(ModelTest.PROPERTY_ADD))
 			refreshChildren();
+		
+		// Delete
 		if (evt.getPropertyName().equals(ModelTest.PROPERTY_REMOVE))
 			refreshChildren();
 

@@ -22,7 +22,9 @@ public class CanvasFigure extends Figure {
 
 	public CanvasFigure() {
 		final XYLayout layout = new XYLayout();
+		
 		setLayoutManager(layout);
+		
 		labelName.setForegroundColor(ColorConstants.darkGreen);
 		add(labelName);
 		setConstraint(labelName, new Rectangle(5, 5, -1, -1));

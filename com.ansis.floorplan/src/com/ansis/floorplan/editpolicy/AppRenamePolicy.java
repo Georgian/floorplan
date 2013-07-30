@@ -13,8 +13,10 @@ public class AppRenamePolicy extends AbstractEditPolicy {
 
 	protected Command createRenameCommand(final Request renameRequest) {
 		final RenameCommand command = new RenameCommand();
+		
 		command.setModel(getHost().getModel()); 
 		command.setNewName((String)renameRequest.getExtendedData().get("newName")); //$NON-NLS-1$
+		
 		return command;
 	}
 
@@ -25,6 +27,7 @@ public class AppRenamePolicy extends AbstractEditPolicy {
 	public Command getCommand(final Request request) {
 		if (request.getType().equals("rename"))  //$NON-NLS-1$
 			return createRenameCommand(request);
+		
 		return null;
 	}
 

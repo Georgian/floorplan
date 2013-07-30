@@ -65,9 +65,9 @@ public class RenameAction extends SelectionAction {
 		final RenameWizard wizard = new RenameWizard(polly.getName());
 		final WizardDialog dialog = new WizardDialog(getWorkbenchPart().getSite().getShell(), wizard);
 		dialog.create(); 
-		dialog.getShell().setSize(480, 360);
+		dialog.getShell().setSize(640, 480);
 		dialog.setTitle("Rename wizard"); //$NON-NLS-1$
-		dialog.setMessage("Rename"); //$NON-NLS-1$
+		dialog.setMessage(""); //$NON-NLS-1$
 		if (dialog.open() == Window.OK) {
 			final String name = wizard.getRenameValue(); 
 			execute(createRenameCommand(name)); 

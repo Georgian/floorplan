@@ -107,7 +107,7 @@ public class MyListener {
 					Point pointmin = null, pointmax = null, point = null;
 					final Point pointg = new Point (0,0), pointk = new Point(0,0);
 
-					/////////////////
+					///////////////////////////////////////////////////
 					// Find min/max points. Compute bounds for our new figure
 
 					for (int i = 0; i < pointList.size(); i++) {
@@ -155,7 +155,7 @@ public class MyListener {
 
 					label = new Rectangle(pointg, pointk);
 
-					////////////////
+					///////////////////////////////////////////////////
 
 					final Polly polly3 = new Polly();
 					polly3.setList(pointList);

@@ -41,21 +41,18 @@ public class PollyFigure extends PolygonShape implements IFigure {
 		final XYLayout layout = new XYLayout();
 		setLayoutManager(layout);
 
-		//		g2 = new Rectangle(0,0,100,100);
-		//		
-		//		if (g == null)
-		//			g = g2;
-
 		g2 = new Rectangle(g);
 
+		// Label positions/sizes
 		g2.y = g2.y + 15;
-
 		g2.height = g2.height +20;
+
+		// Creating a new font
+		// final Font classFont = new Font(null, "Arial", 12, SWT.BOLD);
 
 		labelName.setForegroundColor(ColorConstants.black);
 		labelName.setOpaque(true);
 		labelName.setBackgroundColor(ColorConstants.lightBlue);
-		//		final Font classFont = new Font(null, "Arial", 12, SWT.BOLD);
 		labelName.setFont(new Font(null, "Lucida Handwriting", 7, SWT.BOLD)); //$NON-NLS-1$
 		add(labelName, OrderedLayout.ALIGN_CENTER);
 		setConstraint(labelName, g);
@@ -71,10 +68,6 @@ public class PollyFigure extends PolygonShape implements IFigure {
 		setForegroundColor(ColorConstants.green);
 		setLineStyle(2);
 		setLineWidth(3);
-
-		//		System.out.println("LOOK HERE");
-		//		System.out.println(g);
-		//		System.out.println(g2);
 
 		setPoints(list);
 	}
