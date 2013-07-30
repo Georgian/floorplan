@@ -20,6 +20,14 @@ import com.ansis.floorplan.wizard.RenameWizard;
 
 public class RenameAction extends SelectionAction {
 
+	// ==================== 4. Constructors ====================
+
+	public RenameAction(final IWorkbenchPart part) {
+		super(part);
+		setLazyEnablementCalculation(false);
+	}
+
+
 	// ==================== 5. Creators ====================
 
 	public Command createRenameCommand(final String name) {
@@ -34,11 +42,6 @@ public class RenameAction extends SelectionAction {
 
 
 	// ==================== 6. Action Methods ====================
-
-	public RenameAction(final IWorkbenchPart part) {
-		super(part);
-		setLazyEnablementCalculation(false);
-	}
 
 	@Override
 	protected void init() {
