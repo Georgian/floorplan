@@ -58,6 +58,7 @@ public class PollyEditPart extends AppAbstractEditPart {
 		figure.setName(model.getName());
 		figure.setEtage(model.getEtage());
 		figure.setLayout(model.getLayout());
+		figure.setBackgroundColor(model.getColor());
 	}
 
 	@Override
@@ -77,6 +78,10 @@ public class PollyEditPart extends AppAbstractEditPart {
 
 		// Rename
 		if (evt.getPropertyName().equals(Polly.PROPERTY_RENAME))
+			refreshVisuals();
+
+		// Color
+		if (evt.getPropertyName().equals(Polly.PROPERTY_COLOR))
 			refreshVisuals();
 	}
 

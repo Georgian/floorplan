@@ -2,6 +2,7 @@ package com.ansis.floorplan.model;
 
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.swt.graphics.Color;
 
 
 public class Polly extends ModelTest {
@@ -9,6 +10,8 @@ public class Polly extends ModelTest {
 	// ==================== 1. Static Fields ========================
 
 	public static final String PROPERTY_RENAME = "PollyRename"; //$NON-NLS-1$
+
+	public static final String PROPERTY_COLOR = "PollyColor"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
@@ -26,6 +29,22 @@ public class Polly extends ModelTest {
 	private Rectangle r;
 
 	private Rectangle g;
+
+	private Color color;
+
+
+	// ==================== 4. Constructors ====================
+
+	public Polly() {
+		this.setColor(createDefaultColor());
+	}
+
+
+	// ==================== 5. Creators ====================
+
+	private static Color createDefaultColor() {
+		return new Color(null, 0, 0, 192);
+	}
 
 
 	// ==================== 7. Getters & Setters ====================
@@ -86,6 +105,16 @@ public class Polly extends ModelTest {
 
 	public void setG(final Rectangle g) {
 		this.g = g;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(final Color color) {
+		final Color oldColor = this.color;
+		this.color = color;
+		getListeners().firePropertyChange(PROPERTY_COLOR, oldColor, color);
 	}
 
 }
