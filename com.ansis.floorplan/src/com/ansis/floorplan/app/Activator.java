@@ -19,6 +19,29 @@ public class Activator extends AbstractUIPlugin {
 	private static Activator plugin;
 
 
+	// ==================== 3. Static Methods ====================
+
+	/**
+	 * Returns the shared instance
+	 *
+	 * @return the shared instance
+	 */
+	public static Activator getDefault() {
+		return plugin;
+	}
+
+	/**
+	 * Returns an image descriptor for the image file at the given
+	 * plug-in relative path
+	 *
+	 * @param path the path
+	 * @return the image descriptor
+	 */
+	public static ImageDescriptor getImageDescriptor(final String path) {
+		return imageDescriptorFromPlugin(PLUGIN_ID, path);
+	}
+
+
 	// ==================== 4. Constructors ====================
 
 	/**
@@ -49,29 +72,6 @@ public class Activator extends AbstractUIPlugin {
 	public void stop(final BundleContext context) throws Exception {
 		plugin = null;
 		super.stop(context);
-	}
-
-
-	// ==================== 7. Getters & Setters ====================
-
-	/**
-	 * Returns the shared instance
-	 *
-	 * @return the shared instance
-	 */
-	public static Activator getDefault() {
-		return plugin;
-	}
-
-	/**
-	 * Returns an image descriptor for the image file at the given
-	 * plug-in relative path
-	 *
-	 * @param path the path
-	 * @return the image descriptor
-	 */
-	public static ImageDescriptor getImageDescriptor(final String path) {
-		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 
 }

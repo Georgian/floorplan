@@ -15,8 +15,6 @@ public class ModelTest {
 
 	public static final String PROPERTY_LAYOUT = "ModelTest"; //$NON-NLS-1$
 
-	public static final String PROPERTY_MODEL_CHANGED = "ModelTest"; //$NON-NLS-1$
-
 	public static final String PROPERTY_ADD = "ModelTestAddChild"; //$NON-NLS-1$
 
 	public static final String PROPERTY_REMOVE = "ModelTestRemoveChild"; //$NON-NLS-1$
@@ -29,6 +27,13 @@ public class ModelTest {
 	private Rectangle layout;
 
 	private PropertyChangeSupport listeners;
+
+
+	// ==================== 3. Static Methods ====================
+
+	public static List<Polly> getChildren() {
+		return children;
+	}
 
 
 	// ==================== 4. Constructors ====================
@@ -50,10 +55,6 @@ public class ModelTest {
 
 	public Rectangle getLayout() {
 		return this.layout;
-	}
-
-	public static List<Polly> getChildren() {
-		return children;
 	}
 
 

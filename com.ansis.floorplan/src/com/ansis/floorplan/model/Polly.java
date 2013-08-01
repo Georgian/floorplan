@@ -33,17 +33,17 @@ public class Polly extends ModelTest {
 	private Color color;
 
 
-	// ==================== 4. Constructors ====================
+	// ==================== 3. Static Methods ====================
 
-	public Polly() {
-		this.setColor(createDefaultColor());
+	private static Color defaultColor() {
+		return new Color(null, 0, 0, 192);
 	}
 
 
-	// ==================== 5. Creators ====================
+	// ==================== 4. Constructors ====================
 
-	private static Color createDefaultColor() {
-		return new Color(null, 0, 0, 192);
+	public Polly() {
+		this.setColor(defaultColor());
 	}
 
 
