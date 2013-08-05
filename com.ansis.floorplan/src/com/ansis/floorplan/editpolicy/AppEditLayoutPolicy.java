@@ -2,7 +2,9 @@ package com.ansis.floorplan.editpolicy;
 
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 
@@ -32,7 +34,7 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 
 		command.setModel(child.getModel());
 		command.setConstraint((Rectangle)constraint);
-		
+
 		return command;
 	}
 
@@ -43,23 +45,30 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 	protected Command getCreateCommand(final CreateRequest request) {
 		if (request.getType() == REQ_CREATE && getHost() instanceof CanvasEditPart) {
 			final PollyCreateCommand cmd = new PollyCreateCommand();
-			
+
 			cmd.setCanvas(getHost().getModel());
 			cmd.setPolly(request.getNewObject());
-			
+
 			final Rectangle constraint = (Rectangle)getConstraintFor(request);
-			
+
 			constraint.x = (constraint.x < 0) ? 0 : constraint.x;
 			constraint.y = (constraint.y < 0) ? 0 : constraint.y;
 			constraint.width = (constraint.width <= 0) ? PollyFigure.POLLY_FIGURE_DEFWIDTH : constraint.width;
 			constraint.height = (constraint.height <= 0) ? PollyFigure.POLLY_FIGURE_DEFHEIGHT : constraint.height;
-			
+
 			cmd.setLayout(constraint);
-			
+
 			return cmd;
 		}
 
 		return null;
 	}
+
+	// ==================== 9. Convenience Methods ====================
+
+	@Override 
+	protected EditPolicy createChildEditPolicy(final EditPart child) { 
+		return new NonResizableEditPolicy(); 
+	} 
 
 }
