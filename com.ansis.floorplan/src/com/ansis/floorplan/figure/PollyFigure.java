@@ -66,8 +66,8 @@ public class PollyFigure extends PolygonShape implements IFigure {
 
 		setBackgroundColor(ColorConstants.yellow);
 		setForegroundColor(ColorConstants.green);
-		setLineStyle(2);
-		setLineWidth(3);
+		setLineStyle(1);
+		setLineWidth(1);
 		setAlpha(127);
 
 		setPoints(list);
