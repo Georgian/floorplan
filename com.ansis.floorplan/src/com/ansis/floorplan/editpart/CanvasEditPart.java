@@ -4,7 +4,10 @@ import java.beans.PropertyChangeEvent;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.tools.DragEditPartsTracker;
 
 import com.ansis.floorplan.editpolicy.AppEditLayoutPolicy;
 import com.ansis.floorplan.figure.CanvasFigure;
@@ -32,6 +35,30 @@ public class CanvasEditPart extends AppAbstractEditPart {
 
 		new MyListener( ((Canvas)getModel()), figure );
 		return figure;
+	}
+
+	// This is an experimental way of checking for selection
+	@Override
+	public DragTracker getDragTracker(final Request request) {
+		return new DragEditPartsTracker(this) {
+
+			@Override
+			protected void performConditionalSelection() {
+				super.performConditionalSelection();
+				// This condition is not needed since the figure is always active after a selection
+				if (getCurrentInput().isShiftKeyDown())	
+				{
+					System.out.println("shift pressed");
+					MyListener.isShiftPressed = true;
+				}
+				else { 
+					MyListener.isShiftPressed = false;
+					System.out.println("shift not pressed");
+				}
+				
+					
+			}
+		};
 	}
 
 

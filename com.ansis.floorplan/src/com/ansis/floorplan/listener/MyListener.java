@@ -8,7 +8,6 @@ import org.eclipse.draw2d.MouseListener;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.swt.SWT;
 
 import com.ansis.floorplan.model.Canvas;
 import com.ansis.floorplan.model.Polly;
@@ -18,7 +17,7 @@ public class MyListener {
 
 	// ====================== 2. Instance Fields =============================
 
-	private boolean isShiftPressed = false;
+	public static boolean isShiftPressed = false;
 
 //	private boolean isControlPressed = false;
 
@@ -41,24 +40,24 @@ public class MyListener {
 			@Override
 			public void keyPressed(final KeyEvent ke) {
 //				System.out.println("key pressed "+(++i));
-				if (ke.keycode == SWT.SHIFT) {
-					isShiftPressed = true;
+//				if (ke.keycode == SWT.SHIFT) {
+//					isShiftPressed = true;
 					/*System.out.println("SHIFT is pressed: "+isShiftPressed);
 				} else if (ke.keycode == SWT.CONTROL) {
 					isControlPressed = true;
 					System.out.println("CONTROL is pressed: "+isControlPressed);*/
-				}
+//				}
 			}
 
 			@Override
 			public void keyReleased(final KeyEvent ke) {
-				if (ke.keycode == SWT.SHIFT) {
+//				if (ke.keycode == SWT.SHIFT) {
 					isShiftPressed = false;
 					/*System.out.println("SHIFT is released: "+isShiftPressed);
 				} else if (ke.keycode == SWT.CONTROL) {
 					isControlPressed = false;
 					System.out.println("CONTROL is released: "+isControlPressed);*/
-				}
+//				}
 			}
 
 		});
@@ -74,7 +73,7 @@ public class MyListener {
 			public void mousePressed(final MouseEvent me) {
 
 				if(me.button == 1 && isShiftPressed == true) {
-//					System.out.println("SHIFT + Mouse 1");
+					System.out.println("SHIFT + Mouse 1");
 					if (pointList.size() > 0) {	
 						if(Math.abs(Math.abs(lastPoint.x)-Math.abs(me.x)) > Math.abs(Math.abs(lastPoint.y)-Math.abs(me.y)))	{
 							pointList.addPoint(new Point(me.x, lastPoint.y));
@@ -89,7 +88,7 @@ public class MyListener {
 						}
 					}
 				} else if (me.button == 1 && isShiftPressed == false) {
-//					System.out.println("Mouse 1");
+					System.out.println("Mouse 1");
 				}
 
 				if (me.button == 2 /*&& isControlPressed == true*/) {
