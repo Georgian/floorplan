@@ -12,6 +12,8 @@ public class Polly extends ModelTest {
 	public static final String PROPERTY_RENAME = "PollyRename"; //$NON-NLS-1$
 
 	public static final String PROPERTY_COLOR = "PollyColor"; //$NON-NLS-1$
+	
+	public static final String PROPERTY_OPACITY = "PollyOpacity";
 
 
 	// ====================== 2. Instance Fields =============================
@@ -31,6 +33,8 @@ public class Polly extends ModelTest {
 	private Rectangle g;
 
 	private Color color;
+	
+	private float opacity;
 
 
 	// ==================== 3. Static Methods ====================
@@ -115,6 +119,16 @@ public class Polly extends ModelTest {
 		final Color oldColor = this.color;
 		this.color = color;
 		getListeners().firePropertyChange(PROPERTY_COLOR, oldColor, color);
+	}
+
+	public float getOpacity() {
+		return opacity;
+	}
+
+	public void setOpacity(final float opacity) {
+		final float oldOpacity = this.opacity;
+		this.opacity = opacity;
+		getListeners().firePropertyChange(PROPERTY_OPACITY, oldOpacity, opacity);
 	}
 
 }

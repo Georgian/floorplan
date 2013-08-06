@@ -8,6 +8,8 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.ui.actions.ActionFactory;
 
+import com.ansis.floorplan.action.TestAction;
+
 
 public class AppContextMenuProvider extends ContextMenuProvider{
 
@@ -45,6 +47,9 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 
 		// Rename
 		action = getActionRegistry().getAction(ActionFactory.RENAME.getId());
+		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
+
+		action = getActionRegistry().getAction(TestAction.testProperty);
 		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
 	}
 

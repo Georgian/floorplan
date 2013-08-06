@@ -26,6 +26,7 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.ansis.floorplan.action.RenameAction;
+import com.ansis.floorplan.action.TestAction;
 import com.ansis.floorplan.app.Activator;
 import com.ansis.floorplan.app.MyTemplateTransferDropTargetListener;
 import com.ansis.floorplan.factory.ModelTestCreationFactory;
@@ -79,6 +80,10 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final IAction action = new RenameAction(this);
 		registry.registerAction(action);
 		getSelectionActions().add(action.getId());
+
+		final TestAction testAction = new TestAction(this);
+		registry.registerAction(testAction);
+		getSelectionActions().add(testAction.getId());
 	}
 
 
