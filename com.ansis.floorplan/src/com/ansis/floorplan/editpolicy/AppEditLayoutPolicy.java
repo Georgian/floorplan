@@ -1,5 +1,8 @@
 package com.ansis.floorplan.editpolicy;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -68,7 +71,12 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 
 	@Override 
 	protected EditPolicy createChildEditPolicy(final EditPart child) { 
-		return new NonResizableEditPolicy(); 
+		return new NonResizableEditPolicy() {
+			@Override
+			protected List createSelectionHandles() {
+				return new ArrayList<>();
+			}
+		}; 
 	} 
 
 }
