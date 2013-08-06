@@ -5,8 +5,6 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.DefaultEditDomain;
@@ -64,123 +62,6 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 	public Canvas createContent() {
 		final Canvas canvas = new Canvas();
-		final Polly polly = new Polly();
-
-		polly.setList(new PointList(new int[] { 50, 50, 200, 200, 150, 50 }));
-
-		polly.setName("works!"); //$NON-NLS-1$
-		polly.setEtage(1);
-
-		Point point = null, pointmin = null, pointmax = null, pointg = new Point(0,0);
-		Point pointk = new Point(0,0);
-
-		for (int i = 0; i < polly.getList().size(); i++) {
-			if (pointmin == null)
-				pointmin = polly.getList().getPoint(i);
-
-			if (pointmax == null)
-				pointmax = polly.getList().getPoint(i);
-
-			point = polly.getList().getPoint(i);
-
-			if(point.x < pointmin.x)
-				pointmin.x = point.x;
-			if(point.x > pointmax.x)
-				pointmax.x = point.x;
-			if(point.y < pointmin.y)
-				pointmin.y = point.y;
-			if(point.y > pointmax.y)
-				pointmax.y = point.y;
-		}
-
-		if(pointmin.x != 0)
-			for (int i = 0; i < polly.getList().size(); i++) {
-				point = polly.getList().getPoint(i);
-				point.x = point.x - pointmin.x;
-				polly.getList().setPoint(point, i);
-				pointg.x = pointg.x + point.x;
-			}
-
-		if(pointmin.y != 0)
-			for (int i = 0; i < polly.getList().size(); i++) {
-				point = polly.getList().getPoint(i);
-				point.y = point.y - pointmin.y;
-				polly.getList().setPoint(point, i);
-				pointg.y = pointg.y + point.y;
-			}
-
-		pointg.x = (pointg.x/polly.getList().size()-35);
-		pointg.y = (pointg.y/polly.getList().size());
-		pointk.x = pointg.x+70;
-		pointk.y = pointg.y+15;
-
-		g = new Rectangle(pointg, pointk);
-		r = new Rectangle(pointmin,pointmax);
-		polly.setR(r);
-		polly.setG(g);
-
-		canvas.addChild(polly);
-
-		point = null; pointmin = null; pointmax = null; pointg = new Point(0,0);
-		pointk = new Point(0,0);
-
-		final Polly polly2 = new Polly();
-
-		polly2.setList(new PointList(new int[] { 20, 20, 20, 100 , 100, 100, 100, 20}));
-		polly2.setEtage(2);
-		polly2.setName("also works!"); //$NON-NLS-1$
-
-		// Find min/max points. Compute bounds for our new figure
-
-		for (int i = 0; i < polly2.getList().size(); i++) {
-			if (pointmin == null)
-				pointmin = polly2.getList().getPoint(i);
-
-			if (pointmax == null)
-				pointmax = polly2.getList().getPoint(i);
-
-			point = polly2.getList().getPoint(i);
-
-			if(point.x < pointmin.x)
-				pointmin.x = point.x;
-			if(point.x > pointmax.x)
-				pointmax.x = point.x;
-			if(point.y < pointmin.y)
-				pointmin.y = point.y;
-			if(point.y > pointmax.y)
-				pointmax.y = point.y;
-		}
-
-		//		System.out.println("pointmax"+pointmax);
-		//		System.out.println("pointmin"+pointmin);
-
-		if(pointmin.x != 0)
-			for (int i = 0; i < polly2.getList().size(); i++) {
-				point = polly2.getList().getPoint(i);
-				point.x = point.x - pointmin.x;
-				polly2.getList().setPoint(point, i);
-				pointg.x = pointg.x + point.x;
-			}
-
-		if(pointmin.y != 0)
-			for (int i = 0; i < polly2.getList().size(); i++) {
-				point = polly2.getList().getPoint(i);
-				point.y = point.y - pointmin.y;
-				polly2.getList().setPoint(point, i);
-				pointg.y = pointg.y + point.y;
-			}
-
-		pointg.x = (pointg.x/polly2.getList().size()-35);
-		pointg.y = (pointg.y/polly2.getList().size());
-		pointk.x = pointg.x+70;
-		pointk.y = pointg.y+15;
-
-		g = new Rectangle(pointg, pointk);
-		r = new Rectangle(pointmin,pointmax);
-		polly2.setR(r);
-		polly2.setG(g);
-
-		canvas.addChild(polly2);
 
 		canvas.setName("FloorPlan"); //$NON-NLS-1$
 		canvas.setAddress("Canvas Lable Test"); //$NON-NLS-1$
@@ -208,16 +89,6 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final GraphicalViewer viewer = getGraphicalViewer();
 		model = createContent();
 
-		//		addPropertyListener(new IPropertyListener() {
-		//			
-		//			@Override
-		//			public void propertyChanged(final Object source, final int propId) {
-		//
-		//				viewer.setContents(model);
-		//				
-		//			}
-		//		});
-		// Add the created model here
 		viewer.setContents(model);
 		viewer.addDropTargetListener(new MyTemplateTransferDropTargetListener(viewer));
 

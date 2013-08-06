@@ -3,6 +3,11 @@ package com.ansis.floorplan.editpolicy;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.FigureUtilities;
+import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -75,6 +80,18 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 			@Override
 			protected List createSelectionHandles() {
 				return new ArrayList<>();
+			}
+			@Override
+			protected IFigure createDragSourceFeedbackFigure() {
+				// Use a ghost rectangle for feedback
+				final RectangleFigure r = new RectangleFigure();
+				FigureUtilities.makeGhostShape(r);
+				r.setLineStyle(Graphics.LINE_DOT);
+				r.setForegroundColor(ColorConstants.white);
+				r.setBounds(getInitialFeedbackBounds());
+				r.validate();
+				addFeedback(r);
+				return r;
 			}
 		}; 
 	} 
