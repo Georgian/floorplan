@@ -30,9 +30,6 @@ public class CanvasEditPart extends AppAbstractEditPart {
 	protected IFigure createFigure() {
 		final IFigure figure = new CanvasFigure();
 
-		// TODO setFocusTraversable
-		figure.setFocusTraversable(true);
-
 		new MyListener( ((Canvas)getModel()), figure );
 		return figure;
 	}
