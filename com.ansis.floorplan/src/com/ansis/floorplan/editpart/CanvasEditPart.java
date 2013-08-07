@@ -45,18 +45,17 @@ public class CanvasEditPart extends AppAbstractEditPart {
 			@Override
 			protected void performConditionalSelection() {
 				super.performConditionalSelection();
-				// This condition is not needed since the figure is always active after a selection
 				if (getCurrentInput().isShiftKeyDown())	
-				{
-//					System.out.println("shift pressed");
 					MyListener.isShiftPressed = true;
-				}
-				else { 
+				else 
 					MyListener.isShiftPressed = false;
-//					System.out.println("shift not pressed");
-				}
 				
-					
+				if (getCurrentInput().isControlKeyDown())	
+					MyListener.isControlPressed = true;
+				else
+					MyListener.isControlPressed = false;
+
+
 			}
 		};
 	}

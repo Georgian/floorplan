@@ -19,7 +19,7 @@ public class MyListener {
 
 	public static boolean isShiftPressed = false;
 
-//	private boolean isControlPressed = false;
+	public static boolean isControlPressed = false;
 
 //	private int i = 0;
 
@@ -52,7 +52,7 @@ public class MyListener {
 			@Override
 			public void keyReleased(final KeyEvent ke) {
 //				if (ke.keycode == SWT.SHIFT) {
-					isShiftPressed = false;
+//					isShiftPressed = false;
 					/*System.out.println("SHIFT is released: "+isShiftPressed);
 				} else if (ke.keycode == SWT.CONTROL) {
 					isControlPressed = false;
@@ -91,7 +91,7 @@ public class MyListener {
 //					System.out.println("Mouse 1");
 				}
 
-				if (me.button == 2 /*&& isControlPressed == true*/) {
+				if (me.button == 1 && isControlPressed == true) {
 					//// ==================== left click add point ====================
 
 					//Remember click in point list
@@ -101,7 +101,7 @@ public class MyListener {
 //					System.out.println(pointList.size() + me.x + me.y);
 				}
 
-				if (me.button == 3 && pointList.size() > 2 /*&& isControlPressed == true*/) {
+				if (me.button == 3 && pointList.size() > 2 && isControlPressed == true) {
 
 					Point pointmin = null, pointmax = null, point = null;
 					final Point pointg = new Point (0,0), pointk = new Point(0,0);
