@@ -72,7 +72,7 @@ public class OpacityAction extends SelectionAction{
 		final OpacityWizard wizard = new OpacityWizard(Integer.toString(polly.getOpacity()));
 		final WizardDialog dialog = new WizardDialog(getWorkbenchPart().getSite().getShell(), wizard);
 		dialog.create(); 
-		dialog.getShell().setSize(640, 480);
+		dialog.getShell().setSize(320, 240);
 		dialog.setTitle("Opacity wizard"); //$NON-NLS-1$
 		dialog.setMessage(""); //$NON-NLS-1$
 		if (dialog.open() == Window.OK) {

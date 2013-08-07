@@ -6,6 +6,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Slider;
 import org.eclipse.swt.widgets.Text;
 
 
@@ -58,6 +59,8 @@ public class OpacityWizard extends Wizard {
 
 		public Text opacityText;
 
+		public Slider slider;
+		public Text value;
 
 		// ==================== 4. Constructors ====================
 

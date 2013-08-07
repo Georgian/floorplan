@@ -6,6 +6,7 @@ import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.ui.actions.ActionFactory;
 
 import com.ansis.floorplan.action.OpacityAction;
@@ -49,8 +50,27 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		action = getActionRegistry().getAction(ActionFactory.RENAME.getId());
 		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
 
+		// TODO Color
+		final MenuManager submenu2 = new MenuManager("Opacity");
+		
 		action = getActionRegistry().getAction(OpacityAction.opacityProperty);
-		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
+		submenu2.add(action);
+		
+		action = getActionRegistry().getAction(ActionFactory.RENAME.getId());
+		submenu2.add(action);
+		
+		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, submenu2);
+		
+		// Opacity
+		final MenuManager submenu = new MenuManager("Opacity");
+		
+		action = getActionRegistry().getAction(OpacityAction.opacityProperty);
+		submenu.add(action);
+		
+		action = getActionRegistry().getAction(ActionFactory.RENAME.getId());
+		submenu.add(action);
+		
+		menu.add(submenu);
 	}
 
 

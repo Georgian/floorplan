@@ -19,6 +19,8 @@ import com.ansis.floorplan.model.Polly;
 
 public class PollyEditPart extends AppAbstractEditPart {
 
+	private static final String OPACITY_EDIT_POLICY = "opacity";
+
 	// ==================== 5. Creators ====================
 
 	@Override
@@ -52,7 +54,7 @@ public class PollyEditPart extends AppAbstractEditPart {
 		// TODO Color
 
 		// Opacity
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new AppOpacityPolicy());
+		installEditPolicy(OPACITY_EDIT_POLICY, new AppOpacityPolicy());
 	}
 
 	// This is an experimental way of checking for selection
