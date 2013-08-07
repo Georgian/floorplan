@@ -13,7 +13,7 @@ public class Polly extends ModelTest {
 
 	public static final String PROPERTY_COLOR = "PollyColor"; //$NON-NLS-1$
 	
-	public static final String PROPERTY_OPACITY = "PollyOpacity";
+	public static final String PROPERTY_OPACITY = "PollyOpacity"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
@@ -34,7 +34,7 @@ public class Polly extends ModelTest {
 
 	private Color color;
 	
-	private float opacity;
+	private int opacity;
 
 
 	// ==================== 3. Static Methods ====================
@@ -42,12 +42,16 @@ public class Polly extends ModelTest {
 	private static Color defaultColor() {
 		return new Color(null, 0, 0, 192);
 	}
+	private static int defaultOpacity() {
+		return 127;
+	}
 
 
 	// ==================== 4. Constructors ====================
 
 	public Polly() {
 		this.setColor(defaultColor());
+		this.setOpacity(defaultOpacity());
 	}
 
 
@@ -118,17 +122,17 @@ public class Polly extends ModelTest {
 	public void setColor(final Color color) {
 		final Color oldColor = this.color;
 		this.color = color;
-		getListeners().firePropertyChange(PROPERTY_COLOR, oldColor, color);
+		getListeners().firePropertyChange(PROPERTY_COLOR, oldColor, this.color);
 	}
 
-	public float getOpacity() {
+	public int getOpacity() {
 		return opacity;
 	}
 
-	public void setOpacity(final float opacity) {
-		final float oldOpacity = this.opacity;
+	public void setOpacity(final int opacity) {
+		final int oldOpacity = this.opacity;
 		this.opacity = opacity;
-		getListeners().firePropertyChange(PROPERTY_OPACITY, oldOpacity, opacity);
+		getListeners().firePropertyChange(PROPERTY_OPACITY, oldOpacity, this.opacity);
 	}
 
 }

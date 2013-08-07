@@ -48,12 +48,12 @@ public class CanvasEditPart extends AppAbstractEditPart {
 				// This condition is not needed since the figure is always active after a selection
 				if (getCurrentInput().isShiftKeyDown())	
 				{
-					System.out.println("shift pressed");
+//					System.out.println("shift pressed");
 					MyListener.isShiftPressed = true;
 				}
 				else { 
 					MyListener.isShiftPressed = false;
-					System.out.println("shift not pressed");
+//					System.out.println("shift not pressed");
 				}
 				
 					

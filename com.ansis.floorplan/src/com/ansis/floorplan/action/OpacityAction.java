@@ -14,18 +14,38 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.ansis.floorplan.model.Polly;
-import com.ansis.floorplan.wizard.TestWizard;
+import com.ansis.floorplan.wizard.OpacityWizard;
 
 
-public class TestAction extends SelectionAction{
+public class OpacityAction extends SelectionAction{
 
-	public static final String testProperty = "testProperty";
+	// ==================== 1. Static Fields ========================
 
-	public TestAction(final IWorkbenchPart part) {
+	public static final String opacityProperty = "opacityProperty"; //$NON-NLS-1$
+
+
+	// ==================== 4. Constructors ====================
+
+	public OpacityAction(final IWorkbenchPart part) {
 		super(part);
-		setId(testProperty);
 		setLazyEnablementCalculation(true);
 	}
+
+
+	// ==================== 5. Creators ====================
+
+	public Command createTestCommand(final String opacity) {
+		final Request opacityReq = new Request("opacity"); //$NON-NLS-1$
+		final HashMap<String, String> reqData = new HashMap<String, String>();
+		reqData.put("newOpacity", opacity); //$NON-NLS-1$
+		opacityReq.setExtendedData(reqData);
+		final EditPart object = (EditPart)getSelectedObjects().get(0);
+		final Command cmd = object.getCommand(opacityReq);
+		return cmd; 
+	}
+
+
+	// ==================== 6. Action Methods ====================
 
 	@Override
 	protected boolean calculateEnabled() {
@@ -35,20 +55,11 @@ public class TestAction extends SelectionAction{
 		return true;
 	}
 
-	public Command createTestCommand(final String opacity) {
-		final Request testReq = new Request("rename"); //$NON-NLS-1$
-		final HashMap<String, String> reqData = new HashMap<String, String>();
-		reqData.put("newOpacity", opacity); //$NON-NLS-1$
-		testReq.setExtendedData(reqData);
-		final EditPart object = (EditPart)getSelectedObjects().get(0);
-		final Command cmd = object.getCommand(testReq);
-		return cmd; 
-	}
-
 	@Override
 	protected void init() {
-		setText("Test..."); //$NON-NLS-1$
-		setToolTipText("Test"); //$NON-NLS-1$
+		setId(opacityProperty);
+		setText("Opacity..."); //$NON-NLS-1$
+		setToolTipText("Opacity"); //$NON-NLS-1$
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)
 			setImageDescriptor(icon);
@@ -58,17 +69,18 @@ public class TestAction extends SelectionAction{
 	@Override
 	public void run() {
 		final Polly polly = getSelectedNode();
-		final TestWizard wizard = new TestWizard(Float.toString(polly.getOpacity()));
+		final OpacityWizard wizard = new OpacityWizard(Integer.toString(polly.getOpacity()));
 		final WizardDialog dialog = new WizardDialog(getWorkbenchPart().getSite().getShell(), wizard);
 		dialog.create(); 
 		dialog.getShell().setSize(640, 480);
-		dialog.setTitle("Test wizard"); //$NON-NLS-1$
+		dialog.setTitle("Opacity wizard"); //$NON-NLS-1$
 		dialog.setMessage(""); //$NON-NLS-1$
 		if (dialog.open() == Window.OK) {
 			final String opacity = wizard.getOpacityValue(); 
 			execute(createTestCommand(opacity)); 
 		}
 	}
+
 
 	// ==================== 7. Getters & Setters ====================
 

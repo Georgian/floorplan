@@ -77,6 +77,7 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 	@Override 
 	protected EditPolicy createChildEditPolicy(final EditPart child) { 
 		return new NonResizableEditPolicy() {
+			@SuppressWarnings("rawtypes")
 			@Override
 			protected List createSelectionHandles() {
 				return new ArrayList<>();

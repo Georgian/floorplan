@@ -10,6 +10,7 @@ import org.eclipse.gef.tools.DragEditPartsTracker;
 
 import com.ansis.floorplan.editpolicy.AppDeletePolicy;
 import com.ansis.floorplan.editpolicy.AppEditLayoutPolicy;
+import com.ansis.floorplan.editpolicy.AppOpacityPolicy;
 import com.ansis.floorplan.editpolicy.AppRenamePolicy;
 import com.ansis.floorplan.figure.PollyFigure;
 import com.ansis.floorplan.model.ModelTest;
@@ -24,10 +25,12 @@ public class PollyEditPart extends AppAbstractEditPart {
 	protected IFigure createFigure() {
 		final PollyFigure figure = new PollyFigure( ((Polly)getModel()).getG() );
 
-		figure.setBounds( ((Polly)getModel()).getR());
+		figure.setBounds( ((Polly)getModel()).getR() );
 		figure.setList( ((Polly)getModel()).getList() );
-		figure.setName( ((Polly)getModel()).getName());
-		figure.setEtage( ((Polly)getModel()).getEtage());
+		figure.setName( ((Polly)getModel()).getName() );
+		figure.setEtage( ((Polly)getModel()).getEtage() );
+		figure.setBackgroundColor( ((Polly)getModel()).getColor() );
+		figure.setAlpha( ((Polly)getModel()).getOpacity() );
 
 		//		System.out.println(((Polly)getModel()).getList().size()+"\ncreateFigure method called");
 
@@ -45,6 +48,11 @@ public class PollyEditPart extends AppAbstractEditPart {
 
 		// Rename
 		installEditPolicy(EditPolicy.NODE_ROLE, new AppRenamePolicy());
+
+		// TODO Color
+
+		// Opacity
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new AppOpacityPolicy());
 	}
 
 	// This is an experimental way of checking for selection
@@ -57,12 +65,12 @@ public class PollyEditPart extends AppAbstractEditPart {
 				super.performConditionalSelection();
 				// This condition is not needed since the figure is always active after a selection
 				if (isActive()) {
-					System.out.println("the part was selected and is now active");
-					
+//					System.out.println("the part was selected and is now active");
+
 					final PollyFigure figure = (PollyFigure)getFigure();
 					figure.setLineStyle(2);
 					figure.setLineWidth(3);
-					
+
 					System.out.println(getSelected());
 				}
 			}
@@ -83,6 +91,7 @@ public class PollyEditPart extends AppAbstractEditPart {
 		figure.setEtage(model.getEtage());
 		figure.setLayout(model.getLayout());
 		figure.setBackgroundColor(model.getColor());
+		figure.setAlpha(model.getOpacity());
 	}
 
 	@Override
@@ -106,6 +115,10 @@ public class PollyEditPart extends AppAbstractEditPart {
 
 		// Color
 		if (evt.getPropertyName().equals(Polly.PROPERTY_COLOR))
+			refreshVisuals();
+
+		// Opacity
+		if (evt.getPropertyName().equals(Polly.PROPERTY_OPACITY))
 			refreshVisuals();
 	}
 

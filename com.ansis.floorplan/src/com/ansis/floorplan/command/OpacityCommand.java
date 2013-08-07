@@ -5,7 +5,7 @@ import org.eclipse.gef.commands.Command;
 import com.ansis.floorplan.model.Polly;
 
 
-public class TestCommand extends Command {
+public class OpacityCommand extends Command {
 
 	// ====================== 2. Instance Fields =============================
 
@@ -21,12 +21,12 @@ public class TestCommand extends Command {
 	@Override
 	public void execute() {
 		this.oldOpacity = model.getName(); 
-		this.model.setOpacity(Float.parseFloat(newOpacity));
+		this.model.setOpacity(Integer.parseInt(newOpacity));
 	}
 
 	@Override
 	public void undo() {
-		this.model.setName(oldOpacity);
+		this.model.setOpacity(Integer.parseInt(oldOpacity));
 	}
 
 

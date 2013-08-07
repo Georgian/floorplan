@@ -9,7 +9,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 
-public class TestWizard extends Wizard {
+public class OpacityWizard extends Wizard {
 
 	// ====================== 2. Instance Fields =============================
 
@@ -20,10 +20,10 @@ public class TestWizard extends Wizard {
 
 	// ==================== 4. Constructors ====================
 
-	public TestWizard(final String oldOpacity) {
+	public OpacityWizard(final String oldOpacity) {
 		this.oldOpacity = oldOpacity;
 		this.newOpacity = null;
-		addPage(new TestPage("MyTestPage")); //$NON-NLS-1$
+		addPage(new OpacityPage("MyOpacityPage")); //$NON-NLS-1$
 	}
 
 
@@ -31,7 +31,7 @@ public class TestWizard extends Wizard {
 
 	@Override
 	public boolean performFinish() {
-		final TestPage page = (TestPage)getPage("MyTestPage"); //$NON-NLS-1$
+		final OpacityPage page = (OpacityPage)getPage("MyOpacityPage"); //$NON-NLS-1$
 		if (page.opacityText.getText().isEmpty()) {
 			page.setErrorMessage("You left the field empty!");  //$NON-NLS-1$
 			return false;
@@ -52,7 +52,7 @@ public class TestWizard extends Wizard {
 	// 			 19. Inline Classes 
 	// =======================================================
 
-	private class TestPage extends WizardPage {
+	private class OpacityPage extends WizardPage {
 
 		// ====================== 2. Instance Fields =============================
 
@@ -61,10 +61,10 @@ public class TestWizard extends Wizard {
 
 		// ==================== 4. Constructors ====================
 
-		public TestPage(final String pageName) {
+		public OpacityPage(final String pageName) {
 			super(pageName);
-			setTitle("Test"); //$NON-NLS-1$
-			setDescription("Test"); //$NON-NLS-1$
+			setTitle("Opacity"); //$NON-NLS-1$
+			setDescription("Opacity"); //$NON-NLS-1$
 		}
 
 
@@ -75,7 +75,7 @@ public class TestWizard extends Wizard {
 			final Composite composite = new Composite(parent, SWT.NONE);
 
 			final Label opacityLabel = new Label(composite, SWT.NONE);
-			opacityLabel.setText("Test: "); //$NON-NLS-1$
+			opacityLabel.setText("Opacity: "); //$NON-NLS-1$
 
 			opacityText = new Text(composite, SWT.NONE);
 			opacityText.setText(oldOpacity);

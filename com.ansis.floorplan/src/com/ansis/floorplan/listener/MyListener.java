@@ -73,7 +73,7 @@ public class MyListener {
 			public void mousePressed(final MouseEvent me) {
 
 				if(me.button == 1 && isShiftPressed == true) {
-					System.out.println("SHIFT + Mouse 1");
+//					System.out.println("SHIFT + Mouse 1");
 					if (pointList.size() > 0) {	
 						if(Math.abs(Math.abs(lastPoint.x)-Math.abs(me.x)) > Math.abs(Math.abs(lastPoint.y)-Math.abs(me.y)))	{
 							pointList.addPoint(new Point(me.x, lastPoint.y));
@@ -88,7 +88,7 @@ public class MyListener {
 						}
 					}
 				} else if (me.button == 1 && isShiftPressed == false) {
-					System.out.println("Mouse 1");
+//					System.out.println("Mouse 1");
 				}
 
 				if (me.button == 2 /*&& isControlPressed == true*/) {

@@ -8,7 +8,7 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.ui.actions.ActionFactory;
 
-import com.ansis.floorplan.action.TestAction;
+import com.ansis.floorplan.action.OpacityAction;
 
 
 public class AppContextMenuProvider extends ContextMenuProvider{
@@ -49,7 +49,7 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		action = getActionRegistry().getAction(ActionFactory.RENAME.getId());
 		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
 
-		action = getActionRegistry().getAction(TestAction.testProperty);
+		action = getActionRegistry().getAction(OpacityAction.opacityProperty);
 		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
 	}
 

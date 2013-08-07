@@ -5,7 +5,6 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalViewer;
@@ -25,8 +24,8 @@ import org.eclipse.gef.ui.parts.GraphicalEditorWithPalette;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
+import com.ansis.floorplan.action.OpacityAction;
 import com.ansis.floorplan.action.RenameAction;
-import com.ansis.floorplan.action.TestAction;
 import com.ansis.floorplan.app.Activator;
 import com.ansis.floorplan.app.MyTemplateTransferDropTargetListener;
 import com.ansis.floorplan.factory.ModelTestCreationFactory;
@@ -44,10 +43,6 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 
 	// ====================== 2. Instance Fields =============================
-
-	private Rectangle r;
-
-	private Rectangle g;
 
 	private Canvas model;
 
@@ -81,7 +76,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		registry.registerAction(action);
 		getSelectionActions().add(action.getId());
 
-		final TestAction testAction = new TestAction(this);
+		final OpacityAction testAction = new OpacityAction(this);
 		registry.registerAction(testAction);
 		getSelectionActions().add(testAction.getId());
 	}
@@ -102,7 +97,6 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 			@Override
 			public void propertyChange(final PropertyChangeEvent evt) {
 				//				viewContents(model);
-
 			}
 		});
 	}
