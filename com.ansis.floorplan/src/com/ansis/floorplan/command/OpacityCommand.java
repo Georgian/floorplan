@@ -20,8 +20,12 @@ public class OpacityCommand extends Command {
 
 	@Override
 	public void execute() {
-		this.oldOpacity = model.getName(); 
-		this.model.setOpacity(Integer.parseInt(newOpacity));
+		this.oldOpacity = model.getName();
+		
+		final int realOpacity = (255*Integer.parseInt(newOpacity))/100;
+		System.out.println(realOpacity);
+		
+		this.model.setOpacity(realOpacity);
 	}
 
 	@Override

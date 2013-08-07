@@ -24,7 +24,12 @@ import org.eclipse.gef.ui.parts.GraphicalEditorWithPalette;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-import com.ansis.floorplan.action.OpacityAction;
+import com.ansis.floorplan.action.OpacityEightyAction;
+import com.ansis.floorplan.action.OpacityFourtyAction;
+import com.ansis.floorplan.action.OpacityHundredAction;
+import com.ansis.floorplan.action.OpacitySixtyAction;
+import com.ansis.floorplan.action.OpacityTenAction;
+import com.ansis.floorplan.action.OpacityTwentyAction;
 import com.ansis.floorplan.action.RenameAction;
 import com.ansis.floorplan.app.Activator;
 import com.ansis.floorplan.app.MyTemplateTransferDropTargetListener;
@@ -76,9 +81,29 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		registry.registerAction(action);
 		getSelectionActions().add(action.getId());
 
-		final OpacityAction testAction = new OpacityAction(this);
-		registry.registerAction(testAction);
-		getSelectionActions().add(testAction.getId());
+		final OpacityTenAction tenOpacityAction = new OpacityTenAction(this);
+		registry.registerAction(tenOpacityAction);
+		getSelectionActions().add(tenOpacityAction.getId());
+		
+		final OpacityTwentyAction twentyOpacityAction = new OpacityTwentyAction(this);
+		registry.registerAction(twentyOpacityAction);
+		getSelectionActions().add(twentyOpacityAction.getId());
+		
+		final OpacityFourtyAction fourtyOpacityAction = new OpacityFourtyAction(this);
+		registry.registerAction(fourtyOpacityAction);
+		getSelectionActions().add(fourtyOpacityAction.getId());
+		
+		final OpacitySixtyAction sixyOpacityAction = new OpacitySixtyAction(this);
+		registry.registerAction(sixyOpacityAction);
+		getSelectionActions().add(sixyOpacityAction.getId());
+		
+		final OpacityEightyAction eightyOpacityAction = new OpacityEightyAction(this);
+		registry.registerAction(eightyOpacityAction);
+		getSelectionActions().add(eightyOpacityAction.getId());
+		
+		final OpacityHundredAction hundredOpacityAction = new OpacityHundredAction(this);
+		registry.registerAction(hundredOpacityAction);
+		getSelectionActions().add(hundredOpacityAction.getId());
 	}
 
 

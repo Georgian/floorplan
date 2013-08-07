@@ -9,7 +9,12 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.ui.actions.ActionFactory;
 
-import com.ansis.floorplan.action.OpacityAction;
+import com.ansis.floorplan.action.OpacityEightyAction;
+import com.ansis.floorplan.action.OpacityFourtyAction;
+import com.ansis.floorplan.action.OpacityHundredAction;
+import com.ansis.floorplan.action.OpacitySixtyAction;
+import com.ansis.floorplan.action.OpacityTenAction;
+import com.ansis.floorplan.action.OpacityTwentyAction;
 
 
 public class AppContextMenuProvider extends ContextMenuProvider{
@@ -51,26 +56,38 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
 
 		// TODO Color
-		final MenuManager submenu2 = new MenuManager("Opacity");
-		
-		action = getActionRegistry().getAction(OpacityAction.opacityProperty);
-		submenu2.add(action);
-		
+		final MenuManager colorSubmenu = new MenuManager("Color...");
+
+		action = getActionRegistry().getAction(OpacityTenAction.opacityPropertyTen);
+		colorSubmenu.add(action);
+
 		action = getActionRegistry().getAction(ActionFactory.RENAME.getId());
-		submenu2.add(action);
-		
-		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, submenu2);
-		
+		colorSubmenu.add(action);
+
+		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, colorSubmenu);
+
 		// Opacity
-		final MenuManager submenu = new MenuManager("Opacity");
-		
-		action = getActionRegistry().getAction(OpacityAction.opacityProperty);
-		submenu.add(action);
-		
-		action = getActionRegistry().getAction(ActionFactory.RENAME.getId());
-		submenu.add(action);
-		
-		menu.add(submenu);
+		final MenuManager opacitySubmenu = new MenuManager("Opacity"); //$NON-NLS-1$
+
+		action = getActionRegistry().getAction(OpacityTenAction.opacityPropertyTen);
+		opacitySubmenu.add(action);
+
+		action = getActionRegistry().getAction(OpacityTwentyAction.opacityPropertyTwenty);
+		opacitySubmenu.add(action);
+
+		action = getActionRegistry().getAction(OpacityFourtyAction.opacityPropertyFourty);
+		opacitySubmenu.add(action);
+
+		action = getActionRegistry().getAction(OpacitySixtyAction.opacityPropertySixty);
+		opacitySubmenu.add(action);
+
+		action = getActionRegistry().getAction(OpacityEightyAction.opacityPropertyEighty);
+		opacitySubmenu.add(action);
+
+		action = getActionRegistry().getAction(OpacityHundredAction.opacityPropertyHundred);
+		opacitySubmenu.add(action);
+
+		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, opacitySubmenu);
 	}
 
 

@@ -8,25 +8,30 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.window.Window;
-import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.ansis.floorplan.model.Polly;
-import com.ansis.floorplan.wizard.OpacityWizard;
 
 
-public class OpacityAction extends SelectionAction{
+public class OpacityFourtyAction extends SelectionAction{
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String opacityProperty = "opacityProperty"; //$NON-NLS-1$
+	public static final String opacityPropertyFourty = "opacityPropertyFourty"; //$NON-NLS-1$
+
+
+	// ====================== 2. Instance Fields =============================
+
+	private final String fourty = "40"; //$NON-NLS-1$
+
+	// TODO undo
+	private String oldOpacity;
 
 
 	// ==================== 4. Constructors ====================
 
-	public OpacityAction(final IWorkbenchPart part) {
+	public OpacityFourtyAction(final IWorkbenchPart part) {
 		super(part);
 		setLazyEnablementCalculation(true);
 	}
@@ -34,7 +39,7 @@ public class OpacityAction extends SelectionAction{
 
 	// ==================== 5. Creators ====================
 
-	public Command createTestCommand(final String opacity) {
+	public Command createOpacityCommand(final String opacity) {
 		final Request opacityReq = new Request("opacity"); //$NON-NLS-1$
 		final HashMap<String, String> reqData = new HashMap<String, String>();
 		reqData.put("newOpacity", opacity); //$NON-NLS-1$
@@ -49,7 +54,7 @@ public class OpacityAction extends SelectionAction{
 
 	@Override
 	protected boolean calculateEnabled() {
-		final Command cmd = createTestCommand(""); //$NON-NLS-1$
+		final Command cmd = createOpacityCommand(""); //$NON-NLS-1$
 		if (cmd == null)
 			return false;
 		return true;
@@ -57,9 +62,9 @@ public class OpacityAction extends SelectionAction{
 
 	@Override
 	protected void init() {
-		setId(opacityProperty);
-		setText("Opacity..."); //$NON-NLS-1$
-		setToolTipText("Opacity"); //$NON-NLS-1$
+		setId(opacityPropertyFourty);
+		setText(getFourty()+"%");  //$NON-NLS-1$
+		setToolTipText("Opacity 40"); //$NON-NLS-1$
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)
 			setImageDescriptor(icon);
@@ -69,16 +74,20 @@ public class OpacityAction extends SelectionAction{
 	@Override
 	public void run() {
 		final Polly polly = getSelectedNode();
-		final OpacityWizard wizard = new OpacityWizard(Integer.toString(polly.getOpacity()));
-		final WizardDialog dialog = new WizardDialog(getWorkbenchPart().getSite().getShell(), wizard);
-		dialog.create(); 
-		dialog.getShell().setSize(320, 240);
-		dialog.setTitle("Opacity wizard"); //$NON-NLS-1$
-		dialog.setMessage(""); //$NON-NLS-1$
-		if (dialog.open() == Window.OK) {
-			final String opacity = wizard.getOpacityValue(); 
-			execute(createTestCommand(opacity)); 
-		}
+
+		this.oldOpacity = Integer.toString(polly.getOpacity());
+		execute(createOpacityCommand(getFourty()));
+
+		//		final OpacityWizard wizard = new OpacityWizard(Integer.toString(polly.getOpacity()));
+		//		final WizardDialog dialog = new WizardDialog(getWorkbenchPart().getSite().getShell(), wizard);
+		//		dialog.create(); 
+		//		dialog.getShell().setSize(320, 240);
+		//		dialog.setTitle("Opacity wizard"); //$NON-NLS-1$
+		//		dialog.setMessage(""); //$NON-NLS-1$
+		//		if (dialog.open() == Window.OK) {
+		//			final String opacity = wizard.getOpacityValue();
+		//			execute(createTestCommand(opacity));
+		//		}
 	}
 
 
@@ -93,6 +102,10 @@ public class OpacityAction extends SelectionAction{
 			return null;
 		final EditPart part = (EditPart)objects.get(0);
 		return (Polly)part.getModel();
+	}
+
+	public String getFourty() {
+		return fourty;
 	}
 
 }

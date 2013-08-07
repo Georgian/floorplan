@@ -27,7 +27,6 @@ public class AppOpacityPolicy extends AbstractEditPolicy {
 	public Command getCommand(final Request request) {
 		if (request.getType().equals("opacity"))  //$NON-NLS-1$
 			return createTestCommand(request);
-
 		return null;
 	}
 }
