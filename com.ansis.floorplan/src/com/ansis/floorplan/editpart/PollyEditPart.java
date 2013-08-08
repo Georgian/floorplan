@@ -10,6 +10,8 @@ import org.eclipse.gef.tools.DragEditPartsTracker;
 
 import com.ansis.floorplan.editpolicy.AppDeletePolicy;
 import com.ansis.floorplan.editpolicy.AppEditLayoutPolicy;
+import com.ansis.floorplan.editpolicy.AppFontSizePolicy;
+import com.ansis.floorplan.editpolicy.AppFontStylePolicy;
 import com.ansis.floorplan.editpolicy.AppOpacityPolicy;
 import com.ansis.floorplan.editpolicy.AppRenamePolicy;
 import com.ansis.floorplan.figure.PollyFigure;
@@ -20,6 +22,10 @@ import com.ansis.floorplan.model.Polly;
 public class PollyEditPart extends AppAbstractEditPart {
 
 	private static final String OPACITY_EDIT_POLICY = "opacity"; //$NON-NLS-1$
+
+	private static final String FONT_STYLE_EDIT_POLICY = "fontStyle"; //$NON-NLS-1$
+
+	private static final String FONT_SIZE_EDIT_POLICY = "fontSize";
 
 
 	// ==================== 5. Creators ====================
@@ -68,6 +74,12 @@ public class PollyEditPart extends AppAbstractEditPart {
 
 		// Opacity
 		installEditPolicy(OPACITY_EDIT_POLICY, new AppOpacityPolicy());
+
+		// Font Style
+		installEditPolicy(FONT_STYLE_EDIT_POLICY, new AppFontStylePolicy());
+
+		// Font Size
+		installEditPolicy(FONT_SIZE_EDIT_POLICY, new AppFontSizePolicy());
 	}
 
 	// This is an experimental way of checking for selection
@@ -144,6 +156,14 @@ public class PollyEditPart extends AppAbstractEditPart {
 
 		// Opacity
 		if (evt.getPropertyName().equals(Polly.PROPERTY_OPACITY))
+			refreshVisuals();
+
+		// Font Style
+		if (evt.getPropertyName().equals(Polly.PROPERTY_FONT_STYLE))
+			refreshVisuals();
+
+		// Font Size
+		if (evt.getPropertyName().equals(Polly.PROPERTY_FONT_SIZE))
 			refreshVisuals();
 	}
 

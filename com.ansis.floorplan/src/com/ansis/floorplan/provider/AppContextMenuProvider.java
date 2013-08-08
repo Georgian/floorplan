@@ -9,6 +9,16 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.ui.actions.ActionFactory;
 
+import com.ansis.floorplan.action.FontSizeNineAction;
+import com.ansis.floorplan.action.FontSizeSevenAction;
+import com.ansis.floorplan.action.FontSizeSixteenAction;
+import com.ansis.floorplan.action.FontSizeTenAction;
+import com.ansis.floorplan.action.FontSizeThirteenAction;
+import com.ansis.floorplan.action.FontSizeTwentyAction;
+import com.ansis.floorplan.action.FontSizeTwentyfiveAction;
+import com.ansis.floorplan.action.FontStyleBoldAction;
+import com.ansis.floorplan.action.FontStyleItalicAction;
+import com.ansis.floorplan.action.FontStyleNormalAction;
 import com.ansis.floorplan.action.OpacityEightyAction;
 import com.ansis.floorplan.action.OpacityFourtyAction;
 import com.ansis.floorplan.action.OpacityHundredAction;
@@ -88,6 +98,46 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		opacitySubmenu.add(action);
 
 		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, opacitySubmenu);
+
+		// Font Style
+		final MenuManager fontStyleSubmenu = new MenuManager("Font Style"); //$NON-NLS-1$
+
+		action = getActionRegistry().getAction(FontStyleNormalAction.fontStylePropertyNormal);
+		fontStyleSubmenu.add(action);
+
+		action = getActionRegistry().getAction(FontStyleBoldAction.fontStylePropertyBold);
+		fontStyleSubmenu.add(action);
+
+		action = getActionRegistry().getAction(FontStyleItalicAction.fontStylePropertyItalic);
+		fontStyleSubmenu.add(action);
+
+		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, fontStyleSubmenu);
+
+		// Font Size
+		final MenuManager fontSizeSubmenu = new MenuManager("Font Size"); //$NON-NLS-1$
+
+		action = getActionRegistry().getAction(FontSizeSevenAction.fontSizePropertySeven);
+		fontSizeSubmenu.add(action);
+
+		action = getActionRegistry().getAction(FontSizeNineAction.fontSizePropertyNine);
+		fontSizeSubmenu.add(action);
+
+		action = getActionRegistry().getAction(FontSizeTenAction.fontSizePropertyTen);
+		fontSizeSubmenu.add(action);
+
+		action = getActionRegistry().getAction(FontSizeThirteenAction.fontSizePropertyThirteen);
+		fontSizeSubmenu.add(action);
+
+		action = getActionRegistry().getAction(FontSizeSixteenAction.fontSizePropertySixteen);
+		fontSizeSubmenu.add(action);
+
+		action = getActionRegistry().getAction(FontSizeTwentyAction.fontSizePropertyTwenty);
+		fontSizeSubmenu.add(action);
+
+		action = getActionRegistry().getAction(FontSizeTwentyfiveAction.fontSizePropertyTwentyfive);
+		fontSizeSubmenu.add(action);
+
+		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, fontSizeSubmenu);
 	}
 
 

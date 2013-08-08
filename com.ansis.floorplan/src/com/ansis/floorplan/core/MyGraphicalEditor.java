@@ -24,6 +24,16 @@ import org.eclipse.gef.ui.parts.GraphicalEditorWithPalette;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
+import com.ansis.floorplan.action.FontSizeNineAction;
+import com.ansis.floorplan.action.FontSizeSevenAction;
+import com.ansis.floorplan.action.FontSizeSixteenAction;
+import com.ansis.floorplan.action.FontSizeTenAction;
+import com.ansis.floorplan.action.FontSizeThirteenAction;
+import com.ansis.floorplan.action.FontSizeTwentyAction;
+import com.ansis.floorplan.action.FontSizeTwentyfiveAction;
+import com.ansis.floorplan.action.FontStyleBoldAction;
+import com.ansis.floorplan.action.FontStyleItalicAction;
+import com.ansis.floorplan.action.FontStyleNormalAction;
 import com.ansis.floorplan.action.OpacityEightyAction;
 import com.ansis.floorplan.action.OpacityFourtyAction;
 import com.ansis.floorplan.action.OpacityHundredAction;
@@ -84,26 +94,66 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final OpacityTenAction tenOpacityAction = new OpacityTenAction(this);
 		registry.registerAction(tenOpacityAction);
 		getSelectionActions().add(tenOpacityAction.getId());
-		
+
 		final OpacityTwentyAction twentyOpacityAction = new OpacityTwentyAction(this);
 		registry.registerAction(twentyOpacityAction);
 		getSelectionActions().add(twentyOpacityAction.getId());
-		
+
 		final OpacityFourtyAction fourtyOpacityAction = new OpacityFourtyAction(this);
 		registry.registerAction(fourtyOpacityAction);
 		getSelectionActions().add(fourtyOpacityAction.getId());
-		
+
 		final OpacitySixtyAction sixyOpacityAction = new OpacitySixtyAction(this);
 		registry.registerAction(sixyOpacityAction);
 		getSelectionActions().add(sixyOpacityAction.getId());
-		
+
 		final OpacityEightyAction eightyOpacityAction = new OpacityEightyAction(this);
 		registry.registerAction(eightyOpacityAction);
 		getSelectionActions().add(eightyOpacityAction.getId());
-		
+
 		final OpacityHundredAction hundredOpacityAction = new OpacityHundredAction(this);
 		registry.registerAction(hundredOpacityAction);
 		getSelectionActions().add(hundredOpacityAction.getId());
+
+		final FontStyleNormalAction normalFontStyleAction = new FontStyleNormalAction(this);
+		registry.registerAction(normalFontStyleAction);
+		getSelectionActions().add(normalFontStyleAction.getId());
+
+		final FontStyleBoldAction boldFontStyleAction = new FontStyleBoldAction(this);
+		registry.registerAction(boldFontStyleAction);
+		getSelectionActions().add(boldFontStyleAction.getId());
+
+		final FontStyleItalicAction italicFontStyleAction = new FontStyleItalicAction(this);
+		registry.registerAction(italicFontStyleAction);
+		getSelectionActions().add(italicFontStyleAction.getId());
+
+		final FontSizeSevenAction sevenFontSizeAction = new FontSizeSevenAction(this);
+		registry.registerAction(sevenFontSizeAction);
+		getSelectionActions().add(sevenFontSizeAction);
+
+		final FontSizeNineAction nineFontSizeAction = new FontSizeNineAction(this);
+		registry.registerAction(nineFontSizeAction);
+		getSelectionActions().add(nineFontSizeAction);
+
+		final FontSizeTenAction tenFontSizeAction = new FontSizeTenAction(this);
+		registry.registerAction(tenFontSizeAction);
+		getSelectionActions().add(tenFontSizeAction);
+
+		final FontSizeThirteenAction thirteenFontSizeAction = new FontSizeThirteenAction(this);
+		registry.registerAction(thirteenFontSizeAction);
+		getSelectionActions().add(thirteenFontSizeAction);
+
+		final FontSizeSixteenAction sixteenFontSizeAction = new FontSizeSixteenAction(this);
+		registry.registerAction(sixteenFontSizeAction);
+		getSelectionActions().add(sixteenFontSizeAction);
+
+		final FontSizeTwentyAction twentyFontSizeAction = new FontSizeTwentyAction(this);
+		registry.registerAction(twentyFontSizeAction);
+		getSelectionActions().add(twentyFontSizeAction);
+
+		final FontSizeTwentyfiveAction twentyfiveFontSizeAction = new FontSizeTwentyfiveAction(this);
+		registry.registerAction(twentyfiveFontSizeAction);
+		getSelectionActions().add(twentyfiveFontSizeAction);
 	}
 
 

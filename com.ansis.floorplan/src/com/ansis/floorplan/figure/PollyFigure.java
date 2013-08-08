@@ -53,18 +53,13 @@ public class PollyFigure extends PolygonShape implements IFigure {
 		g2.y = g2.y + 15;
 		g2.height = g2.height +20;
 
-		// Creating a new font
-		// final Font classFont = new Font(null, "Arial", 12, SWT.BOLD);
-
 		labelName.setForegroundColor(ColorConstants.black);
 		labelName.setBackgroundColor(ColorConstants.lightBlue);
-		labelName.setFont(new Font(null, "Lucida Handwriting", getFontSize(), getFontStyle())); //$NON-NLS-1$
 		labelName.setOpaque(true);
 		add(labelName, OrderedLayout.ALIGN_CENTER);
 		setConstraint(labelName, g);
 
 		labelEtage.setForegroundColor(ColorConstants.black);
-		labelEtage.setFont(new Font(null, "Lucida Handwriting", getFontSize(), getFontStyle())); //$NON-NLS-1$
 		labelEtage.setBackgroundColor(ColorConstants.lightBlue);
 		labelEtage.setOpaque(true);
 		add(labelEtage, OrderedLayout.ALIGN_CENTER);
@@ -104,6 +99,10 @@ public class PollyFigure extends PolygonShape implements IFigure {
 		this.list = list;
 	}
 
+	public Color getLineColor() {
+		return lineColor;
+	}
+
 	public void setLineColor(final Color lineColor) {
 		this.lineColor = lineColor;
 	}
@@ -114,6 +113,8 @@ public class PollyFigure extends PolygonShape implements IFigure {
 
 	public void setFontStyle(final int fontStyle) {
 		this.fontStyle = fontStyle;
+		this.labelName.setFont(new Font(null, "Lucida Handwriting", getFontSize(), fontStyle)); //$NON-NLS-1$
+		this.labelEtage.setFont(new Font(null, "Lucida Handwriting", getFontSize(), fontStyle)); //$NON-NLS-1$
 	}
 
 	public int getFontSize() {
@@ -122,6 +123,8 @@ public class PollyFigure extends PolygonShape implements IFigure {
 
 	public void setFontSize(final int fontSize) {
 		this.fontSize = fontSize;
+		this.labelName.setFont(new Font(null, "Lucida Handwriting", fontSize, getFontStyle())); //$NON-NLS-1$
+		this.labelEtage.setFont(new Font(null, "Lucida Handwriting", fontSize, getFontStyle())); //$NON-NLS-1$
 	}
 
 }
