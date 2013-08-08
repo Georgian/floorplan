@@ -20,6 +20,9 @@ public class ModelTest {
 	public static final String PROPERTY_REMOVE = "ModelTestRemoveChild"; //$NON-NLS-1$
 
 	private static List<Polly> children = new ArrayList<>();
+	
+	private static List<PollyLine> pChildren = new ArrayList<>();
+	
 
 
 	// ====================== 2. Instance Fields =============================
@@ -33,6 +36,10 @@ public class ModelTest {
 
 	public static List<Polly> getChildren() {
 		return children;
+	}
+	
+	public static List<PollyLine> getPChildren() {
+		return pChildren;
 	}
 
 
@@ -89,6 +96,29 @@ public class ModelTest {
 
 	public boolean removeChild(final ModelTest child) {
 		final boolean b = ModelTest.getChildren().remove(child);
+		
+		if (b)
+			getListeners().firePropertyChange(PROPERTY_REMOVE, child, null);
+		return b;
+	}
+	
+	public boolean addPChild(final PollyLine figure) {
+		final boolean b = ModelTest.getPChildren().add(figure);
+		
+		if (b) {
+			figure.setParent(this);
+			getListeners().firePropertyChange(PROPERTY_ADD, null, figure);
+		} else {
+			figure.setParent(this);
+			pChildren.add(figure);
+			getListeners().firePropertyChange(new PropertyChangeEvent(this, "", null, null)); //$NON-NLS-1$
+		}
+		
+		return b;
+	}
+
+	public boolean removePChild(final ModelTest child) {
+		final boolean b = ModelTest.getPChildren().remove(child);
 		
 		if (b)
 			getListeners().firePropertyChange(PROPERTY_REMOVE, child, null);
