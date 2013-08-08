@@ -11,11 +11,11 @@ public class AppOpacityPolicy extends AbstractEditPolicy {
 
 	// ==================== 5. Creators ====================
 
-	protected Command createTestCommand(final Request testRequest) {
+	protected Command createOpacityCommand(final Request opacityRequest) {
 		final OpacityCommand command = new OpacityCommand();
 
 		command.setModel(getHost().getModel()); 
-		command.setNewOpacity((String)testRequest.getExtendedData().get("newOpacity")); //$NON-NLS-1$
+		command.setNewOpacity((String)opacityRequest.getExtendedData().get("newOpacity")); //$NON-NLS-1$
 
 		return command;
 	}
@@ -26,7 +26,7 @@ public class AppOpacityPolicy extends AbstractEditPolicy {
 	@Override
 	public Command getCommand(final Request request) {
 		if (request.getType().equals("opacity"))  //$NON-NLS-1$
-			return createTestCommand(request);
+			return createOpacityCommand(request);
 		return null;
 	}
 }

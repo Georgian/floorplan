@@ -8,7 +8,7 @@ import org.eclipse.draw2d.PolygonShape;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 
 
@@ -28,6 +28,10 @@ public class PollyFigure extends PolygonShape implements IFigure {
 	private Label labelName = new Label();
 
 	private Label labelEtage = new Label();
+
+	private int fontStyle;
+
+	private int fontSize;
 
 	private Rectangle r;
 
@@ -51,20 +55,21 @@ public class PollyFigure extends PolygonShape implements IFigure {
 		// final Font classFont = new Font(null, "Arial", 12, SWT.BOLD);
 
 		labelName.setForegroundColor(ColorConstants.black);
-		labelName.setOpaque(true);
 		labelName.setBackgroundColor(ColorConstants.lightBlue);
-		labelName.setFont(new Font(null, "Lucida Handwriting", 7, SWT.BOLD)); //$NON-NLS-1$
+		labelName.setFont(new Font(null, "Lucida Handwriting", getFontSize(), getFontStyle())); //$NON-NLS-1$
+		labelName.setOpaque(true);
 		add(labelName, OrderedLayout.ALIGN_CENTER);
 		setConstraint(labelName, g);
 
 		labelEtage.setForegroundColor(ColorConstants.black);
-		labelEtage.setOpaque(true);
-		labelEtage.setFont(new Font(null, "Lucida Handwriting", 10, SWT.NORMAL)); //$NON-NLS-1$
+		labelEtage.setFont(new Font(null, "Lucida Handwriting", getFontSize(), getFontStyle())); //$NON-NLS-1$
 		labelEtage.setBackgroundColor(ColorConstants.lightBlue);
+		labelEtage.setOpaque(true);
 		add(labelEtage, OrderedLayout.ALIGN_CENTER);
 		setConstraint(labelEtage, g2);
-
-		setForegroundColor(ColorConstants.green);
+		
+//		setForegroundColor(ColorConstants.red);
+		setForegroundColor(new Color(null, 0, 0, 255));
 		setLineStyle(1);
 		setLineWidth(1);
 
@@ -97,6 +102,22 @@ public class PollyFigure extends PolygonShape implements IFigure {
 	public void setList(final PointList list) {
 		setPoints(list);
 		this.list = list;
+	}
+
+	public int getFontStyle() {
+		return fontStyle;
+	}
+
+	public void setFontStyle(final int fontStyle) {
+		this.fontStyle = fontStyle;
+	}
+
+	public int getFontSize() {
+		return fontSize;
+	}
+
+	public void setFontSize(final int fontSize) {
+		this.fontSize = fontSize;
 	}
 
 }
