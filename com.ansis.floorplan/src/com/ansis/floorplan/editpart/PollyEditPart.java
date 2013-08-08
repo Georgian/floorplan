@@ -20,7 +20,7 @@ import com.ansis.floorplan.model.Polly;
 public class PollyEditPart extends AppAbstractEditPart {
 
 	private static final String OPACITY_EDIT_POLICY = "opacity"; //$NON-NLS-1$
-	
+
 
 	// ==================== 5. Creators ====================
 
@@ -38,6 +38,8 @@ public class PollyEditPart extends AppAbstractEditPart {
 		figure.setEtage( ((Polly)getModel()).getEtage() );
 		// TODO Color
 		figure.setBackgroundColor( ((Polly)getModel()).getColor() );
+		// Line Color
+		figure.setForegroundColor( ((Polly)getModel()).getLineColor() );
 		// Opacity
 		figure.setAlpha( ((Polly)getModel()).getOpacity() );
 		// FontStyle
@@ -78,7 +80,7 @@ public class PollyEditPart extends AppAbstractEditPart {
 				super.performConditionalSelection();
 				// This condition is not needed since the figure is always active after a selection
 				if (isActive()) {
-//					System.out.println("the part was selected and is now active");
+					//					System.out.println("the part was selected and is now active");
 
 					final PollyFigure figure = (PollyFigure)getFigure();
 					figure.setLineStyle(2);

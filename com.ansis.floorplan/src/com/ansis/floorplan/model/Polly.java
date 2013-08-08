@@ -39,6 +39,8 @@ public class Polly extends ModelTest {
 
 	private Color color;
 
+	private Color lineColor;
+
 	private int opacity;
 
 	private int fontStyle;
@@ -50,6 +52,10 @@ public class Polly extends ModelTest {
 
 	private static Color defaultColor() {
 		return new Color(null, 0, 0, 192);
+	}
+
+	private static Color defaultLineColor() {
+		return new Color(null, 0, 0, 255);
 	}
 
 	private static int defaultOpacity() {
@@ -69,6 +75,7 @@ public class Polly extends ModelTest {
 
 	public Polly() {
 		this.setColor(defaultColor());
+		this.setLineColor(defaultLineColor());
 		this.setOpacity(defaultOpacity());
 		this.setFontStyle(defaultFontStyle());
 		this.setFontSize(defaultFontSize());
@@ -143,6 +150,14 @@ public class Polly extends ModelTest {
 		final Color oldColor = this.color;
 		this.color = color;
 		getListeners().firePropertyChange(PROPERTY_COLOR, oldColor, this.color);
+	}
+
+	public Color getLineColor() {
+		return lineColor;
+	}
+
+	public void setLineColor(final Color lineColor) {
+		this.lineColor = lineColor;
 	}
 
 	public int getOpacity() {

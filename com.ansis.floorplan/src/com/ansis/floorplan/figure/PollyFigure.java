@@ -29,6 +29,8 @@ public class PollyFigure extends PolygonShape implements IFigure {
 
 	private Label labelEtage = new Label();
 
+	private Color lineColor;
+
 	private int fontStyle;
 
 	private int fontSize;
@@ -67,11 +69,9 @@ public class PollyFigure extends PolygonShape implements IFigure {
 		labelEtage.setOpaque(true);
 		add(labelEtage, OrderedLayout.ALIGN_CENTER);
 		setConstraint(labelEtage, g2);
-		
-//		setForegroundColor(ColorConstants.red);
-		setForegroundColor(new Color(null, 0, 0, 255));
+
 		setLineStyle(1);
-		setLineWidth(1);
+		setLineWidth(5);
 
 		setPoints(list);
 	}
@@ -102,6 +102,10 @@ public class PollyFigure extends PolygonShape implements IFigure {
 	public void setList(final PointList list) {
 		setPoints(list);
 		this.list = list;
+	}
+
+	public void setLineColor(final Color lineColor) {
+		this.lineColor = lineColor;
 	}
 
 	public int getFontStyle() {
