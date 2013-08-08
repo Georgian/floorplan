@@ -57,7 +57,7 @@ public class FontStyleItalicAction extends SelectionAction{
 	@Override
 	protected void init() {
 		setId(fontStylePropertyItalic);
-		setText("Italic");
+		setText("Italic"); //$NON-NLS-1$
 		setToolTipText("Italic"); //$NON-NLS-1$
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)

@@ -57,7 +57,7 @@ public class FontStyleBoldAction extends SelectionAction{
 	@Override
 	protected void init() {
 		setId(fontStylePropertyBold);
-		setText("Bold");
+		setText("Bold"); //$NON-NLS-1$
 		setToolTipText("Bold"); //$NON-NLS-1$
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)

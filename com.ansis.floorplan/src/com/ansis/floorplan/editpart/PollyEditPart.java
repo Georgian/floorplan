@@ -25,7 +25,7 @@ public class PollyEditPart extends AppAbstractEditPart {
 
 	private static final String FONT_STYLE_EDIT_POLICY = "fontStyle"; //$NON-NLS-1$
 
-	private static final String FONT_SIZE_EDIT_POLICY = "fontSize";
+	private static final String FONT_SIZE_EDIT_POLICY = "fontSize"; //$NON-NLS-1$
 
 
 	// ==================== 5. Creators ====================
@@ -97,8 +97,6 @@ public class PollyEditPart extends AppAbstractEditPart {
 					final PollyFigure figure = (PollyFigure)getFigure();
 					figure.setLineStyle(2);
 					figure.setLineWidth(3);
-
-					System.out.println(getSelected());
 				}
 			}
 		};

@@ -129,31 +129,31 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 		final FontSizeSevenAction sevenFontSizeAction = new FontSizeSevenAction(this);
 		registry.registerAction(sevenFontSizeAction);
-		getSelectionActions().add(sevenFontSizeAction);
+		getSelectionActions().add(sevenFontSizeAction.getId());
 
 		final FontSizeNineAction nineFontSizeAction = new FontSizeNineAction(this);
 		registry.registerAction(nineFontSizeAction);
-		getSelectionActions().add(nineFontSizeAction);
+		getSelectionActions().add(nineFontSizeAction.getId());
 
 		final FontSizeTenAction tenFontSizeAction = new FontSizeTenAction(this);
 		registry.registerAction(tenFontSizeAction);
-		getSelectionActions().add(tenFontSizeAction);
+		getSelectionActions().add(tenFontSizeAction.getId());
 
 		final FontSizeThirteenAction thirteenFontSizeAction = new FontSizeThirteenAction(this);
 		registry.registerAction(thirteenFontSizeAction);
-		getSelectionActions().add(thirteenFontSizeAction);
+		getSelectionActions().add(thirteenFontSizeAction.getId());
 
 		final FontSizeSixteenAction sixteenFontSizeAction = new FontSizeSixteenAction(this);
 		registry.registerAction(sixteenFontSizeAction);
-		getSelectionActions().add(sixteenFontSizeAction);
+		getSelectionActions().add(sixteenFontSizeAction.getId());
 
 		final FontSizeTwentyAction twentyFontSizeAction = new FontSizeTwentyAction(this);
 		registry.registerAction(twentyFontSizeAction);
-		getSelectionActions().add(twentyFontSizeAction);
+		getSelectionActions().add(twentyFontSizeAction.getId());
 
 		final FontSizeTwentyfiveAction twentyfiveFontSizeAction = new FontSizeTwentyfiveAction(this);
 		registry.registerAction(twentyfiveFontSizeAction);
-		getSelectionActions().add(twentyfiveFontSizeAction);
+		getSelectionActions().add(twentyfiveFontSizeAction.getId());
 	}
 
 

@@ -16,9 +16,9 @@ public class Polly extends ModelTest {
 
 	public static final String PROPERTY_OPACITY = "PollyOpacity"; //$NON-NLS-1$
 
-	public static final String PROPERTY_FONT_STYLE = "PollyFontStyle";
+	public static final String PROPERTY_FONT_STYLE = "PollyFontStyle"; //$NON-NLS-1$
 
-	public static final String PROPERTY_FONT_SIZE = "PollyFontSize";
+	public static final String PROPERTY_FONT_SIZE = "PollyFontSize"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================

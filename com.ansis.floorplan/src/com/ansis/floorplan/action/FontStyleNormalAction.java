@@ -57,7 +57,7 @@ public class FontStyleNormalAction extends SelectionAction{
 	@Override
 	protected void init() {
 		setId(fontStylePropertyNormal);
-		setText("Normal");
+		setText("Normal"); //$NON-NLS-1$
 		setToolTipText("Normal"); //$NON-NLS-1$
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)
