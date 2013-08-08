@@ -3,7 +3,7 @@ package com.ansis.floorplan.model;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.RGB;
 
 
 public class Polly extends ModelTest {
@@ -37,9 +37,9 @@ public class Polly extends ModelTest {
 
 	private Rectangle g;
 
-	private Color color;
+	private RGB color;
 
-	private Color lineColor;
+	private RGB lineColor;
 
 	private int opacity;
 
@@ -50,12 +50,12 @@ public class Polly extends ModelTest {
 
 	// ==================== 3. Static Methods ====================
 
-	private static Color defaultColor() {
-		return new Color(null, 0, 0, 192);
+	private static RGB defaultColor() {
+		return new RGB(0, 0, 192);
 	}
 
-	private static Color defaultLineColor() {
-		return new Color(null, 0, 0, 255);
+	private static RGB defaultLineColor() {
+		return new RGB(0, 0, 255);
 	}
 
 	private static int defaultOpacity() {
@@ -142,21 +142,21 @@ public class Polly extends ModelTest {
 		this.g = g;
 	}
 
-	public Color getColor() {
+	public RGB getColor() {
 		return color;
 	}
 
-	public void setColor(final Color color) {
-		final Color oldColor = this.color;
+	public void setColor(final RGB color) {
+		final RGB oldColor = this.color;
 		this.color = color;
 		getListeners().firePropertyChange(PROPERTY_COLOR, oldColor, this.color);
 	}
 
-	public Color getLineColor() {
+	public RGB getLineColor() {
 		return lineColor;
 	}
 
-	public void setLineColor(final Color lineColor) {
+	public void setLineColor(final RGB lineColor) {
 		this.lineColor = lineColor;
 	}
 

@@ -8,8 +8,8 @@ import org.eclipse.draw2d.PolygonShape;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.RGB;
 
 
 public class PollyFigure extends PolygonShape implements IFigure {
@@ -29,7 +29,7 @@ public class PollyFigure extends PolygonShape implements IFigure {
 
 	private Label labelEtage = new Label();
 
-	private Color lineColor;
+	private RGB lineColor;
 
 	private int fontStyle;
 
@@ -99,11 +99,11 @@ public class PollyFigure extends PolygonShape implements IFigure {
 		this.list = list;
 	}
 
-	public Color getLineColor() {
+	public RGB getLineColor() {
 		return lineColor;
 	}
 
-	public void setLineColor(final Color lineColor) {
+	public void setLineColor(final RGB lineColor) {
 		this.lineColor = lineColor;
 	}
 

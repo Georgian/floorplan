@@ -7,7 +7,9 @@ import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.tools.DragEditPartsTracker;
+import org.eclipse.swt.graphics.Color;
 
+import com.ansis.floorplan.editpolicy.AppChangeColorPolicy;
 import com.ansis.floorplan.editpolicy.AppDeletePolicy;
 import com.ansis.floorplan.editpolicy.AppEditLayoutPolicy;
 import com.ansis.floorplan.editpolicy.AppFontSizePolicy;
@@ -22,6 +24,8 @@ import com.ansis.floorplan.model.Polly;
 public class PollyEditPart extends AppAbstractEditPart {
 
 	private static final String OPACITY_EDIT_POLICY = "opacity"; //$NON-NLS-1$
+
+	private static final String COLOR_EDIT_POLICY = "color"; //$NON-NLS-1$
 
 	private static final String FONT_STYLE_EDIT_POLICY = "fontStyle"; //$NON-NLS-1$
 
@@ -42,18 +46,16 @@ public class PollyEditPart extends AppAbstractEditPart {
 		figure.setName( ((Polly)getModel()).getName() );
 		// Etage
 		figure.setEtage( ((Polly)getModel()).getEtage() );
-		// TODO Color
-		figure.setBackgroundColor( ((Polly)getModel()).getColor() );
+		// Color
+		figure.setBackgroundColor( new Color(null, ((Polly)getModel()).getColor()) );
 		// Line Color
-		figure.setForegroundColor( ((Polly)getModel()).getLineColor() );
+		figure.setForegroundColor( new Color(null, ((Polly)getModel()).getLineColor()) );
 		// Opacity
 		figure.setAlpha( ((Polly)getModel()).getOpacity() );
 		// FontStyle
 		figure.setFontStyle( ((Polly)getModel()).getFontStyle() );
 		// FontSize
 		figure.setFontSize( ((Polly)getModel()).getFontSize() );
-
-		//		System.out.println(((Polly)getModel()).getList().size()+"\ncreateFigure method called");
 
 		return figure;
 	}
@@ -70,7 +72,8 @@ public class PollyEditPart extends AppAbstractEditPart {
 		// Rename
 		installEditPolicy(EditPolicy.NODE_ROLE, new AppRenamePolicy());
 
-		// TODO Color
+		// Color
+		installEditPolicy(COLOR_EDIT_POLICY, new AppChangeColorPolicy());
 
 		// Opacity
 		installEditPolicy(OPACITY_EDIT_POLICY, new AppOpacityPolicy());
@@ -119,8 +122,8 @@ public class PollyEditPart extends AppAbstractEditPart {
 		figure.setEtage(model.getEtage());
 		// Layout
 		figure.setLayout(model.getLayout());
-		// TODO Color
-		figure.setBackgroundColor(model.getColor());
+		// Color
+		figure.setBackgroundColor(new Color(null, model.getColor()));
 		// Opacity
 		figure.setAlpha(model.getOpacity());
 		// FontStyle

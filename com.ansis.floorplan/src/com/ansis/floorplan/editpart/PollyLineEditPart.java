@@ -13,8 +13,6 @@ import com.ansis.floorplan.model.PollyLine;
 
 public class PollyLineEditPart extends AppAbstractEditPart {
 
-	private static final String OPACITY_EDIT_POLICY = "opacity";
-
 	// ==================== 5. Creators ====================
 
 	@Override
