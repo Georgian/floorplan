@@ -12,21 +12,21 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 
-public class ChangeColorAction extends SelectionAction {
+public class FontColorAction extends SelectionAction {
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String changeColorProperty = "changeColorProperty"; //$NON-NLS-1$
+	public static final String fontColorProperty = "fontColorProperty"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
 
-	private RGB color;
+	private RGB fontColor;
 
 
 	// ==================== 4. Constructors ====================
 
-	public ChangeColorAction(final IWorkbenchPart part) {
+	public FontColorAction(final IWorkbenchPart part) {
 		super(part);
 		setLazyEnablementCalculation(true);
 	}
@@ -34,13 +34,13 @@ public class ChangeColorAction extends SelectionAction {
 
 	// ==================== 5. Creators ====================
 
-	public Command createChangeColorCommand(final RGB color) {
-		final Request changeColorReq = new Request("changeColor"); //$NON-NLS-1$
+	public Command createChangeFontColorCommand(final RGB fontColor) {
+		final Request changeFontColorReq = new Request("changeFontColor"); //$NON-NLS-1$
 		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
-		reqData.put("newColor", color); //$NON-NLS-1$
-		changeColorReq.setExtendedData(reqData);
+		reqData.put("newFontColor", fontColor); //$NON-NLS-1$
+		changeFontColorReq.setExtendedData(reqData);
 		final EditPart object = (EditPart)getSelectedObjects().get(0);
-		final Command cmd = object.getCommand(changeColorReq);
+		final Command cmd = object.getCommand(changeFontColorReq);
 		return cmd; 
 	}
 
@@ -49,7 +49,7 @@ public class ChangeColorAction extends SelectionAction {
 
 	@Override
 	protected boolean calculateEnabled() {
-		final Command cmd = createChangeColorCommand(null); 
+		final Command cmd = createChangeFontColorCommand(null); 
 		if (cmd == null)
 			return false;
 		return true;
@@ -57,9 +57,9 @@ public class ChangeColorAction extends SelectionAction {
 
 	@Override
 	protected void init() {
-		setId(changeColorProperty);
-		setText("Figure color...");  //$NON-NLS-1$
-		setToolTipText("Color"); //$NON-NLS-1$
+		setId(fontColorProperty);
+		setText("Font color...");  //$NON-NLS-1$
+		setToolTipText("Font color"); //$NON-NLS-1$
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)
 			setImageDescriptor(icon);
@@ -68,14 +68,14 @@ public class ChangeColorAction extends SelectionAction {
 
 	@Override
 	public void run() {
-		execute(createChangeColorCommand(getColor()));
+		execute(createChangeFontColorCommand(getFontColor()));
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public RGB getColor() {
-		return color;
+	public RGB getFontColor() {
+		return fontColor;
 	}
 
 }

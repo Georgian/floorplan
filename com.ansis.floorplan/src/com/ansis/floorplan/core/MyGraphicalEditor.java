@@ -25,6 +25,8 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.ansis.floorplan.action.ChangeColorAction;
+import com.ansis.floorplan.action.ChangeLabelColorAction;
+import com.ansis.floorplan.action.FontColorAction;
 import com.ansis.floorplan.action.FontSizeNineAction;
 import com.ansis.floorplan.action.FontSizeSevenAction;
 import com.ansis.floorplan.action.FontSizeSixteenAction;
@@ -155,10 +157,18 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final FontSizeTwentyfiveAction twentyfiveFontSizeAction = new FontSizeTwentyfiveAction(this);
 		registry.registerAction(twentyfiveFontSizeAction);
 		getSelectionActions().add(twentyfiveFontSizeAction.getId());
-		
+
 		final ChangeColorAction changeColorAction = new ChangeColorAction(this);
 		registry.registerAction(changeColorAction);
 		getSelectionActions().add(changeColorAction.getId());
+
+		final FontColorAction fontColorAction = new FontColorAction(this);
+		registry.registerAction(fontColorAction);
+		getSelectionActions().add(fontColorAction.getId());
+
+		final ChangeLabelColorAction labelColorAction = new ChangeLabelColorAction(this);
+		registry.registerAction(labelColorAction);
+		getSelectionActions().add(labelColorAction.getId());
 	}
 
 

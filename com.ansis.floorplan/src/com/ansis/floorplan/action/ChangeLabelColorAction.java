@@ -12,21 +12,21 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 
-public class ChangeColorAction extends SelectionAction {
+public class ChangeLabelColorAction extends SelectionAction {
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String changeColorProperty = "changeColorProperty"; //$NON-NLS-1$
+	public static final String changeLabelColorProperty = "changeLabelColorProperty"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
 
-	private RGB color;
+	private RGB labelColor;
 
 
 	// ==================== 4. Constructors ====================
 
-	public ChangeColorAction(final IWorkbenchPart part) {
+	public ChangeLabelColorAction(final IWorkbenchPart part) {
 		super(part);
 		setLazyEnablementCalculation(true);
 	}
@@ -34,13 +34,13 @@ public class ChangeColorAction extends SelectionAction {
 
 	// ==================== 5. Creators ====================
 
-	public Command createChangeColorCommand(final RGB color) {
-		final Request changeColorReq = new Request("changeColor"); //$NON-NLS-1$
+	public Command createChangeLabelColorCommand(final RGB labelColor) {
+		final Request changeLabelColorReq = new Request("changeLabelColor"); //$NON-NLS-1$
 		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
-		reqData.put("newColor", color); //$NON-NLS-1$
-		changeColorReq.setExtendedData(reqData);
+		reqData.put("newLabelColor", labelColor); //$NON-NLS-1$
+		changeLabelColorReq.setExtendedData(reqData);
 		final EditPart object = (EditPart)getSelectedObjects().get(0);
-		final Command cmd = object.getCommand(changeColorReq);
+		final Command cmd = object.getCommand(changeLabelColorReq);
 		return cmd; 
 	}
 
@@ -49,7 +49,7 @@ public class ChangeColorAction extends SelectionAction {
 
 	@Override
 	protected boolean calculateEnabled() {
-		final Command cmd = createChangeColorCommand(null); 
+		final Command cmd = createChangeLabelColorCommand(null); 
 		if (cmd == null)
 			return false;
 		return true;
@@ -57,9 +57,9 @@ public class ChangeColorAction extends SelectionAction {
 
 	@Override
 	protected void init() {
-		setId(changeColorProperty);
-		setText("Figure color...");  //$NON-NLS-1$
-		setToolTipText("Color"); //$NON-NLS-1$
+		setId(changeLabelColorProperty);
+		setText("Font background color...");  //$NON-NLS-1$
+		setToolTipText("Font background color"); //$NON-NLS-1$
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)
 			setImageDescriptor(icon);
@@ -68,14 +68,14 @@ public class ChangeColorAction extends SelectionAction {
 
 	@Override
 	public void run() {
-		execute(createChangeColorCommand(getColor()));
+		execute(createChangeLabelColorCommand(getLabelColor()));
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public RGB getColor() {
-		return color;
+	public RGB getLabelColor() {
+		return labelColor;
 	}
 
 }

@@ -10,8 +10,10 @@ import org.eclipse.gef.tools.DragEditPartsTracker;
 import org.eclipse.swt.graphics.Color;
 
 import com.ansis.floorplan.editpolicy.AppChangeColorPolicy;
+import com.ansis.floorplan.editpolicy.AppChangeLabelColorPolicy;
 import com.ansis.floorplan.editpolicy.AppDeletePolicy;
 import com.ansis.floorplan.editpolicy.AppEditLayoutPolicy;
+import com.ansis.floorplan.editpolicy.AppFontColorPolicy;
 import com.ansis.floorplan.editpolicy.AppFontSizePolicy;
 import com.ansis.floorplan.editpolicy.AppFontStylePolicy;
 import com.ansis.floorplan.editpolicy.AppOpacityPolicy;
@@ -30,6 +32,10 @@ public class PollyEditPart extends AppAbstractEditPart {
 	private static final String FONT_STYLE_EDIT_POLICY = "fontStyle"; //$NON-NLS-1$
 
 	private static final String FONT_SIZE_EDIT_POLICY = "fontSize"; //$NON-NLS-1$
+
+	private static final String FONT_COLOR_EDIT_PART = "fontColor"; //$NON-NLS-1$
+
+	private static final String LABEL_COLOR_EDIT_PART = "labelColor"; //$NON-NLS-1$
 
 
 	// ==================== 5. Creators ====================
@@ -56,6 +62,12 @@ public class PollyEditPart extends AppAbstractEditPart {
 		figure.setFontStyle( ((Polly)getModel()).getFontStyle() );
 		// FontSize
 		figure.setFontSize( ((Polly)getModel()).getFontSize() );
+		// FontColor
+		figure.getLabelName().setForegroundColor( new Color(null, ((Polly)getModel()).getFontColor()) );
+		figure.getLabelEtage().setForegroundColor( new Color(null, ((Polly)getModel()).getFontColor()) );
+		// LabelColor
+		figure.getLabelName().setBackgroundColor( new Color(null, ((Polly)getModel()).getLabelColor()) );
+		figure.getLabelEtage().setBackgroundColor( new Color(null, ((Polly)getModel()).getLabelColor()) );
 
 		return figure;
 	}
@@ -83,6 +95,12 @@ public class PollyEditPart extends AppAbstractEditPart {
 
 		// Font Size
 		installEditPolicy(FONT_SIZE_EDIT_POLICY, new AppFontSizePolicy());
+
+		// Font Color
+		installEditPolicy(FONT_COLOR_EDIT_PART, new AppFontColorPolicy());
+
+		// Label Color
+		installEditPolicy(LABEL_COLOR_EDIT_PART, new AppChangeLabelColorPolicy());
 	}
 
 	// This is an experimental way of checking for selection
@@ -130,6 +148,12 @@ public class PollyEditPart extends AppAbstractEditPart {
 		figure.setFontStyle(model.getFontStyle());
 		// FontSize
 		figure.setFontSize(model.getFontSize());
+		// FontColor
+		figure.getLabelName().setForegroundColor(new Color(null, model.getFontColor()));
+		figure.getLabelEtage().setForegroundColor(new Color(null, model.getFontColor()));
+		// LabelColor
+		figure.getLabelName().setBackgroundColor(new Color(null, model.getLabelColor()));
+		figure.getLabelEtage().setBackgroundColor(new Color(null, model.getLabelColor()));
 	}
 
 	@Override
@@ -165,6 +189,14 @@ public class PollyEditPart extends AppAbstractEditPart {
 
 		// Font Size
 		if (evt.getPropertyName().equals(Polly.PROPERTY_FONT_SIZE))
+			refreshVisuals();
+
+		// Font Color
+		if (evt.getPropertyName().equals(Polly.PROPERTY_FONT_COLOR))
+			refreshVisuals();
+
+		// Label Color
+		if (evt.getPropertyName().equals(Polly.PROPERTY_LABEL_COLOR))
 			refreshVisuals();
 	}
 

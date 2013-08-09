@@ -20,6 +20,10 @@ public class Polly extends ModelTest {
 
 	public static final String PROPERTY_FONT_SIZE = "PollyFontSize"; //$NON-NLS-1$
 
+	public static final String PROPERTY_FONT_COLOR = "PollyFontColor"; //$NON-NLS-1$
+
+	public static final String PROPERTY_LABEL_COLOR = "PollyLabelColor"; //$NON-NLS-1$
+
 
 	// ====================== 2. Instance Fields =============================
 
@@ -47,6 +51,10 @@ public class Polly extends ModelTest {
 
 	private int fontSize;
 
+	private RGB fontColor;
+
+	private RGB labelColor;
+
 
 	// ==================== 3. Static Methods ====================
 
@@ -70,6 +78,14 @@ public class Polly extends ModelTest {
 		return 10;
 	}
 
+	private static RGB defaultFontColor() {
+		return new RGB(0, 0, 0);
+	}
+
+	private static RGB defaultLabelColor() {
+		return new RGB(255, 255, 255);
+	}
+
 
 	// ==================== 4. Constructors ====================
 
@@ -79,6 +95,8 @@ public class Polly extends ModelTest {
 		this.setOpacity(defaultOpacity());
 		this.setFontStyle(defaultFontStyle());
 		this.setFontSize(defaultFontSize());
+		this.setFontColor(defaultFontColor());
+		this.setLabelColor(defaultLabelColor());
 	}
 
 
@@ -188,6 +206,26 @@ public class Polly extends ModelTest {
 		final int oldFontSize = this.fontSize;
 		this.fontSize = fontSize;
 		getListeners().firePropertyChange(PROPERTY_FONT_SIZE, oldFontSize, this.fontSize);
+	}
+
+	public RGB getFontColor() {
+		return fontColor;
+	}
+
+	public void setFontColor(final RGB fontColor) {
+		final RGB oldFontColor = this.fontColor;
+		this.fontColor = fontColor;
+		getListeners().firePropertyChange(PROPERTY_FONT_COLOR, oldFontColor, this.fontColor);
+	}
+
+	public RGB getLabelColor() {
+		return labelColor;
+	}
+
+	public void setLabelColor(final RGB labelColor) {
+		final RGB oldLabelColor = this.labelColor;
+		this.labelColor = labelColor;
+		getListeners().firePropertyChange(PROPERTY_LABEL_COLOR, oldLabelColor, this.labelColor);
 	}
 
 }

@@ -10,6 +10,8 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.ui.actions.ActionFactory;
 
 import com.ansis.floorplan.action.ChangeColorAction;
+import com.ansis.floorplan.action.ChangeLabelColorAction;
+import com.ansis.floorplan.action.FontColorAction;
 import com.ansis.floorplan.action.FontSizeNineAction;
 import com.ansis.floorplan.action.FontSizeSevenAction;
 import com.ansis.floorplan.action.FontSizeSixteenAction;
@@ -66,12 +68,12 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		action = getActionRegistry().getAction(ActionFactory.RENAME.getId());
 		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
 
-		// TODO Color
+		// Color
 		action = getActionRegistry().getAction(ChangeColorAction.changeColorProperty);
-		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
+		menu.appendToGroup(GEFActionConstants.GROUP_VIEW, action);
 
 		// Opacity
-		final MenuManager opacitySubmenu = new MenuManager("Opacity"); //$NON-NLS-1$
+		final MenuManager opacitySubmenu = new MenuManager("Figure opacity"); //$NON-NLS-1$
 
 		action = getActionRegistry().getAction(OpacityTenAction.opacityPropertyTen);
 		opacitySubmenu.add(action);
@@ -91,10 +93,10 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		action = getActionRegistry().getAction(OpacityHundredAction.opacityPropertyHundred);
 		opacitySubmenu.add(action);
 
-		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, opacitySubmenu);
+		menu.appendToGroup(GEFActionConstants.GROUP_VIEW, opacitySubmenu);
 
 		// Font Style
-		final MenuManager fontStyleSubmenu = new MenuManager("Font Style"); //$NON-NLS-1$
+		final MenuManager fontStyleSubmenu = new MenuManager("Font style"); //$NON-NLS-1$
 
 		action = getActionRegistry().getAction(FontStyleNormalAction.fontStylePropertyNormal);
 		fontStyleSubmenu.add(action);
@@ -105,10 +107,10 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		action = getActionRegistry().getAction(FontStyleItalicAction.fontStylePropertyItalic);
 		fontStyleSubmenu.add(action);
 
-		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, fontStyleSubmenu);
+		menu.appendToGroup(GEFActionConstants.GROUP_REST, fontStyleSubmenu);
 
 		// Font Size
-		final MenuManager fontSizeSubmenu = new MenuManager("Font Size"); //$NON-NLS-1$
+		final MenuManager fontSizeSubmenu = new MenuManager("Font size"); //$NON-NLS-1$
 
 		action = getActionRegistry().getAction(FontSizeSevenAction.fontSizePropertySeven);
 		fontSizeSubmenu.add(action);
@@ -131,7 +133,15 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		action = getActionRegistry().getAction(FontSizeTwentyfiveAction.fontSizePropertyTwentyfive);
 		fontSizeSubmenu.add(action);
 
-		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, fontSizeSubmenu);
+		menu.appendToGroup(GEFActionConstants.GROUP_REST, fontSizeSubmenu);
+
+		// Font Color
+		action = getActionRegistry().getAction(FontColorAction.fontColorProperty);
+		menu.appendToGroup(GEFActionConstants.GROUP_REST, action);
+
+		// Label Color
+		action = getActionRegistry().getAction(ChangeLabelColorAction.changeLabelColorProperty);
+		menu.appendToGroup(GEFActionConstants.GROUP_REST, action);
 	}
 
 

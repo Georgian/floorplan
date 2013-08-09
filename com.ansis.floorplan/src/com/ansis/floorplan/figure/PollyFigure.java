@@ -1,6 +1,5 @@
 package com.ansis.floorplan.figure;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.OrderedLayout;
@@ -35,6 +34,10 @@ public class PollyFigure extends PolygonShape implements IFigure {
 
 	private int fontSize;
 
+	private RGB fontColor;
+
+	private RGB labelColor;
+
 	private Rectangle r;
 
 	private Rectangle g2;
@@ -53,14 +56,10 @@ public class PollyFigure extends PolygonShape implements IFigure {
 		g2.y = g2.y + 15;
 		g2.height = g2.height +20;
 
-		labelName.setForegroundColor(ColorConstants.black);
-		labelName.setBackgroundColor(ColorConstants.lightBlue);
 		labelName.setOpaque(true);
 		add(labelName, OrderedLayout.ALIGN_CENTER);
 		setConstraint(labelName, g);
 
-		labelEtage.setForegroundColor(ColorConstants.black);
-		labelEtage.setBackgroundColor(ColorConstants.lightBlue);
 		labelEtage.setOpaque(true);
 		add(labelEtage, OrderedLayout.ALIGN_CENTER);
 		setConstraint(labelEtage, g2);
@@ -80,6 +79,14 @@ public class PollyFigure extends PolygonShape implements IFigure {
 
 	public void setR(final Rectangle r) {
 		this.r = r;
+	}
+
+	public Label getLabelName() {
+		return labelName;
+	}
+
+	public Label getLabelEtage() {
+		return labelEtage;
 	}
 
 	public void setName(final String name) {
@@ -125,6 +132,24 @@ public class PollyFigure extends PolygonShape implements IFigure {
 		this.fontSize = fontSize;
 		this.labelName.setFont(new Font(null, "Lucida Handwriting", fontSize, getFontStyle())); //$NON-NLS-1$
 		this.labelEtage.setFont(new Font(null, "Lucida Handwriting", fontSize, getFontStyle())); //$NON-NLS-1$
+	}
+
+	public RGB getFontColor() {
+		return fontColor;
+	}
+
+	public void setFontColor(final RGB fontColor) {
+		this.fontColor = fontColor;
+	}
+
+
+	public RGB getLabelColor() {
+		return labelColor;
+	}
+
+
+	public void setLabelColor(final RGB labelColor) {
+		this.labelColor = labelColor;
 	}
 
 }
