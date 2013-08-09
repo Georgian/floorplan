@@ -50,6 +50,7 @@ public class MyListener {
 				if(me.button == 1 && isShiftPressed == true) {
 					if (mainPointList.size() > 0) {	
 						if(Math.abs(Math.abs(lastPoint.x)-Math.abs(me.x)) > Math.abs(Math.abs(lastPoint.y)-Math.abs(me.y)))	{
+							
 							mainPointList.addPoint(new Point(me.x, lastPoint.y));
 
 							tempPointList = new PointList();
@@ -133,6 +134,7 @@ public class MyListener {
 							tempPointList = new PointList();
 						} 
 						else {
+							
 							mainPointList.addPoint(new Point(lastPoint.x, me.y));
 
 							tempPointList = new PointList();
