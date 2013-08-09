@@ -1,8 +1,6 @@
 package com.ansis.floorplan.listener;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.KeyEvent;
-import org.eclipse.draw2d.KeyListener;
 import org.eclipse.draw2d.MouseEvent;
 import org.eclipse.draw2d.MouseListener;
 import org.eclipse.draw2d.geometry.Point;
@@ -24,9 +22,9 @@ public class MyListener {
 
 	private int ok = 0;
 
-	private PointList pointList = new PointList();
+	private PointList tempPointList = new PointList();
 
-	private PointList pointList2 = new PointList();
+	private PointList mainPointList = new PointList();
 
 	private Rectangle rect = new Rectangle();
 
@@ -38,32 +36,6 @@ public class MyListener {
 	// ==================== 4. Constructors ====================
 
 	public MyListener(final Canvas model, final IFigure figure) {
-		figure.addKeyListener(new KeyListener() {
-
-			@Override
-			public void keyPressed(final KeyEvent ke) {
-				//				System.out.println("key pressed "+(++i));
-				//				if (ke.keycode == SWT.SHIFT) {
-				//					isShiftPressed = true;
-				/*System.out.println("SHIFT is pressed: "+isShiftPressed);
-				} else if (ke.keycode == SWT.CONTROL) {
-					isControlPressed = true;
-					System.out.println("CONTROL is pressed: "+isControlPressed);*/
-				//				}
-			}
-
-			@Override
-			public void keyReleased(final KeyEvent ke) {
-				//				if (ke.keycode == SWT.SHIFT) {
-				//					isShiftPressed = false;
-				/*System.out.println("SHIFT is released: "+isShiftPressed);
-				} else if (ke.keycode == SWT.CONTROL) {
-					isControlPressed = false;
-					System.out.println("CONTROL is released: "+isControlPressed);*/
-				//				}
-			}
-
-		});
 
 		figure.addMouseListener(new MouseListener() {
 
@@ -76,84 +48,78 @@ public class MyListener {
 			public void mousePressed(final MouseEvent me) {
 
 				if(me.button == 1 && isShiftPressed == true) {
-					//					System.out.println("SHIFT + Mouse 1");
-					if (pointList2.size() > 0) {	
+					if (mainPointList.size() > 0) {	
 						if(Math.abs(Math.abs(lastPoint.x)-Math.abs(me.x)) > Math.abs(Math.abs(lastPoint.y)-Math.abs(me.y)))	{
-							pointList2.addPoint(new Point(me.x, lastPoint.y));
+							mainPointList.addPoint(new Point(me.x, lastPoint.y));
 
-							pointList = new PointList();
-							pointList.addAll(pointList2);
+							tempPointList = new PointList();
+							tempPointList.addAll(mainPointList);
 
-							lastPoint = new Point(me.x, me.y);
+							lastPoint = new Point(me.x, lastPoint.y);
 
-
-							Point pointmin = null, pointmax = null, point = null;
-							final Point pointg = new Point (0,0), pointk = new Point(0,0);
+							Point minPoint = null, maxPoint = null, point = null;
+							final Point minLabelPoint = new Point (0,0), maxLabelPoint = new Point(0,0);
 
 							///////////////////////////////////////////////////
 							// Find min/max points. Compute bounds for our new figure
 
-							for (int i = 0; i < pointList.size(); i++) {
-								if (pointmin == null)
-									pointmin = pointList.getPoint(i);
+							for (int i = 0; i < tempPointList.size(); i++) {
+								if (minPoint == null)
+									minPoint = tempPointList.getPoint(i);
 
-								if (pointmax == null)
-									pointmax = pointList.getPoint(i);
+								if (maxPoint == null)
+									maxPoint = tempPointList.getPoint(i);
 
-								point = pointList.getPoint(i);
+								point = tempPointList.getPoint(i);
 
-								if(point.x < pointmin.x)
-									pointmin.x = point.x;
-								if(point.x > pointmax.x)
-									pointmax.x = point.x;
-								if(point.y < pointmin.y)
-									pointmin.y = point.y;
-								if(point.y > pointmax.y)
-									pointmax.y = point.y;
+								if(point.x < minPoint.x)
+									minPoint.x = point.x;
+								if(point.x > maxPoint.x)
+									maxPoint.x = point.x;
+								if(point.y < minPoint.y)
+									minPoint.y = point.y;
+								if(point.y > maxPoint.y)
+									maxPoint.y = point.y;
 							}
 
-							if(pointmin.x != 0)
-								for (int i = 0; i < pointList.size(); i++) {
-									point = pointList.getPoint(i);
-									point.x = point.x - pointmin.x;
-									pointList.setPoint(point, i);
-									pointg.x = pointg.x + point.x;
+							if(minPoint.x != 0)
+								for (int i = 0; i < tempPointList.size(); i++) {
+									point = tempPointList.getPoint(i);
+									point.x = point.x - minPoint.x;
+									tempPointList.setPoint(point, i);
+									minLabelPoint.x = minLabelPoint.x + point.x;
 								}
 
-							if(pointmin.y != 0)
-								for (int i = 0; i < pointList.size(); i++) {
-									point = pointList.getPoint(i);
-									point.y = point.y - pointmin.y;
-									pointList.setPoint(point, i);
-									pointg.y = pointg.y + point.y;
+							if(minPoint.y != 0)
+								for (int i = 0; i < tempPointList.size(); i++) {
+									point = tempPointList.getPoint(i);
+									point.y = point.y - minPoint.y;
+									tempPointList.setPoint(point, i);
+									minLabelPoint.y = minLabelPoint.y + point.y;
 								}
 
-							pointg.x = pointg.x/pointList.size()-35;
-							pointg.y = pointg.y/pointList.size();
+							minLabelPoint.x = minLabelPoint.x/tempPointList.size()-35;
+							minLabelPoint.y = minLabelPoint.y/tempPointList.size();
 
-							pointk.x = pointg.x + 70;
-							pointk.y = pointg.y + 15;
+							maxLabelPoint.x = minLabelPoint.x + 70;
+							maxLabelPoint.y = minLabelPoint.y + 15;
 
+							rect = new Rectangle(minPoint,maxPoint);
 
-
-							rect = new Rectangle(pointmin,pointmax);
-
-							label = new Rectangle(pointg, pointk);
+							label = new Rectangle(minLabelPoint, maxLabelPoint);
 
 							///////////////////////////////////////////////////
 
+							final Polly newPolly = new Polly();
+							newPolly.setList(tempPointList);
 
-							final Polly polly3 = new Polly();
-							polly3.setList(pointList);
+							newPolly.setName("Not Done!"); //$NON-NLS-1$
+							newPolly.setEtage(3);
+							newPolly.setBounds(rect);
+							newPolly.setR(rect);
+							newPolly.setG(label);
 
-							polly3.setName("Not Done!"); //$NON-NLS-1$
-							polly3.setEtage(3);
-							polly3.setBounds(rect);
-							polly3.setR(rect);
-							polly3.setG(label);
-
-							model.addChild(polly3);
-
+							model.addChild(newPolly);
 
 							ok = 1;
 
@@ -164,86 +130,81 @@ public class MyListener {
 							System.out.println("Created a straight line");
 
 							isShiftPressed = false;
-							pointList = new PointList();
-							//							final Rectangle r = new Rectangle(lastPoint, new Point(me.x,lastPoint.y));
-							//							add(new PolyFigure(pointList, r));
+							tempPointList = new PointList();
 						} 
 						else {
-							pointList2.addPoint(new Point(lastPoint.x, me.y));
-							
-							pointList = new PointList();
-							pointList.addAll(pointList2);
+							mainPointList.addPoint(new Point(lastPoint.x, me.y));
 
-							lastPoint = new Point(me.x, me.y);
+							tempPointList = new PointList();
+							tempPointList.addAll(mainPointList);
 
+							lastPoint = new Point(lastPoint.x, me.y);
 
-							Point pointmin = null, pointmax = null, point = null;
-							final Point pointg = new Point (0,0), pointk = new Point(0,0);
+							Point minPoint = null, maxPoint = null, point = null;
+							final Point minLabelPoint = new Point (0,0), maxLabelPoint = new Point(0,0);
 
 							///////////////////////////////////////////////////
 							// Find min/max points. Compute bounds for our new figure
 
-							for (int i = 0; i < pointList.size(); i++) {
-								if (pointmin == null)
-									pointmin = pointList.getPoint(i);
+							for (int i = 0; i < tempPointList.size(); i++) {
+								if (minPoint == null)
+									minPoint = tempPointList.getPoint(i);
 
-								if (pointmax == null)
-									pointmax = pointList.getPoint(i);
+								if (maxPoint == null)
+									maxPoint = tempPointList.getPoint(i);
 
-								point = pointList.getPoint(i);
+								point = tempPointList.getPoint(i);
 
-								if(point.x < pointmin.x)
-									pointmin.x = point.x;
-								if(point.x > pointmax.x)
-									pointmax.x = point.x;
-								if(point.y < pointmin.y)
-									pointmin.y = point.y;
-								if(point.y > pointmax.y)
-									pointmax.y = point.y;
+								if(point.x < minPoint.x)
+									minPoint.x = point.x;
+								if(point.x > maxPoint.x)
+									maxPoint.x = point.x;
+								if(point.y < minPoint.y)
+									minPoint.y = point.y;
+								if(point.y > maxPoint.y)
+									maxPoint.y = point.y;
 							}
 
-							if(pointmin.x != 0)
-								for (int i = 0; i < pointList.size(); i++) {
-									point = pointList.getPoint(i);
-									point.x = point.x - pointmin.x;
-									pointList.setPoint(point, i);
-									pointg.x = pointg.x + point.x;
+							if(minPoint.x != 0)
+								for (int i = 0; i < tempPointList.size(); i++) {
+									point = tempPointList.getPoint(i);
+									point.x = point.x - minPoint.x;
+									tempPointList.setPoint(point, i);
+									minLabelPoint.x = minLabelPoint.x + point.x;
 								}
 
-							if(pointmin.y != 0)
-								for (int i = 0; i < pointList.size(); i++) {
-									point = pointList.getPoint(i);
-									point.y = point.y - pointmin.y;
-									pointList.setPoint(point, i);
-									pointg.y = pointg.y + point.y;
+							if(minPoint.y != 0)
+								for (int i = 0; i < tempPointList.size(); i++) {
+									point = tempPointList.getPoint(i);
+									point.y = point.y - minPoint.y;
+									tempPointList.setPoint(point, i);
+									minLabelPoint.y = minLabelPoint.y + point.y;
 								}
 
-							pointg.x = pointg.x/pointList.size()-35;
-							pointg.y = pointg.y/pointList.size();
+							minLabelPoint.x = minLabelPoint.x/tempPointList.size()-35;
+							minLabelPoint.y = minLabelPoint.y/tempPointList.size();
 
-							pointk.x = pointg.x + 70;
-							pointk.y = pointg.y + 15;
+							maxLabelPoint.x = minLabelPoint.x + 70;
+							maxLabelPoint.y = minLabelPoint.y + 15;
 
 
 
-							rect = new Rectangle(pointmin,pointmax);
+							rect = new Rectangle(minPoint,maxPoint);
 
-							label = new Rectangle(pointg, pointk);
+							label = new Rectangle(minLabelPoint, maxLabelPoint);
 
 							///////////////////////////////////////////////////
 
+							final Polly newPolly = new Polly();
+							newPolly.setList(tempPointList);
 
-							final Polly polly3 = new Polly();
-							polly3.setList(pointList);
+							newPolly.setName("Not Done!"); //$NON-NLS-1$
+							newPolly.setEtage(3);
+							newPolly.setBounds(rect);
+							newPolly.setR(rect);
+							newPolly.setG(label);
 
-							polly3.setName("Not Done!"); //$NON-NLS-1$
-							polly3.setEtage(3);
-							polly3.setBounds(rect);
-							polly3.setR(rect);
-							polly3.setG(label);
-
-							model.addChild(polly3);
-
+							model.addChild(newPolly);
 
 							ok = 1;
 
@@ -254,95 +215,87 @@ public class MyListener {
 							System.out.println("Created a straight line");
 
 							isShiftPressed = false;
-							pointList = new PointList();
-							//							final Rectangle r = new Rectangle(lastPoint, new Point(lastPoint.x,me.y));
-							//							add(new PolyFigure(pointList, r));
+							tempPointList = new PointList();
 
 						}
 					}
 				}
-				
+
 				if (me.button == 1 && isControlPressed == true) {
-					//// ==================== left click add point ====================
 
 					//Remember click in point list
-					pointList2.addPoint(new Point(me.x, me.y));
+					mainPointList.addPoint(new Point(me.x, me.y));
 
-					pointList = new PointList();
-					pointList.addAll(pointList2);
+					tempPointList = new PointList();
+					tempPointList.addAll(mainPointList);
 
 					lastPoint = new Point(me.x, me.y);
 
-
-					if (pointList.size() > 1)
+					if (tempPointList.size() > 1)
 					{
-						Point pointmin = null, pointmax = null, point = null;
-						final Point pointg = new Point (0,0), pointk = new Point(0,0);
+						Point minPoint = null, maxPoint = null, point = null;
+						final Point minLabelPoint = new Point (0,0), maxLabelPoint = new Point(0,0);
 
 						///////////////////////////////////////////////////
 						// Find min/max points. Compute bounds for our new figure
 
-						for (int i = 0; i < pointList.size(); i++) {
-							if (pointmin == null)
-								pointmin = pointList.getPoint(i);
+						for (int i = 0; i < tempPointList.size(); i++) {
+							if (minPoint == null)
+								minPoint = tempPointList.getPoint(i);
 
-							if (pointmax == null)
-								pointmax = pointList.getPoint(i);
+							if (maxPoint == null)
+								maxPoint = tempPointList.getPoint(i);
 
-							point = pointList.getPoint(i);
+							point = tempPointList.getPoint(i);
 
-							if(point.x < pointmin.x)
-								pointmin.x = point.x;
-							if(point.x > pointmax.x)
-								pointmax.x = point.x;
-							if(point.y < pointmin.y)
-								pointmin.y = point.y;
-							if(point.y > pointmax.y)
-								pointmax.y = point.y;
+							if(point.x < minPoint.x)
+								minPoint.x = point.x;
+							if(point.x > maxPoint.x)
+								maxPoint.x = point.x;
+							if(point.y < minPoint.y)
+								minPoint.y = point.y;
+							if(point.y > maxPoint.y)
+								maxPoint.y = point.y;
 						}
 
-						if(pointmin.x != 0)
-							for (int i = 0; i < pointList.size(); i++) {
-								point = pointList.getPoint(i);
-								point.x = point.x - pointmin.x;
-								pointList.setPoint(point, i);
-								pointg.x = pointg.x + point.x;
+						if(minPoint.x != 0)
+							for (int i = 0; i < tempPointList.size(); i++) {
+								point = tempPointList.getPoint(i);
+								point.x = point.x - minPoint.x;
+								tempPointList.setPoint(point, i);
+								minLabelPoint.x = minLabelPoint.x + point.x;
 							}
 
-						if(pointmin.y != 0)
-							for (int i = 0; i < pointList.size(); i++) {
-								point = pointList.getPoint(i);
-								point.y = point.y - pointmin.y;
-								pointList.setPoint(point, i);
-								pointg.y = pointg.y + point.y;
+						if(minPoint.y != 0)
+							for (int i = 0; i < tempPointList.size(); i++) {
+								point = tempPointList.getPoint(i);
+								point.y = point.y - minPoint.y;
+								tempPointList.setPoint(point, i);
+								minLabelPoint.y = minLabelPoint.y + point.y;
 							}
 
-						pointg.x = pointg.x/pointList.size()-35;
-						pointg.y = pointg.y/pointList.size();
+						minLabelPoint.x = minLabelPoint.x/tempPointList.size()-35;
+						minLabelPoint.y = minLabelPoint.y/tempPointList.size();
 
-						pointk.x = pointg.x + 70;
-						pointk.y = pointg.y + 15;
+						maxLabelPoint.x = minLabelPoint.x + 70;
+						maxLabelPoint.y = minLabelPoint.y + 15;
 
+						rect = new Rectangle(minPoint,maxPoint);
 
-
-						rect = new Rectangle(pointmin,pointmax);
-
-						label = new Rectangle(pointg, pointk);
+						label = new Rectangle(minLabelPoint, maxLabelPoint);
 
 						///////////////////////////////////////////////////
 
+						final Polly newPolly = new Polly();
+						newPolly.setList(tempPointList);
 
-						final Polly polly3 = new Polly();
-						polly3.setList(pointList);
+						newPolly.setName("Not Done!"); //$NON-NLS-1$
+						newPolly.setEtage(3);
+						newPolly.setBounds(rect);
+						newPolly.setR(rect);
+						newPolly.setG(label);
 
-						polly3.setName("Not Done!"); //$NON-NLS-1$
-						polly3.setEtage(3);
-						polly3.setBounds(rect);
-						polly3.setR(rect);
-						polly3.setG(label);
-
-						model.addChild(polly3);
-
+						model.addChild(newPolly);
 
 						ok = 1;
 
@@ -353,82 +306,80 @@ public class MyListener {
 						System.out.println("Created a Node");
 
 						isControlPressed = false;
-						pointList = new PointList();
+						tempPointList = new PointList();
 
 					}					
-					//					System.out.println(pointList.size() + me.x + me.y);
 				}
 
-				if (me.button == 3 && pointList2.size() > 2 && isControlPressed == true) {
+				if (me.button == 3 && mainPointList.size() > 2 && isControlPressed == true) {
 
-					Point pointmin = null, pointmax = null, point = null;
-					final Point pointg = new Point (0,0), pointk = new Point(0,0);
+					Point minPoint = null, maxPoint = null, point = null;
+					final Point minLabelPoint = new Point (0,0), maxLabelPoint = new Point(0,0);
 
 					///////////////////////////////////////////////////
 					// Find min/max points. Compute bounds for our new figure
 
-					for (int i = 0; i < pointList2.size(); i++) {
-						if (pointmin == null)
-							pointmin = pointList2.getPoint(i);
+					for (int i = 0; i < mainPointList.size(); i++) {
+						if (minPoint == null)
+							minPoint = mainPointList.getPoint(i);
 
-						if (pointmax == null)
-							pointmax = pointList2.getPoint(i);
+						if (maxPoint == null)
+							maxPoint = mainPointList.getPoint(i);
 
-						point = pointList2.getPoint(i);
+						point = mainPointList.getPoint(i);
 
-						if(point.x < pointmin.x)
-							pointmin.x = point.x;
-						if(point.x > pointmax.x)
-							pointmax.x = point.x;
-						if(point.y < pointmin.y)
-							pointmin.y = point.y;
-						if(point.y > pointmax.y)
-							pointmax.y = point.y;
+						if(point.x < minPoint.x)
+							minPoint.x = point.x;
+						if(point.x > maxPoint.x)
+							maxPoint.x = point.x;
+						if(point.y < minPoint.y)
+							minPoint.y = point.y;
+						if(point.y > maxPoint.y)
+							maxPoint.y = point.y;
 					}
 
-					if(pointmin.x != 0)
-						for (int i = 0; i < pointList2.size(); i++) {
-							point = pointList2.getPoint(i);
-							point.x = point.x - pointmin.x;
-							pointList2.setPoint(point, i);
-							pointg.x = pointg.x + point.x;
+					if(minPoint.x != 0)
+						for (int i = 0; i < mainPointList.size(); i++) {
+							point = mainPointList.getPoint(i);
+							point.x = point.x - minPoint.x;
+							mainPointList.setPoint(point, i);
+							minLabelPoint.x = minLabelPoint.x + point.x;
 						}
 
-					if(pointmin.y != 0)
-						for (int i = 0; i < pointList2.size(); i++) {
-							point = pointList2.getPoint(i);
-							point.y = point.y - pointmin.y;
-							pointList2.setPoint(point, i);
-							pointg.y = pointg.y + point.y;
+					if(minPoint.y != 0)
+						for (int i = 0; i < mainPointList.size(); i++) {
+							point = mainPointList.getPoint(i);
+							point.y = point.y - minPoint.y;
+							mainPointList.setPoint(point, i);
+							minLabelPoint.y = minLabelPoint.y + point.y;
 						}
 
-					pointg.x = pointg.x/pointList2.size()-35;
-					pointg.y = pointg.y/pointList2.size();
+					minLabelPoint.x = minLabelPoint.x/mainPointList.size()-35;
+					minLabelPoint.y = minLabelPoint.y/mainPointList.size();
 
-					pointk.x = pointg.x + 70;
-					pointk.y = pointg.y + 15;
+					maxLabelPoint.x = minLabelPoint.x + 70;
+					maxLabelPoint.y = minLabelPoint.y + 15;
 
-					rect = new Rectangle(pointmin,pointmax);
+					rect = new Rectangle(minPoint, maxPoint);
 
-					label = new Rectangle(pointg, pointk);
+					label = new Rectangle(minLabelPoint, maxLabelPoint);
 
 					///////////////////////////////////////////////////
 
-					final Polly polly4 = new Polly();
-					polly4.setList(pointList2);
+					final Polly finalPolly = new Polly();
+					finalPolly.setList(mainPointList);
 
-					polly4.setName("final polly"); //$NON-NLS-1$
-					polly4.setEtage(4);
-					polly4.setBounds(rect);
-					polly4.setR(rect);
-					polly4.setG(label);
+					finalPolly.setName("final polly"); //$NON-NLS-1$
+					finalPolly.setEtage(4);
+					finalPolly.setBounds(rect);
+					finalPolly.setR(rect);
+					finalPolly.setG(label);
 
-					model.addChild(polly4);
+					model.addChild(finalPolly);
 
 					System.out.println("Finished Drawing");
-					pointList2 = new PointList();
+					mainPointList = new PointList();
 
-					//					System.out.println("Number of children: " + ModelTest.getChildren().size());
 				}
 			}
 
