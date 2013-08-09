@@ -9,6 +9,7 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.ui.actions.ActionFactory;
 
+import com.ansis.floorplan.action.ChangeColorAction;
 import com.ansis.floorplan.action.FontSizeNineAction;
 import com.ansis.floorplan.action.FontSizeSevenAction;
 import com.ansis.floorplan.action.FontSizeSixteenAction;
@@ -66,15 +67,8 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
 
 		// TODO Color
-		final MenuManager colorSubmenu = new MenuManager("Color...");
-
-		action = getActionRegistry().getAction(OpacityTenAction.opacityPropertyTen);
-		colorSubmenu.add(action);
-
-		action = getActionRegistry().getAction(ActionFactory.RENAME.getId());
-		colorSubmenu.add(action);
-
-		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, colorSubmenu);
+		action = getActionRegistry().getAction(ChangeColorAction.changeColorProperty);
+		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
 
 		// Opacity
 		final MenuManager opacitySubmenu = new MenuManager("Opacity"); //$NON-NLS-1$
