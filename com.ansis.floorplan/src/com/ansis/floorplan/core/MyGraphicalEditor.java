@@ -77,10 +77,6 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 	public Canvas createContent() {
 		final Canvas canvas = new Canvas();
 
-		canvas.setName("FloorPlan"); //$NON-NLS-1$
-		canvas.setAddress("Canvas Lable Test"); //$NON-NLS-1$
-		canvas.setCapital(1000);
-
 		return canvas;
 	}
 

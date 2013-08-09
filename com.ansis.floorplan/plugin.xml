@@ -29,5 +29,21 @@
             name="Editor">
       </editor>
    </extension>
+   <extension
+         point="org.eclipse.ui.editorActions">
+      <editorContribution
+            id="com.ansis.floorplan.editorAction"
+            targetID="myGraphicalEditor">
+         <action
+               class="com.ansis.floorplan.core.action.ImportImageAction"
+               icon="icons/alt_about.gif"
+               id="com.ansis.floorplan.importImage.action"
+               label="Import Image Action"
+               style="push"
+               toolbarPath="additions"
+               tooltip="Import">
+         </action>
+      </editorContribution>
+   </extension>
 
 </plugin>

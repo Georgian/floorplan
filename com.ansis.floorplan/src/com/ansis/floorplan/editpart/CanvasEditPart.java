@@ -74,12 +74,7 @@ public class CanvasEditPart extends AppAbstractEditPart {
 
 	@Override
 	protected void refreshVisuals() {
-		final CanvasFigure figure = (CanvasFigure)getFigure();
-		final Canvas model = (Canvas)getModel();
 
-		figure.setName(model.getName());
-		figure.setAddress(model.getAddress());
-		figure.setCapital(model.getCapital());
 	}
 
 	@Override

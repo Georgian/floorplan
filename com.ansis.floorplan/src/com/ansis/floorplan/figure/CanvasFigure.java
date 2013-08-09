@@ -1,41 +1,22 @@
 package com.ansis.floorplan.figure;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
-import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.swt.graphics.Image;
+
+import com.ansis.floorplan.app.Activator;
 
 
 public class CanvasFigure extends Figure {
-
-	// ====================== 2. Instance Fields =============================
-
-	private Label labelName = new Label();
-
-	private Label labelAddress = new Label();
-
-	private Label labelCapital = new Label();
-
 
 	// ==================== 4. Constructors ====================
 
 	public CanvasFigure() {
 		final XYLayout layout = new XYLayout();
-		
+
 		setLayoutManager(layout);
-		
-		labelName.setForegroundColor(ColorConstants.darkGreen);
-		add(labelName);
-		setConstraint(labelName, new Rectangle(5, 5, -1, -1));
-
-		labelAddress.setForegroundColor(ColorConstants.lightBlue);
-		add(labelAddress);
-		setConstraint(labelAddress, new Rectangle(5, 17, -1, -1));
-
-		labelCapital.setForegroundColor(ColorConstants.lightBlue);
-		add(labelCapital);
-		setConstraint(labelCapital, new Rectangle(5, 30, -1, -1));
 	}
 
 
@@ -45,16 +26,18 @@ public class CanvasFigure extends Figure {
 		setBounds(rect);
 	}
 
-	public void setName(final String text) {
-		labelName.setText(text);
-	}
+	@Override
+	protected void paintFigure(final Graphics graphics) {
+		final Image newImg = Activator.getImageDescriptor("icons/floorplan.png").createImage(); //$NON-NLS-1$
 
-	public void setAddress(final String text) {
-		labelAddress.setText(text);
-	}
+		final Rectangle rect = getBounds().getCopy();
+		final org.eclipse.swt.graphics.Rectangle imgBox = newImg.getBounds();
+		graphics.drawImage(newImg, 0, 0, imgBox.width, imgBox.height, rect.x, rect.y, rect.width, rect.height);
 
-	public void setCapital(final int capital) {
-		labelCapital.setText("Capital : "+capital); //$NON-NLS-1$
+		super.paintFigure(graphics);
+		newImg.dispose();
+
+//		super.paintFigure(graphics);
 	}
 
 }
