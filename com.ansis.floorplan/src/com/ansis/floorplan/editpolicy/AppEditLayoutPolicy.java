@@ -20,8 +20,10 @@ import com.ansis.floorplan.command.AbstractLayoutCommand;
 import com.ansis.floorplan.command.CanvasChangeLayoutCommand;
 import com.ansis.floorplan.command.PollyChangeLayoutCommand;
 import com.ansis.floorplan.command.PollyCreateCommand;
+import com.ansis.floorplan.command.PollyLineChangeLayoutCommand;
 import com.ansis.floorplan.editpart.CanvasEditPart;
 import com.ansis.floorplan.editpart.PollyEditPart;
+import com.ansis.floorplan.editpart.PollyLineEditPart;
 import com.ansis.floorplan.figure.PollyFigure;
 
 
@@ -39,7 +41,10 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 		else if (child instanceof PollyEditPart) {
 			command = new PollyChangeLayoutCommand();
 		}
-
+		else if (child instanceof PollyLineEditPart) {
+			command = new PollyLineChangeLayoutCommand();
+		}
+		
 		command.setModel(child.getModel());
 		command.setConstraint((Rectangle)constraint);
 
