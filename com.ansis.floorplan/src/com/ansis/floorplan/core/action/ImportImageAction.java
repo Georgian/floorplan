@@ -1,5 +1,9 @@
 package com.ansis.floorplan.core.action;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.SWT;
@@ -8,6 +12,7 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.IEditorActionDelegate;
 import org.eclipse.ui.IEditorPart;
 
+import com.ansis.floorplan.app.FloorPlanActivator;
 import com.ansis.floorplan.core.MyGraphicalEditor;
 
 
@@ -37,14 +42,28 @@ public class ImportImageAction implements IEditorActionDelegate {
 
 	@Override
 	public void run (final IAction action) {
+
 		final FileDialog fd = new FileDialog(Display.getCurrent().getActiveShell(), SWT.OPEN);
+
 		fd.setFilterPath("C:/"); //$NON-NLS-1$
 		final String[] filterExt = { "*.*", "*.bmp", "*.jpeg", "*.jpg", "*.png", "*.gif" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
+
 		fd.setFilterExtensions(filterExt);
 		final String selected = fd.open();
-		setImage(selected);
-		System.out.println(getImage());
-		
+
+//		// If file wasn't selected, return.
+//		if (selected != null && !selected.isEmpty())
+//			return;
+
+		try {
+
+			InputStream stream = new FileInputStream(selected);
+			editor.getModel().setImage(stream);
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override

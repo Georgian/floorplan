@@ -44,7 +44,7 @@ import com.ansis.floorplan.action.OpacitySixtyAction;
 import com.ansis.floorplan.action.OpacityTenAction;
 import com.ansis.floorplan.action.OpacityTwentyAction;
 import com.ansis.floorplan.action.RenameAction;
-import com.ansis.floorplan.app.Activator;
+import com.ansis.floorplan.app.FloorPlanActivator;
 import com.ansis.floorplan.app.MyTemplateTransferDropTargetListener;
 import com.ansis.floorplan.factory.ModelTestCreationFactory;
 import com.ansis.floorplan.factory.PartEditFactory;
@@ -74,11 +74,11 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 	// ==================== 5. Creators ====================
 
-	public Canvas createContent() {
-		final Canvas canvas = new Canvas();
-
-		return canvas;
-	}
+	//	public Canvas createContent() {
+	//		final Canvas canvas = new Canvas();
+	//
+	//		return canvas;
+	//	}
 
 	// For rename
 	@SuppressWarnings("unchecked")
@@ -173,7 +173,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 	@Override
 	protected void initializeGraphicalViewer() {
 		final GraphicalViewer viewer = getGraphicalViewer();
-		model = createContent();
+		model = new Canvas();
 
 		viewer.setContents(model);
 		viewer.addDropTargetListener(new MyTemplateTransferDropTargetListener(viewer));
@@ -246,7 +246,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		root.add(sep2);
 		final PaletteGroup instGroup = new PaletteGroup("Element Creation"); //$NON-NLS-1$
 		root.add(instGroup);
-		instGroup.add(new CombinedTemplateCreationEntry("Polly", "Creating a Polly", Polly.class, new ModelTestCreationFactory(Polly.class), AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/services-low.png"),	AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID,	"icons/services-high.png"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		instGroup.add(new CombinedTemplateCreationEntry("Polly", "Creating a Polly", Polly.class, new ModelTestCreationFactory(Polly.class), AbstractUIPlugin.imageDescriptorFromPlugin(FloorPlanActivator.PLUGIN_ID, "icons/services-low.png"),	AbstractUIPlugin.imageDescriptorFromPlugin(FloorPlanActivator.PLUGIN_ID,	"icons/services-high.png"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 
 		root.setDefaultEntry(selectionToolEntry);
 		return root;
@@ -260,6 +260,10 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 			return ((ScalableRootEditPart) getGraphicalViewer().getRootEditPart()).getZoomManager();
 		else
 			return super.getAdapter(type);
+	}
+
+	public Canvas getModel() {
+		return model;
 	}
 
 }

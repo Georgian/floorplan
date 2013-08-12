@@ -4,11 +4,15 @@ import java.beans.PropertyChangeEvent;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.tools.DragEditPartsTracker;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 
+import com.ansis.floorplan.app.FloorPlanActivator;
 import com.ansis.floorplan.editpolicy.AppEditLayoutPolicy;
 import com.ansis.floorplan.figure.CanvasFigure;
 import com.ansis.floorplan.listener.MyListener;
@@ -46,7 +50,7 @@ public class CanvasEditPart extends AppAbstractEditPart {
 					MyListener.isShiftPressed = true;
 				else 
 					MyListener.isShiftPressed = false;
-				
+
 				if (getCurrentInput().isControlKeyDown())	
 					MyListener.isControlPressed = true;
 				else
@@ -62,7 +66,19 @@ public class CanvasEditPart extends AppAbstractEditPart {
 
 	@Override
 	public void propertyChange(final PropertyChangeEvent evt) {
-		refreshChildren();
+
+		if (evt.getPropertyName().equals(ModelTest.PROPERTY_BACKGROUND))
+			changeBkg();
+		else
+			refreshChildren();
+	}
+
+	private void changeBkg() {
+		CanvasFigure figure = (CanvasFigure) getFigure();
+		Canvas model = (Canvas) getModel();
+
+		figure.setImage(model.getImage());
+		figure.repaint();
 	}
 
 	@Override
@@ -82,5 +98,6 @@ public class CanvasEditPart extends AppAbstractEditPart {
 	protected List<Polly> getModelChildren() {
 		return ModelTest.getChildren();
 	}
+
 
 }

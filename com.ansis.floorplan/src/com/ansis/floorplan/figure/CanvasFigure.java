@@ -1,15 +1,23 @@
 package com.ansis.floorplan.figure;
 
+import java.io.InputStream;
+
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 
-import com.ansis.floorplan.app.Activator;
+import com.ansis.floorplan.app.FloorPlanActivator;
 
 
 public class CanvasFigure extends Figure {
+
+	// ==================== 1. Static Fields ========================
+
+	public static final String CACHED_IMG_ID = "com.ansis.floorplan.canvasBkgImage";
+
 
 	// ==================== 4. Constructors ====================
 
@@ -26,18 +34,27 @@ public class CanvasFigure extends Figure {
 		setBounds(rect);
 	}
 
+	public void setImage(final InputStream imageStream) {
+		FloorPlanActivator.getDefault().getImageCache().cacheImage(CACHED_IMG_ID, new Image(Display.getCurrent(), imageStream));
+	}
+
 	@Override
 	protected void paintFigure(final Graphics graphics) {
-		final Image newImg = Activator.getImageDescriptor("icons/floorplan.png").createImage(); //$NON-NLS-1$
+
+		Image image = FloorPlanActivator.getDefault().getImageCache().getCachedImage(CACHED_IMG_ID);
+
+		if (image == null) {
+			super.paintFigure(graphics);
+			return;
+		}
 
 		final Rectangle rect = getBounds().getCopy();
-		final org.eclipse.swt.graphics.Rectangle imgBox = newImg.getBounds();
-		graphics.drawImage(newImg, 0, 0, imgBox.width, imgBox.height, rect.x, rect.y, rect.width, rect.height);
+		final org.eclipse.swt.graphics.Rectangle imgBox = image.getBounds();
+		graphics.drawImage(image, 0, 0, imgBox.width, imgBox.height, rect.x, rect.y, imgBox.width, imgBox.height);
 
 		super.paintFigure(graphics);
-		newImg.dispose();
-
-//		super.paintFigure(graphics);
 	}
+
+
 
 }

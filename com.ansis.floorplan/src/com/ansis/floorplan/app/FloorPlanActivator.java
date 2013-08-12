@@ -1,14 +1,14 @@
 package com.ansis.floorplan.app;
 
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+
+import com.ansis.floorplan.core.base.AEFBaseActivator;
 
 
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIPlugin {
+public class FloorPlanActivator extends AEFBaseActivator {
 
 	// ==================== 1. Static Fields ========================
 
@@ -16,7 +16,7 @@ public class Activator extends AbstractUIPlugin {
 	public static final String PLUGIN_ID = "com.ansis.floorplan"; //$NON-NLS-1$
 
 	// The shared instance
-	private static Activator plugin;
+	private static FloorPlanActivator plugin;
 
 
 	// ==================== 3. Static Methods ====================
@@ -26,19 +26,8 @@ public class Activator extends AbstractUIPlugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static Activator getDefault() {
+	public static FloorPlanActivator getDefault() {
 		return plugin;
-	}
-
-	/**
-	 * Returns an image descriptor for the image file at the given
-	 * plug-in relative path
-	 *
-	 * @param path the path
-	 * @return the image descriptor
-	 */
-	public static ImageDescriptor getImageDescriptor(final String path) {
-		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 
 
@@ -47,7 +36,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The constructor
 	 */
-	public Activator() {
+	public FloorPlanActivator() {
 
 	}
 
@@ -72,6 +61,11 @@ public class Activator extends AbstractUIPlugin {
 	public void stop(final BundleContext context) throws Exception {
 		plugin = null;
 		super.stop(context);
+	}
+
+	@Override
+	public String getPluginID() {
+		return PLUGIN_ID;
 	}
 
 }
