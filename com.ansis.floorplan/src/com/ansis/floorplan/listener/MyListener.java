@@ -310,7 +310,6 @@ public class MyListener {
 							model2.removeChild(model2.getChildren().get(model2.getChildren().size() - 1));
 						System.out.println("Created a Node");
 
-						isControlPressed = false;
 						tempPointList = new PointList();
 
 					}					
@@ -385,6 +384,7 @@ public class MyListener {
 					model.addChild(finalPolly);
 
 					System.out.println("Finished Drawing");
+
 					mainPointList = new PointList();
 					firstPoint = null;
 
