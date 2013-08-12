@@ -10,7 +10,6 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import com.ansis.floorplan.model.Canvas;
 import com.ansis.floorplan.model.ModelTest;
 import com.ansis.floorplan.model.Polly;
-import com.ansis.floorplan.model.PollyLine;
 
 
 public class MyListener {
@@ -31,7 +30,7 @@ public class MyListener {
 
 	private Rectangle label = new Rectangle();
 
-	private Point lastPoint;
+	private Point lastPoint, firstPoint = null;
 
 
 	// ==================== 4. Constructors ====================
@@ -51,7 +50,7 @@ public class MyListener {
 				if(me.button == 1 && isShiftPressed == true) {
 					if (mainPointList.size() > 0) {	
 						if(Math.abs(Math.abs(lastPoint.x)-Math.abs(me.x)) > Math.abs(Math.abs(lastPoint.y)-Math.abs(me.y)))	{
-							
+
 							mainPointList.addPoint(new Point(me.x, lastPoint.y));
 
 							tempPointList = new PointList();
@@ -112,30 +111,30 @@ public class MyListener {
 
 							///////////////////////////////////////////////////
 
-							final PollyLine newPolly = new PollyLine();
+							final Polly newPolly = new Polly();
 							newPolly.setList(tempPointList);
 
-//							newPolly.setName("Not Done!"); //$NON-NLS-1$
-//							newPolly.setEtage(3);
+							newPolly.setName("Not Done!"); //$NON-NLS-1$
+							newPolly.setEtage(3);
 							newPolly.setBounds(rect);
 							newPolly.setR(rect);
 							newPolly.setG(label);
 
-							model.addPChild(newPolly);
+							model.addChild(newPolly);
 
 							ok = 1;
 
 							final ModelTest model2 = new ModelTest();
 
-							if ( model2.getPChildren().size() >= 1 && ok == 1)
-								model2.removePChild(model2.getPChildren().get(model2.getPChildren().size() - 1));
+							if ( model2.getChildren().size() >= 1 && ok == 1)
+								model2.removeChild(model2.getChildren().get(model2.getChildren().size() - 1));
 							System.out.println("Created a straight line");
 
 							isShiftPressed = false;
 							tempPointList = new PointList();
 						} 
 						else {
-							
+
 							mainPointList.addPoint(new Point(lastPoint.x, me.y));
 
 							tempPointList = new PointList();
@@ -198,23 +197,23 @@ public class MyListener {
 
 							///////////////////////////////////////////////////
 
-							final PollyLine newPolly = new PollyLine();
+							final Polly newPolly = new Polly();
 							newPolly.setList(tempPointList);
 
-//							newPolly.setName("Not Done!"); //$NON-NLS-1$
-//							newPolly.setEtage(3);
+							newPolly.setName("Not Done!"); //$NON-NLS-1$
+							newPolly.setEtage(3);
 							newPolly.setBounds(rect);
 							newPolly.setR(rect);
 							newPolly.setG(label);
 
-							model.addPChild(newPolly);
+							model.addChild(newPolly);
 
 							ok = 1;
 
 							final ModelTest model2 = new ModelTest();
 
-							if ( model2.getPChildren().size() >= 1 && ok == 1)
-								model2.removePChild(model2.getPChildren().get(model2.getPChildren().size() - 1));
+							if ( model2.getChildren().size() >= 1 && ok == 1)
+								model2.removeChild(model2.getChildren().get(model2.getChildren().size() - 1));
 							System.out.println("Created a straight line");
 
 							isShiftPressed = false;
@@ -227,6 +226,9 @@ public class MyListener {
 				if (me.button == 1 && isControlPressed == true) {
 
 					//Remember click in point list
+					if ( firstPoint == null)
+						firstPoint = new Point(me.x, me.y);
+
 					mainPointList.addPoint(new Point(me.x, me.y));
 
 					tempPointList = new PointList();
@@ -289,23 +291,23 @@ public class MyListener {
 
 						///////////////////////////////////////////////////
 
-						final PollyLine newPolly = new PollyLine();
+						final Polly newPolly = new Polly();
 						newPolly.setList(tempPointList);
 
-//						newPolly.setName("Not Done!"); //$NON-NLS-1$
-//						newPolly.setEtage(3);
+						newPolly.setName("Not Done!"); //$NON-NLS-1$
+						newPolly.setEtage(3);
 						newPolly.setBounds(rect);
 						newPolly.setR(rect);
 						newPolly.setG(label);
 
-						model.addPChild(newPolly);
+						model.addChild(newPolly);
 
 						ok = 1;
 
 						final ModelTest model2 = new ModelTest();
 
-						if ( model2.getPChildren().size() >= 1 && ok == 1)
-							model2.removePChild(model2.getPChildren().get(model2.getPChildren().size() - 1));
+						if ( model2.getChildren().size() >= 1 && ok == 1)
+							model2.removeChild(model2.getChildren().get(model2.getChildren().size() - 1));
 						System.out.println("Created a Node");
 
 						isControlPressed = false;
@@ -319,6 +321,8 @@ public class MyListener {
 					Point minPoint = null, maxPoint = null, point = null;
 					final Point minLabelPoint = new Point (0,0), maxLabelPoint = new Point(0,0);
 
+					mainPointList.addPoint(firstPoint);
+					
 					///////////////////////////////////////////////////
 					// Find min/max points. Compute bounds for our new figure
 
@@ -382,6 +386,7 @@ public class MyListener {
 
 					System.out.println("Finished Drawing");
 					mainPointList = new PointList();
+					firstPoint = null;
 
 				}
 			}
