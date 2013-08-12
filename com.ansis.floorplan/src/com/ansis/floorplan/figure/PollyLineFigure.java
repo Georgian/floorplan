@@ -6,6 +6,7 @@ import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.swt.graphics.RGB;
 
 
 public class PollyLineFigure extends PolylineShape implements IFigure {
@@ -23,6 +24,8 @@ public class PollyLineFigure extends PolylineShape implements IFigure {
 
 	private Rectangle r;
 
+	private RGB lineColor;
+
 	
 	// ==================== 4. Constructors ====================
 
@@ -31,9 +34,8 @@ public class PollyLineFigure extends PolylineShape implements IFigure {
 		final XYLayout layout = new XYLayout();
 		setLayoutManager(layout);
 
-		setForegroundColor(ColorConstants.green);
 		setLineStyle(1);
-		setLineWidth(1);
+		setLineWidth(3);
 
 		setPoints(list);
 	}
@@ -49,6 +51,14 @@ public class PollyLineFigure extends PolylineShape implements IFigure {
 		this.r = r;
 	}
 
+	public RGB getLineColor() {
+		return lineColor;
+	}
+
+	public void setLineColor(final RGB lineColor) {
+		this.lineColor = lineColor;
+	}
+	
 	public void setLayout(final Rectangle rect) {
 		getParent().setConstraint(this, rect);
 	}

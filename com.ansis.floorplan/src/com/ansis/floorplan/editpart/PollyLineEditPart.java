@@ -4,10 +4,12 @@ import java.beans.PropertyChangeEvent;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.swt.graphics.Color;
 
 import com.ansis.floorplan.editpolicy.AppDeletePolicy;
 import com.ansis.floorplan.figure.PollyLineFigure;
 import com.ansis.floorplan.model.ModelTest;
+import com.ansis.floorplan.model.Polly;
 import com.ansis.floorplan.model.PollyLine;
 
 
@@ -21,7 +23,7 @@ public class PollyLineEditPart extends AppAbstractEditPart {
 
 		figure.setBounds( ((PollyLine)getModel()).getR() );
 		figure.setList( ((PollyLine)getModel()).getList() );
-		figure.setBackgroundColor( ((PollyLine)getModel()).getColor() );
+		figure.setForegroundColor( new Color(null, ((PollyLine)getModel()).getLineColor()) );
 		figure.setAlpha( ((PollyLine)getModel()).getOpacity() );
 
 
@@ -49,7 +51,7 @@ public class PollyLineEditPart extends AppAbstractEditPart {
 		//		figure.setG(model.getG());
 		figure.setBounds(model.getR());
 		figure.setLayout(model.getLayout());
-		figure.setBackgroundColor(model.getColor());
+		figure.setForegroundColor(new Color(null, model.getLineColor()));
 		figure.setAlpha(model.getOpacity());
 	}
 

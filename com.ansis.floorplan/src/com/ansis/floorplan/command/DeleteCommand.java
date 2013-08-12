@@ -2,6 +2,7 @@ package com.ansis.floorplan.command;
 
 import org.eclipse.gef.commands.Command;
 
+import com.ansis.floorplan.model.ChildModel;
 import com.ansis.floorplan.model.ModelTest;
 import com.ansis.floorplan.model.Polly;
 
@@ -10,7 +11,7 @@ public class DeleteCommand extends Command {
 
 	// ====================== 2. Instance Fields =============================
 
-	private Polly model;
+	private ChildModel model;
 
 	private ModelTest parentModel;
 
@@ -24,14 +25,14 @@ public class DeleteCommand extends Command {
 
 	@Override
 	public void undo() {
-		this.parentModel.addChild((Polly) model);
+		this.parentModel.addChild((ChildModel) model);
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
 	public void setModel(final Object model) {
-		this.model = (Polly)model;
+		this.model = (ChildModel)model;
 	}
 
 	public void setParentModel(final Object model) {
