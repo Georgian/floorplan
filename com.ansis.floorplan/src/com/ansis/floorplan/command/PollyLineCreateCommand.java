@@ -52,7 +52,7 @@ public class PollyLineCreateCommand extends Command {
 
 	@Override
 	public void execute() {
-		en.addPChild(srv);
+		en.addChild(srv);
 		srv.setParent(en);
 	}
 

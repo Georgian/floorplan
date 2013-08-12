@@ -5,7 +5,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Color;
 
 
-public class PollyLine extends ModelTest {
+public class PollyLine extends ChildModel {
 
 	// ==================== 1. Static Fields ========================
 
@@ -19,10 +19,6 @@ public class PollyLine extends ModelTest {
 	// ====================== 2. Instance Fields =============================
 
 	private PointList list;
-
-	private ModelTest parent;
-
-	private Rectangle bounds;
 
 	private Rectangle r;
 
@@ -59,22 +55,6 @@ public class PollyLine extends ModelTest {
 
 	public void setList(final PointList list) {
 		this.list = list;
-	}
-
-	public void setParent(final ModelTest parent) {
-		this.parent = parent;
-	}
-
-	public ModelTest getParent() {
-		return parent;
-	}
-
-	public void setBounds(final Rectangle bounds) {
-		this.bounds = bounds;
-	}
-
-	public Rectangle getBounds() {
-		return bounds;
 	}
 
 	public Rectangle getR() {

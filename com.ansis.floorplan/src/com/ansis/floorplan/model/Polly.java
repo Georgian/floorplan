@@ -6,7 +6,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.RGB;
 
 
-public class Polly extends ModelTest {
+public class Polly extends ChildModel {
 
 	// ==================== 1. Static Fields ========================
 
@@ -28,10 +28,6 @@ public class Polly extends ModelTest {
 	// ====================== 2. Instance Fields =============================
 
 	private PointList list;
-
-	private ModelTest parent;
-
-	private Rectangle bounds;
 
 	private int etage;
 
@@ -128,21 +124,6 @@ public class Polly extends ModelTest {
 		this.list = list;
 	}
 
-	public void setParent(final ModelTest parent) {
-		this.parent = parent;
-	}
-
-	public ModelTest getParent() {
-		return parent;
-	}
-
-	public void setBounds(final Rectangle bounds) {
-		this.bounds = bounds;
-	}
-
-	public Rectangle getBounds() {
-		return bounds;
-	}
 
 	public Rectangle getR() {
 		return r;

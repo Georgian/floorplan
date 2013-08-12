@@ -4,21 +4,17 @@ import java.beans.PropertyChangeEvent;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.tools.DragEditPartsTracker;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Display;
 
-import com.ansis.floorplan.app.FloorPlanActivator;
 import com.ansis.floorplan.editpolicy.AppEditLayoutPolicy;
 import com.ansis.floorplan.figure.CanvasFigure;
 import com.ansis.floorplan.listener.MyListener;
 import com.ansis.floorplan.model.Canvas;
+import com.ansis.floorplan.model.ChildModel;
 import com.ansis.floorplan.model.ModelTest;
-import com.ansis.floorplan.model.Polly;
 
 
 public class CanvasEditPart extends AppAbstractEditPart {
@@ -74,8 +70,8 @@ public class CanvasEditPart extends AppAbstractEditPart {
 	}
 
 	private void changeBkg() {
-		CanvasFigure figure = (CanvasFigure) getFigure();
-		Canvas model = (Canvas) getModel();
+		final CanvasFigure figure = (CanvasFigure) getFigure();
+		final Canvas model = (Canvas) getModel();
 
 		figure.setImage(model.getImage());
 		figure.repaint();
@@ -95,7 +91,7 @@ public class CanvasEditPart extends AppAbstractEditPart {
 	// ==================== 7. Getters & Setters ====================
 
 	@Override
-	protected List<Polly> getModelChildren() {
+	protected List<ChildModel> getModelChildren() {
 		return ModelTest.getChildren();
 	}
 

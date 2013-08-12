@@ -3,7 +3,7 @@ package com.ansis.floorplan.figure;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.OrderedLayout;
-import org.eclipse.draw2d.PolylineShape;
+import org.eclipse.draw2d.PolygonShape;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -11,7 +11,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.RGB;
 
 
-public class PollyFigure extends PolylineShape implements IFigure {
+public class PollyFigure extends PolygonShape implements IFigure {
 
 	// ==================== 1. Static Fields ========================
 

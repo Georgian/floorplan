@@ -10,6 +10,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import com.ansis.floorplan.model.Canvas;
 import com.ansis.floorplan.model.ModelTest;
 import com.ansis.floorplan.model.Polly;
+import com.ansis.floorplan.model.PollyLine;
 
 
 public class MyListener {
@@ -291,11 +292,11 @@ public class MyListener {
 
 						///////////////////////////////////////////////////
 
-						final Polly newPolly = new Polly();
+						final PollyLine newPolly = new PollyLine();
 						newPolly.setList(tempPointList);
 
-						newPolly.setName("Not Done!"); //$NON-NLS-1$
-						newPolly.setEtage(3);
+//						newPolly.setName("Not Done!"); //$NON-NLS-1$
+//						newPolly.setEtage(3);
 						newPolly.setBounds(rect);
 						newPolly.setR(rect);
 						newPolly.setG(label);

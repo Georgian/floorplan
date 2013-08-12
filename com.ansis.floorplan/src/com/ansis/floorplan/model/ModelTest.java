@@ -21,10 +21,7 @@ public class ModelTest {
 
 	public static final String PROPERTY_BACKGROUND = "ModelBkgImage"; //$NON-NLS-1$
 
-	private static List<Polly> children = new ArrayList<>();
-
-	private static List<PollyLine> pChildren = new ArrayList<>();
-
+	private static List<ChildModel> children = new ArrayList<>();
 
 
 	// ====================== 2. Instance Fields =============================
@@ -36,14 +33,9 @@ public class ModelTest {
 
 	// ==================== 3. Static Methods ====================
 
-	public static List<Polly> getChildren() {
+	public static List<ChildModel> getChildren() {
 		return children;
 	}
-
-	public static List<PollyLine> getPChildren() {
-		return pChildren;
-	}
-
 
 	// ==================== 4. Constructors ====================
 
@@ -81,7 +73,7 @@ public class ModelTest {
 		listeners.removePropertyChangeListener(listener);
 	}
 
-	public boolean addChild(final Polly figure) {
+	public boolean addChild(final ChildModel figure) {
 		final boolean b = ModelTest.getChildren().add(figure);
 
 		if (b) {
@@ -103,28 +95,4 @@ public class ModelTest {
 			getListeners().firePropertyChange(PROPERTY_REMOVE, child, null);
 		return b;
 	}
-
-	public boolean addPChild(final PollyLine figure) {
-		final boolean b = ModelTest.getPChildren().add(figure);
-
-		if (b) {
-			figure.setParent(this);
-			getListeners().firePropertyChange(PROPERTY_ADD, null, figure);
-		} else {
-			figure.setParent(this);
-			pChildren.add(figure);
-			getListeners().firePropertyChange(new PropertyChangeEvent(this, "", null, null)); //$NON-NLS-1$
-		}
-
-		return b;
-	}
-
-	public boolean removePChild(final ModelTest child) {
-		final boolean b = ModelTest.getPChildren().remove(child);
-
-		if (b)
-			getListeners().firePropertyChange(PROPERTY_REMOVE, child, null);
-		return b;
-	}
-
 }
