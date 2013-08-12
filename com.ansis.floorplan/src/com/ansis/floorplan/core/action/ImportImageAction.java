@@ -8,6 +8,8 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.IEditorActionDelegate;
 import org.eclipse.ui.IEditorPart;
 
+import com.ansis.floorplan.core.MyGraphicalEditor;
+
 
 public class ImportImageAction implements IEditorActionDelegate {
 
@@ -19,6 +21,16 @@ public class ImportImageAction implements IEditorActionDelegate {
 	// ====================== 2. Instance Fields =============================
 
 	private String image;
+
+	private MyGraphicalEditor editor;
+
+
+	// ==================== 5. Creators ====================
+
+	@Override
+	public void setActiveEditor(final IAction action, final IEditorPart editor) {
+		this.editor = (MyGraphicalEditor) editor;
+	}
 
 
 	// ==================== 6. Action Methods ====================
@@ -32,6 +44,7 @@ public class ImportImageAction implements IEditorActionDelegate {
 		final String selected = fd.open();
 		setImage(selected);
 		System.out.println(getImage());
+		
 	}
 
 	@Override
@@ -41,11 +54,6 @@ public class ImportImageAction implements IEditorActionDelegate {
 
 
 	// ==================== 7. Getters & Setters ====================
-
-	@Override
-	public void setActiveEditor(final IAction action, final IEditorPart targetEditor) {
-
-	}
 
 	public String getImage() {
 		return image;
