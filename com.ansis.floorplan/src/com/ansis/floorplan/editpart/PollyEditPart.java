@@ -25,6 +25,8 @@ import com.ansis.floorplan.model.Polly;
 
 public class PollyEditPart extends AppAbstractEditPart {
 
+	// ==================== 1. Static Fields ========================
+
 	private static final String OPACITY_EDIT_POLICY = "opacity"; //$NON-NLS-1$
 
 	private static final String COLOR_EDIT_POLICY = "color"; //$NON-NLS-1$
@@ -142,6 +144,8 @@ public class PollyEditPart extends AppAbstractEditPart {
 		figure.setLayout(model.getLayout());
 		// Color
 		figure.setBackgroundColor(new Color(null, model.getColor()));
+		// LineColor
+		figure.setForegroundColor(new Color(null, model.getColor()));
 		// Opacity
 		figure.setAlpha(model.getOpacity());
 		// FontStyle

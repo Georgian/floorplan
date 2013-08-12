@@ -62,13 +62,6 @@ public class CanvasEditPart extends AppAbstractEditPart {
 
 	@Override
 	public void propertyChange(final PropertyChangeEvent evt) {
-		if (evt.getPropertyName().equals(ModelTest.PROPERTY_ADD))
-			refreshChildren();
-		if (evt.getPropertyName().equals(ModelTest.PROPERTY_REMOVE))
-			refreshChildren();
-
-		//		System.out.println("CanvasEditPart: " + evt.toString());
-
 		refreshChildren();
 	}
 

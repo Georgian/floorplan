@@ -27,7 +27,7 @@ public class ImportImageAction implements IEditorActionDelegate {
 	public void run (final IAction action) {
 		final FileDialog fd = new FileDialog(Display.getCurrent().getActiveShell(), SWT.OPEN);
 		fd.setFilterPath("C:/"); //$NON-NLS-1$
-		final String[] filterExt = { "*.bmp", "*.jpeg", "*.jpg", "*.png", "*.gif" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+		final String[] filterExt = { "*.*", "*.bmp", "*.jpeg", "*.jpg", "*.png", "*.gif" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
 		fd.setFilterExtensions(filterExt);
 		final String selected = fd.open();
 		setImage(selected);
