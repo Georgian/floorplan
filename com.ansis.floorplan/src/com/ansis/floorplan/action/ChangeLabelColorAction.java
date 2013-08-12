@@ -23,7 +23,6 @@ public class ChangeLabelColorAction extends SelectionAction {
 
 	private RGB labelColor;
 
-
 	// ==================== 4. Constructors ====================
 
 	public ChangeLabelColorAction(final IWorkbenchPart part) {
