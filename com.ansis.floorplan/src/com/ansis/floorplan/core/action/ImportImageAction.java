@@ -12,7 +12,6 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.IEditorActionDelegate;
 import org.eclipse.ui.IEditorPart;
 
-import com.ansis.floorplan.app.FloorPlanActivator;
 import com.ansis.floorplan.core.MyGraphicalEditor;
 
 
@@ -51,9 +50,9 @@ public class ImportImageAction implements IEditorActionDelegate {
 		fd.setFilterExtensions(filterExt);
 		final String selected = fd.open();
 
-//		// If file wasn't selected, return.
-//		if (selected != null && !selected.isEmpty())
-//			return;
+		// If file wasn't selected, return.
+		if (selected == null)
+			return;
 
 		try {
 
