@@ -32,6 +32,9 @@ public class RectangleCreateCommand extends Command {
 	@Override
 	public void execute() {
 		
+		if (size == null)
+			return;
+			
 		rFigure.setBounds(new Rectangle(location, size));
 		
 		canvas.addChild(rFigure);
