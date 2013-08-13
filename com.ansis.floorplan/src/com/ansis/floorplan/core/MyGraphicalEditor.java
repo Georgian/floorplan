@@ -250,7 +250,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 				"Create Polygon object", 
 				new RectangleCreationFactory(), 
 				null, 
-				null);//comm
+				null);
 
 		instGroup.add(drawEntry);
 		
