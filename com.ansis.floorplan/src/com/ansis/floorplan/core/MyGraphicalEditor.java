@@ -244,15 +244,25 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final PaletteGroup instGroup = new PaletteGroup("Element Creation"); //$NON-NLS-1$
 		root.add(instGroup);
 		
-		// Create the Rectangle creation tool
-				final CreationToolEntry creationEntry = new CreationToolEntry(
-						"Rectangle", 
-						"Create Rectangle object", 
-						new RectangleCreationFactory(), 
-						null, 
-						null);
+		// Create the Polygon creation tool
+		final CreationToolEntry drawEntry = new CreationToolEntry(
+				"Draw", 
+				"Create Polygon object", 
+				new RectangleCreationFactory(), 
+				null, 
+				null);
 
-				instGroup.add(creationEntry);
+		instGroup.add(drawEntry);
+		
+		// Create the Rectangle creation tool
+		final CreationToolEntry creationEntry = new CreationToolEntry(
+				"Rectangle", 
+				"Create Rectangle object", 
+				new RectangleCreationFactory(), 
+				null, 
+				null);
+
+		instGroup.add(creationEntry);
 
 		root.setDefaultEntry(selectionToolEntry);
 		return root;
