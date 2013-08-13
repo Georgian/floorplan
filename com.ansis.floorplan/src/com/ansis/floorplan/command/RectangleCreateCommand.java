@@ -5,8 +5,8 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
 
+import com.ansis.floorplan.model.ChildModel;
 import com.ansis.floorplan.model.ModelTest;
-import com.ansis.floorplan.model.RectangleModel;
 
 public class RectangleCreateCommand extends Command {
 
@@ -15,7 +15,7 @@ public class RectangleCreateCommand extends Command {
 
 	private ModelTest canvas;
 
-	private RectangleModel rFigure;
+	private ChildModel rFigure;
 
 	private Point location;
 	
@@ -36,6 +36,7 @@ public class RectangleCreateCommand extends Command {
 			return;
 			
 		rFigure.setBounds(new Rectangle(location, size));
+		rFigure.setR(new Rectangle(location, size));
 		
 		canvas.addChild(rFigure);
 	}
@@ -43,7 +44,7 @@ public class RectangleCreateCommand extends Command {
 
 	// ==================== 7. Getters & Setters ====================
 
-	public void setRectangle(final RectangleModel rFigure) {
+	public void setRectangle(final ChildModel rFigure) {
 		this.rFigure = rFigure;
 	}
 

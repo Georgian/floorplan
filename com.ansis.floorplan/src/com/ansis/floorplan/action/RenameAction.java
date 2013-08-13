@@ -14,7 +14,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-import com.ansis.floorplan.model.Polly;
+import com.ansis.floorplan.model.ChildModel;
 import com.ansis.floorplan.wizard.RenameWizard;
 
 
@@ -64,7 +64,7 @@ public class RenameAction extends SelectionAction {
 
 	@Override
 	public void run() {
-		final Polly polly = getSelectedNode();
+		final ChildModel polly = getSelectedNode();
 		final RenameWizard wizard = new RenameWizard(polly.getName());
 		final WizardDialog dialog = new WizardDialog(getWorkbenchPart().getSite().getShell(), wizard);
 		dialog.create(); 
@@ -80,13 +80,13 @@ public class RenameAction extends SelectionAction {
 	// ==================== 7. Getters & Setters ====================
 
 	// Helper
-	private Polly getSelectedNode() {
+	private ChildModel getSelectedNode() {
 		final List<?> objects = getSelectedObjects();
 		if (objects.isEmpty())
 			return null;
 		if (!(objects.get(0) instanceof EditPart))
 			return null;
 		final EditPart part = (EditPart)objects.get(0);
-		return (Polly)part.getModel();
+		return (ChildModel)part.getModel();
 	}
 }

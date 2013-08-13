@@ -5,14 +5,14 @@ import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.ColorDialog;
 import org.eclipse.swt.widgets.Display;
 
-import com.ansis.floorplan.model.Polly;
+import com.ansis.floorplan.model.ChildModel;
 
 
 public class ChangeColorCommand extends Command {
 
 	// ====================== 2. Instance Fields =============================
 
-	private Polly model;
+	private ChildModel model;
 
 	private RGB oldColor;
 
@@ -50,7 +50,7 @@ public class ChangeColorCommand extends Command {
 	// ==================== 7. Getters & Setters ====================
 
 	public void setModel(final Object model) {
-		this.model = (Polly)model;
+		this.model = (ChildModel)model;
 	}
 
 	public void setNewChangeColor(final RGB newColor) {

@@ -2,14 +2,14 @@ package com.ansis.floorplan.command;
 
 import org.eclipse.gef.commands.Command;
 
-import com.ansis.floorplan.model.Polly;
+import com.ansis.floorplan.model.ChildModel;
 
 
 public class OpacityCommand extends Command {
 
 	// ====================== 2. Instance Fields =============================
 
-	private Polly model;
+	private ChildModel model;
 
 	private String oldOpacity;
 
@@ -34,7 +34,7 @@ public class OpacityCommand extends Command {
 	// ==================== 7. Getters & Setters ====================
 
 	public void setModel(final Object model) {
-		this.model = (Polly)model;
+		this.model = (ChildModel)model;
 	}
 
 	public void setNewOpacity(final String newOpacity) {

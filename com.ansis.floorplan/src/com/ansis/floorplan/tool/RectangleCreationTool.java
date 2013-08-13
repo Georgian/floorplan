@@ -13,8 +13,8 @@ public class RectangleCreationTool implements CreationFactory {
 
 		final RectangleModel newObject = new RectangleModel();
 
-		newObject.setBounds(new Rectangle(0, 0, 100, 100));
-		newObject.setLayout(new Rectangle(0, 0, 100, 100));
+		newObject.setBounds(new Rectangle(0, 0, 300, 300));
+		newObject.setLayout(new Rectangle(0, 0, 300, 300));
 
 		return newObject;
 	}
