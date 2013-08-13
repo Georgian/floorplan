@@ -43,6 +43,7 @@ import com.ansis.floorplan.action.OpacitySixtyAction;
 import com.ansis.floorplan.action.OpacityTenAction;
 import com.ansis.floorplan.action.OpacityTwentyAction;
 import com.ansis.floorplan.action.RenameAction;
+import com.ansis.floorplan.app.FloorPlanActivator;
 import com.ansis.floorplan.app.MyTemplateTransferDropTargetListener;
 import com.ansis.floorplan.factory.PartEditFactory;
 import com.ansis.floorplan.factory.RectangleCreationFactory;
@@ -249,8 +250,8 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 				"Draw", 
 				"Create Polygon object", 
 				new RectangleCreationFactory(), 
-				null, 
-				null);
+				FloorPlanActivator.getDefault().getImageDescriptor("icons/draw16.ico"), 
+				FloorPlanActivator.getDefault().getImageDescriptor("icons/draw.ico"));
 
 		instGroup.add(drawEntry);
 		
@@ -259,8 +260,8 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 				"Rectangle", 
 				"Create Rectangle object", 
 				new RectangleCreationFactory(), 
-				null, 
-				null);
+				FloorPlanActivator.getDefault().getImageDescriptor("icons/rec16.ico"), 
+				FloorPlanActivator.getDefault().getImageDescriptor("icons/rec.ico"));
 
 		instGroup.add(creationEntry);
 
