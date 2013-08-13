@@ -24,6 +24,7 @@ public class CanvasEditPart extends AppAbstractEditPart {
 	@Override
 	protected void createEditPolicies() {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new AppEditLayoutPolicy());
+		
 	}
 
 	@Override

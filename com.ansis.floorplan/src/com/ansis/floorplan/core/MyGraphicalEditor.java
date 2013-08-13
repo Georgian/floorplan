@@ -11,7 +11,7 @@ import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.dnd.TemplateTransferDragSourceListener;
 import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.editparts.ZoomManager;
-import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
+import org.eclipse.gef.palette.CreationToolEntry;
 import org.eclipse.gef.palette.MarqueeToolEntry;
 import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
@@ -22,7 +22,6 @@ import org.eclipse.gef.ui.actions.ZoomInAction;
 import org.eclipse.gef.ui.actions.ZoomOutAction;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithPalette;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.ansis.floorplan.action.ChangeColorAction;
 import com.ansis.floorplan.action.ChangeLabelColorAction;
@@ -44,12 +43,10 @@ import com.ansis.floorplan.action.OpacitySixtyAction;
 import com.ansis.floorplan.action.OpacityTenAction;
 import com.ansis.floorplan.action.OpacityTwentyAction;
 import com.ansis.floorplan.action.RenameAction;
-import com.ansis.floorplan.app.FloorPlanActivator;
 import com.ansis.floorplan.app.MyTemplateTransferDropTargetListener;
-import com.ansis.floorplan.factory.ModelTestCreationFactory;
 import com.ansis.floorplan.factory.PartEditFactory;
+import com.ansis.floorplan.factory.RectangleCreationFactory;
 import com.ansis.floorplan.model.Canvas;
-import com.ansis.floorplan.model.Polly;
 import com.ansis.floorplan.provider.AppContextMenuProvider;
 
 
@@ -246,7 +243,16 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		root.add(sep2);
 		final PaletteGroup instGroup = new PaletteGroup("Element Creation"); //$NON-NLS-1$
 		root.add(instGroup);
-		instGroup.add(new CombinedTemplateCreationEntry("Polly", "Creating a Polly", Polly.class, new ModelTestCreationFactory(Polly.class), AbstractUIPlugin.imageDescriptorFromPlugin(FloorPlanActivator.PLUGIN_ID, "icons/services-low.png"),	AbstractUIPlugin.imageDescriptorFromPlugin(FloorPlanActivator.PLUGIN_ID,	"icons/services-high.png"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		
+		// Create the Rectangle creation tool
+				final CreationToolEntry creationEntry = new CreationToolEntry(
+						"Rectangle", 
+						"Create Rectangle object", 
+						new RectangleCreationFactory(), 
+						null, 
+						null);
+
+				instGroup.add(creationEntry);
 
 		root.setDefaultEntry(selectionToolEntry);
 		return root;

@@ -2,14 +2,14 @@ package com.ansis.floorplan.command;
 
 import org.eclipse.draw2d.geometry.Rectangle;
 
-import com.ansis.floorplan.model.Polly;
+import com.ansis.floorplan.model.ChildModel;
 
 
 public class PollyChangeLayoutCommand extends AbstractLayoutCommand {
 
 	// ====================== 2. Instance Fields =============================
 
-	private Polly model;
+	private ChildModel model;
 
 	private Rectangle layout;
 
@@ -38,8 +38,8 @@ public class PollyChangeLayoutCommand extends AbstractLayoutCommand {
 
 	@Override
 	public void setModel(final Object model) {
-		this.model = (Polly)model;
-		this.oldLayout = ((Polly)model).getLayout();
+		this.model = (ChildModel)model;
+		this.oldLayout = ((ChildModel)model).getLayout();
 	}
 
 }

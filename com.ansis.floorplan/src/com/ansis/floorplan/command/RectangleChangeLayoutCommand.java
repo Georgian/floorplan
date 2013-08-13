@@ -3,11 +3,11 @@ package com.ansis.floorplan.command;
 
 import org.eclipse.draw2d.geometry.Rectangle;
 
-import com.ansis.floorplan.model.RectangleModel;
+import com.ansis.floorplan.model.ChildModel;
 
 
 public class RectangleChangeLayoutCommand extends AbstractLayoutCommand {
-	private RectangleModel model;
+	private ChildModel model;
 	private Rectangle layout;
 	private Rectangle oldLayout;
 
@@ -23,8 +23,8 @@ public class RectangleChangeLayoutCommand extends AbstractLayoutCommand {
 
 	@Override
 	public void setModel(final Object model) {
-		this.model = (RectangleModel)model;
-		this.oldLayout = ((RectangleModel)model).getLayout();
+		this.model = (ChildModel)model;
+		this.oldLayout = ((ChildModel)model).getLayout();
 	}
 
 	@Override

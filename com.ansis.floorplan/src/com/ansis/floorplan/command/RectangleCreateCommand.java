@@ -15,7 +15,7 @@ public class RectangleCreateCommand extends Command {
 
 	private ModelTest canvas;
 
-	private RectangleModel polly;
+	private RectangleModel rFigure;
 
 	private Point location;
 	
@@ -32,16 +32,16 @@ public class RectangleCreateCommand extends Command {
 	@Override
 	public void execute() {
 		
-		polly.setBounds(new Rectangle(location, size));
+		rFigure.setBounds(new Rectangle(location, size));
 		
-//		canvas.addChild(polly);
+		canvas.addChild(rFigure);
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public void setPolly(final RectangleModel polly) {
-		this.polly = polly;
+	public void setRectangle(final RectangleModel rFigure) {
+		this.rFigure = rFigure;
 	}
 
 	public void setCanvas(final ModelTest canvas) {
