@@ -19,8 +19,8 @@ import com.ansis.floorplan.editpolicy.AppFontStylePolicy;
 import com.ansis.floorplan.editpolicy.AppOpacityPolicy;
 import com.ansis.floorplan.editpolicy.AppRenamePolicy;
 import com.ansis.floorplan.figure.RectangleFigure;
+import com.ansis.floorplan.model.ChildModel;
 import com.ansis.floorplan.model.ModelTest;
-import com.ansis.floorplan.model.RectangleModel;
 
 /**
  *
@@ -31,17 +31,17 @@ public class RectangleEditPart extends AppAbstractEditPart {
 
 	// ==================== 1. Static Fields ========================
 
-	private static final String OPACITY_EDIT_POLICY = "RectangleOpacity"; //$NON-NLS-1$
+	private static final String OPACITY_EDIT_POLICY = "Opacity"; //$NON-NLS-1$
 
-	private static final String COLOR_EDIT_POLICY = "RectangleColor"; //$NON-NLS-1$
+	private static final String COLOR_EDIT_POLICY = "Color"; //$NON-NLS-1$
 
-	private static final String FONT_STYLE_EDIT_POLICY = "RectangleFontStyle"; //$NON-NLS-1$
+	private static final String FONT_STYLE_EDIT_POLICY = "FontStyle"; //$NON-NLS-1$
 
-	private static final String FONT_SIZE_EDIT_POLICY = "RectangleFontSize"; //$NON-NLS-1$
+	private static final String FONT_SIZE_EDIT_POLICY = "FontSize"; //$NON-NLS-1$
 
-	private static final String FONT_COLOR_EDIT_PART = "RectangleFontColor"; //$NON-NLS-1$
+	private static final String FONT_COLOR_EDIT_PART = "FontColor"; //$NON-NLS-1$
 
-	private static final String LABEL_COLOR_EDIT_PART = "RectangleLabelColor"; //$NON-NLS-1$
+	private static final String LABEL_COLOR_EDIT_PART = "LabelColor"; //$NON-NLS-1$
 
 
 	// ==================== 5. Creators ====================
@@ -51,27 +51,27 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		final RectangleFigure figure = new RectangleFigure();
 
 		// Bounds
-		figure.setBounds( ((RectangleModel)getModel()).getR() );
+		figure.setBounds( ((ChildModel)getModel()).getR() );
 		// Name
-		figure.setName( ((RectangleModel)getModel()).getName() );
+		figure.setName( ((ChildModel)getModel()).getName() );
 		// Etage
-		figure.setEtage( ((RectangleModel)getModel()).getEtage() );
+		figure.setEtage( ((ChildModel)getModel()).getEtage() );
 		// Color
-		figure.setBackgroundColor( new Color(null, ((RectangleModel)getModel()).getColor()) );
+		figure.setBackgroundColor( new Color(null, ((ChildModel)getModel()).getColor()) );
 		// Line Color
-		figure.setForegroundColor( new Color(null, ((RectangleModel)getModel()).getLineColor()) );
+		figure.setForegroundColor( new Color(null, ((ChildModel)getModel()).getLineColor()) );
 		// Opacity
-		figure.setAlpha( ((RectangleModel)getModel()).getOpacity() );
+		figure.setAlpha( ((ChildModel)getModel()).getOpacity() );
 		// FontStyle
-		figure.setFontStyle( ((RectangleModel)getModel()).getFontStyle() );
+		figure.setFontStyle( ((ChildModel)getModel()).getFontStyle() );
 		// FontSize
-		figure.setFontSize( ((RectangleModel)getModel()).getFontSize() );
+		figure.setFontSize( ((ChildModel)getModel()).getFontSize() );
 		// FontColor
-		figure.getLabelName().setForegroundColor( new Color(null, ((RectangleModel)getModel()).getFontColor()) );
-		figure.getLabelEtage().setForegroundColor( new Color(null, ((RectangleModel)getModel()).getFontColor()) );
+		figure.getLabelName().setForegroundColor( new Color(null, ((ChildModel)getModel()).getFontColor()) );
+		figure.getLabelEtage().setForegroundColor( new Color(null, ((ChildModel)getModel()).getFontColor()) );
 		// LabelColor
-		figure.getLabelName().setBackgroundColor( new Color(null, ((RectangleModel)getModel()).getLabelColor()) );
-		figure.getLabelEtage().setBackgroundColor( new Color(null, ((RectangleModel)getModel()).getLabelColor()) );
+		figure.getLabelName().setBackgroundColor( new Color(null, ((ChildModel)getModel()).getLabelColor()) );
+		figure.getLabelEtage().setBackgroundColor( new Color(null, ((ChildModel)getModel()).getLabelColor()) );
 
 		return figure;
 	}
@@ -132,7 +132,7 @@ public class RectangleEditPart extends AppAbstractEditPart {
 	@Override
 	public void refreshVisuals() {
 		final RectangleFigure figure = (RectangleFigure)getFigure();
-		final RectangleModel model = (RectangleModel)getModel();
+		final ChildModel model = (ChildModel)getModel();
 
 		//		G should be used when the figure is refreshed
 		//		figure.setG(model.getG());
@@ -178,31 +178,31 @@ public class RectangleEditPart extends AppAbstractEditPart {
 			refreshChildren();
 
 		// Rename
-		if (evt.getPropertyName().equals(RectangleModel.PROPERTY_RENAME))
+		if (evt.getPropertyName().equals(ChildModel.PROPERTY_RENAME))
 			refreshVisuals();
 
 		// Color
-		if (evt.getPropertyName().equals(RectangleModel.PROPERTY_COLOR))
+		if (evt.getPropertyName().equals(ChildModel.PROPERTY_COLOR))
 			refreshVisuals();
 
 		// Opacity
-		if (evt.getPropertyName().equals(RectangleModel.PROPERTY_OPACITY))
+		if (evt.getPropertyName().equals(ChildModel.PROPERTY_OPACITY))
 			refreshVisuals();
 
 		// Font Style
-		if (evt.getPropertyName().equals(RectangleModel.PROPERTY_FONT_STYLE))
+		if (evt.getPropertyName().equals(ChildModel.PROPERTY_FONT_STYLE))
 			refreshVisuals();
 
 		// Font Size
-		if (evt.getPropertyName().equals(RectangleModel.PROPERTY_FONT_SIZE))
+		if (evt.getPropertyName().equals(ChildModel.PROPERTY_FONT_SIZE))
 			refreshVisuals();
 
 		// Font Color
-		if (evt.getPropertyName().equals(RectangleModel.PROPERTY_FONT_COLOR))
+		if (evt.getPropertyName().equals(ChildModel.PROPERTY_FONT_COLOR))
 			refreshVisuals();
 
 		// Label Color
-		if (evt.getPropertyName().equals(RectangleModel.PROPERTY_LABEL_COLOR))
+		if (evt.getPropertyName().equals(ChildModel.PROPERTY_LABEL_COLOR))
 			refreshVisuals();
 	}
 }

@@ -34,19 +34,19 @@ public class ChildModel extends ModelTest {
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String PROPERTY_RENAME = "PollyRename"; //$NON-NLS-1$
+	public static final String PROPERTY_RENAME = "Rename"; //$NON-NLS-1$
 
-	public static final String PROPERTY_COLOR = "PollyColor"; //$NON-NLS-1$
+	public static final String PROPERTY_COLOR = "Color"; //$NON-NLS-1$
 
-	public static final String PROPERTY_OPACITY = "PollyOpacity"; //$NON-NLS-1$
+	public static final String PROPERTY_OPACITY = "Opacity"; //$NON-NLS-1$
 
-	public static final String PROPERTY_FONT_STYLE = "PollyFontStyle"; //$NON-NLS-1$
+	public static final String PROPERTY_FONT_STYLE = "FontStyle"; //$NON-NLS-1$
 
-	public static final String PROPERTY_FONT_SIZE = "PollyFontSize"; //$NON-NLS-1$
+	public static final String PROPERTY_FONT_SIZE = "FontSize"; //$NON-NLS-1$
 
-	public static final String PROPERTY_FONT_COLOR = "PollyFontColor"; //$NON-NLS-1$
+	public static final String PROPERTY_FONT_COLOR = "FontColor"; //$NON-NLS-1$
 
-	public static final String PROPERTY_LABEL_COLOR = "PollyLabelColor"; //$NON-NLS-1$
+	public static final String PROPERTY_LABEL_COLOR = "LabelColor"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
@@ -56,8 +56,6 @@ public class ChildModel extends ModelTest {
 	private String name;
 
 	private Rectangle r;
-
-	private Rectangle g;
 
 	private RGB color;
 

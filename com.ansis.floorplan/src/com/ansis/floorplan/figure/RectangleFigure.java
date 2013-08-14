@@ -27,6 +27,7 @@ public class RectangleFigure extends PolygonShape {
 
 	private RGB labelColor;
 
+	private Rectangle r;
 
 	// ==================== 4. Constructors ====================
 
@@ -38,13 +39,14 @@ public class RectangleFigure extends PolygonShape {
 		labelName.setOpaque(true);
 		labelName.setText("final polly");
 		add(labelName, OrderedLayout.ALIGN_CENTER);
-		setConstraint(labelName, new Rectangle(0, 0, 100, 100));
+		setConstraint(labelName, new Rectangle(0, 0, 100, 20));
 
 		labelEtage.setOpaque(true);
 		labelEtage.setText("Etage: 4"); 
 		add(labelEtage, OrderedLayout.ALIGN_CENTER);
-		setConstraint(labelEtage, new Rectangle(0, 0, 100, 100));
-
+		setConstraint(labelEtage, new Rectangle(0, 20, 100, 40));
+		
+		System.out.println("RectangleFigure");
 		
 		setLineStyle(1);
 		setLineWidth(5);
@@ -54,6 +56,14 @@ public class RectangleFigure extends PolygonShape {
 
 	// ==================== 7. Getters & Setters ====================
 
+	public Rectangle getR() {
+		return r;
+	}
+
+	public void setR(final Rectangle r) {
+		this.r = r;
+	}
+	
 	public Label getLabelName() {
 		return labelName;
 	}

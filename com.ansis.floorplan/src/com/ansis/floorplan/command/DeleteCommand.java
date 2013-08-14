@@ -4,7 +4,6 @@ import org.eclipse.gef.commands.Command;
 
 import com.ansis.floorplan.model.ChildModel;
 import com.ansis.floorplan.model.ModelTest;
-import com.ansis.floorplan.model.Polly;
 
 
 public class DeleteCommand extends Command {
@@ -25,7 +24,7 @@ public class DeleteCommand extends Command {
 
 	@Override
 	public void undo() {
-		this.parentModel.addChild((ChildModel) model);
+		this.parentModel.addChild(model);
 	}
 
 

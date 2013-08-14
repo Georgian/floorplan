@@ -19,6 +19,7 @@ import com.ansis.floorplan.editpolicy.AppFontStylePolicy;
 import com.ansis.floorplan.editpolicy.AppOpacityPolicy;
 import com.ansis.floorplan.editpolicy.AppRenamePolicy;
 import com.ansis.floorplan.figure.PollyFigure;
+import com.ansis.floorplan.model.ChildModel;
 import com.ansis.floorplan.model.ModelTest;
 import com.ansis.floorplan.model.Polly;
 
@@ -47,29 +48,29 @@ public class PollyEditPart extends AppAbstractEditPart {
 		final PollyFigure figure = new PollyFigure( ((Polly)getModel()).getG() );
 
 		// Bounds
-		figure.setBounds( ((Polly)getModel()).getR() );
+		figure.setBounds( ((ChildModel)getModel()).getR() );
 		// PointList
 		figure.setList( ((Polly)getModel()).getList() );
 		// Name
-		figure.setName( ((Polly)getModel()).getName() );
+		figure.setName( ((ChildModel)getModel()).getName() );
 		// Etage
-		figure.setEtage( ((Polly)getModel()).getEtage() );
+		figure.setEtage( ((ChildModel)getModel()).getEtage() );
 		// Color
-		figure.setBackgroundColor( new Color(null, ((Polly)getModel()).getColor()) );
+		figure.setBackgroundColor( new Color(null, ((ChildModel)getModel()).getColor()) );
 		// Line Color
-		figure.setForegroundColor( new Color(null, ((Polly)getModel()).getLineColor()) );
+		figure.setForegroundColor( new Color(null, ((ChildModel)getModel()).getLineColor()) );
 		// Opacity
-		figure.setAlpha( ((Polly)getModel()).getOpacity() );
+		figure.setAlpha( ((ChildModel)getModel()).getOpacity() );
 		// FontStyle
-		figure.setFontStyle( ((Polly)getModel()).getFontStyle() );
+		figure.setFontStyle( ((ChildModel)getModel()).getFontStyle() );
 		// FontSize
-		figure.setFontSize( ((Polly)getModel()).getFontSize() );
+		figure.setFontSize( ((ChildModel)getModel()).getFontSize() );
 		// FontColor
-		figure.getLabelName().setForegroundColor( new Color(null, ((Polly)getModel()).getFontColor()) );
-		figure.getLabelEtage().setForegroundColor( new Color(null, ((Polly)getModel()).getFontColor()) );
+		figure.getLabelName().setForegroundColor( new Color(null, ((ChildModel)getModel()).getFontColor()) );
+		figure.getLabelEtage().setForegroundColor( new Color(null, ((ChildModel)getModel()).getFontColor()) );
 		// LabelColor
-		figure.getLabelName().setBackgroundColor( new Color(null, ((Polly)getModel()).getLabelColor()) );
-		figure.getLabelEtage().setBackgroundColor( new Color(null, ((Polly)getModel()).getLabelColor()) );
+		figure.getLabelName().setBackgroundColor( new Color(null, ((ChildModel)getModel()).getLabelColor()) );
+		figure.getLabelEtage().setBackgroundColor( new Color(null, ((ChildModel)getModel()).getLabelColor()) );
 
 		return figure;
 	}
@@ -130,7 +131,7 @@ public class PollyEditPart extends AppAbstractEditPart {
 	@Override
 	public void refreshVisuals() {
 		final PollyFigure figure = (PollyFigure)getFigure();
-		final Polly model = (Polly)getModel();
+		final ChildModel model = (ChildModel)getModel();
 
 		//		G should be used when the figure is refreshed
 		//		figure.setG(model.getG());
@@ -176,31 +177,31 @@ public class PollyEditPart extends AppAbstractEditPart {
 			refreshChildren();
 
 		// Rename
-		if (evt.getPropertyName().equals(Polly.PROPERTY_RENAME))
+		if (evt.getPropertyName().equals(ChildModel.PROPERTY_RENAME))
 			refreshVisuals();
 
 		// Color
-		if (evt.getPropertyName().equals(Polly.PROPERTY_COLOR))
+		if (evt.getPropertyName().equals(ChildModel.PROPERTY_COLOR))
 			refreshVisuals();
 
 		// Opacity
-		if (evt.getPropertyName().equals(Polly.PROPERTY_OPACITY))
+		if (evt.getPropertyName().equals(ChildModel.PROPERTY_OPACITY))
 			refreshVisuals();
 
 		// Font Style
-		if (evt.getPropertyName().equals(Polly.PROPERTY_FONT_STYLE))
+		if (evt.getPropertyName().equals(ChildModel.PROPERTY_FONT_STYLE))
 			refreshVisuals();
 
 		// Font Size
-		if (evt.getPropertyName().equals(Polly.PROPERTY_FONT_SIZE))
+		if (evt.getPropertyName().equals(ChildModel.PROPERTY_FONT_SIZE))
 			refreshVisuals();
 
 		// Font Color
-		if (evt.getPropertyName().equals(Polly.PROPERTY_FONT_COLOR))
+		if (evt.getPropertyName().equals(ChildModel.PROPERTY_FONT_COLOR))
 			refreshVisuals();
 
 		// Label Color
-		if (evt.getPropertyName().equals(Polly.PROPERTY_LABEL_COLOR))
+		if (evt.getPropertyName().equals(ChildModel.PROPERTY_LABEL_COLOR))
 			refreshVisuals();
 	}
 

@@ -4,18 +4,19 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.swt.graphics.RGB;
 
-import com.ansis.floorplan.model.ChildModel;
-import com.ansis.floorplan.model.ModelTest;
+import com.ansis.floorplan.model.Canvas;
+import com.ansis.floorplan.model.RectangleModel;
 
 public class RectangleCreateCommand extends Command {
 
 
 	// ====================== 2. Instance Fields =============================
 
-	private ModelTest canvas;
+	private Canvas canvas;
 
-	private ChildModel rFigure;
+	private RectangleModel rFigure;
 
 	private Point location;
 	
@@ -36,10 +37,14 @@ public class RectangleCreateCommand extends Command {
 			return;
 			
 		rFigure.setBounds(new Rectangle(location, size));
+		rFigure.setLayout(new Rectangle(location, size));
 		rFigure.setR(new Rectangle(location, size));
 		
 		rFigure.setName("final");
 		rFigure.setEtage(4);
+		rFigure.setLabelColor(new RGB (0,0,199));
+		rFigure.setColor(new RGB (0,0,100));
+		
 		
 		canvas.addChild(rFigure);
 	}
@@ -47,11 +52,11 @@ public class RectangleCreateCommand extends Command {
 
 	// ==================== 7. Getters & Setters ====================
 
-	public void setRectangle(final ChildModel rFigure) {
+	public void setRectangle(final RectangleModel rFigure) {
 		this.rFigure = rFigure;
 	}
 
-	public void setCanvas(final ModelTest canvas) {
+	public void setCanvas(final Canvas canvas) {
 		this.canvas = canvas;
 	}
 
