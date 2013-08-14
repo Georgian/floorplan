@@ -87,8 +87,8 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 		if (request.getType() == REQ_CREATE && getHost() instanceof CanvasEditPart) {
 			final RectangleCreateCommand command = new RectangleCreateCommand();
 
-			//		System.out.println(request.getSize());
-			//		System.out.println(request.getLocation());
+					System.out.println(request.getSize());
+					System.out.println(request.getLocation());
 
 			command.setLocation(request.getLocation());
 			command.setSize(request.getSize());

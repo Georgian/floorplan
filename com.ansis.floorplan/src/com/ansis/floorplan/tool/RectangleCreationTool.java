@@ -1,27 +1,20 @@
 package com.ansis.floorplan.tool;
 
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gef.tools.CreationTool;
 
-import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gef.requests.CreationFactory;
 
-import com.ansis.floorplan.model.RectangleModel;
-
-public class RectangleCreationTool implements CreationFactory {
+public class RectangleCreationTool extends CreationTool {
 
 	@Override
-	public Object getNewObject() {
-
-		final RectangleModel newObject = new RectangleModel();
-
-		newObject.setBounds(new Rectangle(0, 0, 300, 300));
-		newObject.setLayout(new Rectangle(0, 0, 300, 300));
-
-		return newObject;
+	protected Dimension getMaximumSizeFor(final CreateRequest request) {
+		return new Dimension(100, 100);
 	}
 
 	@Override
-	public Object getObjectType() {
-		return RectangleModel.class;
+	protected Dimension getMinimumSizeFor(final CreateRequest request) {
+		return new Dimension(10, 10);
 	}
-
+	
 }

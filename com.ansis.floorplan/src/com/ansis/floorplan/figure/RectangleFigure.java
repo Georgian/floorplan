@@ -1,5 +1,6 @@
 package com.ansis.floorplan.figure;
 
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.OrderedLayout;
 import org.eclipse.draw2d.PolygonShape;
@@ -9,7 +10,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.RGB;
 
 
-public class RectangleFigure extends PolygonShape {
+public class RectangleFigure extends PolygonShape implements IFigure{
 
 	// ====================== 2. Instance Fields =============================
 
