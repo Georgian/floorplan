@@ -4,7 +4,6 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.swt.graphics.RGB;
 
 import com.ansis.floorplan.model.Canvas;
 import com.ansis.floorplan.model.RectangleModel;
@@ -42,9 +41,6 @@ public class RectangleCreateCommand extends Command {
 		
 		rFigure.setName("final");
 		rFigure.setEtage(4);
-		rFigure.setLabelColor(new RGB (0,0,199));
-		rFigure.setColor(new RGB (0,0,100));
-		
 		
 		canvas.addChild(rFigure);
 	}

@@ -99,7 +99,7 @@ public class ChildModel extends ModelTest {
 	}
 
 	private static RGB defaultLabelColor() {
-		return new RGB(255, 255, 255);
+		return new RGB(0, 0, 172);
 	}
 
 
