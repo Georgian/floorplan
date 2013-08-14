@@ -20,7 +20,6 @@ import com.ansis.floorplan.editpolicy.AppOpacityPolicy;
 import com.ansis.floorplan.editpolicy.AppRenamePolicy;
 import com.ansis.floorplan.figure.RectangleFigure;
 import com.ansis.floorplan.model.ModelTest;
-import com.ansis.floorplan.model.Polly;
 import com.ansis.floorplan.model.RectangleModel;
 
 /**
@@ -32,17 +31,17 @@ public class RectangleEditPart extends AppAbstractEditPart {
 
 	// ==================== 1. Static Fields ========================
 
-	private static final String OPACITY_EDIT_POLICY = "opacity"; //$NON-NLS-1$
+	private static final String OPACITY_EDIT_POLICY = "RectangleOpacity"; //$NON-NLS-1$
 
-	private static final String COLOR_EDIT_POLICY = "color"; //$NON-NLS-1$
+	private static final String COLOR_EDIT_POLICY = "RectangleColor"; //$NON-NLS-1$
 
-	private static final String FONT_STYLE_EDIT_POLICY = "fontStyle"; //$NON-NLS-1$
+	private static final String FONT_STYLE_EDIT_POLICY = "RectangleFontStyle"; //$NON-NLS-1$
 
-	private static final String FONT_SIZE_EDIT_POLICY = "fontSize"; //$NON-NLS-1$
+	private static final String FONT_SIZE_EDIT_POLICY = "RectangleFontSize"; //$NON-NLS-1$
 
-	private static final String FONT_COLOR_EDIT_PART = "fontColor"; //$NON-NLS-1$
+	private static final String FONT_COLOR_EDIT_PART = "RectangleFontColor"; //$NON-NLS-1$
 
-	private static final String LABEL_COLOR_EDIT_PART = "labelColor"; //$NON-NLS-1$
+	private static final String LABEL_COLOR_EDIT_PART = "RectangleLabelColor"; //$NON-NLS-1$
 
 
 	// ==================== 5. Creators ====================
@@ -179,31 +178,31 @@ public class RectangleEditPart extends AppAbstractEditPart {
 			refreshChildren();
 
 		// Rename
-		if (evt.getPropertyName().equals(Polly.PROPERTY_RENAME))
+		if (evt.getPropertyName().equals(RectangleModel.PROPERTY_RENAME))
 			refreshVisuals();
 
 		// Color
-		if (evt.getPropertyName().equals(Polly.PROPERTY_COLOR))
+		if (evt.getPropertyName().equals(RectangleModel.PROPERTY_COLOR))
 			refreshVisuals();
 
 		// Opacity
-		if (evt.getPropertyName().equals(Polly.PROPERTY_OPACITY))
+		if (evt.getPropertyName().equals(RectangleModel.PROPERTY_OPACITY))
 			refreshVisuals();
 
 		// Font Style
-		if (evt.getPropertyName().equals(Polly.PROPERTY_FONT_STYLE))
+		if (evt.getPropertyName().equals(RectangleModel.PROPERTY_FONT_STYLE))
 			refreshVisuals();
 
 		// Font Size
-		if (evt.getPropertyName().equals(Polly.PROPERTY_FONT_SIZE))
+		if (evt.getPropertyName().equals(RectangleModel.PROPERTY_FONT_SIZE))
 			refreshVisuals();
 
 		// Font Color
-		if (evt.getPropertyName().equals(Polly.PROPERTY_FONT_COLOR))
+		if (evt.getPropertyName().equals(RectangleModel.PROPERTY_FONT_COLOR))
 			refreshVisuals();
 
 		// Label Color
-		if (evt.getPropertyName().equals(Polly.PROPERTY_LABEL_COLOR))
+		if (evt.getPropertyName().equals(RectangleModel.PROPERTY_LABEL_COLOR))
 			refreshVisuals();
 	}
 }

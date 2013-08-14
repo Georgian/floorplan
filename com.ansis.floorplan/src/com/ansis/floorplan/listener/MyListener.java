@@ -112,11 +112,11 @@ public class MyListener {
 
 							///////////////////////////////////////////////////
 
-							final Polly newPolly = new Polly();
+							final PollyLine newPolly = new PollyLine();
 							newPolly.setList(tempPointList);
 
-							newPolly.setName("Not Done!"); //$NON-NLS-1$
-							newPolly.setEtage(3);
+//							newPolly.setName("Not Done!"); //$NON-NLS-1$
+//							newPolly.setEtage(3);
 							newPolly.setBounds(rect);
 							newPolly.setR(rect);
 							newPolly.setG(label);
@@ -198,11 +198,11 @@ public class MyListener {
 
 							///////////////////////////////////////////////////
 
-							final Polly newPolly = new Polly();
+							final PollyLine newPolly = new PollyLine();
 							newPolly.setList(tempPointList);
 
-							newPolly.setName("Not Done!"); //$NON-NLS-1$
-							newPolly.setEtage(3);
+//							newPolly.setName("Not Done!"); //$NON-NLS-1$
+//							newPolly.setEtage(3);
 							newPolly.setBounds(rect);
 							newPolly.setR(rect);
 							newPolly.setG(label);

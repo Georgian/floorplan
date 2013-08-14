@@ -16,7 +16,7 @@ public class RectangleModel extends ChildModel {
 
 	public static final String PROPERTY_RENAME = "RectangleRename"; //$NON-NLS-1$
 
-	public static final String PROPERTY_COLOR = "Rectangleolor"; //$NON-NLS-1$
+	public static final String PROPERTY_COLOR = "RectangleColor"; //$NON-NLS-1$
 
 	public static final String PROPERTY_OPACITY = "RectangleOpacity"; //$NON-NLS-1$
 
@@ -98,94 +98,114 @@ public class RectangleModel extends ChildModel {
 
 	// ==================== 7. Getters & Setters ====================
 
+	@Override
 	public void setName(final String name) {
 		final String oldName = this.name;
 		this.name = name;
 		getListeners().firePropertyChange(PROPERTY_RENAME, oldName, this.name);
 	}
 
+	@Override
 	public String getName() {
 		return this.name;
 	}
 
+	@Override
 	public void setEtage(final int etage) {
 		this.etage = etage;
 	}
 
+	@Override
 	public int getEtage() {
 		return this.etage;
 	}
 
+	@Override
 	public Rectangle getR() {
 		return r;
 	}
 
+	@Override
 	public void setR(final Rectangle r) {
 		this.r = r;
 	}
 
+	@Override
 	public RGB getColor() {
 		return color;
 	}
 
+	@Override
 	public void setColor(final RGB color) {
 		final RGB oldColor = this.color;
 		this.color = color;
 		getListeners().firePropertyChange(PROPERTY_COLOR, oldColor, this.color);
 	}
 
+	@Override
 	public RGB getLineColor() {
 		return lineColor;
 	}
 
+	@Override
 	public void setLineColor(final RGB lineColor) {
 		this.lineColor = lineColor;
 	}
 
+	@Override
 	public int getOpacity() {
 		return opacity;
 	}
 
+	@Override
 	public void setOpacity(final int opacity) {
 		final int oldOpacity = this.opacity;
 		this.opacity = opacity;
 		getListeners().firePropertyChange(PROPERTY_OPACITY, oldOpacity, this.opacity);
 	}
 
+	@Override
 	public int getFontStyle() {
 		return fontStyle;
 	}
 
+	@Override
 	public void setFontStyle(final int fontStyle) {
 		final int oldFontStyle = this.fontStyle;
 		this.fontStyle = fontStyle;
 		getListeners().firePropertyChange(PROPERTY_FONT_STYLE, oldFontStyle, this.fontStyle);
 	}
 
+	@Override
 	public int getFontSize() {
 		return fontSize;
 	}
 
+	@Override
 	public void setFontSize(final int fontSize) {
 		final int oldFontSize = this.fontSize;
 		this.fontSize = fontSize;
 		getListeners().firePropertyChange(PROPERTY_FONT_SIZE, oldFontSize, this.fontSize);
 	}
 
+	@Override
 	public RGB getFontColor() {
 		return fontColor;
 	}
 
+	@Override
 	public void setFontColor(final RGB fontColor) {
 		final RGB oldFontColor = this.fontColor;
 		this.fontColor = fontColor;
 		getListeners().firePropertyChange(PROPERTY_FONT_COLOR, oldFontColor, this.fontColor);
 	}
 
+	@Override
 	public RGB getLabelColor() {
 		return labelColor;
 	}
 
+	@Override
 	public void setLabelColor(final RGB labelColor) {
 		final RGB oldLabelColor = this.labelColor;
 		this.labelColor = labelColor;

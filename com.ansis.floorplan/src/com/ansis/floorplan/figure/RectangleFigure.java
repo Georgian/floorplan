@@ -36,13 +36,16 @@ public class RectangleFigure extends PolygonShape {
 		setLayoutManager(layout);
 
 		labelName.setOpaque(true);
+		labelName.setText("final polly");
 		add(labelName, OrderedLayout.ALIGN_CENTER);
 		setConstraint(labelName, new Rectangle(0, 0, 100, 100));
 
 		labelEtage.setOpaque(true);
+		labelEtage.setText("Etage: 4"); 
 		add(labelEtage, OrderedLayout.ALIGN_CENTER);
 		setConstraint(labelEtage, new Rectangle(0, 0, 100, 100));
 
+		
 		setLineStyle(1);
 		setLineWidth(5);
 		
