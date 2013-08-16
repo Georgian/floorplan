@@ -1,4 +1,4 @@
-package com.ansis.floorplan.action;
+package com.ansis.floorplan.action.opacity;
 
 import java.util.HashMap;
 
@@ -7,26 +7,25 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.swt.graphics.RGB;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 
-public class FontColorAction extends SelectionAction {
+public class OpacityTenAction extends SelectionAction{
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String fontColorProperty = "fontColorProperty"; //$NON-NLS-1$
+	public static final String opacityPropertyTen = "opacityPropertyTen"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
 
-	private RGB fontColor;
+	private final String ten = "10"; //$NON-NLS-1$
 
 
 	// ==================== 4. Constructors ====================
 
-	public FontColorAction(final IWorkbenchPart part) {
+	public OpacityTenAction(final IWorkbenchPart part) {
 		super(part);
 		setLazyEnablementCalculation(true);
 	}
@@ -34,13 +33,13 @@ public class FontColorAction extends SelectionAction {
 
 	// ==================== 5. Creators ====================
 
-	public Command createChangeFontColorCommand(final RGB fontColor) {
-		final Request changeFontColorReq = new Request("changeFontColor"); //$NON-NLS-1$
-		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
-		reqData.put("newFontColor", fontColor); //$NON-NLS-1$
-		changeFontColorReq.setExtendedData(reqData);
+	public Command createOpacityCommand(final String opacity) {
+		final Request opacityReq = new Request("opacity"); //$NON-NLS-1$
+		final HashMap<String, String> reqData = new HashMap<String, String>();
+		reqData.put("newOpacity", opacity); //$NON-NLS-1$
+		opacityReq.setExtendedData(reqData);
 		final EditPart object = (EditPart)getSelectedObjects().get(0);
-		final Command cmd = object.getCommand(changeFontColorReq);
+		final Command cmd = object.getCommand(opacityReq);
 		return cmd; 
 	}
 
@@ -49,7 +48,7 @@ public class FontColorAction extends SelectionAction {
 
 	@Override
 	protected boolean calculateEnabled() {
-		final Command cmd = createChangeFontColorCommand(null); 
+		final Command cmd = createOpacityCommand(""); //$NON-NLS-1$
 		if (cmd == null)
 			return false;
 		return true;
@@ -57,9 +56,9 @@ public class FontColorAction extends SelectionAction {
 
 	@Override
 	protected void init() {
-		setId(fontColorProperty);
-		setText("Font color...");  //$NON-NLS-1$
-		setToolTipText("Font color"); //$NON-NLS-1$
+		setId(opacityPropertyTen);
+		setText(getTen()+"%");  //$NON-NLS-1$
+		setToolTipText("Opacity 10"); //$NON-NLS-1$
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)
 			setImageDescriptor(icon);
@@ -68,14 +67,14 @@ public class FontColorAction extends SelectionAction {
 
 	@Override
 	public void run() {
-		execute(createChangeFontColorCommand(getFontColor()));
+		execute(createOpacityCommand(getTen()));
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public RGB getFontColor() {
-		return fontColor;
+	public String getTen() {
+		return ten;
 	}
-
+	
 }

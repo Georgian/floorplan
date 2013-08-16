@@ -1,7 +1,6 @@
 package com.ansis.floorplan.model;
 
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.RGB;
 
 
@@ -51,57 +50,10 @@ public class ChildModel extends ModelTest {
 	private RGB labelColor;
 
 
-	// ==================== 3. Static Methods ====================
-
-	private static String defaultName() {
-		return "New Figure"; //$NON-NLS-1$
-	}
-	
-	private static int defaultEtage() {
-		return 0;
-	}
-	
-	private static RGB defaultColor() {
-		return new RGB(0, 0, 192);
-	}
-
-	private static RGB defaultLineColor() {
-		return new RGB(0, 0, 255);
-	}
-
-	private static int defaultOpacity() {
-		return 127;
-	}
-
-	private static int defaultFontStyle() {
-		return SWT.NORMAL;
-	}
-
-	private static int defaultFontSize() {
-		return 10;
-	}
-
-	private static RGB defaultFontColor() {
-		return new RGB(0, 0, 0);
-	}
-
-	private static RGB defaultLabelColor() {
-		return new RGB(255, 255, 255);
-	}
-
-
 	// ==================== 4. Constructors ====================
 
 	public ChildModel() {
-		this.setName(defaultName());
-		this.setEtage(defaultEtage());
-		this.setColor(defaultColor());
-		this.setLineColor(defaultLineColor());
-		this.setOpacity(defaultOpacity());
-		this.setFontStyle(defaultFontStyle());
-		this.setFontSize(defaultFontSize());
-		this.setFontColor(defaultFontColor());
-		this.setLabelColor(defaultLabelColor());
+
 	}
 
 
@@ -130,7 +82,9 @@ public class ChildModel extends ModelTest {
 	}
 
 	public String getName() {
-		return this.name;
+		if (name == null)
+			name = "New Figure";
+		return name;
 	}
 
 	public void setEtage(final int etage) {
@@ -138,7 +92,7 @@ public class ChildModel extends ModelTest {
 	}
 
 	public int getEtage() {
-		return this.etage;
+		return etage;
 	}
 
 	public Rectangle getR() {
@@ -150,6 +104,8 @@ public class ChildModel extends ModelTest {
 	}
 
 	public RGB getColor() {
+		if (color == null)
+			color = new RGB(0, 0, 192);
 		return color;
 	}
 
@@ -160,6 +116,8 @@ public class ChildModel extends ModelTest {
 	}
 
 	public RGB getLineColor() {
+		if (lineColor == null)
+			lineColor = new RGB(0, 0, 255);
 		return lineColor;
 	}
 
@@ -168,6 +126,8 @@ public class ChildModel extends ModelTest {
 	}
 
 	public int getOpacity() {
+		if (opacity == 0)
+			opacity = 127;
 		return opacity;
 	}
 
@@ -188,6 +148,8 @@ public class ChildModel extends ModelTest {
 	}
 
 	public int getFontSize() {
+		if (fontSize == 0)
+			fontSize = 10;
 		return fontSize;
 	}
 
@@ -198,6 +160,8 @@ public class ChildModel extends ModelTest {
 	}
 
 	public RGB getFontColor() {
+		if (fontColor == null)
+			fontColor = new RGB(0, 0, 0);
 		return fontColor;
 	}
 
@@ -208,6 +172,8 @@ public class ChildModel extends ModelTest {
 	}
 
 	public RGB getLabelColor() {
+		if (labelColor == null)
+			labelColor = new RGB(255, 255, 255);
 		return labelColor;
 	}
 

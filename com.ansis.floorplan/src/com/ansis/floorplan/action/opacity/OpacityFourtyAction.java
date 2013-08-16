@@ -1,4 +1,4 @@
-package com.ansis.floorplan.action;
+package com.ansis.floorplan.action.opacity;
 
 import java.util.HashMap;
 
@@ -11,21 +11,21 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 
-public class FontSizeNineAction extends SelectionAction{
+public class OpacityFourtyAction extends SelectionAction{
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String fontSizePropertyNine = "fontSizePropertyNine"; //$NON-NLS-1$
+	public static final String opacityPropertyFourty = "opacityPropertyFourty"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
 
-	private final String nine = "9"; //$NON-NLS-1$
+	private final String fourty = "40"; //$NON-NLS-1$
 
 
 	// ==================== 4. Constructors ====================
 
-	public FontSizeNineAction(final IWorkbenchPart part) {
+	public OpacityFourtyAction(final IWorkbenchPart part) {
 		super(part);
 		setLazyEnablementCalculation(true);
 	}
@@ -33,13 +33,13 @@ public class FontSizeNineAction extends SelectionAction{
 
 	// ==================== 5. Creators ====================
 
-	public Command createFontSizeCommand(final String fontSize) {
-		final Request fontSizeReq = new Request("fontSize"); //$NON-NLS-1$
+	public Command createOpacityCommand(final String opacity) {
+		final Request opacityReq = new Request("opacity"); //$NON-NLS-1$
 		final HashMap<String, String> reqData = new HashMap<String, String>();
-		reqData.put("newFontSize", fontSize); //$NON-NLS-1$
-		fontSizeReq.setExtendedData(reqData);
+		reqData.put("newOpacity", opacity); //$NON-NLS-1$
+		opacityReq.setExtendedData(reqData);
 		final EditPart object = (EditPart)getSelectedObjects().get(0);
-		final Command cmd = object.getCommand(fontSizeReq);
+		final Command cmd = object.getCommand(opacityReq);
 		return cmd; 
 	}
 
@@ -48,7 +48,7 @@ public class FontSizeNineAction extends SelectionAction{
 
 	@Override
 	protected boolean calculateEnabled() {
-		final Command cmd = createFontSizeCommand(""); //$NON-NLS-1$
+		final Command cmd = createOpacityCommand(""); //$NON-NLS-1$
 		if (cmd == null)
 			return false;
 		return true;
@@ -56,9 +56,9 @@ public class FontSizeNineAction extends SelectionAction{
 
 	@Override
 	protected void init() {
-		setId(fontSizePropertyNine);
-		setText(getNine());
-		setToolTipText("Font Size 9"); //$NON-NLS-1$
+		setId(opacityPropertyFourty);
+		setText(getFourty()+"%");  //$NON-NLS-1$
+		setToolTipText("Opacity 40"); //$NON-NLS-1$
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)
 			setImageDescriptor(icon);
@@ -67,14 +67,14 @@ public class FontSizeNineAction extends SelectionAction{
 
 	@Override
 	public void run() {
-		execute(createFontSizeCommand(getNine()));
+		execute(createOpacityCommand(getFourty()));
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public String getNine() {
-		return nine;
+	public String getFourty() {
+		return fourty;
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.ansis.floorplan.action;
+package com.ansis.floorplan.action.opacity;
 
 import java.util.HashMap;
 
@@ -11,21 +11,21 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 
-public class OpacityHundredAction extends SelectionAction{
+public class OpacityEightyAction extends SelectionAction{
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String opacityPropertyHundred = "opacityPropertyHundred"; //$NON-NLS-1$
+	public static final String opacityPropertyEighty = "opacityPropertyEighty"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
 
-	private final String hundred = "100"; //$NON-NLS-1$
+	private final String eighty = "80"; //$NON-NLS-1$
 
 
 	// ==================== 4. Constructors ====================
 
-	public OpacityHundredAction(final IWorkbenchPart part) {
+	public OpacityEightyAction(final IWorkbenchPart part) {
 		super(part);
 		setLazyEnablementCalculation(true);
 	}
@@ -56,9 +56,9 @@ public class OpacityHundredAction extends SelectionAction{
 
 	@Override
 	protected void init() {
-		setId(opacityPropertyHundred);
-		setText(getHundred()+"%");  //$NON-NLS-1$
-		setToolTipText("Opacity 100"); //$NON-NLS-1$
+		setId(opacityPropertyEighty);
+		setText(getEighty()+"%");  //$NON-NLS-1$
+		setToolTipText("Opacity 80"); //$NON-NLS-1$
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)
 			setImageDescriptor(icon);
@@ -67,14 +67,14 @@ public class OpacityHundredAction extends SelectionAction{
 
 	@Override
 	public void run() {
-		execute(createOpacityCommand(getHundred()));
+		execute(createOpacityCommand(getEighty()));
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public String getHundred() {
-		return hundred;
+	public String getEighty() {
+		return eighty;
 	}
 
 }

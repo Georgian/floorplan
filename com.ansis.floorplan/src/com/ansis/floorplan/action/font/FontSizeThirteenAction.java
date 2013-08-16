@@ -1,4 +1,4 @@
-package com.ansis.floorplan.action;
+package com.ansis.floorplan.action.font;
 
 import java.util.HashMap;
 
@@ -11,21 +11,21 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 
-public class FontStyleNormalAction extends SelectionAction{
+public class FontSizeThirteenAction extends SelectionAction{
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String fontStylePropertyNormal = "fontStylePropertyNormal"; //$NON-NLS-1$
+	public static final String fontSizePropertyThirteen = "fontSizePropertyThirteen"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
 
-	private final String normal = "0"; //$NON-NLS-1$
+	private final String thirteen = "13"; //$NON-NLS-1$
 
 
 	// ==================== 4. Constructors ====================
 
-	public FontStyleNormalAction(final IWorkbenchPart part) {
+	public FontSizeThirteenAction(final IWorkbenchPart part) {
 		super(part);
 		setLazyEnablementCalculation(true);
 	}
@@ -33,13 +33,13 @@ public class FontStyleNormalAction extends SelectionAction{
 
 	// ==================== 5. Creators ====================
 
-	public Command createFontStyleCommand(final String fontStyle) {
-		final Request fontStyleReq = new Request("fontStyle"); //$NON-NLS-1$
+	public Command createFontSizeCommand(final String fontSize) {
+		final Request fontSizeReq = new Request("fontSize"); //$NON-NLS-1$
 		final HashMap<String, String> reqData = new HashMap<String, String>();
-		reqData.put("newFontStyle", fontStyle); //$NON-NLS-1$
-		fontStyleReq.setExtendedData(reqData);
+		reqData.put("newFontSize", fontSize); //$NON-NLS-1$
+		fontSizeReq.setExtendedData(reqData);
 		final EditPart object = (EditPart)getSelectedObjects().get(0);
-		final Command cmd = object.getCommand(fontStyleReq);
+		final Command cmd = object.getCommand(fontSizeReq);
 		return cmd; 
 	}
 
@@ -48,7 +48,7 @@ public class FontStyleNormalAction extends SelectionAction{
 
 	@Override
 	protected boolean calculateEnabled() {
-		final Command cmd = createFontStyleCommand(""); //$NON-NLS-1$
+		final Command cmd = createFontSizeCommand(""); //$NON-NLS-1$
 		if (cmd == null)
 			return false;
 		return true;
@@ -56,9 +56,9 @@ public class FontStyleNormalAction extends SelectionAction{
 
 	@Override
 	protected void init() {
-		setId(fontStylePropertyNormal);
-		setText("Normal"); //$NON-NLS-1$
-		setToolTipText("Normal"); //$NON-NLS-1$
+		setId(fontSizePropertyThirteen);
+		setText(getThirteen());
+		setToolTipText("Font Size 13"); //$NON-NLS-1$
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)
 			setImageDescriptor(icon);
@@ -67,14 +67,14 @@ public class FontStyleNormalAction extends SelectionAction{
 
 	@Override
 	public void run() {
-		execute(createFontStyleCommand(getNormal()));
+		execute(createFontSizeCommand(getThirteen()));
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public String getNormal() {
-		return normal;
+	public String getThirteen() {
+		return thirteen;
 	}
-	
+
 }

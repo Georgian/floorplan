@@ -1,4 +1,4 @@
-package com.ansis.floorplan.action;
+package com.ansis.floorplan.action.font;
 
 import java.util.HashMap;
 
@@ -11,21 +11,21 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 
-public class FontStyleItalicAction extends SelectionAction{
+public class FontStyleBoldAction extends SelectionAction{
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String fontStylePropertyItalic = "fontStylePropertyItalic"; //$NON-NLS-1$
+	public static final String fontStylePropertyBold = "fontStylePropertyBold"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
 
-	private final String italic = "2"; //$NON-NLS-1$
+	private final String bold = "1"; //$NON-NLS-1$
 
 
 	// ==================== 4. Constructors ====================
 
-	public FontStyleItalicAction(final IWorkbenchPart part) {
+	public FontStyleBoldAction(final IWorkbenchPart part) {
 		super(part);
 		setLazyEnablementCalculation(true);
 	}
@@ -56,9 +56,9 @@ public class FontStyleItalicAction extends SelectionAction{
 
 	@Override
 	protected void init() {
-		setId(fontStylePropertyItalic);
-		setText("Italic"); //$NON-NLS-1$
-		setToolTipText("Italic"); //$NON-NLS-1$
+		setId(fontStylePropertyBold);
+		setText("Bold"); //$NON-NLS-1$
+		setToolTipText("Bold"); //$NON-NLS-1$
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)
 			setImageDescriptor(icon);
@@ -67,14 +67,14 @@ public class FontStyleItalicAction extends SelectionAction{
 
 	@Override
 	public void run() {
-		execute(createFontStyleCommand(getItalic()));
+		execute(createFontStyleCommand(getBold()));
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public String getItalic() {
-		return italic;
+	public String getBold() {
+		return bold;
 	}
 	
 }

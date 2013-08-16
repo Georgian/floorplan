@@ -1,4 +1,4 @@
-package com.ansis.floorplan.action;
+package com.ansis.floorplan.action.font;
 
 import java.util.HashMap;
 
@@ -11,21 +11,21 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 
-public class OpacitySixtyAction extends SelectionAction {
+public class FontStyleItalicAction extends SelectionAction{
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String opacityPropertySixty = "opacityPropertySixty"; //$NON-NLS-1$
+	public static final String fontStylePropertyItalic = "fontStylePropertyItalic"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
 
-	private final String sixty = "60"; //$NON-NLS-1$
+	private final String italic = "2"; //$NON-NLS-1$
 
 
 	// ==================== 4. Constructors ====================
 
-	public OpacitySixtyAction(final IWorkbenchPart part) {
+	public FontStyleItalicAction(final IWorkbenchPart part) {
 		super(part);
 		setLazyEnablementCalculation(true);
 	}
@@ -33,13 +33,13 @@ public class OpacitySixtyAction extends SelectionAction {
 
 	// ==================== 5. Creators ====================
 
-	public Command createOpacityCommand(final String opacity) {
-		final Request opacityReq = new Request("opacity"); //$NON-NLS-1$
+	public Command createFontStyleCommand(final String fontStyle) {
+		final Request fontStyleReq = new Request("fontStyle"); //$NON-NLS-1$
 		final HashMap<String, String> reqData = new HashMap<String, String>();
-		reqData.put("newOpacity", opacity); //$NON-NLS-1$
-		opacityReq.setExtendedData(reqData);
+		reqData.put("newFontStyle", fontStyle); //$NON-NLS-1$
+		fontStyleReq.setExtendedData(reqData);
 		final EditPart object = (EditPart)getSelectedObjects().get(0);
-		final Command cmd = object.getCommand(opacityReq);
+		final Command cmd = object.getCommand(fontStyleReq);
 		return cmd; 
 	}
 
@@ -48,7 +48,7 @@ public class OpacitySixtyAction extends SelectionAction {
 
 	@Override
 	protected boolean calculateEnabled() {
-		final Command cmd = createOpacityCommand(""); //$NON-NLS-1$
+		final Command cmd = createFontStyleCommand(""); //$NON-NLS-1$
 		if (cmd == null)
 			return false;
 		return true;
@@ -56,9 +56,9 @@ public class OpacitySixtyAction extends SelectionAction {
 
 	@Override
 	protected void init() {
-		setId(opacityPropertySixty);
-		setText(getSixty()+"%");  //$NON-NLS-1$
-		setToolTipText("Opacity 60"); //$NON-NLS-1$
+		setId(fontStylePropertyItalic);
+		setText("Italic"); //$NON-NLS-1$
+		setToolTipText("Italic"); //$NON-NLS-1$
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)
 			setImageDescriptor(icon);
@@ -67,14 +67,14 @@ public class OpacitySixtyAction extends SelectionAction {
 
 	@Override
 	public void run() {
-		execute(createOpacityCommand(getSixty()));
+		execute(createFontStyleCommand(getItalic()));
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public String getSixty() {
-		return sixty;
+	public String getItalic() {
+		return italic;
 	}
-
+	
 }

@@ -11,23 +11,24 @@ import org.eclipse.ui.actions.ActionFactory;
 
 import com.ansis.floorplan.action.ChangeColorAction;
 import com.ansis.floorplan.action.ChangeLabelColorAction;
-import com.ansis.floorplan.action.FontColorAction;
-import com.ansis.floorplan.action.FontSizeNineAction;
-import com.ansis.floorplan.action.FontSizeSevenAction;
-import com.ansis.floorplan.action.FontSizeSixteenAction;
-import com.ansis.floorplan.action.FontSizeTenAction;
-import com.ansis.floorplan.action.FontSizeThirteenAction;
-import com.ansis.floorplan.action.FontSizeTwentyAction;
-import com.ansis.floorplan.action.FontSizeTwentyfiveAction;
-import com.ansis.floorplan.action.FontStyleBoldAction;
-import com.ansis.floorplan.action.FontStyleItalicAction;
-import com.ansis.floorplan.action.FontStyleNormalAction;
-import com.ansis.floorplan.action.OpacityEightyAction;
-import com.ansis.floorplan.action.OpacityFourtyAction;
-import com.ansis.floorplan.action.OpacityHundredAction;
-import com.ansis.floorplan.action.OpacitySixtyAction;
-import com.ansis.floorplan.action.OpacityTenAction;
-import com.ansis.floorplan.action.OpacityTwentyAction;
+import com.ansis.floorplan.action.font.FontColorAction;
+import com.ansis.floorplan.action.font.FontSizeNineAction;
+import com.ansis.floorplan.action.font.FontSizeSevenAction;
+import com.ansis.floorplan.action.font.FontSizeSixteenAction;
+import com.ansis.floorplan.action.font.FontSizeTenAction;
+import com.ansis.floorplan.action.font.FontSizeThirteenAction;
+import com.ansis.floorplan.action.font.FontSizeTwentyAction;
+import com.ansis.floorplan.action.font.FontSizeTwentyfiveAction;
+import com.ansis.floorplan.action.font.FontStyleBoldAction;
+import com.ansis.floorplan.action.font.FontStyleItalicAction;
+import com.ansis.floorplan.action.font.FontStyleNormalAction;
+import com.ansis.floorplan.action.opacity.OpacityEightyAction;
+import com.ansis.floorplan.action.opacity.OpacityFourtyAction;
+import com.ansis.floorplan.action.opacity.OpacityHundredAction;
+import com.ansis.floorplan.action.opacity.OpacitySixtyAction;
+import com.ansis.floorplan.action.opacity.OpacityTenAction;
+import com.ansis.floorplan.action.opacity.OpacityTwentyAction;
+import com.ansis.floorplan.core.helper.AEFConstPresentation;
 
 
 public class AppContextMenuProvider extends ContextMenuProvider{

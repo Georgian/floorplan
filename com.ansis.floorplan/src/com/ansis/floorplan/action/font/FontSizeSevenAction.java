@@ -1,4 +1,4 @@
-package com.ansis.floorplan.action;
+package com.ansis.floorplan.action.font;
 
 import java.util.HashMap;
 
@@ -11,21 +11,21 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 
-public class FontSizeTwentyfiveAction extends SelectionAction{
+public class FontSizeSevenAction extends SelectionAction{
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String fontSizePropertyTwentyfive = "fontSizePropertyTwentyfive"; //$NON-NLS-1$
+	public static final String fontSizePropertySeven = "fontSizePropertySeven"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
 
-	private final String twentyfive = "25"; //$NON-NLS-1$
+	private final String seven = "7"; //$NON-NLS-1$
 
 
 	// ==================== 4. Constructors ====================
 
-	public FontSizeTwentyfiveAction(final IWorkbenchPart part) {
+	public FontSizeSevenAction(final IWorkbenchPart part) {
 		super(part);
 		setLazyEnablementCalculation(true);
 	}
@@ -56,9 +56,9 @@ public class FontSizeTwentyfiveAction extends SelectionAction{
 
 	@Override
 	protected void init() {
-		setId(fontSizePropertyTwentyfive);
-		setText(getTwentyfive());
-		setToolTipText("Font Size 20"); //$NON-NLS-1$
+		setId(fontSizePropertySeven);
+		setText(getSeven());
+		setToolTipText("Font Size 7"); //$NON-NLS-1$
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)
 			setImageDescriptor(icon);
@@ -67,14 +67,14 @@ public class FontSizeTwentyfiveAction extends SelectionAction{
 
 	@Override
 	public void run() {
-		execute(createFontSizeCommand(getTwentyfive()));
+		execute(createFontSizeCommand(getSeven()));
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public String getTwentyfive() {
-		return twentyfive;
+	public String getSeven() {
+		return seven;
 	}
 
 }
