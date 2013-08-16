@@ -133,8 +133,6 @@ public class PollyEditPart extends AppAbstractEditPart {
 		final PollyFigure figure = (PollyFigure)getFigure();
 		final ChildModel model = (ChildModel)getModel();
 
-		//		G should be used when the figure is refreshed
-		//		figure.setG(model.getG());
 		// Bounds
 		figure.setBounds(model.getR());
 		// Name

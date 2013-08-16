@@ -115,8 +115,6 @@ public class MyListener {
 							final PollyLine newPolly = new PollyLine();
 							newPolly.setList(tempPointList);
 
-//							newPolly.setName("Not Done!"); //$NON-NLS-1$
-//							newPolly.setEtage(3);
 							newPolly.setBounds(rect);
 							newPolly.setR(rect);
 							newPolly.setG(label);
@@ -127,9 +125,8 @@ public class MyListener {
 
 							final ModelTest model2 = new ModelTest();
 
-							if ( model2.getChildren().size() >= 1 && ok == 1)
-								model2.removeChild(model2.getChildren().get(model2.getChildren().size() - 1));
-							System.out.println("Created a straight line");
+							if ( ModelTest.getChildren().size() >= 1 && ok == 1)
+								model2.removeChild(ModelTest.getChildren().get(ModelTest.getChildren().size() - 1));
 
 							isShiftPressed = false;
 							tempPointList = new PointList();
@@ -190,8 +187,6 @@ public class MyListener {
 							maxLabelPoint.x = minLabelPoint.x + 70;
 							maxLabelPoint.y = minLabelPoint.y + 15;
 
-
-
 							rect = new Rectangle(minPoint,maxPoint);
 
 							label = new Rectangle(minLabelPoint, maxLabelPoint);
@@ -201,8 +196,6 @@ public class MyListener {
 							final PollyLine newPolly = new PollyLine();
 							newPolly.setList(tempPointList);
 
-//							newPolly.setName("Not Done!"); //$NON-NLS-1$
-//							newPolly.setEtage(3);
 							newPolly.setBounds(rect);
 							newPolly.setR(rect);
 							newPolly.setG(label);
@@ -213,9 +206,8 @@ public class MyListener {
 
 							final ModelTest model2 = new ModelTest();
 
-							if ( model2.getChildren().size() >= 1 && ok == 1)
-								model2.removeChild(model2.getChildren().get(model2.getChildren().size() - 1));
-							System.out.println("Created a straight line");
+							if ( ModelTest.getChildren().size() >= 1 && ok == 1)
+								model2.removeChild(ModelTest.getChildren().get(ModelTest.getChildren().size() - 1));
 
 							isShiftPressed = false;
 							tempPointList = new PointList();
@@ -295,8 +287,6 @@ public class MyListener {
 						final PollyLine newPolly = new PollyLine();
 						newPolly.setList(tempPointList);
 
-//						newPolly.setName("Not Done!"); //$NON-NLS-1$
-//						newPolly.setEtage(3);
 						newPolly.setBounds(rect);
 						newPolly.setR(rect);
 						newPolly.setG(label);
@@ -307,9 +297,8 @@ public class MyListener {
 
 						final ModelTest model2 = new ModelTest();
 
-						if ( model2.getChildren().size() >= 1 && ok == 1)
-							model2.removeChild(model2.getChildren().get(model2.getChildren().size() - 1));
-						System.out.println("Created a Node");
+						if ( ModelTest.getChildren().size() >= 1 && ok == 1)
+							model2.removeChild(ModelTest.getChildren().get(ModelTest.getChildren().size() - 1));
 
 						tempPointList = new PointList();
 
@@ -322,7 +311,7 @@ public class MyListener {
 					final Point minLabelPoint = new Point (0,0), maxLabelPoint = new Point(0,0);
 
 					mainPointList.addPoint(firstPoint);
-					
+
 					///////////////////////////////////////////////////
 					// Find min/max points. Compute bounds for our new figure
 
@@ -376,6 +365,7 @@ public class MyListener {
 					final Polly finalPolly = new Polly();
 					finalPolly.setList(mainPointList);
 
+					// TODO this has to be moved
 					finalPolly.setName("final polly"); //$NON-NLS-1$
 					finalPolly.setEtage(4);
 					finalPolly.setBounds(rect);
@@ -383,8 +373,6 @@ public class MyListener {
 					finalPolly.setG(label);
 
 					model.addChild(finalPolly);
-
-					System.out.println("Finished Drawing");
 
 					mainPointList = new PointList();
 					firstPoint = null;

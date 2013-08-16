@@ -8,8 +8,8 @@ import org.eclipse.gef.commands.Command;
 import com.ansis.floorplan.model.Canvas;
 import com.ansis.floorplan.model.RectangleModel;
 
-public class RectangleCreateCommand extends Command {
 
+public class RectangleCreateCommand extends Command {
 
 	// ====================== 2. Instance Fields =============================
 
@@ -18,7 +18,7 @@ public class RectangleCreateCommand extends Command {
 	private RectangleModel rFigure;
 
 	private Point location;
-	
+
 	private Dimension size;
 
 
@@ -31,17 +31,18 @@ public class RectangleCreateCommand extends Command {
 
 	@Override
 	public void execute() {
-		
+
 		if (size == null)
 			return;
-			
+
 		rFigure.setBounds(new Rectangle(location, size));
 		rFigure.setLayout(new Rectangle(location, size));
 		rFigure.setR(new Rectangle(location, size));
-		
-		rFigure.setName("final");
+
+		// TODO this has to be moved
+		rFigure.setName("final"); //$NON-NLS-1$
 		rFigure.setEtage(4);
-		
+
 		canvas.addChild(rFigure);
 	}
 
@@ -59,7 +60,7 @@ public class RectangleCreateCommand extends Command {
 	public void setLocation(final Point location) {
 		this.location = location;
 	}
-	
+
 	public void setSize(final Dimension size) {
 		this.size = size;
 	}

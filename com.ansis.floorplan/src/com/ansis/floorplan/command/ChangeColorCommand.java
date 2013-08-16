@@ -35,7 +35,7 @@ public class ChangeColorCommand extends Command {
 
 		// Open the dialog and retrieve the selected color
 		final RGB rgb = dlg.open();
-		
+
 		if (rgb != null) 
 			model.setColor(rgb);
 

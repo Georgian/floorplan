@@ -29,4 +29,5 @@ public class AppOpacityPolicy extends AbstractEditPolicy {
 			return createOpacityCommand(request);
 		return null;
 	}
+
 }

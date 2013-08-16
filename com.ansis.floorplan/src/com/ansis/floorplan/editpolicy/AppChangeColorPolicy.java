@@ -30,4 +30,5 @@ public class AppChangeColorPolicy extends AbstractEditPolicy {
 			return createChangeColorCommand(request);
 		return null;
 	}
+
 }

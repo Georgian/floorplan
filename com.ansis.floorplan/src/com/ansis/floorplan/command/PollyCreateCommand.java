@@ -25,6 +25,22 @@ public class PollyCreateCommand extends Command {
 	}
 
 
+	// ==================== 6. Action Methods ====================
+
+	@Override
+	public boolean canExecute() {
+		if (srv == null || en == null)
+			return false;
+		return true;
+	}
+
+	@Override
+	public void execute() {
+		en.addChild(srv);
+		srv.setParent(en);
+	}
+
+
 	// ==================== 7. Getters & Setters ====================
 
 	public void setPolly(final Object s) {
@@ -41,19 +57,6 @@ public class PollyCreateCommand extends Command {
 		if (srv == null)
 			return;
 		srv.setLayout(r);
-	}
-
-	@Override
-	public boolean canExecute() {
-		if (srv == null || en == null)
-			return false;
-		return true;
-	}
-
-	@Override
-	public void execute() {
-		en.addChild(srv);
-		srv.setParent(en);
 	}
 
 }

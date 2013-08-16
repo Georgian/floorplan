@@ -6,7 +6,6 @@ import org.eclipse.draw2d.geometry.Rectangle;
 
 public class Polly extends ChildModel {
 
-
 	// ====================== 2. Instance Fields =============================
 
 	private PointList list;

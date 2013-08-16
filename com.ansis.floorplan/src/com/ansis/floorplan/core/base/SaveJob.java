@@ -10,22 +10,22 @@ import org.eclipse.core.runtime.jobs.Job;
 public abstract class SaveJob extends Job {
 
 	// ==================== 1. Static Fields ========================
-	
-	public static final String SAVE_JOB_FAMILY = "SaveJobFamily";
 
-	
+	public static final String SAVE_JOB_FAMILY = "SaveJobFamily"; //$NON-NLS-1$
+
+
 	// ====================== 2. Instance Fields =============================
-	
+
 	/**
 	 * used in save and reload method to reload or not after saving is done
 	 * e.g.: if the save is called when workbench is closed we can set this to false to avoid reloading from server after save is done
 	 */
 	private boolean reloadAfterSave = true;
-	
+
 	// ==================== 4. Constructors ====================
 
-	
-	public SaveJob(String jobName) {
+
+	public SaveJob(final String jobName) {
 		super(jobName);
 	}
 
@@ -34,23 +34,22 @@ public abstract class SaveJob extends Job {
 	public boolean isReloadAfterSave() {
 		return reloadAfterSave;
 	}
-	
-	public void setReloadAfterSave(boolean reloadAfterSave) {
+
+	public void setReloadAfterSave(final boolean reloadAfterSave) {
 		this.reloadAfterSave = reloadAfterSave;
 	}
 
 	// ==================== 13. Utility Methods ====================
 
 	@Override
-	public boolean belongsTo(Object family) {
+	public boolean belongsTo(final Object family) {
 		return SAVE_JOB_FAMILY.equals(family);
 	}
-	
+
 	@Override
 	protected void canceling() {
-		System.out.println("Job is cancelling.");
+		System.out.println("Job is cancelling."); //$NON-NLS-1$
 		super.canceling();
 	}
-	
-	
+
 }

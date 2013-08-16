@@ -4,16 +4,14 @@ import org.eclipse.gef.requests.CreationFactory;
 
 import com.ansis.floorplan.model.RectangleModel;
 
+
 public class RectangleCreationFactory implements CreationFactory {
+
+	// ==================== 7. Getters & Setters ====================
 
 	@Override
 	public Object getNewObject() {
-
 		final RectangleModel newObject = new RectangleModel();
-
-//		newObject.setBounds(new Rectangle(0, 0, 100, 100));
-//		newObject.setLayout(new Rectangle(0, 0, 100, 100));
-		
 		return newObject;
 	}
 

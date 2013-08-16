@@ -6,10 +6,8 @@ import java.util.Map;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-import com.ansis.floorplan.app.FloorPlanActivator;
 
 /**
  * Caches all images when they are loaded for the first time. This class is called 
@@ -19,10 +17,6 @@ import com.ansis.floorplan.app.FloorPlanActivator;
  *
  */
 public class ImageCache {
-	
-	// ==================== 1. Static Fields ========================
-
-//	private static final AEFLog LOG = AEFLogger.getLogger(ImageCache.class);
 
 	// ====================== 2. Instance Fields =============================
 
@@ -31,11 +25,11 @@ public class ImageCache {
 	 *  each time it is constructed (slow).
 	 */
 	private final Map<String, Image> imageMap = new HashMap<String, Image>();
-	
+
 	// the id for the plugin
 	private String plugin_id;
 
-	
+
 	// ==================== 4. Constructors ====================
 
 	/**
@@ -45,7 +39,7 @@ public class ImageCache {
 		this.plugin_id = plugin_id;
 	}
 
-	
+
 	// ==================== 5. Creators ====================
 
 	/**
@@ -58,7 +52,7 @@ public class ImageCache {
 			((Image) iter.next()).dispose();
 		imageMap.clear();
 	}
-	
+
 	// ==================== 8. Business Methods ====================
 
 	/**
@@ -69,14 +63,14 @@ public class ImageCache {
 	 * @return The image
 	 */
 	public Image getImage(final String path) {
-		
+
 		Image image = imageMap.get(path);
 		if (image == null) {
-			
+
 			image = getImageDescriptor(path).createImage();
 			imageMap.put(path, image);
 		}
-		
+
 		return image;
 	}
 
@@ -88,10 +82,10 @@ public class ImageCache {
 	 * @param key
 	 * @return
 	 */
-	public Image getCachedImage(String key) {
+	public Image getCachedImage(final String key) {
 		return imageMap.get(key);
 	}
-	
+
 	/**
 	 * Returns an image descriptor for the image file at the given
 	 * plug-in relative path
@@ -100,12 +94,12 @@ public class ImageCache {
 	 * @return the image descriptor
 	 */
 	public ImageDescriptor getImageDescriptor(final String path) {
-		ImageDescriptor imgD = AbstractUIPlugin.imageDescriptorFromPlugin(plugin_id, path);
+		final ImageDescriptor imgD = AbstractUIPlugin.imageDescriptorFromPlugin(plugin_id, path);
 		if (imgD == null) {
 			// Get a substitue image:
 			// imgD = Activator.showMissingIcon(plugin_id, path);
 		}
-		
+
 		return imgD;
 	}
 
@@ -117,17 +111,17 @@ public class ImageCache {
 	public Image getImage(final ImageDescriptor imageDescriptor) {
 		if (imageDescriptor == null)
 			return null;
-		
-		final String key = "IMG_DESC-" + imageDescriptor.hashCode();
+
+		final String key = "IMG_DESC-" + imageDescriptor.hashCode(); //$NON-NLS-1$
 		Image image = imageMap.get(key);
 		if (image == null) {
 			image = imageDescriptor.createImage();
 			cacheImage(key, image);
 		}
-		
+
 		return image;
 	}
-	
+
 	/**
 	 * 
 	 * 

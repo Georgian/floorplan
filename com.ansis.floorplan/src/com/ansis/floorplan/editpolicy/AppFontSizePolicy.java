@@ -29,4 +29,5 @@ public class AppFontSizePolicy extends AbstractEditPolicy {
 			return createFontSizeCommand(request);
 		return null;
 	}
+
 }

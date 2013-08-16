@@ -2,11 +2,7 @@ package com.ansis.floorplan.model;
 
 import java.io.InputStream;
 
-/**
- * 
- * @author ggrec
- *
- */
+
 public class Canvas extends ModelTest {
 
 	// ====================== 2. Instance Fields =============================
@@ -20,7 +16,7 @@ public class Canvas extends ModelTest {
 		return image;
 	}
 
-	public void setImage(InputStream image) {
+	public void setImage(final InputStream image) {
 		this.image = image;
 		getListeners().firePropertyChange(PROPERTY_BACKGROUND, null, image);
 	}

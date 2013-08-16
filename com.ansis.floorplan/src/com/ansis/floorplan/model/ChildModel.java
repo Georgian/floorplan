@@ -4,33 +4,8 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.RGB;
 
+
 public class ChildModel extends ModelTest {
-
-	// ====================== 2. Instance Fields =============================
-
-	private ModelTest parent;
-
-	private Rectangle bounds;
-
-
-	// ==================== 7. Getters & Setters ====================
-
-	public void setParent(final ModelTest parent) {
-		this.parent = parent;
-	}
-
-	public ModelTest getParent() {
-		return parent;
-	}
-
-	public void setBounds(final Rectangle bounds){
-		this.bounds = bounds;
-	}
-
-	public Rectangle getBounds(){
-		return bounds;
-	}
-
 
 	// ==================== 1. Static Fields ========================
 
@@ -50,6 +25,10 @@ public class ChildModel extends ModelTest {
 
 
 	// ====================== 2. Instance Fields =============================
+
+	private ModelTest parent;
+
+	private Rectangle bounds;
 
 	private int etage;
 
@@ -117,6 +96,22 @@ public class ChildModel extends ModelTest {
 
 
 	// ==================== 7. Getters & Setters ====================
+
+	public void setParent(final ModelTest parent) {
+		this.parent = parent;
+	}
+
+	public ModelTest getParent() {
+		return parent;
+	}
+
+	public void setBounds(final Rectangle bounds){
+		this.bounds = bounds;
+	}
+
+	public Rectangle getBounds(){
+		return bounds;
+	}
 
 	public void setName(final String name) {
 		final String oldName = this.name;
@@ -211,5 +206,5 @@ public class ChildModel extends ModelTest {
 		this.labelColor = labelColor;
 		getListeners().firePropertyChange(PROPERTY_LABEL_COLOR, oldLabelColor, this.labelColor);
 	}
-	
+
 }

@@ -30,6 +30,7 @@ public class RectangleFigure extends PolygonShape implements IFigure{
 
 	private Rectangle r;
 
+
 	// ==================== 4. Constructors ====================
 
 	public RectangleFigure() {
@@ -38,20 +39,15 @@ public class RectangleFigure extends PolygonShape implements IFigure{
 		setLayoutManager(layout);
 
 		labelName.setOpaque(true);
-		labelName.setText("final polly");
 		add(labelName, OrderedLayout.ALIGN_CENTER);
 		setConstraint(labelName, new Rectangle(0, 0, 100, 20));
 
 		labelEtage.setOpaque(true);
-		labelEtage.setText("Etage: 4"); 
 		add(labelEtage, OrderedLayout.ALIGN_CENTER);
 		setConstraint(labelEtage, new Rectangle(0, 20, 100, 40));
-		
-		System.out.println("RectangleFigure");
-		
+
 		setLineStyle(1);
 		setLineWidth(5);
-		
 	}
 
 
@@ -64,7 +60,7 @@ public class RectangleFigure extends PolygonShape implements IFigure{
 	public void setR(final Rectangle r) {
 		this.r = r;
 	}
-	
+
 	public Label getLabelName() {
 		return labelName;
 	}
@@ -121,14 +117,12 @@ public class RectangleFigure extends PolygonShape implements IFigure{
 		this.fontColor = fontColor;
 	}
 
-
 	public RGB getLabelColor() {
 		return labelColor;
 	}
 
-
 	public void setLabelColor(final RGB labelColor) {
 		this.labelColor = labelColor;
 	}
-	
+
 }

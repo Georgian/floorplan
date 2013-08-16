@@ -24,7 +24,6 @@ public class CanvasEditPart extends AppAbstractEditPart {
 	@Override
 	protected void createEditPolicies() {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new AppEditLayoutPolicy());
-		
 	}
 
 	@Override
@@ -52,8 +51,6 @@ public class CanvasEditPart extends AppAbstractEditPart {
 					MyListener.isControlPressed = true;
 				else
 					MyListener.isControlPressed = false;
-
-
 			}
 		};
 	}
@@ -95,6 +92,5 @@ public class CanvasEditPart extends AppAbstractEditPart {
 	protected List<ChildModel> getModelChildren() {
 		return ModelTest.getChildren();
 	}
-
 
 }

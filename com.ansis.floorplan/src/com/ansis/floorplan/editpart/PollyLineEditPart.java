@@ -9,7 +9,6 @@ import org.eclipse.swt.graphics.Color;
 import com.ansis.floorplan.editpolicy.AppDeletePolicy;
 import com.ansis.floorplan.figure.PollyLineFigure;
 import com.ansis.floorplan.model.ModelTest;
-import com.ansis.floorplan.model.Polly;
 import com.ansis.floorplan.model.PollyLine;
 
 
@@ -26,18 +25,15 @@ public class PollyLineEditPart extends AppAbstractEditPart {
 		figure.setForegroundColor( new Color(null, ((PollyLine)getModel()).getLineColor()) );
 		figure.setAlpha( ((PollyLine)getModel()).getOpacity() );
 
-
 		return figure;
 	}
 
 	@Override
 	protected void createEditPolicies() {
-
 		// Create
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppDeletePolicy());
 
 	}
-
 
 
 	// ==================== 6. Action Methods ====================
@@ -47,8 +43,6 @@ public class PollyLineEditPart extends AppAbstractEditPart {
 		final PollyLineFigure figure = (PollyLineFigure)getFigure();
 		final PollyLine model = (PollyLine)getModel();
 
-		//		G should be used when the figure is refreshed
-		//		figure.setG(model.getG());
 		figure.setBounds(model.getR());
 		figure.setLayout(model.getLayout());
 		figure.setForegroundColor(new Color(null, model.getLineColor()));

@@ -13,13 +13,6 @@ import org.eclipse.swt.graphics.RGB;
 
 public class PollyFigure extends PolygonShape implements IFigure {
 
-	// ==================== 1. Static Fields ========================
-
-	public static final int POLLY_FIGURE_DEFWIDTH = 250;
-
-	public static final int POLLY_FIGURE_DEFHEIGHT = 150;
-
-
 	// ====================== 2. Instance Fields =============================
 
 	private PointList list = new PointList();
@@ -142,11 +135,9 @@ public class PollyFigure extends PolygonShape implements IFigure {
 		this.fontColor = fontColor;
 	}
 
-
 	public RGB getLabelColor() {
 		return labelColor;
 	}
-
 
 	public void setLabelColor(final RGB labelColor) {
 		this.labelColor = labelColor;

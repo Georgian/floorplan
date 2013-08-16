@@ -2,7 +2,6 @@ package com.ansis.floorplan.model;
 
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
 
 
@@ -13,7 +12,7 @@ public class PollyLine extends ChildModel {
 	public static final String PROPERTY_RENAME = "PollyLineRename"; //$NON-NLS-1$
 
 	public static final String PROPERTY_COLOR = "PollyLineColor"; //$NON-NLS-1$
-	
+
 	public static final String PROPERTY_OPACITY = "PollyLineOpacity"; //$NON-NLS-1$
 
 
@@ -26,7 +25,7 @@ public class PollyLine extends ChildModel {
 	private Rectangle g;
 
 	private RGB lineColor;
-	
+
 	private int opacity;
 
 
@@ -35,7 +34,7 @@ public class PollyLine extends ChildModel {
 	private static RGB defaultLineColor() {
 		return new RGB(0, 0, 255);
 	}
-	
+
 	private static int defaultOpacity() {
 		return 127;
 	}
@@ -59,10 +58,12 @@ public class PollyLine extends ChildModel {
 		this.list = list;
 	}
 
+	@Override
 	public Rectangle getR() {
 		return r;
 	}
 
+	@Override
 	public void setR(final Rectangle r) {
 		this.r = r;
 	}
@@ -75,18 +76,22 @@ public class PollyLine extends ChildModel {
 		this.g = g;
 	}
 
+	@Override
 	public RGB getLineColor() {
 		return lineColor;
 	}
 
+	@Override
 	public void setLineColor(final RGB lineColor) {
 		this.lineColor = lineColor;
 	}
-	
+
+	@Override
 	public int getOpacity() {
 		return opacity;
 	}
 
+	@Override
 	public void setOpacity(final int opacity) {
 		final int oldOpacity = this.opacity;
 		this.opacity = opacity;

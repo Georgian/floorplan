@@ -6,19 +6,16 @@ import org.eclipse.gef.requests.CreationFactory;
 import com.ansis.floorplan.factory.RectangleCreationFactory;
 import com.ansis.floorplan.model.ChildModel;
 
-public class RectangleCreateRequest extends CreateRequest {
-	
-	// ====================== 2. Instance Fields =============================
 
-	
-	
+public class RectangleCreateRequest extends CreateRequest {
+
 	// ==================== 4. Constructors ====================
 
 	public RectangleCreateRequest() {
 		super(ChildModel.class);
 	}
-	
-	
+
+
 	// ==================== 6. Action Methods ====================
 
 	@Override

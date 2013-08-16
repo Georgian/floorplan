@@ -60,35 +60,13 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 
 	// ==================== 7. Getters & Setters ====================
 
-//	protected Command getCreateCommand(final CreateRequest request) {
-//		if (request.getType() == REQ_CREATE && getHost() instanceof CanvasEditPart) {
-//			final PollyCreateCommand cmd = new PollyCreateCommand();
-//
-//			cmd.setCanvas(getHost().getModel());
-//			cmd.setPolly(request.getNewObject());
-//
-//			final Rectangle constraint = (Rectangle)getConstraintFor(request);
-//
-//			constraint.x = (constraint.x < 0) ? 0 : constraint.x;
-//			constraint.y = (constraint.y < 0) ? 0 : constraint.y;
-//			constraint.width = (constraint.width <= 0) ? PollyFigure.POLLY_FIGURE_DEFWIDTH : constraint.width;
-//			constraint.height = (constraint.height <= 0) ? PollyFigure.POLLY_FIGURE_DEFHEIGHT : constraint.height;
-//
-//			cmd.setLayout(constraint);
-//
-//			return cmd;
-//		}
-//
-//		return null;
-//	}
-	
 	@Override
 	protected Command getCreateCommand(final CreateRequest request) {
 		if (request.getType() == REQ_CREATE && getHost() instanceof CanvasEditPart) {
 			final RectangleCreateCommand command = new RectangleCreateCommand();
 
-					System.out.println(request.getSize());
-					System.out.println(request.getLocation());
+			System.out.println(request.getSize());
+			System.out.println(request.getLocation());
 
 			command.setLocation(request.getLocation());
 			command.setSize(request.getSize());
@@ -99,29 +77,31 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 		}
 		return null;
 	}
-		// ==================== 9. Convenience Methods ====================
 
-		@Override 
-		protected EditPolicy createChildEditPolicy(final EditPart child) { 
-			return new NonResizableEditPolicy() {
-				@SuppressWarnings("rawtypes")
-				@Override
-				protected List createSelectionHandles() {
-					return new ArrayList<>();
-				}
-				@Override
-				protected IFigure createDragSourceFeedbackFigure() {
-					// Use a ghost rectangle for feedback
-					final RectangleFigure r = new RectangleFigure();
-					FigureUtilities.makeGhostShape(r);
-					r.setLineStyle(Graphics.LINE_DOT);
-					r.setForegroundColor(ColorConstants.white);
-					r.setBounds(getInitialFeedbackBounds());
-					r.validate();
-					addFeedback(r);
-					return r;
-				}
-			}; 
-		} 
 
-	}
+	// ==================== 9. Convenience Methods ====================
+
+	@Override 
+	protected EditPolicy createChildEditPolicy(final EditPart child) { 
+		return new NonResizableEditPolicy() {
+			@SuppressWarnings("rawtypes")
+			@Override
+			protected List createSelectionHandles() {
+				return new ArrayList<>();
+			}
+			@Override
+			protected IFigure createDragSourceFeedbackFigure() {
+				// Use a ghost rectangle for feedback
+				final RectangleFigure r = new RectangleFigure();
+				FigureUtilities.makeGhostShape(r);
+				r.setLineStyle(Graphics.LINE_DOT);
+				r.setForegroundColor(ColorConstants.white);
+				r.setBounds(getInitialFeedbackBounds());
+				r.validate();
+				addFeedback(r);
+				return r;
+			}
+		}; 
+	} 
+
+}

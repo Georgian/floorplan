@@ -95,4 +95,5 @@ public class ModelTest {
 			getListeners().firePropertyChange(PROPERTY_REMOVE, child, null);
 		return b;
 	}
+
 }

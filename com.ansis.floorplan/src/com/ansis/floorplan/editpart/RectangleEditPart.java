@@ -22,11 +22,7 @@ import com.ansis.floorplan.figure.RectangleFigure;
 import com.ansis.floorplan.model.ChildModel;
 import com.ansis.floorplan.model.ModelTest;
 
-/**
- *
- * @author ggrec
- *
- */
+
 public class RectangleEditPart extends AppAbstractEditPart {
 
 	// ==================== 1. Static Fields ========================
@@ -127,6 +123,7 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		};
 	}
 
+
 	// ==================== 6. Action Methods ====================
 
 	@Override
@@ -205,4 +202,5 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		if (evt.getPropertyName().equals(ChildModel.PROPERTY_LABEL_COLOR))
 			refreshVisuals();
 	}
+
 }

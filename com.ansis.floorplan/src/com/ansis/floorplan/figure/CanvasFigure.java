@@ -16,7 +16,7 @@ public class CanvasFigure extends Figure {
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String CACHED_IMG_ID = "com.ansis.floorplan.canvasBkgImage";
+	public static final String CACHED_IMG_ID = "com.ansis.floorplan.canvasBkgImage"; //$NON-NLS-1$
 
 
 	// ==================== 4. Constructors ====================
@@ -41,7 +41,7 @@ public class CanvasFigure extends Figure {
 	@Override
 	protected void paintFigure(final Graphics graphics) {
 
-		Image image = FloorPlanActivator.getDefault().getImageCache().getCachedImage(CACHED_IMG_ID);
+		final Image image = FloorPlanActivator.getDefault().getImageCache().getCachedImage(CACHED_IMG_ID);
 
 		if (image == null) {
 			super.paintFigure(graphics);
@@ -54,7 +54,5 @@ public class CanvasFigure extends Figure {
 
 		super.paintFigure(graphics);
 	}
-
-
 
 }

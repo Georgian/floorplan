@@ -1,6 +1,5 @@
 package com.ansis.floorplan.figure;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.XYLayout;
@@ -11,13 +10,6 @@ import org.eclipse.swt.graphics.RGB;
 
 public class PollyLineFigure extends PolylineShape implements IFigure {
 
-	// ==================== 1. Static Fields ========================
-
-	public static final int POLLYLINE_FIGURE_DEFWIDTH = 250;
-
-	public static final int POLLYLINE_FIGURE_DEFHEIGHT = 150;
-
-
 	// ====================== 2. Instance Fields =============================
 
 	private PointList list = new PointList();
@@ -26,7 +18,7 @@ public class PollyLineFigure extends PolylineShape implements IFigure {
 
 	private RGB lineColor;
 
-	
+
 	// ==================== 4. Constructors ====================
 
 	public PollyLineFigure(final Rectangle g) {
@@ -58,7 +50,7 @@ public class PollyLineFigure extends PolylineShape implements IFigure {
 	public void setLineColor(final RGB lineColor) {
 		this.lineColor = lineColor;
 	}
-	
+
 	public void setLayout(final Rectangle rect) {
 		getParent().setConstraint(this, rect);
 	}
