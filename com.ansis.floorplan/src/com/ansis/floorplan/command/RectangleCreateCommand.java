@@ -39,10 +39,6 @@ public class RectangleCreateCommand extends Command {
 		rFigure.setLayout(new Rectangle(location, size));
 		rFigure.setR(new Rectangle(location, size));
 
-		// TODO this has to be moved
-		rFigure.setName("final"); //$NON-NLS-1$
-		rFigure.setEtage(4);
-
 		canvas.addChild(rFigure);
 	}
 

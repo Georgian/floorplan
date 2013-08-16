@@ -365,9 +365,6 @@ public class MyListener {
 					final Polly finalPolly = new Polly();
 					finalPolly.setList(mainPointList);
 
-					// TODO this has to be moved
-					finalPolly.setName("final polly"); //$NON-NLS-1$
-					finalPolly.setEtage(4);
 					finalPolly.setBounds(rect);
 					finalPolly.setR(rect);
 					finalPolly.setG(label);

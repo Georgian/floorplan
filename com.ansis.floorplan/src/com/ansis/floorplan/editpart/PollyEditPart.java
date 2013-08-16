@@ -47,6 +47,10 @@ public class PollyEditPart extends AppAbstractEditPart {
 	protected IFigure createFigure() {
 		final PollyFigure figure = new PollyFigure( ((Polly)getModel()).getG() );
 
+		// Name
+		figure.setName( ((ChildModel)getModel()).getName() );
+		// Etage
+		figure.setEtage( ((ChildModel)getModel()).getEtage() );
 		// Bounds
 		figure.setBounds( ((ChildModel)getModel()).getR() );
 		// PointList

@@ -53,6 +53,14 @@ public class ChildModel extends ModelTest {
 
 	// ==================== 3. Static Methods ====================
 
+	private static String defaultName() {
+		return "New Figure"; //$NON-NLS-1$
+	}
+	
+	private static int defaultEtage() {
+		return 0;
+	}
+	
 	private static RGB defaultColor() {
 		return new RGB(0, 0, 192);
 	}
@@ -78,13 +86,15 @@ public class ChildModel extends ModelTest {
 	}
 
 	private static RGB defaultLabelColor() {
-		return new RGB(0, 0, 172);
+		return new RGB(255, 255, 255);
 	}
 
 
 	// ==================== 4. Constructors ====================
 
 	public ChildModel() {
+		this.setName(defaultName());
+		this.setEtage(defaultEtage());
 		this.setColor(defaultColor());
 		this.setLineColor(defaultLineColor());
 		this.setOpacity(defaultOpacity());

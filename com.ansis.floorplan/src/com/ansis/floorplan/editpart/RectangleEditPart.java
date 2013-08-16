@@ -113,8 +113,6 @@ public class RectangleEditPart extends AppAbstractEditPart {
 				super.performConditionalSelection();
 				// This condition is not needed since the figure is always active after a selection
 				if (isActive()) {
-					//					System.out.println("the part was selected and is now active");
-
 					final RectangleFigure figure = (RectangleFigure)getFigure();
 					figure.setLineStyle(2);
 					figure.setLineWidth(3);
