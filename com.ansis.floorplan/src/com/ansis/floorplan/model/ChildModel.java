@@ -83,7 +83,7 @@ public class ChildModel extends ModelTest {
 
 	public String getName() {
 		if (name == null)
-			name = "New Figure";
+			name = "New Figure"; //$NON-NLS-1$
 		return name;
 	}
 

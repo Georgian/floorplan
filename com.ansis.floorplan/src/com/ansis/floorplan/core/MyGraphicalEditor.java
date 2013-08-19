@@ -35,6 +35,7 @@ import com.ansis.floorplan.action.font.FontSizeThirteenAction;
 import com.ansis.floorplan.action.font.FontSizeTwentyAction;
 import com.ansis.floorplan.action.font.FontSizeTwentyfiveAction;
 import com.ansis.floorplan.action.font.FontStyleBoldAction;
+import com.ansis.floorplan.action.font.FontStyleBoldItalicAction;
 import com.ansis.floorplan.action.font.FontStyleItalicAction;
 import com.ansis.floorplan.action.font.FontStyleNormalAction;
 import com.ansis.floorplan.action.opacity.OpacityEightyAction;
@@ -123,6 +124,10 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final FontStyleItalicAction italicFontStyleAction = new FontStyleItalicAction(this);
 		registry.registerAction(italicFontStyleAction);
 		getSelectionActions().add(italicFontStyleAction.getId());
+		
+		final FontStyleBoldItalicAction boldItalicFontStyleAction = new FontStyleBoldItalicAction(this);
+		registry.registerAction(boldItalicFontStyleAction);
+		getSelectionActions().add(boldItalicFontStyleAction.getId());
 
 		final FontSizeSevenAction sevenFontSizeAction = new FontSizeSevenAction(this);
 		registry.registerAction(sevenFontSizeAction);

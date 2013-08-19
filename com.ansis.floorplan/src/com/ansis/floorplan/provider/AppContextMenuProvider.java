@@ -20,6 +20,7 @@ import com.ansis.floorplan.action.font.FontSizeThirteenAction;
 import com.ansis.floorplan.action.font.FontSizeTwentyAction;
 import com.ansis.floorplan.action.font.FontSizeTwentyfiveAction;
 import com.ansis.floorplan.action.font.FontStyleBoldAction;
+import com.ansis.floorplan.action.font.FontStyleBoldItalicAction;
 import com.ansis.floorplan.action.font.FontStyleItalicAction;
 import com.ansis.floorplan.action.font.FontStyleNormalAction;
 import com.ansis.floorplan.action.opacity.OpacityEightyAction;
@@ -28,7 +29,6 @@ import com.ansis.floorplan.action.opacity.OpacityHundredAction;
 import com.ansis.floorplan.action.opacity.OpacitySixtyAction;
 import com.ansis.floorplan.action.opacity.OpacityTenAction;
 import com.ansis.floorplan.action.opacity.OpacityTwentyAction;
-import com.ansis.floorplan.core.helper.AEFConstPresentation;
 
 
 public class AppContextMenuProvider extends ContextMenuProvider{
@@ -106,6 +106,9 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		fontStyleSubmenu.add(action);
 
 		action = getActionRegistry().getAction(FontStyleItalicAction.fontStylePropertyItalic);
+		fontStyleSubmenu.add(action);
+		
+		action = getActionRegistry().getAction(FontStyleBoldItalicAction.fontStylePropertyBoldItalic);
 		fontStyleSubmenu.add(action);
 
 		menu.appendToGroup(GEFActionConstants.GROUP_REST, fontStyleSubmenu);
