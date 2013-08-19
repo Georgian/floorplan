@@ -36,9 +36,8 @@
             targetID="myGraphicalEditor">
          <action
                class="com.ansis.floorplan.core.action.ImportImageAction"
-               icon="icons/alt_about.gif"
                id="com.ansis.floorplan.importImage.action"
-               label="Import Image Action"
+               label="Import Background Image"
                style="push"
                toolbarPath="additions"
                tooltip="Import">

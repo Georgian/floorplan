@@ -127,7 +127,7 @@ public class ChildModel extends ModelTest {
 
 	public int getOpacity() {
 		if (opacity == 0)
-			opacity = 127;
+			opacity = 100;
 		return opacity;
 	}
 
