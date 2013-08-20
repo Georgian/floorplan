@@ -29,6 +29,7 @@ import com.ansis.floorplan.action.opacity.OpacityHundredAction;
 import com.ansis.floorplan.action.opacity.OpacitySixtyAction;
 import com.ansis.floorplan.action.opacity.OpacityTenAction;
 import com.ansis.floorplan.action.opacity.OpacityTwentyAction;
+import com.ansis.floorplan.app.FloorPlanActivator;
 
 
 public class AppContextMenuProvider extends ContextMenuProvider{
@@ -74,7 +75,7 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		menu.appendToGroup(GEFActionConstants.GROUP_VIEW, action);
 
 		// Opacity
-		final MenuManager opacitySubmenu = new MenuManager("Figure opacity"); //$NON-NLS-1$
+		final MenuManager opacitySubmenu = new MenuManager("Figure opacity", FloorPlanActivator.getDefault().getImageDescriptor("icons/figureOpacity.png"), "opacitySubmenuID"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		action = getActionRegistry().getAction(OpacityTenAction.opacityPropertyTen);
 		opacitySubmenu.add(action);
@@ -97,7 +98,7 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		menu.appendToGroup(GEFActionConstants.GROUP_VIEW, opacitySubmenu);
 
 		// Font Style
-		final MenuManager fontStyleSubmenu = new MenuManager("Font style"); //$NON-NLS-1$
+		final MenuManager fontStyleSubmenu = new MenuManager("Font style", FloorPlanActivator.getDefault().getImageDescriptor("icons/font/fontNormal.png"), "fontStyleSubmenuID"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		action = getActionRegistry().getAction(FontStyleNormalAction.fontStylePropertyNormal);
 		fontStyleSubmenu.add(action);
@@ -114,7 +115,7 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		menu.appendToGroup(GEFActionConstants.GROUP_REST, fontStyleSubmenu);
 
 		// Font Size
-		final MenuManager fontSizeSubmenu = new MenuManager("Font size"); //$NON-NLS-1$
+		final MenuManager fontSizeSubmenu = new MenuManager("Font size", FloorPlanActivator.getDefault().getImageDescriptor("icons/font/fontSize.png"), "fontSizeSubmenuID"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		action = getActionRegistry().getAction(FontSizeSevenAction.fontSizePropertySeven);
 		fontSizeSubmenu.add(action);
