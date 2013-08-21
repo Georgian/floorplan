@@ -1,7 +1,6 @@
 package com.ansis.floorplan.model;
 
 import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.RGB;
 
 
@@ -19,8 +18,6 @@ public class PollyLine extends ChildModel {
 	// ====================== 2. Instance Fields =============================
 
 	private PointList list;
-
-	private Rectangle g;
 
 	private RGB lineColor;
 
@@ -54,14 +51,6 @@ public class PollyLine extends ChildModel {
 
 	public void setList(final PointList list) {
 		this.list = list;
-	}
-
-	public Rectangle getG() {
-		return g;
-	}
-
-	public void setG(final Rectangle g) {
-		this.g = g;
 	}
 
 	@Override

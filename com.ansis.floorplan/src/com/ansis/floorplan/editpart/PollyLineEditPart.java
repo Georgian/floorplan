@@ -18,7 +18,7 @@ public class PollyLineEditPart extends AppAbstractEditPart {
 
 	@Override
 	protected IFigure createFigure() {
-		final PollyLineFigure figure = new PollyLineFigure( ((PollyLine)getModel()).getG() );
+		final PollyLineFigure figure = new PollyLineFigure();
 
 		figure.setBounds( ((PollyLine)getModel()).getBounds());
 		figure.setList( ((PollyLine)getModel()).getList() );

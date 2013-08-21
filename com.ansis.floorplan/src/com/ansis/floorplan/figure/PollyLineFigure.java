@@ -19,7 +19,7 @@ public class PollyLineFigure extends PolylineShape implements IFigure {
 
 	// ==================== 4. Constructors ====================
 
-	public PollyLineFigure(final Rectangle g) {
+	public PollyLineFigure() {
 
 		final XYLayout layout = new XYLayout();
 		setLayoutManager(layout);

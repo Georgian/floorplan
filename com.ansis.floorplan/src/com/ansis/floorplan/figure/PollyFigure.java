@@ -31,29 +31,29 @@ public class PollyFigure extends PolygonShape implements IFigure {
 
 	private RGB labelColor;
 
-	private Rectangle g2;
+	private Rectangle etageLabelPosition;
 
 
 	// ==================== 4. Constructors ====================
 
-	public PollyFigure(final Rectangle g) {
+	public PollyFigure(final Rectangle labelPosition) {
 
 		final XYLayout layout = new XYLayout();
 		setLayoutManager(layout);
 
-		g2 = new Rectangle(g);
+		etageLabelPosition = new Rectangle(labelPosition);
 
 		// Label positions/sizes
-		g2.y = g2.y + 15;
-		g2.height = g2.height +20;
+		etageLabelPosition.y = etageLabelPosition.y + 15;
+		etageLabelPosition.height = etageLabelPosition.height +20;
 
 		labelName.setOpaque(true);
 		add(labelName, OrderedLayout.ALIGN_CENTER);
-		setConstraint(labelName, g);
+		setConstraint(labelName, labelPosition);
 
 		labelEtage.setOpaque(true);
 		add(labelEtage, OrderedLayout.ALIGN_CENTER);
-		setConstraint(labelEtage, g2);
+		setConstraint(labelEtage, etageLabelPosition);
 
 		setLineStyle(1);
 		setLineWidth(5);

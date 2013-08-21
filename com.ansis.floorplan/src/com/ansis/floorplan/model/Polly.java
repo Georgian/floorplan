@@ -10,7 +10,7 @@ public class Polly extends ChildModel {
 
 	private PointList list;
 
-	private Rectangle g;
+	private Rectangle labelPosition;
 
 
 	// ==================== 7. Getters & Setters ====================
@@ -23,12 +23,12 @@ public class Polly extends ChildModel {
 		this.list = list;
 	}
 
-	public Rectangle getG() {
-		return g;
+	public Rectangle getLabelPosition() {
+		return labelPosition;
 	}
 
-	public void setG(final Rectangle g) {
-		this.g = g;
+	public void setLabelPosition(final Rectangle labelPosition) {
+		this.labelPosition = labelPosition;
 	}
 
 }
