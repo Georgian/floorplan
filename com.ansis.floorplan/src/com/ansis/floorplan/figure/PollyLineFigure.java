@@ -14,8 +14,6 @@ public class PollyLineFigure extends PolylineShape implements IFigure {
 
 	private PointList list = new PointList();
 
-	private Rectangle r;
-
 	private RGB lineColor;
 
 
@@ -34,14 +32,6 @@ public class PollyLineFigure extends PolylineShape implements IFigure {
 
 
 	// ==================== 7. Getters & Setters ====================
-
-	public Rectangle getR() {
-		return r;
-	}
-
-	public void setR(final Rectangle r) {
-		this.r = r;
-	}
 
 	public RGB getLineColor() {
 		return lineColor;

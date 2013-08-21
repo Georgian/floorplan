@@ -116,7 +116,7 @@ public class MyListener {
 							newPolly.setList(tempPointList);
 
 							newPolly.setBounds(rect);
-							newPolly.setR(rect);
+//							newPolly.setR(rect);
 							newPolly.setG(label);
 
 							model.addChild(newPolly);
@@ -197,7 +197,7 @@ public class MyListener {
 							newPolly.setList(tempPointList);
 
 							newPolly.setBounds(rect);
-							newPolly.setR(rect);
+//							newPolly.setR(rect);
 							newPolly.setG(label);
 
 							model.addChild(newPolly);
@@ -288,7 +288,7 @@ public class MyListener {
 						newPolly.setList(tempPointList);
 
 						newPolly.setBounds(rect);
-						newPolly.setR(rect);
+//						newPolly.setR(rect);
 						newPolly.setG(label);
 
 						model.addChild(newPolly);
@@ -366,7 +366,7 @@ public class MyListener {
 					finalPolly.setList(mainPointList);
 
 					finalPolly.setBounds(rect);
-					finalPolly.setR(rect);
+					// finalPolly.setR(rect);
 					finalPolly.setG(label);
 
 					model.addChild(finalPolly);

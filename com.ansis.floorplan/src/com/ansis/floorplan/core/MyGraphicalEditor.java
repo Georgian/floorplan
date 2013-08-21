@@ -251,12 +251,20 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		root.add(instGroup);
 
 		// Create the Polygon creation tool
-		final CreationToolEntry drawEntry = new CreationToolEntry("Draw", "Create Polygon object", new RectangleCreationFactory(), FloorPlanActivator.getDefault().getImageDescriptor("icons/draw16.ico"), FloorPlanActivator.getDefault().getImageDescriptor("icons/draw.ico")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		final CreationToolEntry drawEntry = new CreationToolEntry("Draw", //$NON-NLS-1$ 
+				"Create Polygon object", //$NON-NLS-1$ 
+				new RectangleCreationFactory(), 
+				FloorPlanActivator.getDefault().getImageDescriptor("icons/draw16.ico"), //$NON-NLS-1$ 
+				FloorPlanActivator.getDefault().getImageDescriptor("icons/draw.ico")); //$NON-NLS-1$ 
 
 		instGroup.add(drawEntry);
 
 		// Create the Rectangle creation tool
-		final CreationToolEntry creationEntry = new CreationToolEntry("Rectangle", "Create Rectangle object", new RectangleCreationFactory(), FloorPlanActivator.getDefault().getImageDescriptor("icons/rec16.png"), FloorPlanActivator.getDefault().getImageDescriptor("icons/rec24.png")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		final CreationToolEntry creationEntry = new CreationToolEntry("Rectangle", //$NON-NLS-1$ 
+				"Create Rectangle object", //$NON-NLS-1$ 
+				new RectangleCreationFactory(), 
+				FloorPlanActivator.getDefault().getImageDescriptor("icons/rec16.png"), //$NON-NLS-1$ 
+				FloorPlanActivator.getDefault().getImageDescriptor("icons/rec24.png")); //$NON-NLS-1$ 
 
 		instGroup.add(creationEntry);
 

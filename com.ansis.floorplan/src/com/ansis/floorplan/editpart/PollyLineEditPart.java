@@ -20,7 +20,7 @@ public class PollyLineEditPart extends AppAbstractEditPart {
 	protected IFigure createFigure() {
 		final PollyLineFigure figure = new PollyLineFigure( ((PollyLine)getModel()).getG() );
 
-		figure.setBounds( ((PollyLine)getModel()).getR() );
+		figure.setBounds( ((PollyLine)getModel()).getBounds());
 		figure.setList( ((PollyLine)getModel()).getList() );
 		figure.setForegroundColor( new Color(null, ((PollyLine)getModel()).getLineColor()) );
 		figure.setAlpha( ((PollyLine)getModel()).getOpacity() );
@@ -43,7 +43,7 @@ public class PollyLineEditPart extends AppAbstractEditPart {
 		final PollyLineFigure figure = (PollyLineFigure)getFigure();
 		final PollyLine model = (PollyLine)getModel();
 
-		figure.setBounds(model.getR());
+		figure.setBounds(model.getBounds());
 		figure.setLayout(model.getLayout());
 		figure.setForegroundColor(new Color(null, model.getLineColor()));
 		figure.setAlpha(model.getOpacity());

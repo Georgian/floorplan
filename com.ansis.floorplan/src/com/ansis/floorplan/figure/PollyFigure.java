@@ -31,8 +31,6 @@ public class PollyFigure extends PolygonShape implements IFigure {
 
 	private RGB labelColor;
 
-	private Rectangle r;
-
 	private Rectangle g2;
 
 
@@ -65,14 +63,6 @@ public class PollyFigure extends PolygonShape implements IFigure {
 
 
 	// ==================== 7. Getters & Setters ====================
-
-	public Rectangle getR() {
-		return r;
-	}
-
-	public void setR(final Rectangle r) {
-		this.r = r;
-	}
 
 	public Label getLabelName() {
 		return labelName;

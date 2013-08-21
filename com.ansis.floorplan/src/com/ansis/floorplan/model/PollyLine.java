@@ -20,8 +20,6 @@ public class PollyLine extends ChildModel {
 
 	private PointList list;
 
-	private Rectangle r;
-
 	private Rectangle g;
 
 	private RGB lineColor;
@@ -56,16 +54,6 @@ public class PollyLine extends ChildModel {
 
 	public void setList(final PointList list) {
 		this.list = list;
-	}
-
-	@Override
-	public Rectangle getR() {
-		return r;
-	}
-
-	@Override
-	public void setR(final Rectangle r) {
-		this.r = r;
 	}
 
 	public Rectangle getG() {

@@ -33,8 +33,6 @@ public class ChildModel extends ModelTest {
 
 	private String name;
 
-	private Rectangle r;
-
 	private RGB color;
 
 	private RGB lineColor;
@@ -93,14 +91,6 @@ public class ChildModel extends ModelTest {
 
 	public int getEtage() {
 		return etage;
-	}
-
-	public Rectangle getR() {
-		return r;
-	}
-
-	public void setR(final Rectangle r) {
-		this.r = r;
 	}
 
 	public RGB getColor() {

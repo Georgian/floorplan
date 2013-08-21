@@ -52,7 +52,7 @@ public class PollyEditPart extends AppAbstractEditPart {
 		// Etage
 		figure.setEtage( ((ChildModel)getModel()).getEtage() );
 		// Bounds
-		figure.setBounds( ((ChildModel)getModel()).getR() );
+		figure.setBounds( ((ChildModel)getModel()).getBounds() );
 		// PointList
 		figure.setList( ((Polly)getModel()).getList() );
 		// Name
@@ -138,7 +138,7 @@ public class PollyEditPart extends AppAbstractEditPart {
 		final ChildModel model = (ChildModel)getModel();
 
 		// Bounds
-		figure.setBounds(model.getR());
+		figure.setBounds(model.getBounds());
 		// Name
 		figure.setName(model.getName());
 		// Etage

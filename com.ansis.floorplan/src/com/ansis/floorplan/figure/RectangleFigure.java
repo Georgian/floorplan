@@ -1,18 +1,16 @@
 package com.ansis.floorplan.figure;
 
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.OrderedLayout;
-import org.eclipse.draw2d.PolygonShape;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.RGB;
 
 
-public class RectangleFigure extends PolygonShape implements IFigure{
+public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 
-	// ====================== 2. Instance Fields =============================
+	// ====================== 2. Instance   =============================
 
 	private Label labelName = new Label();
 
@@ -27,8 +25,6 @@ public class RectangleFigure extends PolygonShape implements IFigure{
 	private RGB fontColor;
 
 	private RGB labelColor;
-
-	private Rectangle r;
 
 
 	// ==================== 4. Constructors ====================
@@ -52,14 +48,6 @@ public class RectangleFigure extends PolygonShape implements IFigure{
 
 
 	// ==================== 7. Getters & Setters ====================
-
-	public Rectangle getR() {
-		return r;
-	}
-
-	public void setR(final Rectangle r) {
-		this.r = r;
-	}
 
 	public Label getLabelName() {
 		return labelName;

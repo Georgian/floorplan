@@ -47,7 +47,7 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		final RectangleFigure figure = new RectangleFigure();
 
 		// Bounds
-		figure.setBounds( ((ChildModel)getModel()).getR() );
+		figure.setBounds( ((ChildModel)getModel()).getBounds() );
 		// Name
 		figure.setName( ((ChildModel)getModel()).getName() );
 		// Etage
@@ -132,7 +132,7 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		//		G should be used when the figure is refreshed
 		//		figure.setG(model.getG());
 		// Bounds
-		figure.setBounds(model.getR());
+		figure.setBounds(model.getBounds());
 		// Name
 		figure.setName(model.getName());
 		// Etage
