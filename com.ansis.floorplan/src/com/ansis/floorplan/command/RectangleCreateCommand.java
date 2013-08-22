@@ -38,8 +38,7 @@ public class RectangleCreateCommand extends Command {
 		rFigure.setBounds(new Rectangle(location, size));
 		rFigure.setLayout(new Rectangle(location, size));
 		
-		final RectangleModel rect = new RectangleModel();
-		rect.setLabelPosition(new Rectangle(location, size));
+		rFigure.setLabelPosition(new Rectangle(location, size));
 
 		canvas.addChild(rFigure);
 	}

@@ -19,8 +19,8 @@ import com.ansis.floorplan.editpolicy.AppFontStylePolicy;
 import com.ansis.floorplan.editpolicy.AppOpacityPolicy;
 import com.ansis.floorplan.editpolicy.AppRenamePolicy;
 import com.ansis.floorplan.figure.RectangleFigure;
-import com.ansis.floorplan.model.ChildModel;
 import com.ansis.floorplan.model.CanvasModel;
+import com.ansis.floorplan.model.ChildModel;
 
 
 public class RectangleEditPart extends AppAbstractEditPart {
@@ -44,7 +44,7 @@ public class RectangleEditPart extends AppAbstractEditPart {
 
 	@Override
 	protected IFigure createFigure() {
-		final RectangleFigure figure = new RectangleFigure();
+		final RectangleFigure figure = new RectangleFigure( ((ChildModel)getModel()).getLabelPosition());
 
 		// Bounds
 		figure.setBounds( ((ChildModel)getModel()).getBounds() );

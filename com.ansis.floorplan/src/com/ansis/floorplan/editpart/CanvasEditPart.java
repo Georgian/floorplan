@@ -13,8 +13,8 @@ import com.ansis.floorplan.editpolicy.AppEditLayoutPolicy;
 import com.ansis.floorplan.figure.CanvasFigure;
 import com.ansis.floorplan.listener.MyListener;
 import com.ansis.floorplan.model.Canvas;
-import com.ansis.floorplan.model.ChildModel;
 import com.ansis.floorplan.model.CanvasModel;
+import com.ansis.floorplan.model.ChildModel;
 
 
 public class CanvasEditPart extends AppAbstractEditPart {
@@ -79,12 +79,6 @@ public class CanvasEditPart extends AppAbstractEditPart {
 	protected void refreshVisuals() {
 
 	}
-
-	@Override
-	protected void refreshChildren() {
-		super.refreshChildren();
-	}
-
 
 	// ==================== 7. Getters & Setters ====================
 
