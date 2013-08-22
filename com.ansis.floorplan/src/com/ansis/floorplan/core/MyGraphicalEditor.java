@@ -8,6 +8,10 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalViewer;
+import org.eclipse.gef.KeyHandler;
+import org.eclipse.gef.KeyStroke;
+import org.eclipse.gef.MouseWheelHandler;
+import org.eclipse.gef.MouseWheelZoomHandler;
 import org.eclipse.gef.dnd.TemplateTransferDragSourceListener;
 import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.editparts.ZoomManager;
@@ -18,10 +22,13 @@ import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.gef.palette.SelectionToolEntry;
 import org.eclipse.gef.ui.actions.ActionRegistry;
+import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.gef.ui.actions.ZoomInAction;
 import org.eclipse.gef.ui.actions.ZoomOutAction;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithPalette;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.swt.SWT;
+import org.eclipse.ui.actions.ActionFactory;
 
 import com.ansis.floorplan.action.ChangeColorAction;
 import com.ansis.floorplan.action.ChangeLabelColorAction;
@@ -223,7 +230,28 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		zoomContributions.add(ZoomManager.FIT_WIDTH);*/
 		manager.setZoomLevelContributions(zoomContributions);
 		//Zooming END
-
+		
+		//Keyboard shortcuts for delete and zoom (mouse scroll also works with zooming now)
+		final KeyHandler keyHandler = new KeyHandler();
+		keyHandler.put(
+		KeyStroke.getPressed(SWT.DEL, 127, 0),
+		getActionRegistry().getAction(ActionFactory.DELETE.getId()));
+		
+		keyHandler.put(
+		KeyStroke.getPressed('+', SWT.KEYPAD_ADD, 0),
+		getActionRegistry().getAction(GEFActionConstants.ZOOM_IN));
+		
+		keyHandler.put(
+		KeyStroke.getPressed('-', SWT.KEYPAD_SUBTRACT, 0),
+		getActionRegistry().getAction(GEFActionConstants.ZOOM_OUT));
+		
+		viewer.setProperty(
+		MouseWheelHandler.KeyGenerator.getKey(SWT.NONE),
+		MouseWheelZoomHandler.SINGLETON);
+		
+		viewer.setKeyHandler(keyHandler);
+		
+		
 		final ContextMenuProvider provider = new AppContextMenuProvider(viewer, getActionRegistry());
 		viewer.setContextMenu(provider);
 	}
