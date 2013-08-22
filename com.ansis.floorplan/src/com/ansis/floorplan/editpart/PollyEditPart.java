@@ -45,7 +45,7 @@ public class PollyEditPart extends AppAbstractEditPart {
 
 	@Override
 	protected IFigure createFigure() {
-		final PollyFigure figure = new PollyFigure( ((Polly)getModel()).getLabelPosition() );
+		final PollyFigure figure = new PollyFigure( ((ChildModel)getModel()).getLabelPosition() );
 
 		// Name
 		figure.setName( ((ChildModel)getModel()).getName() );

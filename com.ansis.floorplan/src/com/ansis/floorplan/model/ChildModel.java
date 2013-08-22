@@ -47,12 +47,7 @@ public class ChildModel extends ModelTest {
 
 	private RGB labelColor;
 
-
-	// ==================== 4. Constructors ====================
-
-	public ChildModel() {
-
-	}
+	private Rectangle labelPosition;
 
 
 	// ==================== 7. Getters & Setters ====================
@@ -171,6 +166,14 @@ public class ChildModel extends ModelTest {
 		final RGB oldLabelColor = this.labelColor;
 		this.labelColor = labelColor;
 		getListeners().firePropertyChange(PROPERTY_LABEL_COLOR, oldLabelColor, this.labelColor);
+	}
+
+	public Rectangle getLabelPosition() {
+		return labelPosition;
+	}
+
+	public void setLabelPosition(final Rectangle labelPosition) {
+		this.labelPosition = labelPosition;
 	}
 
 }
