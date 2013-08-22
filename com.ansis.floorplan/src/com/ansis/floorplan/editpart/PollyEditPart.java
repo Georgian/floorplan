@@ -20,7 +20,7 @@ import com.ansis.floorplan.editpolicy.AppOpacityPolicy;
 import com.ansis.floorplan.editpolicy.AppRenamePolicy;
 import com.ansis.floorplan.figure.PollyFigure;
 import com.ansis.floorplan.model.ChildModel;
-import com.ansis.floorplan.model.ModelTest;
+import com.ansis.floorplan.model.CanvasModel;
 import com.ansis.floorplan.model.Polly;
 
 
@@ -167,15 +167,15 @@ public class PollyEditPart extends AppAbstractEditPart {
 	public void propertyChange(final PropertyChangeEvent evt) {
 
 		// Move
-		if (evt.getPropertyName().equals(ModelTest.PROPERTY_LAYOUT))
+		if (evt.getPropertyName().equals(CanvasModel.PROPERTY_LAYOUT))
 			refreshVisuals();
 
 		// Create
-		if (evt.getPropertyName().equals(ModelTest.PROPERTY_ADD))
+		if (evt.getPropertyName().equals(CanvasModel.PROPERTY_ADD))
 			refreshChildren();
 
 		// Delete
-		if (evt.getPropertyName().equals(ModelTest.PROPERTY_REMOVE))
+		if (evt.getPropertyName().equals(CanvasModel.PROPERTY_REMOVE))
 			refreshChildren();
 
 		// Rename

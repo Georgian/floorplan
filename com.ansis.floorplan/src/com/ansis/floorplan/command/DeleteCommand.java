@@ -3,7 +3,7 @@ package com.ansis.floorplan.command;
 import org.eclipse.gef.commands.Command;
 
 import com.ansis.floorplan.model.ChildModel;
-import com.ansis.floorplan.model.ModelTest;
+import com.ansis.floorplan.model.CanvasModel;
 
 
 public class DeleteCommand extends Command {
@@ -12,7 +12,7 @@ public class DeleteCommand extends Command {
 
 	private ChildModel model;
 
-	private ModelTest parentModel;
+	private CanvasModel parentModel;
 
 
 	// ==================== 6. Action Methods ====================
@@ -35,7 +35,7 @@ public class DeleteCommand extends Command {
 	}
 
 	public void setParentModel(final Object model) {
-		parentModel = (ModelTest)model;
+		parentModel = (CanvasModel)model;
 	}
 
 }

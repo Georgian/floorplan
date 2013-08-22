@@ -3,21 +3,22 @@ package com.ansis.floorplan.model;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.geometry.Rectangle;
 
 
-public class ModelTest {
+public class CanvasModel {
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String PROPERTY_LAYOUT = "ModelTest"; //$NON-NLS-1$
+	public static final String PROPERTY_LAYOUT = "CanvasModel"; //$NON-NLS-1$
 
-	public static final String PROPERTY_ADD = "ModelTestAddChild"; //$NON-NLS-1$
+	public static final String PROPERTY_ADD = "CanvasModelAddChild"; //$NON-NLS-1$
 
-	public static final String PROPERTY_REMOVE = "ModelTestRemoveChild"; //$NON-NLS-1$
+	public static final String PROPERTY_REMOVE = "CanvasModelRemoveChild"; //$NON-NLS-1$
 
 	public static final String PROPERTY_BACKGROUND = "ModelBkgImage"; //$NON-NLS-1$
 
@@ -25,6 +26,8 @@ public class ModelTest {
 
 
 	// ====================== 2. Instance Fields =============================
+
+	private InputStream image;
 
 	private Rectangle layout;
 
@@ -39,7 +42,7 @@ public class ModelTest {
 
 	// ==================== 4. Constructors ====================
 
-	public ModelTest() {
+	public CanvasModel() {
 		this.listeners = new PropertyChangeSupport(this);
 	}
 
@@ -74,7 +77,7 @@ public class ModelTest {
 	}
 
 	public boolean addChild(final ChildModel figure) {
-		final boolean b = ModelTest.getChildren().add(figure);
+		final boolean b = CanvasModel.getChildren().add(figure);
 
 		if (b) {
 			figure.setParent(this);
@@ -88,12 +91,23 @@ public class ModelTest {
 		return b;
 	}
 
-	public boolean removeChild(final ModelTest child) {
-		final boolean b = ModelTest.getChildren().remove(child);
+	public boolean removeChild(final CanvasModel child) {
+		final boolean b = CanvasModel.getChildren().remove(child);
 
 		if (b)
 			getListeners().firePropertyChange(PROPERTY_REMOVE, child, null);
 		return b;
+	}
+	
+	// ==================== 7. Getters & Setters ====================
+
+	public InputStream getImage() {
+		return image;
+	}
+
+	public void setImage(final InputStream image) {
+		this.image = image;
+		getListeners().firePropertyChange(PROPERTY_BACKGROUND, null, image);
 	}
 
 }

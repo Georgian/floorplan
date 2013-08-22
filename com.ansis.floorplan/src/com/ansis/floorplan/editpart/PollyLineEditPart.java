@@ -8,7 +8,7 @@ import org.eclipse.swt.graphics.Color;
 
 import com.ansis.floorplan.editpolicy.AppDeletePolicy;
 import com.ansis.floorplan.figure.PollyLineFigure;
-import com.ansis.floorplan.model.ModelTest;
+import com.ansis.floorplan.model.CanvasModel;
 import com.ansis.floorplan.model.PollyLine;
 
 
@@ -53,11 +53,11 @@ public class PollyLineEditPart extends AppAbstractEditPart {
 	public void propertyChange(final PropertyChangeEvent evt) {
 
 		// Create
-		if (evt.getPropertyName().equals(ModelTest.PROPERTY_ADD))
+		if (evt.getPropertyName().equals(CanvasModel.PROPERTY_ADD))
 			refreshChildren();
 
 		// Delete
-		if (evt.getPropertyName().equals(ModelTest.PROPERTY_REMOVE))
+		if (evt.getPropertyName().equals(CanvasModel.PROPERTY_REMOVE))
 			refreshChildren();
 	}
 

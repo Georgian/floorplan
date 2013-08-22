@@ -14,7 +14,7 @@ import com.ansis.floorplan.figure.CanvasFigure;
 import com.ansis.floorplan.listener.MyListener;
 import com.ansis.floorplan.model.Canvas;
 import com.ansis.floorplan.model.ChildModel;
-import com.ansis.floorplan.model.ModelTest;
+import com.ansis.floorplan.model.CanvasModel;
 
 
 public class CanvasEditPart extends AppAbstractEditPart {
@@ -61,7 +61,7 @@ public class CanvasEditPart extends AppAbstractEditPart {
 	@Override
 	public void propertyChange(final PropertyChangeEvent evt) {
 
-		if (evt.getPropertyName().equals(ModelTest.PROPERTY_BACKGROUND))
+		if (evt.getPropertyName().equals(CanvasModel.PROPERTY_BACKGROUND))
 			changeBkg();
 		else
 			refreshChildren();
@@ -90,7 +90,7 @@ public class CanvasEditPart extends AppAbstractEditPart {
 
 	@Override
 	protected List<ChildModel> getModelChildren() {
-		return ModelTest.getChildren();
+		return CanvasModel.getChildren();
 	}
 
 }

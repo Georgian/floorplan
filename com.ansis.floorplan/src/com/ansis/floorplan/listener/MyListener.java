@@ -8,7 +8,7 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 import com.ansis.floorplan.model.Canvas;
-import com.ansis.floorplan.model.ModelTest;
+import com.ansis.floorplan.model.CanvasModel;
 import com.ansis.floorplan.model.Polly;
 import com.ansis.floorplan.model.PollyLine;
 
@@ -121,10 +121,10 @@ public class MyListener {
 
 							ok = 1;
 
-							final ModelTest model2 = new ModelTest();
+							final CanvasModel model2 = new CanvasModel();
 
-							if ( ModelTest.getChildren().size() >= 1 && ok == 1)
-								model2.removeChild(ModelTest.getChildren().get(ModelTest.getChildren().size() - 1));
+							if ( CanvasModel.getChildren().size() >= 1 && ok == 1)
+								model2.removeChild(CanvasModel.getChildren().get(CanvasModel.getChildren().size() - 1));
 
 							isShiftPressed = false;
 							tempPointList = new PointList();
@@ -200,10 +200,10 @@ public class MyListener {
 
 							ok = 1;
 
-							final ModelTest model2 = new ModelTest();
+							final CanvasModel model2 = new CanvasModel();
 
-							if ( ModelTest.getChildren().size() >= 1 && ok == 1)
-								model2.removeChild(ModelTest.getChildren().get(ModelTest.getChildren().size() - 1));
+							if ( CanvasModel.getChildren().size() >= 1 && ok == 1)
+								model2.removeChild(CanvasModel.getChildren().get(CanvasModel.getChildren().size() - 1));
 
 							isShiftPressed = false;
 							tempPointList = new PointList();
@@ -289,10 +289,10 @@ public class MyListener {
 
 						ok = 1;
 
-						final ModelTest model2 = new ModelTest();
+						final CanvasModel model2 = new CanvasModel();
 
-						if ( ModelTest.getChildren().size() >= 1 && ok == 1)
-							model2.removeChild(ModelTest.getChildren().get(ModelTest.getChildren().size() - 1));
+						if ( CanvasModel.getChildren().size() >= 1 && ok == 1)
+							model2.removeChild(CanvasModel.getChildren().get(CanvasModel.getChildren().size() - 1));
 
 						tempPointList = new PointList();
 

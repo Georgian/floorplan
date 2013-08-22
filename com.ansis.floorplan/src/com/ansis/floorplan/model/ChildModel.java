@@ -4,7 +4,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.RGB;
 
 
-public class ChildModel extends ModelTest {
+public class ChildModel extends CanvasModel {
 
 	// ==================== 1. Static Fields ========================
 
@@ -25,7 +25,7 @@ public class ChildModel extends ModelTest {
 
 	// ====================== 2. Instance Fields =============================
 
-	private ModelTest parent;
+	private CanvasModel parent;
 
 	private Rectangle bounds;
 
@@ -52,11 +52,11 @@ public class ChildModel extends ModelTest {
 
 	// ==================== 7. Getters & Setters ====================
 
-	public void setParent(final ModelTest parent) {
+	public void setParent(final CanvasModel parent) {
 		this.parent = parent;
 	}
 
-	public ModelTest getParent() {
+	public CanvasModel getParent() {
 		return parent;
 	}
 

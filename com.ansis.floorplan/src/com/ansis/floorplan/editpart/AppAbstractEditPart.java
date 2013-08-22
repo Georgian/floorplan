@@ -4,7 +4,7 @@ import java.beans.PropertyChangeListener;
 
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 
-import com.ansis.floorplan.model.ModelTest;
+import com.ansis.floorplan.model.CanvasModel;
 
 
 public abstract class AppAbstractEditPart extends AbstractGraphicalEditPart implements PropertyChangeListener {
@@ -14,13 +14,13 @@ public abstract class AppAbstractEditPart extends AbstractGraphicalEditPart impl
 	@Override
 	public void activate() {
 		super.activate();
-		((ModelTest) getModel()).addPropertyChangeListener(this);
+		((CanvasModel) getModel()).addPropertyChangeListener(this);
 	}
 
 	@Override
 	public void deactivate() {
 		super.deactivate();
-		((ModelTest) getModel()).removePropertyChangeListener(this);
+		((CanvasModel) getModel()).removePropertyChangeListener(this);
 	}
 
 }
