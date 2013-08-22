@@ -131,7 +131,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final FontStyleItalicAction italicFontStyleAction = new FontStyleItalicAction(this);
 		registry.registerAction(italicFontStyleAction);
 		getSelectionActions().add(italicFontStyleAction.getId());
-		
+
 		final FontStyleBoldItalicAction boldItalicFontStyleAction = new FontStyleBoldItalicAction(this);
 		registry.registerAction(boldItalicFontStyleAction);
 		getSelectionActions().add(boldItalicFontStyleAction.getId());
@@ -230,28 +230,36 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		zoomContributions.add(ZoomManager.FIT_WIDTH);*/
 		manager.setZoomLevelContributions(zoomContributions);
 		//Zooming END
-		
-		//Keyboard shortcuts for delete and zoom (mouse scroll also works with zooming now)
+
+		//Keyboard shortcuts for delete, undo, redo & zoom (mouse scroll also works with zooming now)
 		final KeyHandler keyHandler = new KeyHandler();
 		keyHandler.put(
-		KeyStroke.getPressed(SWT.DEL, 127, 0),
-		getActionRegistry().getAction(ActionFactory.DELETE.getId()));
-		
+				KeyStroke.getPressed(SWT.DEL, 127, 0),
+				getActionRegistry().getAction(ActionFactory.DELETE.getId()));
+
+//		keyHandler.put(
+//				KeyStroke.getPressed(SWT.CTRL+'Z', 0),
+//				getActionRegistry().getAction(ActionFactory.UNDO.getId()));
+//
+//		keyHandler.put(
+//				KeyStroke.getPressed(SWT.CTRL+'Y', 0),
+//				getActionRegistry().getAction(ActionFactory.REDO.getId()));
+
 		keyHandler.put(
-		KeyStroke.getPressed('+', SWT.KEYPAD_ADD, 0),
-		getActionRegistry().getAction(GEFActionConstants.ZOOM_IN));
-		
+				KeyStroke.getPressed('+', SWT.KEYPAD_ADD, 0),
+				getActionRegistry().getAction(GEFActionConstants.ZOOM_IN));
+
 		keyHandler.put(
-		KeyStroke.getPressed('-', SWT.KEYPAD_SUBTRACT, 0),
-		getActionRegistry().getAction(GEFActionConstants.ZOOM_OUT));
-		
+				KeyStroke.getPressed('-', SWT.KEYPAD_SUBTRACT, 0),
+				getActionRegistry().getAction(GEFActionConstants.ZOOM_OUT));
+
 		viewer.setProperty(
-		MouseWheelHandler.KeyGenerator.getKey(SWT.NONE),
-		MouseWheelZoomHandler.SINGLETON);
-		
+				MouseWheelHandler.KeyGenerator.getKey(SWT.NONE),
+				MouseWheelZoomHandler.SINGLETON);
+
 		viewer.setKeyHandler(keyHandler);
-		
-		
+
+
 		final ContextMenuProvider provider = new AppContextMenuProvider(viewer, getActionRegistry());
 		viewer.setContextMenu(provider);
 	}
