@@ -36,6 +36,8 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 
 		labelName.setOpaque(true);
 		add(labelName, OrderedLayout.ALIGN_CENTER);
+//		labelName.setLocation(new Point(100, 100));
+//		labelName.setSize(100, 20);
 
 		labelEtage.setOpaque(true);
 		add(labelEtage, OrderedLayout.ALIGN_CENTER);

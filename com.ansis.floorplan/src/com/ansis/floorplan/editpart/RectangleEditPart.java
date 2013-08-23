@@ -126,11 +126,13 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		final RectangleFigure figure = (RectangleFigure)getFigure();
 		final ChildModel model = (ChildModel)getModel();
 
+		initialLabelPositionAlgorythm(model);
+
 		// Bounds
 		figure.setBounds(model.getBounds());
 		// TODO Dynamic label positions
 		// Name Label Position
-//		figure.setConstraint(figure.getLabelName(), null);
+		figure.setConstraint(figure.getLabelName(), nameLabelPosition);
 		// Etage Label Position
 //		figure.setConstraint(figure.getLabelEtage(), null);
 		// Name
@@ -202,21 +204,26 @@ public class RectangleEditPart extends AppAbstractEditPart {
 	}
 
 	private Rectangle initialLabelPositionAlgorythm(final ChildModel model) {
-		nameLabelPosition = model.getLabelPosition();
+		if (nameLabelPosition == null) {
+			nameLabelPosition = model.getLabelPosition();
+		}
+		int y = 10;
+		
+		y = y + model.getFontSize();
 
+		nameLabelPosition.y = nameLabelPosition.height/2 - y;
 		nameLabelPosition.x = nameLabelPosition.width/2 - 50;
-		nameLabelPosition.y = nameLabelPosition.height/2 - 20;
 
-		nameLabelPosition.height = 20;
+		nameLabelPosition.height = y;
 		nameLabelPosition.width = 100;
-
+		
 		etageLabelPosition = new Rectangle(nameLabelPosition);
 
-		etageLabelPosition.y = etageLabelPosition.y + 15;
+		etageLabelPosition.y = etageLabelPosition.y + y;
 
 		return etageLabelPosition;
 	}
-
+	
 
 	// ==================== 7. Getters & Setters ====================
 
