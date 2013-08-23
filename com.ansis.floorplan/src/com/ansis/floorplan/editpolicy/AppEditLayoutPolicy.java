@@ -5,8 +5,9 @@ import java.util.List;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.FigureUtilities;
-import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PolygonShape;
+import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
@@ -27,6 +28,8 @@ import com.ansis.floorplan.editpart.PollyEditPart;
 import com.ansis.floorplan.editpart.PollyLineEditPart;
 import com.ansis.floorplan.editpart.RectangleEditPart;
 import com.ansis.floorplan.model.Canvas;
+import com.ansis.floorplan.model.Polly;
+import com.ansis.floorplan.model.PollyLine;
 import com.ansis.floorplan.model.RectangleModel;
 
 
@@ -65,8 +68,8 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 		if (request.getType() == REQ_CREATE && getHost() instanceof CanvasEditPart) {
 			final RectangleCreateCommand command = new RectangleCreateCommand();
 
-//			System.out.println(request.getSize());
-//			System.out.println(request.getLocation());
+			//			System.out.println(request.getSize());
+			//			System.out.println(request.getLocation());
 
 			command.setLocation(request.getLocation());
 			command.setSize(request.getSize());
@@ -92,14 +95,39 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 			@Override
 			protected IFigure createDragSourceFeedbackFigure() {
 				// Use a ghost rectangle for feedback
-				final RectangleFigure r = new RectangleFigure();
-				FigureUtilities.makeGhostShape(r);
-				r.setLineStyle(Graphics.LINE_DOT);
-				r.setForegroundColor(ColorConstants.white);
-				r.setBounds(getInitialFeedbackBounds());
-				r.validate();
-				addFeedback(r);
-				return r;
+
+				if (child.getModel() instanceof Polly) {
+					final PolygonShape p = new PolygonShape();
+					final Polly polly = (Polly) child.getModel();
+					p.setPoints(polly.getList());
+					FigureUtilities.makeGhostShape(p);
+					p.setForegroundColor(ColorConstants.white);
+					p.validate();
+					addFeedback(p);
+					return p;
+
+				}
+				else if (child.getModel() instanceof PollyLine) {
+					final PolylineShape p = new PolylineShape();
+					final PollyLine pollyLine = (PollyLine) child.getModel();
+					p.setPoints(pollyLine.getList());
+					FigureUtilities.makeGhostShape(p);
+					p.setForegroundColor(ColorConstants.white);
+					p.validate();
+					addFeedback(p);
+					return p;
+				}
+				else if (child.getModel() instanceof RectangleModel) {
+					final RectangleFigure r = new RectangleFigure();
+					FigureUtilities.makeGhostShape(r);
+					r.setForegroundColor(ColorConstants.white);
+					r.setBounds(getInitialFeedbackBounds());
+					r.validate();
+					addFeedback(r);
+					return r;
+
+				}
+				return null;
 			}
 		}; 
 	} 
