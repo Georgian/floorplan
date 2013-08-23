@@ -36,11 +36,13 @@
             targetID="myGraphicalEditor">
          <action
                class="com.ansis.floorplan.core.action.ImportImageAction"
+               hoverIcon="icons/back.png"
                id="com.ansis.floorplan.importImage.action"
-               label="Import Background Image"
+               label=" "
+               state="true"
                style="push"
                toolbarPath="additions"
-               tooltip="Import">
+               tooltip="Import Image">
          </action>
       </editorContribution>
    </extension>
