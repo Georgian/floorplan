@@ -3,6 +3,7 @@ package com.ansis.floorplan.editpart;
 import java.beans.PropertyChangeEvent;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -40,34 +41,48 @@ public class RectangleEditPart extends AppAbstractEditPart {
 	private static final String LABEL_COLOR_EDIT_PART = "LabelColor"; //$NON-NLS-1$
 
 
+	// ====================== 2. Instance Fields =============================
+
+	private Rectangle nameLabelPosition;
+
+	private Rectangle etageLabelPosition;
+
+
 	// ==================== 5. Creators ====================
 
 	@Override
 	protected IFigure createFigure() {
-		final RectangleFigure figure = new RectangleFigure( ((ChildModel)getModel()).getLabelPosition());
+		final RectangleFigure figure = new RectangleFigure();
+		final ChildModel model = (ChildModel)getModel();
+
+		initialLabelPositionAlgorythm(model);
 
 		// Bounds
-		figure.setBounds( ((ChildModel)getModel()).getBounds() );
+		figure.setBounds( model.getBounds() );
+		// Name Label Position
+		figure.setConstraint(figure.getLabelName(), nameLabelPosition);
+		// Etage Label Position
+		figure.setConstraint(figure.getLabelEtage(), etageLabelPosition);
 		// Name
-		figure.setName( ((ChildModel)getModel()).getName() );
+		figure.setName( model.getName() );
 		// Etage
-		figure.setEtage( ((ChildModel)getModel()).getEtage() );
+		figure.setEtage( model.getEtage() );
 		// Color
-		figure.setBackgroundColor( new Color(null, ((ChildModel)getModel()).getColor()) );
+		figure.setBackgroundColor( new Color(null, model.getColor()) );
 		// Line Color
-		figure.setForegroundColor( new Color(null, ((ChildModel)getModel()).getLineColor()) );
+		figure.setForegroundColor( new Color(null, model.getLineColor()) );
 		// Opacity
-		figure.setAlpha( ((ChildModel)getModel()).getOpacity() );
+		figure.setAlpha( model.getOpacity() );
 		// FontStyle
-		figure.setFontStyle( ((ChildModel)getModel()).getFontStyle() );
+		figure.setFontStyle( model.getFontStyle() );
 		// FontSize
-		figure.setFontSize( ((ChildModel)getModel()).getFontSize() );
+		figure.setFontSize( model.getFontSize() );
 		// FontColor
-		figure.getLabelName().setForegroundColor( new Color(null, ((ChildModel)getModel()).getFontColor()) );
-		figure.getLabelEtage().setForegroundColor( new Color(null, ((ChildModel)getModel()).getFontColor()) );
+		figure.getLabelName().setForegroundColor( new Color(null, model.getFontColor()) );
+		figure.getLabelEtage().setForegroundColor( new Color(null, model.getFontColor()) );
 		// LabelColor
-		figure.getLabelName().setBackgroundColor( new Color(null, ((ChildModel)getModel()).getLabelColor()) );
-		figure.getLabelEtage().setBackgroundColor( new Color(null, ((ChildModel)getModel()).getLabelColor()) );
+		figure.getLabelName().setBackgroundColor( new Color(null, model.getLabelColor()) );
+		figure.getLabelEtage().setBackgroundColor( new Color(null, model.getLabelColor()) );
 
 		return figure;
 	}
@@ -103,24 +118,6 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		installEditPolicy(LABEL_COLOR_EDIT_PART, new AppChangeLabelColorPolicy());
 	}
 
-	// This is an experimental way of checking for selection
-	@Override
-	public DragTracker getDragTracker(final Request request) {
-		return new DragEditPartsTracker(this) {
-
-			@Override
-			protected void performConditionalSelection() {
-				super.performConditionalSelection();
-				// This condition is not needed since the figure is always active after a selection
-				if (isActive()) {
-					final RectangleFigure figure = (RectangleFigure)getFigure();
-					figure.setLineStyle(2);
-					figure.setLineWidth(3);
-				}
-			}
-		};
-	}
-
 
 	// ==================== 6. Action Methods ====================
 
@@ -129,10 +126,13 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		final RectangleFigure figure = (RectangleFigure)getFigure();
 		final ChildModel model = (ChildModel)getModel();
 
-		//		G should be used when the figure is refreshed
-		//		figure.setG(model.getG());
 		// Bounds
 		figure.setBounds(model.getBounds());
+		// TODO Dynamic label positions
+		// Name Label Position
+//		figure.setConstraint(figure.getLabelName(), null);
+		// Etage Label Position
+//		figure.setConstraint(figure.getLabelEtage(), null);
 		// Name
 		figure.setName(model.getName());
 		// Etage
@@ -141,18 +141,18 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		figure.setLayout(model.getLayout());
 		// Color
 		figure.setBackgroundColor(new Color(null, model.getColor()));
-		// LineColor
+		// Line Color
 		figure.setForegroundColor(new Color(null, model.getColor()));
 		// Opacity
 		figure.setAlpha(model.getOpacity());
-		// FontStyle
+		// Font Style
 		figure.setFontStyle(model.getFontStyle());
-		// FontSize
+		// Font Size
 		figure.setFontSize(model.getFontSize());
-		// FontColor
+		// Font Color
 		figure.getLabelName().setForegroundColor(new Color(null, model.getFontColor()));
 		figure.getLabelEtage().setForegroundColor(new Color(null, model.getFontColor()));
-		// LabelColor
+		// Label Color
 		figure.getLabelName().setBackgroundColor(new Color(null, model.getLabelColor()));
 		figure.getLabelEtage().setBackgroundColor(new Color(null, model.getLabelColor()));
 	}
@@ -199,6 +199,43 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		// Label Color
 		if (evt.getPropertyName().equals(ChildModel.PROPERTY_LABEL_COLOR))
 			refreshVisuals();
+	}
+
+	private Rectangle initialLabelPositionAlgorythm(final ChildModel model) {
+		nameLabelPosition = model.getLabelPosition();
+
+		nameLabelPosition.x = nameLabelPosition.width/2 - 50;
+		nameLabelPosition.y = nameLabelPosition.height/2 - 20;
+
+		nameLabelPosition.height = 20;
+		nameLabelPosition.width = 100;
+
+		etageLabelPosition = new Rectangle(nameLabelPosition);
+
+		etageLabelPosition.y = etageLabelPosition.y + 15;
+
+		return etageLabelPosition;
+	}
+
+
+	// ==================== 7. Getters & Setters ====================
+
+	// This is an experimental way of checking for selection
+	@Override
+	public DragTracker getDragTracker(final Request request) {
+		return new DragEditPartsTracker(this) {
+
+			@Override
+			protected void performConditionalSelection() {
+				super.performConditionalSelection();
+				// This condition is not needed since the figure is always active after a selection
+				if (isActive()) {
+					final RectangleFigure figure = (RectangleFigure)getFigure();
+					figure.setLineStyle(2);
+					figure.setLineWidth(3);
+				}
+			}
+		};
 	}
 
 }

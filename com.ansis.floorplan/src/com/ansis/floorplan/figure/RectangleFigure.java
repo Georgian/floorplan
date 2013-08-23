@@ -16,8 +16,6 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 
 	private Label labelEtage = new Label();
 
-	private Rectangle etageLabelPosition;
-
 	private RGB lineColor;
 
 	private int fontStyle;
@@ -31,28 +29,16 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 
 	// ==================== 4. Constructors ====================
 
-	public RectangleFigure(final Rectangle labelPosition) {
+	public RectangleFigure() {
 
 		final XYLayout layout = new XYLayout();
 		setLayoutManager(layout);
 
-		labelPosition.x = labelPosition.width/2 - 50;
-		labelPosition.y = labelPosition.height/2 - 20;
-
-		labelPosition.height = 20;
-		labelPosition.width = 100;
-
-		etageLabelPosition = new Rectangle(labelPosition);
-
-		etageLabelPosition.y = etageLabelPosition.y + 15;
-
 		labelName.setOpaque(true);
 		add(labelName, OrderedLayout.ALIGN_CENTER);
-		setConstraint(labelName, labelPosition);
 
 		labelEtage.setOpaque(true);
 		add(labelEtage, OrderedLayout.ALIGN_CENTER);
-		setConstraint(labelEtage, etageLabelPosition);
 
 		setLineStyle(1);
 		setLineWidth(5);

@@ -15,7 +15,7 @@ public class RectangleCreateCommand extends Command {
 
 	private Canvas canvas;
 
-	private RectangleModel rFigure;
+	private RectangleModel rectModel;
 
 	private Point location;
 
@@ -35,19 +35,19 @@ public class RectangleCreateCommand extends Command {
 		if (size == null)
 			return;
 
-		rFigure.setBounds(new Rectangle(location, size));
-		rFigure.setLayout(new Rectangle(location, size));
+		rectModel.setBounds(new Rectangle(location, size));
+		rectModel.setLayout(new Rectangle(location, size));
 		
-		rFigure.setLabelPosition(new Rectangle(location, size));
+		rectModel.setLabelPosition(new Rectangle(location, size));
 
-		canvas.addChild(rFigure);
+		canvas.addChild(rectModel);
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public void setRectangle(final RectangleModel rFigure) {
-		this.rFigure = rFigure;
+	public void setRectangle(final RectangleModel rectModel) {
+		this.rectModel = rectModel;
 	}
 
 	public void setCanvas(final Canvas canvas) {
