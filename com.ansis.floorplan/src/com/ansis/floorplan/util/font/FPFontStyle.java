@@ -1,40 +1,42 @@
-package com.ansis.floorplan.core.helper;
+package com.ansis.floorplan.util.font;
+
+import com.ansis.floorplan.util.FPConstPresentation;
 
 /**
  * 
  * @author ggrec
  *
  */
-public enum AEFFontStyle
+public enum FPFontStyle
 {
-	NORMAL      ("Normal",      AEFConstPresentation.SWT_NORMAL),
-	BOLD        ("Bold",        AEFConstPresentation.SWT_BOLD),
-	ITALIC      ("Italic",      AEFConstPresentation.SWT_ITALIC),
-	BOLD_ITALIC ("Bold Italic", AEFConstPresentation.SWT_BOLD_ITALIC);
+	NORMAL      ("Normal",      FPConstPresentation.SWT_NORMAL),
+	BOLD        ("Bold",        FPConstPresentation.SWT_BOLD),
+	ITALIC      ("Italic",      FPConstPresentation.SWT_ITALIC),
+	BOLD_ITALIC ("Bold Italic", FPConstPresentation.SWT_BOLD_ITALIC);
 
 	private final String name;
 	private final int style;
 
-	private AEFFontStyle(final String name, final int style) 
+	private FPFontStyle(final String name, final int style) 
 	{
 		this.name = name;
 		this.style = style;
 	}
 
-	public static AEFFontStyle getFontForStyle(final int style)
+	public static FPFontStyle getFontForStyle(final int style)
 	{
 		switch (style) 
 		{
-		case AEFConstPresentation.SWT_NORMAL:
+		case FPConstPresentation.SWT_NORMAL:
 			return NORMAL;
 
-		case AEFConstPresentation.SWT_BOLD:
+		case FPConstPresentation.SWT_BOLD:
 			return BOLD;
 
-		case AEFConstPresentation.SWT_ITALIC:
+		case FPConstPresentation.SWT_ITALIC:
 			return ITALIC;
 
-		case AEFConstPresentation.SWT_BOLD_ITALIC:
+		case FPConstPresentation.SWT_BOLD_ITALIC:
 			return BOLD_ITALIC;
 
 		default:

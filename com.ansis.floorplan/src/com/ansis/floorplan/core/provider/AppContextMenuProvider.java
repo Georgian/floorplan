@@ -1,4 +1,4 @@
-package com.ansis.floorplan.provider;
+package com.ansis.floorplan.core.provider;
 
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.EditPartViewer;
@@ -9,27 +9,27 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.ui.actions.ActionFactory;
 
-import com.ansis.floorplan.action.ChangeColorAction;
-import com.ansis.floorplan.action.ChangeLabelColorAction;
-import com.ansis.floorplan.action.font.FontColorAction;
-import com.ansis.floorplan.action.font.FontSizeNineAction;
-import com.ansis.floorplan.action.font.FontSizeSevenAction;
-import com.ansis.floorplan.action.font.FontSizeSixteenAction;
-import com.ansis.floorplan.action.font.FontSizeTenAction;
-import com.ansis.floorplan.action.font.FontSizeThirteenAction;
-import com.ansis.floorplan.action.font.FontSizeTwentyAction;
-import com.ansis.floorplan.action.font.FontSizeTwentyfiveAction;
-import com.ansis.floorplan.action.font.FontStyleBoldAction;
-import com.ansis.floorplan.action.font.FontStyleBoldItalicAction;
-import com.ansis.floorplan.action.font.FontStyleItalicAction;
-import com.ansis.floorplan.action.font.FontStyleNormalAction;
-import com.ansis.floorplan.action.opacity.OpacityEightyAction;
-import com.ansis.floorplan.action.opacity.OpacityFourtyAction;
-import com.ansis.floorplan.action.opacity.OpacityHundredAction;
-import com.ansis.floorplan.action.opacity.OpacitySixtyAction;
-import com.ansis.floorplan.action.opacity.OpacityTenAction;
-import com.ansis.floorplan.action.opacity.OpacityTwentyAction;
-import com.ansis.floorplan.app.FloorPlanActivator;
+import com.ansis.floorplan.FloorplanActivator;
+import com.ansis.floorplan.core.action.ChangeColorAction;
+import com.ansis.floorplan.core.action.ChangeLabelColorAction;
+import com.ansis.floorplan.core.action.font.FontColorAction;
+import com.ansis.floorplan.core.action.font.FontSizeNineAction;
+import com.ansis.floorplan.core.action.font.FontSizeSevenAction;
+import com.ansis.floorplan.core.action.font.FontSizeSixteenAction;
+import com.ansis.floorplan.core.action.font.FontSizeTenAction;
+import com.ansis.floorplan.core.action.font.FontSizeThirteenAction;
+import com.ansis.floorplan.core.action.font.FontSizeTwentyAction;
+import com.ansis.floorplan.core.action.font.FontSizeTwentyfiveAction;
+import com.ansis.floorplan.core.action.font.FontStyleBoldAction;
+import com.ansis.floorplan.core.action.font.FontStyleBoldItalicAction;
+import com.ansis.floorplan.core.action.font.FontStyleItalicAction;
+import com.ansis.floorplan.core.action.font.FontStyleNormalAction;
+import com.ansis.floorplan.core.action.opacity.OpacityEightyAction;
+import com.ansis.floorplan.core.action.opacity.OpacityFourtyAction;
+import com.ansis.floorplan.core.action.opacity.OpacityHundredAction;
+import com.ansis.floorplan.core.action.opacity.OpacitySixtyAction;
+import com.ansis.floorplan.core.action.opacity.OpacityTenAction;
+import com.ansis.floorplan.core.action.opacity.OpacityTwentyAction;
 
 
 public class AppContextMenuProvider extends ContextMenuProvider{
@@ -75,7 +75,7 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		menu.appendToGroup(GEFActionConstants.GROUP_VIEW, action);
 
 		// Opacity
-		final MenuManager opacitySubmenu = new MenuManager("Figure opacity", FloorPlanActivator.getDefault().getImageDescriptor("icons/figureOpacity.png"), "opacitySubmenuID"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		final MenuManager opacitySubmenu = new MenuManager("Figure opacity", FloorplanActivator.getDefault().getImageDescriptor("icons/figureOpacity.png"), "opacitySubmenuID"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		action = getActionRegistry().getAction(OpacityTenAction.opacityPropertyTen);
 		opacitySubmenu.add(action);
@@ -98,7 +98,7 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		menu.appendToGroup(GEFActionConstants.GROUP_VIEW, opacitySubmenu);
 
 		// Font Style
-		final MenuManager fontStyleSubmenu = new MenuManager("Font style", FloorPlanActivator.getDefault().getImageDescriptor("icons/font/fontNormal.png"), "fontStyleSubmenuID"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		final MenuManager fontStyleSubmenu = new MenuManager("Font style", FloorplanActivator.getDefault().getImageDescriptor("icons/font/fontNormal.png"), "fontStyleSubmenuID"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		action = getActionRegistry().getAction(FontStyleNormalAction.fontStylePropertyNormal);
 		fontStyleSubmenu.add(action);
@@ -115,7 +115,7 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		menu.appendToGroup(GEFActionConstants.GROUP_REST, fontStyleSubmenu);
 
 		// Font Size
-		final MenuManager fontSizeSubmenu = new MenuManager("Font size", FloorPlanActivator.getDefault().getImageDescriptor("icons/font/fontSize.png"), "fontSizeSubmenuID"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		final MenuManager fontSizeSubmenu = new MenuManager("Font size", FloorplanActivator.getDefault().getImageDescriptor("icons/font/fontSize.png"), "fontSizeSubmenuID"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		action = getActionRegistry().getAction(FontSizeSevenAction.fontSizePropertySeven);
 		fontSizeSubmenu.add(action);

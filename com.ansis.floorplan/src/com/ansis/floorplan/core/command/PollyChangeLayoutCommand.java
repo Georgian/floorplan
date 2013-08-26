@@ -1,8 +1,8 @@
-package com.ansis.floorplan.command;
+package com.ansis.floorplan.core.command;
 
 import org.eclipse.draw2d.geometry.Rectangle;
 
-import com.ansis.floorplan.model.ChildModel;
+import com.ansis.floorplan.core.model.ChildModel;
 
 
 public class PollyChangeLayoutCommand extends AbstractLayoutCommand {

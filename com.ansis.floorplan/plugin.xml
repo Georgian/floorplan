@@ -22,8 +22,8 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="com.ansis.floorplan.core.MyGraphicalEditor"
-            contributorClass="com.ansis.floorplan.core.MyGraphicalEditorActionBarContributor"
+            class="com.ansis.floorplan.core.editor.MyGraphicalEditor"
+            contributorClass="com.ansis.floorplan.core.editor.MyGraphicalEditorActionBarContributor"
             default="true"
             id="myGraphicalEditor"
             name="Editor">

@@ -1,4 +1,4 @@
-package com.ansis.floorplan.editpolicy;
+package com.ansis.floorplan.core.editpolicy;
 
 import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 

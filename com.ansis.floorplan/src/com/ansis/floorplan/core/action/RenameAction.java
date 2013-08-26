@@ -1,4 +1,4 @@
-package com.ansis.floorplan.action;
+package com.ansis.floorplan.core.action;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,8 +14,8 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-import com.ansis.floorplan.model.ChildModel;
-import com.ansis.floorplan.wizard.RenameWizard;
+import com.ansis.floorplan.core.model.ChildModel;
+import com.ansis.floorplan.core.wizard.RenameWizard;
 
 
 public class RenameAction extends SelectionAction {

@@ -1,4 +1,4 @@
-package com.ansis.floorplan.core;
+package com.ansis.floorplan.core.editor;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;

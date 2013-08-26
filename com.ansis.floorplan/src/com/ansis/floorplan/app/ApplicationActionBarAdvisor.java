@@ -6,7 +6,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
 
-import com.ansis.floorplan.core.OpenEditorAction;
+import com.ansis.floorplan.core.action.OpenEditorAction;
 
 
 public class ApplicationActionBarAdvisor extends ActionBarAdvisor {

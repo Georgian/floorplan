@@ -1,4 +1,4 @@
-package com.ansis.floorplan.core;
+package com.ansis.floorplan.core.editor;
 
 import org.eclipse.gef.ui.actions.ActionBarContributor;
 import org.eclipse.gef.ui.actions.DeleteRetargetAction;

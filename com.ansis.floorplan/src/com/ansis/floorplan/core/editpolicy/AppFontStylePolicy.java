@@ -1,10 +1,10 @@
-package com.ansis.floorplan.editpolicy;
+package com.ansis.floorplan.core.editpolicy;
 
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
 
-import com.ansis.floorplan.command.FontStyleCommand;
+import com.ansis.floorplan.core.command.FontStyleCommand;
 
 
 public class AppFontStylePolicy extends AbstractEditPolicy {

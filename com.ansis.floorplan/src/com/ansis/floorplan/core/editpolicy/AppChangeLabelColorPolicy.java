@@ -1,11 +1,11 @@
-package com.ansis.floorplan.editpolicy;
+package com.ansis.floorplan.core.editpolicy;
 
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
 import org.eclipse.swt.graphics.RGB;
 
-import com.ansis.floorplan.command.ChangeLabelColorCommand;
+import com.ansis.floorplan.core.command.ChangeLabelColorCommand;
 
 
 public class AppChangeLabelColorPolicy extends AbstractEditPolicy {

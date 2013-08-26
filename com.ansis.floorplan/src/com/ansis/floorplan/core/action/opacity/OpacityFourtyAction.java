@@ -1,4 +1,4 @@
-package com.ansis.floorplan.action.opacity;
+package com.ansis.floorplan.core.action.opacity;
 
 import java.util.HashMap;
 

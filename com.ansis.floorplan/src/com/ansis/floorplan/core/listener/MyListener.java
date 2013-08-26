@@ -1,4 +1,4 @@
-package com.ansis.floorplan.listener;
+package com.ansis.floorplan.core.listener;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MouseEvent;
@@ -7,10 +7,10 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 
-import com.ansis.floorplan.model.Canvas;
-import com.ansis.floorplan.model.CanvasModel;
-import com.ansis.floorplan.model.Polly;
-import com.ansis.floorplan.model.PollyLine;
+import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.CanvasModel;
+import com.ansis.floorplan.core.model.Polly;
+import com.ansis.floorplan.core.model.PollyLine;
 
 
 public class MyListener {

@@ -1,4 +1,4 @@
-package com.ansis.floorplan.editpolicy;
+package com.ansis.floorplan.core.editpolicy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,20 +17,20 @@ import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 
-import com.ansis.floorplan.command.AbstractLayoutCommand;
-import com.ansis.floorplan.command.CanvasChangeLayoutCommand;
-import com.ansis.floorplan.command.PollyChangeLayoutCommand;
-import com.ansis.floorplan.command.PollyLineChangeLayoutCommand;
-import com.ansis.floorplan.command.RectangleChangeLayoutCommand;
-import com.ansis.floorplan.command.RectangleCreateCommand;
-import com.ansis.floorplan.editpart.CanvasEditPart;
-import com.ansis.floorplan.editpart.PollyEditPart;
-import com.ansis.floorplan.editpart.PollyLineEditPart;
-import com.ansis.floorplan.editpart.RectangleEditPart;
-import com.ansis.floorplan.model.Canvas;
-import com.ansis.floorplan.model.Polly;
-import com.ansis.floorplan.model.PollyLine;
-import com.ansis.floorplan.model.RectangleModel;
+import com.ansis.floorplan.core.command.AbstractLayoutCommand;
+import com.ansis.floorplan.core.command.CanvasChangeLayoutCommand;
+import com.ansis.floorplan.core.command.PollyChangeLayoutCommand;
+import com.ansis.floorplan.core.command.PollyLineChangeLayoutCommand;
+import com.ansis.floorplan.core.command.RectangleChangeLayoutCommand;
+import com.ansis.floorplan.core.command.RectangleCreateCommand;
+import com.ansis.floorplan.core.editpart.CanvasEditPart;
+import com.ansis.floorplan.core.editpart.PollyEditPart;
+import com.ansis.floorplan.core.editpart.PollyLineEditPart;
+import com.ansis.floorplan.core.editpart.RectangleEditPart;
+import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.Polly;
+import com.ansis.floorplan.core.model.PollyLine;
+import com.ansis.floorplan.core.model.RectangleModel;
 
 
 public class AppEditLayoutPolicy extends XYLayoutEditPolicy {

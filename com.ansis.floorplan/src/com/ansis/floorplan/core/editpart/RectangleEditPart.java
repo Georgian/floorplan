@@ -1,4 +1,4 @@
-package com.ansis.floorplan.editpart;
+package com.ansis.floorplan.core.editpart;
 
 import java.beans.PropertyChangeEvent;
 
@@ -10,18 +10,18 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.tools.DragEditPartsTracker;
 import org.eclipse.swt.graphics.Color;
 
-import com.ansis.floorplan.editpolicy.AppChangeColorPolicy;
-import com.ansis.floorplan.editpolicy.AppChangeLabelColorPolicy;
-import com.ansis.floorplan.editpolicy.AppDeletePolicy;
-import com.ansis.floorplan.editpolicy.AppEditLayoutPolicy;
-import com.ansis.floorplan.editpolicy.AppFontColorPolicy;
-import com.ansis.floorplan.editpolicy.AppFontSizePolicy;
-import com.ansis.floorplan.editpolicy.AppFontStylePolicy;
-import com.ansis.floorplan.editpolicy.AppOpacityPolicy;
-import com.ansis.floorplan.editpolicy.AppRenamePolicy;
-import com.ansis.floorplan.figure.RectangleFigure;
-import com.ansis.floorplan.model.CanvasModel;
-import com.ansis.floorplan.model.ChildModel;
+import com.ansis.floorplan.core.editpolicy.AppChangeColorPolicy;
+import com.ansis.floorplan.core.editpolicy.AppChangeLabelColorPolicy;
+import com.ansis.floorplan.core.editpolicy.AppDeletePolicy;
+import com.ansis.floorplan.core.editpolicy.AppEditLayoutPolicy;
+import com.ansis.floorplan.core.editpolicy.AppFontColorPolicy;
+import com.ansis.floorplan.core.editpolicy.AppFontSizePolicy;
+import com.ansis.floorplan.core.editpolicy.AppFontStylePolicy;
+import com.ansis.floorplan.core.editpolicy.AppOpacityPolicy;
+import com.ansis.floorplan.core.editpolicy.AppRenamePolicy;
+import com.ansis.floorplan.core.figure.RectangleFigure;
+import com.ansis.floorplan.core.model.CanvasModel;
+import com.ansis.floorplan.core.model.ChildModel;
 
 
 public class RectangleEditPart extends AppAbstractEditPart {

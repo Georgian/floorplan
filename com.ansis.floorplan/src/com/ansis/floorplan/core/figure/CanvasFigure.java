@@ -1,4 +1,4 @@
-package com.ansis.floorplan.figure;
+package com.ansis.floorplan.core.figure;
 
 import java.io.InputStream;
 
@@ -9,7 +9,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 
-import com.ansis.floorplan.app.FloorPlanActivator;
+import com.ansis.floorplan.FloorplanActivator;
 
 
 public class CanvasFigure extends Figure {
@@ -35,13 +35,13 @@ public class CanvasFigure extends Figure {
 	}
 
 	public void setImage(final InputStream imageStream) {
-		FloorPlanActivator.getDefault().getImageCache().cacheImage(CACHED_IMG_ID, new Image(Display.getCurrent(), imageStream));
+		FloorplanActivator.getDefault().getImageCache().cacheImage(CACHED_IMG_ID, new Image(Display.getCurrent(), imageStream));
 	}
 
 	@Override
 	protected void paintFigure(final Graphics graphics) {
 
-		final Image image = FloorPlanActivator.getDefault().getImageCache().getCachedImage(CACHED_IMG_ID);
+		final Image image = FloorplanActivator.getDefault().getImageCache().getCachedImage(CACHED_IMG_ID);
 
 		if (image == null) {
 			super.paintFigure(graphics);

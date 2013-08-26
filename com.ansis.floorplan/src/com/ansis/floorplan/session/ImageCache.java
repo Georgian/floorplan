@@ -1,4 +1,4 @@
-package com.ansis.floorplan.core.session;
+package com.ansis.floorplan.session;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -8,35 +8,33 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-
 /**
- * Caches all images when they are loaded for the first time. This class is called 
- * from Application.java at startup and is disposed at shutdown.
  * 
- * @author akozma
+ * @author ggrec
  *
  */
-public class ImageCache {
+public class ImageCache 
+{
 
 	// ====================== 2. Instance Fields =============================
 
 	/**
-	 *  We use a String as key, because ImageDescriptor checks availability on path
-	 *  each time it is constructed (slow).
+	 * We use a String as key, because ImageDescriptor checks availability on path
+	 * each time it is constructed (slow).
 	 */
 	private final Map<String, Image> imageMap = new HashMap<String, Image>();
 
-	// the id for the plugin
-	private String plugin_id;
+	private String pluginID;
 
 
 	// ==================== 4. Constructors ====================
 
 	/**
-	 * plugin specific image cache
+	 * Plugin specific image cache
 	 */
-	public ImageCache(final String plugin_id) {
-		this.plugin_id = plugin_id;
+	public ImageCache(final String pluginID) 
+	{
+		this.pluginID = pluginID;
 	}
 
 
@@ -44,29 +42,30 @@ public class ImageCache {
 
 	/**
 	 * Overridden to dispose all images
-	 *
 	 */
-	public void dispose() {
+	public void dispose() 
+	{
 		final Iterator<Image> iter = imageMap.values().iterator();
 		while (iter.hasNext())
-			((Image) iter.next()).dispose();
+			iter.next().dispose();
 		imageMap.clear();
 	}
+
 
 	// ==================== 8. Business Methods ====================
 
 	/**
 	 * Get or create an image from a class. Null-safe: returns a substitute imgDescr, if the image is not found.
 	 * 
-	 * @param plugin_id The id of the plugin to get the image from
+	 * @param pluginID The id of the plugin to get the image from
 	 * @param path - the path to the existing image
 	 * @return The image
 	 */
-	public Image getImage(final String path) {
-
+	public Image getImage(final String path)
+	{
 		Image image = imageMap.get(path);
-		if (image == null) {
-
+		if (image == null) 
+		{
 			image = getImageDescriptor(path).createImage();
 			imageMap.put(path, image);
 		}
@@ -82,7 +81,8 @@ public class ImageCache {
 	 * @param key
 	 * @return
 	 */
-	public Image getCachedImage(final String key) {
+	public Image getCachedImage(final String key) 
+	{
 		return imageMap.get(key);
 	}
 
@@ -93,14 +93,9 @@ public class ImageCache {
 	 * @param path the path
 	 * @return the image descriptor
 	 */
-	public ImageDescriptor getImageDescriptor(final String path) {
-		final ImageDescriptor imgD = AbstractUIPlugin.imageDescriptorFromPlugin(plugin_id, path);
-		if (imgD == null) {
-			// Get a substitue image:
-			// imgD = Activator.showMissingIcon(plugin_id, path);
-		}
-
-		return imgD;
+	public ImageDescriptor getImageDescriptor(final String path) 
+	{
+		return AbstractUIPlugin.imageDescriptorFromPlugin(pluginID, path);
 	}
 
 	/**
@@ -108,13 +103,15 @@ public class ImageCache {
 	 * @param imageDescriptor
 	 * @return the image
 	 */
-	public Image getImage(final ImageDescriptor imageDescriptor) {
+	public Image getImage(final ImageDescriptor imageDescriptor) 
+	{
 		if (imageDescriptor == null)
 			return null;
 
 		final String key = "IMG_DESC-" + imageDescriptor.hashCode(); //$NON-NLS-1$
 		Image image = imageMap.get(key);
-		if (image == null) {
+		if (image == null) 
+		{
 			image = imageDescriptor.createImage();
 			cacheImage(key, image);
 		}
@@ -124,12 +121,11 @@ public class ImageCache {
 
 	/**
 	 * 
-	 * 
 	 * @param key
 	 * @param image
 	 */
-	public void cacheImage(final String key, final Image image) {
+	public void cacheImage(final String key, final Image image) 
+	{
 		imageMap.put(key, image);
 	}
-
 }

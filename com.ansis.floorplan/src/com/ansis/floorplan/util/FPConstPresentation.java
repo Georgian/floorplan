@@ -1,4 +1,4 @@
-package com.ansis.floorplan.core.helper;
+package com.ansis.floorplan.util;
 
 /**
  * Note: Fields in an interface are always implicitly public static final.
@@ -6,7 +6,7 @@ package com.ansis.floorplan.core.helper;
  * @author ggrec
  *
  */
-public interface AEFConstPresentation 
+public interface FPConstPresentation 
 {
 	int SWT_NORMAL = 0;
 	int SWT_BOLD = 1;

@@ -1,8 +1,11 @@
-package com.ansis.floorplan.core;
+package com.ansis.floorplan.core.action;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
+
+import com.ansis.floorplan.core.editor.MyEditorInput;
+import com.ansis.floorplan.core.editor.MyGraphicalEditor;
 
 
 public class OpenEditorAction extends Action {

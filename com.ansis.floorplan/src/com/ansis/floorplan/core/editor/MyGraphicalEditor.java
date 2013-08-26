@@ -1,4 +1,4 @@
-package com.ansis.floorplan.core;
+package com.ansis.floorplan.core.editor;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -30,33 +30,33 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.swt.SWT;
 import org.eclipse.ui.actions.ActionFactory;
 
-import com.ansis.floorplan.action.ChangeColorAction;
-import com.ansis.floorplan.action.ChangeLabelColorAction;
-import com.ansis.floorplan.action.RenameAction;
-import com.ansis.floorplan.action.font.FontColorAction;
-import com.ansis.floorplan.action.font.FontSizeNineAction;
-import com.ansis.floorplan.action.font.FontSizeSevenAction;
-import com.ansis.floorplan.action.font.FontSizeSixteenAction;
-import com.ansis.floorplan.action.font.FontSizeTenAction;
-import com.ansis.floorplan.action.font.FontSizeThirteenAction;
-import com.ansis.floorplan.action.font.FontSizeTwentyAction;
-import com.ansis.floorplan.action.font.FontSizeTwentyfiveAction;
-import com.ansis.floorplan.action.font.FontStyleBoldAction;
-import com.ansis.floorplan.action.font.FontStyleBoldItalicAction;
-import com.ansis.floorplan.action.font.FontStyleItalicAction;
-import com.ansis.floorplan.action.font.FontStyleNormalAction;
-import com.ansis.floorplan.action.opacity.OpacityEightyAction;
-import com.ansis.floorplan.action.opacity.OpacityFourtyAction;
-import com.ansis.floorplan.action.opacity.OpacityHundredAction;
-import com.ansis.floorplan.action.opacity.OpacitySixtyAction;
-import com.ansis.floorplan.action.opacity.OpacityTenAction;
-import com.ansis.floorplan.action.opacity.OpacityTwentyAction;
-import com.ansis.floorplan.app.FloorPlanActivator;
+import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.app.MyTemplateTransferDropTargetListener;
-import com.ansis.floorplan.factory.PartEditFactory;
-import com.ansis.floorplan.factory.RectangleCreationFactory;
-import com.ansis.floorplan.model.Canvas;
-import com.ansis.floorplan.provider.AppContextMenuProvider;
+import com.ansis.floorplan.core.action.ChangeColorAction;
+import com.ansis.floorplan.core.action.ChangeLabelColorAction;
+import com.ansis.floorplan.core.action.RenameAction;
+import com.ansis.floorplan.core.action.font.FontColorAction;
+import com.ansis.floorplan.core.action.font.FontSizeNineAction;
+import com.ansis.floorplan.core.action.font.FontSizeSevenAction;
+import com.ansis.floorplan.core.action.font.FontSizeSixteenAction;
+import com.ansis.floorplan.core.action.font.FontSizeTenAction;
+import com.ansis.floorplan.core.action.font.FontSizeThirteenAction;
+import com.ansis.floorplan.core.action.font.FontSizeTwentyAction;
+import com.ansis.floorplan.core.action.font.FontSizeTwentyfiveAction;
+import com.ansis.floorplan.core.action.font.FontStyleBoldAction;
+import com.ansis.floorplan.core.action.font.FontStyleBoldItalicAction;
+import com.ansis.floorplan.core.action.font.FontStyleItalicAction;
+import com.ansis.floorplan.core.action.font.FontStyleNormalAction;
+import com.ansis.floorplan.core.action.opacity.OpacityEightyAction;
+import com.ansis.floorplan.core.action.opacity.OpacityFourtyAction;
+import com.ansis.floorplan.core.action.opacity.OpacityHundredAction;
+import com.ansis.floorplan.core.action.opacity.OpacitySixtyAction;
+import com.ansis.floorplan.core.action.opacity.OpacityTenAction;
+import com.ansis.floorplan.core.action.opacity.OpacityTwentyAction;
+import com.ansis.floorplan.core.factory.PartEditFactory;
+import com.ansis.floorplan.core.factory.RectangleCreationFactory;
+import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.provider.AppContextMenuProvider;
 
 
 public class MyGraphicalEditor extends GraphicalEditorWithPalette {
@@ -290,8 +290,8 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final CreationToolEntry drawEntry = new CreationToolEntry("Draw", //$NON-NLS-1$ 
 				"Create Polygon object", //$NON-NLS-1$ 
 				new RectangleCreationFactory(), 
-				FloorPlanActivator.getDefault().getImageDescriptor("icons/draw16.ico"), //$NON-NLS-1$ 
-				FloorPlanActivator.getDefault().getImageDescriptor("icons/draw.ico")); //$NON-NLS-1$ 
+				FloorplanActivator.getDefault().getImageDescriptor("icons/draw16.ico"), //$NON-NLS-1$ 
+				FloorplanActivator.getDefault().getImageDescriptor("icons/draw.ico")); //$NON-NLS-1$ 
 
 		instGroup.add(drawEntry);
 
@@ -299,8 +299,8 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final CreationToolEntry creationEntry = new CreationToolEntry("Rectangle", //$NON-NLS-1$ 
 				"Create Rectangle object", //$NON-NLS-1$ 
 				new RectangleCreationFactory(), 
-				FloorPlanActivator.getDefault().getImageDescriptor("icons/rec16.png"), //$NON-NLS-1$ 
-				FloorPlanActivator.getDefault().getImageDescriptor("icons/rec24.png")); //$NON-NLS-1$ 
+				FloorplanActivator.getDefault().getImageDescriptor("icons/rec16.png"), //$NON-NLS-1$ 
+				FloorplanActivator.getDefault().getImageDescriptor("icons/rec24.png")); //$NON-NLS-1$ 
 
 		instGroup.add(creationEntry);
 

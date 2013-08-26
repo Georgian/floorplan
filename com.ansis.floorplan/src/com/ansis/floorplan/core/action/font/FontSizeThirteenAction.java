@@ -1,4 +1,4 @@
-package com.ansis.floorplan.action.font;
+package com.ansis.floorplan.core.action.font;
 
 import java.util.HashMap;
 

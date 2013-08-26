@@ -1,9 +1,9 @@
-package com.ansis.floorplan.factory;
+package com.ansis.floorplan.core.factory;
 
 import org.eclipse.gef.requests.CreationFactory;
 
-import com.ansis.floorplan.model.Canvas;
-import com.ansis.floorplan.model.Polly;
+import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.Polly;
 
 
 public class ModelTestCreationFactory implements CreationFactory {

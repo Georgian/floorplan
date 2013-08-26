@@ -1,4 +1,4 @@
-package com.ansis.floorplan.tool;
+package com.ansis.floorplan.core.tool;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.requests.CreateRequest;

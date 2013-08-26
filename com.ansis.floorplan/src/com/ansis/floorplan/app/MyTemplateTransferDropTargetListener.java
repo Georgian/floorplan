@@ -4,7 +4,7 @@ import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.dnd.TemplateTransferDropTargetListener;
 import org.eclipse.gef.requests.CreationFactory;
 
-import com.ansis.floorplan.factory.ModelTestCreationFactory;
+import com.ansis.floorplan.core.factory.ModelTestCreationFactory;
 
 
 public class MyTemplateTransferDropTargetListener extends TemplateTransferDropTargetListener {

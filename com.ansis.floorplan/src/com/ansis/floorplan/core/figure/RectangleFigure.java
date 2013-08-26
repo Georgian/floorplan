@@ -1,4 +1,4 @@
-package com.ansis.floorplan.figure;
+package com.ansis.floorplan.core.figure;
 
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.OrderedLayout;

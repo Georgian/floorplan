@@ -1,12 +1,12 @@
-package com.ansis.floorplan.command;
+package com.ansis.floorplan.core.command;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
 
-import com.ansis.floorplan.model.Canvas;
-import com.ansis.floorplan.model.RectangleModel;
+import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.RectangleModel;
 
 
 public class RectangleCreateCommand extends Command {

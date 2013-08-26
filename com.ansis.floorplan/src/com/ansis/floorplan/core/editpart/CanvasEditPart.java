@@ -1,4 +1,4 @@
-package com.ansis.floorplan.editpart;
+package com.ansis.floorplan.core.editpart;
 
 import java.beans.PropertyChangeEvent;
 import java.util.List;
@@ -9,12 +9,12 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.tools.DragEditPartsTracker;
 
-import com.ansis.floorplan.editpolicy.AppEditLayoutPolicy;
-import com.ansis.floorplan.figure.CanvasFigure;
-import com.ansis.floorplan.listener.MyListener;
-import com.ansis.floorplan.model.Canvas;
-import com.ansis.floorplan.model.CanvasModel;
-import com.ansis.floorplan.model.ChildModel;
+import com.ansis.floorplan.core.editpolicy.AppEditLayoutPolicy;
+import com.ansis.floorplan.core.figure.CanvasFigure;
+import com.ansis.floorplan.core.listener.MyListener;
+import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.CanvasModel;
+import com.ansis.floorplan.core.model.ChildModel;
 
 
 public class CanvasEditPart extends AppAbstractEditPart {

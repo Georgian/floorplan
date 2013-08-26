@@ -1,4 +1,4 @@
-package com.ansis.floorplan.wizard;
+package com.ansis.floorplan.core.wizard;
 
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;

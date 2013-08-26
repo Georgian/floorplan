@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.IEditorActionDelegate;
 import org.eclipse.ui.IEditorPart;
 
-import com.ansis.floorplan.core.MyGraphicalEditor;
+import com.ansis.floorplan.core.editor.MyGraphicalEditor;
 
 
 public class ImportImageAction implements IEditorActionDelegate {

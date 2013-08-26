@@ -1,4 +1,4 @@
-package com.ansis.floorplan.action;
+package com.ansis.floorplan.core.action;
 
 import java.util.HashMap;
 
@@ -11,7 +11,7 @@ import org.eclipse.swt.graphics.RGB;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-import com.ansis.floorplan.app.FloorPlanActivator;
+import com.ansis.floorplan.FloorplanActivator;
 
 
 public class ChangeColorAction extends SelectionAction {
@@ -60,7 +60,7 @@ public class ChangeColorAction extends SelectionAction {
 	@Override
 	protected void init() {
 		setId(changeColorProperty);
-		setImageDescriptor(FloorPlanActivator.getDefault().getImageDescriptor("icons/figureColor.png")); //$NON-NLS-1$
+		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor("icons/figureColor.png")); //$NON-NLS-1$
 		setText("Figure color...");  //$NON-NLS-1$
 		setToolTipText("Color"); //$NON-NLS-1$
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$

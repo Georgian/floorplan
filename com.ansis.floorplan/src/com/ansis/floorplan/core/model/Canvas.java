@@ -1,4 +1,4 @@
-package com.ansis.floorplan.model;
+package com.ansis.floorplan.core.model;
 
 
 

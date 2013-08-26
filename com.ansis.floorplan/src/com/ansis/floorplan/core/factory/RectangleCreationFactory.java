@@ -1,8 +1,8 @@
-package com.ansis.floorplan.factory;
+package com.ansis.floorplan.core.factory;
 
 import org.eclipse.gef.requests.CreationFactory;
 
-import com.ansis.floorplan.model.RectangleModel;
+import com.ansis.floorplan.core.model.RectangleModel;
 
 
 public class RectangleCreationFactory implements CreationFactory {

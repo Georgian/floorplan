@@ -1,4 +1,4 @@
-package com.ansis.floorplan.command;
+package com.ansis.floorplan.core.command;
 
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;

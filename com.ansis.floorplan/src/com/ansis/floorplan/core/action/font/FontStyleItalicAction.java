@@ -1,4 +1,4 @@
-package com.ansis.floorplan.action.font;
+package com.ansis.floorplan.core.action.font;
 
 import java.util.HashMap;
 
@@ -10,7 +10,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-import com.ansis.floorplan.app.FloorPlanActivator;
+import com.ansis.floorplan.FloorplanActivator;
 
 
 public class FontStyleItalicAction extends SelectionAction{
@@ -59,7 +59,7 @@ public class FontStyleItalicAction extends SelectionAction{
 	@Override
 	protected void init() {
 		setId(fontStylePropertyItalic);
-		setImageDescriptor(FloorPlanActivator.getDefault().getImageDescriptor("icons/font/fontItalic.png")); //$NON-NLS-1$
+		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor("icons/font/fontItalic.png")); //$NON-NLS-1$
 		setText("Italic"); //$NON-NLS-1$
 		setToolTipText("Italic"); //$NON-NLS-1$
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$

@@ -1,4 +1,4 @@
-package com.ansis.floorplan.editpart;
+package com.ansis.floorplan.core.editpart;
 
 import java.beans.PropertyChangeEvent;
 
@@ -6,10 +6,10 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.swt.graphics.Color;
 
-import com.ansis.floorplan.editpolicy.AppDeletePolicy;
-import com.ansis.floorplan.figure.PollyLineFigure;
-import com.ansis.floorplan.model.CanvasModel;
-import com.ansis.floorplan.model.PollyLine;
+import com.ansis.floorplan.core.editpolicy.AppDeletePolicy;
+import com.ansis.floorplan.core.figure.PollyLineFigure;
+import com.ansis.floorplan.core.model.CanvasModel;
+import com.ansis.floorplan.core.model.PollyLine;
 
 
 public class PollyLineEditPart extends AppAbstractEditPart {

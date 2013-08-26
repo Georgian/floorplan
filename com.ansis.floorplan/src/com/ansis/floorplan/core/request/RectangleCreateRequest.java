@@ -1,10 +1,10 @@
-package com.ansis.floorplan.request;
+package com.ansis.floorplan.core.request;
 
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.CreationFactory;
 
-import com.ansis.floorplan.factory.RectangleCreationFactory;
-import com.ansis.floorplan.model.ChildModel;
+import com.ansis.floorplan.core.factory.RectangleCreationFactory;
+import com.ansis.floorplan.core.model.ChildModel;
 
 
 public class RectangleCreateRequest extends CreateRequest {

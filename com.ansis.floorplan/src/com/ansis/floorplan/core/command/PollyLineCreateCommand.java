@@ -1,10 +1,10 @@
-package com.ansis.floorplan.command;
+package com.ansis.floorplan.core.command;
 
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
 
-import com.ansis.floorplan.model.Canvas;
-import com.ansis.floorplan.model.PollyLine;
+import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.PollyLine;
 
 
 public class PollyLineCreateCommand extends Command {
