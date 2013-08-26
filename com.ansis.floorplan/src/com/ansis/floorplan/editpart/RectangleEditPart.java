@@ -47,6 +47,10 @@ public class RectangleEditPart extends AppAbstractEditPart {
 
 	private Rectangle etageLabelPosition;
 
+	private int oldFontSize;
+	
+	private int y2 = 0;
+
 
 	// ==================== 5. Creators ====================
 
@@ -56,9 +60,10 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		final ChildModel model = (ChildModel)getModel();
 
 		nameLabelPosition = model.getLabelPosition();
-		System.out.println("==================================================================================================================");
-		System.out.println("createFigure - model.getLabelPosition(): " + model.getLabelPosition());
-//		initialLabelPositionAlgorythm(model);
+
+		oldFontSize = model.getFontSize();
+
+		initialLabelPositionAlgorythm(model);
 
 		// Bounds
 		figure.setBounds( model.getBounds() );
@@ -206,43 +211,50 @@ public class RectangleEditPart extends AppAbstractEditPart {
 			refreshVisuals();
 	}
 
-//	private Rectangle initialLabelPositionAlgorythm(final ChildModel model) {
-//		nameLabelPosition = model.getLabelPosition();
-//		
-//		nameLabelPosition.y = nameLabelPosition.height/2 - 20;
-//		nameLabelPosition.x = nameLabelPosition.width/2 - 50;
-//
-//		nameLabelPosition.height = 20;
-//		nameLabelPosition.width = 100;
-//		
-//		etageLabelPosition = new Rectangle(nameLabelPosition);
-//
-//		etageLabelPosition.y = etageLabelPosition.y + 20;
-//
-//		return etageLabelPosition;
-//	}
-	
+	private Rectangle initialLabelPositionAlgorythm(final ChildModel model) {
+		nameLabelPosition = model.getLabelPosition();
+
+		nameLabelPosition.y = nameLabelPosition.height/2 - 20;
+		nameLabelPosition.x = nameLabelPosition.width/2 - 50;
+
+		nameLabelPosition.height = 20;
+		nameLabelPosition.width = 100;
+
+		etageLabelPosition = new Rectangle(nameLabelPosition);
+
+		etageLabelPosition.y = etageLabelPosition.y + 20;
+
+		return etageLabelPosition;
+	}
+
 	private Rectangle dynamicLabelPositionAlgorythm(final ChildModel model) {
-//		nameLabelPosition = model.getLabelPosition();
 		int y = 10;
-		System.out.println("-----------------------------------------------------------------------------------------------------------");
-		System.out.println("dynamicLabelPositionAlgorythm - model.getLabelPosition(): " + model.getLabelPosition());
+
 		y = y + model.getFontSize();
 
-		System.out.println("before algorythm - nameLabelPosition: " + nameLabelPosition);
-		nameLabelPosition.y = nameLabelPosition.height/2 - y;
-		nameLabelPosition.x = nameLabelPosition.width/2 - 50;
+		if (oldFontSize < model.getFontSize()) {
+			nameLabelPosition.y = nameLabelPosition.y + y2/2;
+			nameLabelPosition.y = nameLabelPosition.y - model.getFontSize()/2;
+		} else if (oldFontSize > model.getFontSize()) {
+			nameLabelPosition.y = nameLabelPosition.y - y2/2;
+			nameLabelPosition.y = nameLabelPosition.y + model.getFontSize()/2;
+		} else {
+			return etageLabelPosition;
+		}
 
 		nameLabelPosition.height = y;
 		nameLabelPosition.width = 100;
-		System.out.println("after algorythm - nameLabelPosition: " + nameLabelPosition);
+		
 		etageLabelPosition = new Rectangle(nameLabelPosition);
 
 		etageLabelPosition.y = etageLabelPosition.y + y;
 
+		y2 = model.getFontSize();
+		oldFontSize = model.getFontSize();
+
 		return etageLabelPosition;
 	}
-	
+
 
 	// ==================== 7. Getters & Setters ====================
 
