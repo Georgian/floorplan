@@ -20,4 +20,5 @@ public interface FPConstPresentation
 	String FULL_STOP_SEPARATOR = ". "; //$NON-NLS-1$
 	String COLOR_SEPARATOR = ": "; //$NON-NLS-1$
 	String ELIPSES = "..."; //$NON-NLS-1$
+	String PERCENT = "%"; //$NON-NLS-1$
 }

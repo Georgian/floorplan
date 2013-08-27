@@ -12,6 +12,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.ansis.floorplan.FloorplanActivator;
+import com.ansis.floorplan.util.FPConstPresentation;
 
 
 public class FontColorAction extends SelectionAction {
@@ -61,8 +62,7 @@ public class FontColorAction extends SelectionAction {
 	protected void init() {
 		setId(fontColorProperty);
 		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor("icons/font/fontColor.png")); //$NON-NLS-1$
-		setText("Font color...");  //$NON-NLS-1$
-		setToolTipText("Font color"); //$NON-NLS-1$
+		setText("Font color"+FPConstPresentation.ELIPSES);  //$NON-NLS-1$
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)
 			setImageDescriptor(icon);

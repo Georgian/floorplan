@@ -103,8 +103,8 @@ public class PollyFigure extends PolygonShape implements IFigure {
 
 	public void setFontStyle(final int fontStyle) {
 		this.fontStyle = fontStyle;
-		this.labelName.setFont(new Font(null, "Lucida Handwriting", getFontSize(), fontStyle)); //$NON-NLS-1$
-		this.labelEtage.setFont(new Font(null, "Lucida Handwriting", getFontSize(), fontStyle)); //$NON-NLS-1$
+		this.labelName.setFont(new Font(null, "", getFontSize(), fontStyle)); //$NON-NLS-1$
+		this.labelEtage.setFont(new Font(null, "", getFontSize(), fontStyle)); //$NON-NLS-1$
 	}
 
 	public int getFontSize() {
@@ -113,8 +113,8 @@ public class PollyFigure extends PolygonShape implements IFigure {
 
 	public void setFontSize(final int fontSize) {
 		this.fontSize = fontSize;
-		this.labelName.setFont(new Font(null, "Lucida Handwriting", fontSize, getFontStyle())); //$NON-NLS-1$
-		this.labelEtage.setFont(new Font(null, "Lucida Handwriting", fontSize, getFontStyle())); //$NON-NLS-1$
+		this.labelName.setFont(new Font(null, "", fontSize, getFontStyle())); //$NON-NLS-1$
+		this.labelEtage.setFont(new Font(null, "", fontSize, getFontStyle())); //$NON-NLS-1$
 	}
 
 	public RGB getFontColor() {

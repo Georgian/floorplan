@@ -58,7 +58,6 @@ public class FontSizeThirteenAction extends SelectionAction{
 	protected void init() {
 		setId(fontSizePropertyThirteen);
 		setText(getThirteen());
-		setToolTipText("Font Size 13"); //$NON-NLS-1$
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)
 			setImageDescriptor(icon);

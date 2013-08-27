@@ -219,7 +219,7 @@ public class RectangleEditPart extends AppAbstractEditPart {
 
 		nameLabelPosition.height = height;
 		nameLabelPosition.width = 100;
-		
+
 		etageLabelPosition = new Rectangle(nameLabelPosition);
 
 		etageLabelPosition.y = etageLabelPosition.y + 20;
@@ -232,10 +232,6 @@ public class RectangleEditPart extends AppAbstractEditPart {
 
 		height = height + model.getFontSize();
 
-		System.out.println("================================================");
-		System.out.println("font size modified to: " + model.getFontSize());
-		System.out.println("10 + modified font size: " + height);
-
 		if (oldFontSize < model.getFontSize()) {
 			nameLabelPosition.y = nameLabelPosition.y - (model.getFontSize() - oldFontSize);
 		} else if (oldFontSize > model.getFontSize()) {
@@ -246,7 +242,7 @@ public class RectangleEditPart extends AppAbstractEditPart {
 
 		nameLabelPosition.height = height;
 		nameLabelPosition.width = 100;
-		
+
 		etageLabelPosition = new Rectangle(nameLabelPosition);
 
 		etageLabelPosition.y = etageLabelPosition.y + height;

@@ -36,8 +36,6 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 
 		labelName.setOpaque(true);
 		add(labelName, OrderedLayout.ALIGN_CENTER);
-//		labelName.setLocation(new Point(100, 100));
-//		labelName.setSize(100, 20);
 
 		labelEtage.setOpaque(true);
 		add(labelEtage, OrderedLayout.ALIGN_CENTER);
@@ -83,8 +81,8 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 
 	public void setFontStyle(final int fontStyle) {
 		this.fontStyle = fontStyle;
-		this.labelName.setFont(new Font(null, "Lucida Handwriting", getFontSize(), fontStyle)); //$NON-NLS-1$
-		this.labelEtage.setFont(new Font(null, "Lucida Handwriting", getFontSize(), fontStyle)); //$NON-NLS-1$
+		this.labelName.setFont(new Font(null, "", getFontSize(), fontStyle)); //$NON-NLS-1$
+		this.labelEtage.setFont(new Font(null, "", getFontSize(), fontStyle)); //$NON-NLS-1$
 	}
 
 	public int getFontSize() {
@@ -93,8 +91,8 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 
 	public void setFontSize(final int fontSize) {
 		this.fontSize = fontSize;
-		this.labelName.setFont(new Font(null, "Lucida Handwriting", fontSize, getFontStyle())); //$NON-NLS-1$
-		this.labelEtage.setFont(new Font(null, "Lucida Handwriting", fontSize, getFontStyle())); //$NON-NLS-1$
+		this.labelName.setFont(new Font(null, "", fontSize, getFontStyle())); //$NON-NLS-1$
+		this.labelEtage.setFont(new Font(null, "", fontSize, getFontStyle())); //$NON-NLS-1$
 	}
 
 	public RGB getFontColor() {

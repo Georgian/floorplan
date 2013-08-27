@@ -68,7 +68,7 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 
 		// Rename
 		action = getActionRegistry().getAction(ActionFactory.RENAME.getId());
-		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
+		menu.appendToGroup(GEFActionConstants.GROUP_COPY, action);
 
 		// Color
 		action = getActionRegistry().getAction(ChangeColorAction.changeColorProperty);

@@ -11,6 +11,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.ansis.floorplan.FloorplanActivator;
+import com.ansis.floorplan.util.font.FPFontStyle;
 
 
 public class FontStyleBoldItalicAction extends SelectionAction{
@@ -60,8 +61,7 @@ public class FontStyleBoldItalicAction extends SelectionAction{
 	protected void init() {
 		setId(fontStylePropertyBoldItalic);
 		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor("icons/font/fontBoldItalic.png")); //$NON-NLS-1$
-		setText("Bold and Italic"); //$NON-NLS-1$
-		setToolTipText("Bold and Italic"); //$NON-NLS-1$
+		setText(FPFontStyle.BOLD_ITALIC.getName()); 
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)
 			setImageDescriptor(icon);

@@ -16,6 +16,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.ansis.floorplan.core.model.ChildModel;
 import com.ansis.floorplan.core.wizard.RenameWizard;
+import com.ansis.floorplan.util.FPConstPresentation;
 
 
 public class RenameAction extends SelectionAction {
@@ -45,8 +46,7 @@ public class RenameAction extends SelectionAction {
 
 	@Override
 	protected void init() {
-		setText("Rename..."); //$NON-NLS-1$
-		setToolTipText("Rename"); //$NON-NLS-1$
+		setText("Rename"+FPConstPresentation.ELIPSES); //$NON-NLS-1$
 		setId(ActionFactory.RENAME.getId());
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)

@@ -10,6 +10,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
+import com.ansis.floorplan.util.FPConstPresentation;
+
 
 public class OpacityTenAction extends SelectionAction{
 
@@ -57,8 +59,7 @@ public class OpacityTenAction extends SelectionAction{
 	@Override
 	protected void init() {
 		setId(opacityPropertyTen);
-		setText(getTen()+"%");  //$NON-NLS-1$
-		setToolTipText("Opacity 10"); //$NON-NLS-1$
+		setText(getTen()+FPConstPresentation.PERCENT);  
 		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
 		if (icon != null)
 			setImageDescriptor(icon);

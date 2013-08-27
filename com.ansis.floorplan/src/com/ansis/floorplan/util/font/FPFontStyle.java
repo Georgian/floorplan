@@ -9,10 +9,10 @@ import com.ansis.floorplan.util.FPConstPresentation;
  */
 public enum FPFontStyle
 {
-	NORMAL      ("Normal",      FPConstPresentation.SWT_NORMAL),
-	BOLD        ("Bold",        FPConstPresentation.SWT_BOLD),
-	ITALIC      ("Italic",      FPConstPresentation.SWT_ITALIC),
-	BOLD_ITALIC ("Bold Italic", FPConstPresentation.SWT_BOLD_ITALIC);
+	NORMAL      ("Normal",      FPConstPresentation.SWT_NORMAL), //$NON-NLS-1$
+	BOLD        ("Bold",        FPConstPresentation.SWT_BOLD), //$NON-NLS-1$
+	ITALIC      ("Italic",      FPConstPresentation.SWT_ITALIC), //$NON-NLS-1$
+	BOLD_ITALIC ("Bold Italic", FPConstPresentation.SWT_BOLD_ITALIC); //$NON-NLS-1$
 
 	private final String name;
 	private final int style;
