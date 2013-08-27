@@ -36,18 +36,49 @@ public class PollyLineCreateCommand extends Command {
 	public void execute() {
 
 		if (size == null)
-			return;
+		{
+			if (canvas.getChildren().size() > 0)
+			{
+				final PollyLine newPolly = (PollyLine) canvas.getChildren().get(canvas.getChildren().size()-1);
 
-		pollyLine.setBounds(new Rectangle(location, size));
-		pollyLine.setLayout(new Rectangle(location, size));
-		final Point p = new Point();
-		p.x = size.width;
-		p.y = size.height;
-		
-		final PointList pointList = new PointList(new int[] {location.x, location.y, p.x, p.y});
-		pollyLine.setList(pointList);
+				PointList builderList = newPolly.getList();
+				builderList.addPoint(location.x, location.y);
+				newPolly.setList(builderList);
 
-		canvas.addChild(pollyLine);
+//				final Rectangle boundsHelper = new Rectangle();
+//
+//				boundsHelper.x = 
+//				boundsHelper.y = 
+//				boundsHelper.height =
+//				boundsHelper.width = 
+				newPolly.setBounds(new Rectangle(0,0, 1000,1000));
+				newPolly.setLayout(new Rectangle(0,0, 1000,1000));
+
+
+				if ( canvas.getChildren().size() >= 0)
+					canvas.removeChild(canvas.getChildren().get(canvas.getChildren().size() - 1));
+				canvas.addChild(newPolly);
+
+
+
+				builderList = new PointList();
+
+
+			}
+		}
+		else {
+			System.out.println(location);
+			System.out.println(size);
+			pollyLine.setBounds(new Rectangle(location, size));
+			pollyLine.setLayout(new Rectangle(location, size));
+
+
+			final PointList pointList = new PointList(new int[] {0, 0, size.width, size.height});
+
+			pollyLine.setList(pointList);
+
+			canvas.addChild(pollyLine);
+		}
 	}
 
 
