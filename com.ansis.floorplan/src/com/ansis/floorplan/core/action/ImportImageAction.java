@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import org.eclipse.gef.ui.parts.GraphicalEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
@@ -28,14 +27,14 @@ public class ImportImageAction extends RetargetAction {
 
 	private String image;
 
-	private final MyGraphicalEditor editor;
-
+	private MyGraphicalEditor editor = new MyGraphicalEditor();
 
 	// ==================== 4. Constructors ====================
 
-	public ImportImageAction(final GraphicalEditor editor) {
+	public ImportImageAction() {
 		super(ID, "Import Image");
-		this.editor = (MyGraphicalEditor) editor;
+		
+		this.editor = editor;
 	}
 
 
@@ -75,5 +74,7 @@ public class ImportImageAction extends RetargetAction {
 	public void setImage(final String image) {
 		this.image = image;
 	}
+
+
 
 }

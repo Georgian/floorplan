@@ -49,6 +49,11 @@ public class MyGraphicalEditorActionBarContributor extends ActionBarContributor 
 		toolBarManager.add(getAction(GEFActionConstants.ZOOM_IN));
 		toolBarManager.add(getAction(GEFActionConstants.ZOOM_OUT));
 		toolBarManager.add(new ZoomComboContributionItem(getPage()));
+		toolBarManager.add(new Separator());
+		
+		//import image action
+		toolBarManager.add(new ImportImageAction());
+		
 	}
 
 	@Override
