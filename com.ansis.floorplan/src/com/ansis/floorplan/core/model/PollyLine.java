@@ -9,6 +9,8 @@ public class PollyLine extends ChildModel {
 
 	private PointList list;
 
+	private boolean b;
+
 
 	// ==================== 7. Getters & Setters ====================
 
@@ -20,4 +22,12 @@ public class PollyLine extends ChildModel {
 		this.list = list;
 	}
 
+	public void setDrawingDenied(final boolean b) {
+		this.b = b;
+
+	}
+	public boolean isDrawingDenied() {
+		return b;
+
+	}
 }
