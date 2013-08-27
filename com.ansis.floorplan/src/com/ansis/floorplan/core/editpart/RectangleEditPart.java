@@ -48,8 +48,8 @@ public class RectangleEditPart extends AppAbstractEditPart {
 	private Rectangle etageLabelPosition;
 
 	private int oldFontSize;
-	
-	private int y2 = 0;
+
+	private int height = 20;
 
 
 	// ==================== 5. Creators ====================
@@ -214,12 +214,12 @@ public class RectangleEditPart extends AppAbstractEditPart {
 	private Rectangle initialLabelPositionAlgorythm(final ChildModel model) {
 		nameLabelPosition = model.getLabelPosition();
 
-		nameLabelPosition.y = nameLabelPosition.height/2 - 20;
+		nameLabelPosition.y = nameLabelPosition.height/2 - height;
 		nameLabelPosition.x = nameLabelPosition.width/2 - 50;
 
-		nameLabelPosition.height = 20;
+		nameLabelPosition.height = height;
 		nameLabelPosition.width = 100;
-
+		
 		etageLabelPosition = new Rectangle(nameLabelPosition);
 
 		etageLabelPosition.y = etageLabelPosition.y + 20;
@@ -228,28 +228,29 @@ public class RectangleEditPart extends AppAbstractEditPart {
 	}
 
 	private Rectangle dynamicLabelPositionAlgorythm(final ChildModel model) {
-		int y = 10;
+		height = 10;
 
-		y = y + model.getFontSize();
+		height = height + model.getFontSize();
+
+		System.out.println("================================================");
+		System.out.println("font size modified to: " + model.getFontSize());
+		System.out.println("10 + modified font size: " + height);
 
 		if (oldFontSize < model.getFontSize()) {
-			nameLabelPosition.y = nameLabelPosition.y + y2/2;
-			nameLabelPosition.y = nameLabelPosition.y - model.getFontSize()/2;
+			nameLabelPosition.y = nameLabelPosition.y - (model.getFontSize() - oldFontSize);
 		} else if (oldFontSize > model.getFontSize()) {
-			nameLabelPosition.y = nameLabelPosition.y - y2/2;
-			nameLabelPosition.y = nameLabelPosition.y + model.getFontSize()/2;
+			nameLabelPosition.y = nameLabelPosition.y + (oldFontSize - model.getFontSize());
 		} else {
-			return etageLabelPosition;
+			return null;
 		}
 
-		nameLabelPosition.height = y;
+		nameLabelPosition.height = height;
 		nameLabelPosition.width = 100;
 		
 		etageLabelPosition = new Rectangle(nameLabelPosition);
 
-		etageLabelPosition.y = etageLabelPosition.y + y;
+		etageLabelPosition.y = etageLabelPosition.y + height;
 
-		y2 = model.getFontSize();
 		oldFontSize = model.getFontSize();
 
 		return etageLabelPosition;
