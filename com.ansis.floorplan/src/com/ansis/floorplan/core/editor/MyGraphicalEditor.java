@@ -54,6 +54,7 @@ import com.ansis.floorplan.core.action.opacity.OpacitySixtyAction;
 import com.ansis.floorplan.core.action.opacity.OpacityTenAction;
 import com.ansis.floorplan.core.action.opacity.OpacityTwentyAction;
 import com.ansis.floorplan.core.factory.PartEditFactory;
+import com.ansis.floorplan.core.factory.PollyLineCreationFactory;
 import com.ansis.floorplan.core.factory.RectangleCreationFactory;
 import com.ansis.floorplan.core.model.Canvas;
 import com.ansis.floorplan.core.provider.AppContextMenuProvider;
@@ -289,7 +290,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		// Create the Polygon creation tool
 		final CreationToolEntry drawEntry = new CreationToolEntry("Draw", //$NON-NLS-1$ 
 				"Create Polygon object", //$NON-NLS-1$ 
-				new RectangleCreationFactory(), 
+				new PollyLineCreationFactory(), 
 				FloorplanActivator.getDefault().getImageDescriptor("icons/draw16.ico"), //$NON-NLS-1$ 
 				FloorplanActivator.getDefault().getImageDescriptor("icons/draw.ico")); //$NON-NLS-1$ 
 

@@ -1,5 +1,8 @@
 package com.ansis.floorplan.core.command;
 
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
 
@@ -9,54 +12,62 @@ import com.ansis.floorplan.core.model.PollyLine;
 
 public class PollyLineCreateCommand extends Command {
 
+
 	// ====================== 2. Instance Fields =============================
 
-	private Canvas en;
+	private Canvas canvas;
 
-	private PollyLine srv;
+	private PollyLine pollyLine;
 
+	private Point location;
 
-	// ==================== 4. Constructors ====================
-
-	public PollyLineCreateCommand() {
-		super();
-		en = null;
-		srv = null;
-	}
+	private Dimension size;
 
 
 	// ==================== 6. Action Methods ====================
 
+
 	@Override
 	public boolean canExecute() {
-		if (srv == null || en == null)
-			return false;
 		return true;
 	}
 
 	@Override
 	public void execute() {
-		en.addChild(srv);
-		srv.setParent(en);
+
+		if (size == null)
+			return;
+
+		pollyLine.setBounds(new Rectangle(location, size));
+		pollyLine.setLayout(new Rectangle(location, size));
+		final Point p = new Point();
+		p.x = size.width;
+		p.y = size.height;
+		
+		final PointList pointList = new PointList(new int[] {location.x, location.y, p.x, p.y});
+		pollyLine.setList(pointList);
+
+		canvas.addChild(pollyLine);
 	}
+
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public void setPollyLine(final Object s) {
-		if (s instanceof PollyLine)
-			this.srv = (PollyLine)s;
+	public void setPollyLine(final PollyLine pollyLine) {
+		this.pollyLine = pollyLine;
 	}
 
-	public void setCanvas(final Object e) {
-		if (e instanceof Canvas)
-			this.en = (Canvas)e;
+	public void setCanvas(final Canvas canvas) {
+		this.canvas = canvas;
 	}
 
-	public void setLayout(final Rectangle r) {
-		if (srv == null)
-			return;
-		srv.setLayout(r);
+	public void setLocation(final Point location) {
+		this.location = location;
+	}
+
+	public void setSize(final Dimension size) {
+		this.size = size;
 	}
 
 }

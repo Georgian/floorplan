@@ -21,6 +21,7 @@ import com.ansis.floorplan.core.command.AbstractLayoutCommand;
 import com.ansis.floorplan.core.command.CanvasChangeLayoutCommand;
 import com.ansis.floorplan.core.command.PollyChangeLayoutCommand;
 import com.ansis.floorplan.core.command.PollyLineChangeLayoutCommand;
+import com.ansis.floorplan.core.command.PollyLineCreateCommand;
 import com.ansis.floorplan.core.command.RectangleChangeLayoutCommand;
 import com.ansis.floorplan.core.command.RectangleCreateCommand;
 import com.ansis.floorplan.core.editpart.CanvasEditPart;
@@ -66,17 +67,35 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 	@Override
 	protected Command getCreateCommand(final CreateRequest request) {
 		if (request.getType() == REQ_CREATE && getHost() instanceof CanvasEditPart) {
-			final RectangleCreateCommand command = new RectangleCreateCommand();
 
-			//			System.out.println(request.getSize());
-			//			System.out.println(request.getLocation());
+			if ( request.getNewObject() instanceof RectangleModel) {
+				final RectangleCreateCommand command = new RectangleCreateCommand();
+				//			final PollyLineCreateCommand command = new PollyLineCreateCommand();
 
-			command.setLocation(request.getLocation());
-			command.setSize(request.getSize());
-			command.setCanvas((Canvas) getHost().getModel());
-			command.setRectangle((RectangleModel) request.getNewObject());
+				//			System.out.println(request.getSize());
+				//			System.out.println(request.getLocation());
 
-			return command;
+				command.setLocation(request.getLocation());
+				command.setSize(request.getSize());
+				command.setCanvas((Canvas) getHost().getModel());
+				command.setRectangle((RectangleModel) request.getNewObject());
+				//			command.setPollyLine((PollyLine) request.getNewObject());
+
+				return command;
+			}
+			else if ( request.getNewObject() instanceof PollyLine) {
+				final PollyLineCreateCommand command = new PollyLineCreateCommand();
+
+				//			System.out.println(request.getSize());
+				//			System.out.println(request.getLocation());
+
+				command.setLocation(request.getLocation());
+				command.setSize(request.getSize());
+				command.setCanvas((Canvas) getHost().getModel());
+				command.setPollyLine((PollyLine) request.getNewObject());
+
+				return command;
+			}
 		}
 		return null;
 	}
