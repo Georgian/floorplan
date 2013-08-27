@@ -13,6 +13,8 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.ui.actions.ActionFactory;
 
+import com.ansis.floorplan.core.action.ImportImageAction;
+
 
 public class MyGraphicalEditorActionBarContributor extends ActionBarContributor {
 
@@ -23,6 +25,8 @@ public class MyGraphicalEditorActionBarContributor extends ActionBarContributor 
 		addRetargetAction(new UndoRetargetAction());
 		addRetargetAction(new RedoRetargetAction());
 		addRetargetAction(new DeleteRetargetAction());
+		addRetargetAction(new ImportImageAction());
+		
 
 		// Zooming
 		addRetargetAction(new ZoomInRetargetAction());

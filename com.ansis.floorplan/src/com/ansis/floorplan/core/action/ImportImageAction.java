@@ -4,18 +4,20 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.gef.ui.parts.GraphicalEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.ui.IEditorActionDelegate;
-import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.actions.RetargetAction;
 
 import com.ansis.floorplan.core.editor.MyGraphicalEditor;
 
-
-public class ImportImageAction implements IEditorActionDelegate {
+/**
+ * 
+ * @author PsYCh
+ *
+ */
+public class ImportImageAction extends RetargetAction {
 
 	// ==================== 1. Static Fields ========================
 
@@ -26,13 +28,13 @@ public class ImportImageAction implements IEditorActionDelegate {
 
 	private String image;
 
-	private MyGraphicalEditor editor;
+	private final MyGraphicalEditor editor;
 
 
-	// ==================== 5. Creators ====================
+	// ==================== 4. Constructors ====================
 
-	@Override
-	public void setActiveEditor(final IAction action, final IEditorPart editor) {
+	public ImportImageAction(final GraphicalEditor editor) {
+		super(ID, "Import Image");
 		this.editor = (MyGraphicalEditor) editor;
 	}
 
@@ -40,8 +42,7 @@ public class ImportImageAction implements IEditorActionDelegate {
 	// ==================== 6. Action Methods ====================
 
 	@Override
-	public void run (final IAction action) {
-
+	public void run() {
 		final FileDialog fd = new FileDialog(Display.getCurrent().getActiveShell(), SWT.OPEN);
 
 		fd.setFilterPath("C:/"); //$NON-NLS-1$
@@ -62,12 +63,6 @@ public class ImportImageAction implements IEditorActionDelegate {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
-	}
-
-	@Override
-	public void selectionChanged(final IAction action, final ISelection selection) {
-
 	}
 
 
