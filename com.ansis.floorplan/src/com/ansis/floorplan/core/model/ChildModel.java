@@ -3,6 +3,9 @@ package com.ansis.floorplan.core.model;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.RGB;
 
+import com.ansis.floorplan.FloorplanActivator;
+import com.ansis.floorplan.util.color.FPStandardColor;
+
 
 public class ChildModel extends CanvasModel {
 
@@ -90,7 +93,7 @@ public class ChildModel extends CanvasModel {
 
 	public RGB getColor() {
 		if (color == null)
-			color = new RGB(0, 0, 192);
+			color = FloorplanActivator.getDefault().getColor(FPStandardColor.BLUE_NAVY).getRGB();
 		return color;
 	}
 
@@ -102,7 +105,7 @@ public class ChildModel extends CanvasModel {
 
 	public RGB getLineColor() {
 		if (lineColor == null)
-			lineColor = new RGB(0, 0, 255);
+			lineColor = FloorplanActivator.getDefault().getColor(FPStandardColor.BLUE).getRGB();
 		return lineColor;
 	}
 
@@ -146,7 +149,7 @@ public class ChildModel extends CanvasModel {
 
 	public RGB getFontColor() {
 		if (fontColor == null)
-			fontColor = new RGB(0, 0, 0);
+			fontColor = FloorplanActivator.getDefault().getColor(FPStandardColor.BLACK).getRGB();
 		return fontColor;
 	}
 
@@ -158,7 +161,7 @@ public class ChildModel extends CanvasModel {
 
 	public RGB getLabelColor() {
 		if (labelColor == null)
-			labelColor = new RGB(255, 255, 255);
+			labelColor = FloorplanActivator.getDefault().getColor(FPStandardColor.WHITE).getRGB();
 		return labelColor;
 	}
 

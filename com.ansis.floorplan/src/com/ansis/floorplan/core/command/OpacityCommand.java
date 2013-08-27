@@ -21,7 +21,7 @@ public class OpacityCommand extends Command {
 	@Override
 	public void execute() {
 		this.oldOpacity = Integer.toString(model.getOpacity());
-		final int realOpacity = (255*Integer.parseInt(newOpacity))/100;
+		final int realOpacity = (255 * Integer.parseInt(newOpacity))/100;
 		this.model.setOpacity(realOpacity);
 	}
 

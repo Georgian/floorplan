@@ -3,7 +3,6 @@ package com.ansis.floorplan.core.editpolicy;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.FigureUtilities;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolygonShape;
@@ -17,6 +16,7 @@ import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 
+import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.core.command.AbstractLayoutCommand;
 import com.ansis.floorplan.core.command.CanvasChangeLayoutCommand;
 import com.ansis.floorplan.core.command.PollyChangeLayoutCommand;
@@ -32,6 +32,7 @@ import com.ansis.floorplan.core.model.Canvas;
 import com.ansis.floorplan.core.model.Polly;
 import com.ansis.floorplan.core.model.PollyLine;
 import com.ansis.floorplan.core.model.RectangleModel;
+import com.ansis.floorplan.util.color.FPStandardColor;
 
 
 public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
@@ -70,24 +71,16 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 
 			if ( request.getNewObject() instanceof RectangleModel) {
 				final RectangleCreateCommand command = new RectangleCreateCommand();
-				//			final PollyLineCreateCommand command = new PollyLineCreateCommand();
-
-				//			System.out.println(request.getSize());
-				//			System.out.println(request.getLocation());
 
 				command.setLocation(request.getLocation());
 				command.setSize(request.getSize());
 				command.setCanvas((Canvas) getHost().getModel());
 				command.setRectangle((RectangleModel) request.getNewObject());
-				//			command.setPollyLine((PollyLine) request.getNewObject());
 
 				return command;
 			}
 			else if ( request.getNewObject() instanceof PollyLine) {
 				final PollyLineCreateCommand command = new PollyLineCreateCommand();
-
-				//			System.out.println(request.getSize());
-				//			System.out.println(request.getLocation());
 
 				command.setLocation(request.getLocation());
 				command.setSize(request.getSize());
@@ -120,7 +113,7 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 					final Polly polly = (Polly) child.getModel();
 					p.setPoints(polly.getList());
 					FigureUtilities.makeGhostShape(p);
-					p.setForegroundColor(ColorConstants.white);
+					p.setForegroundColor( FloorplanActivator.getDefault().getColor(FPStandardColor.WHITE) );
 					p.validate();
 					addFeedback(p);
 					return p;
@@ -131,7 +124,7 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 					final PollyLine pollyLine = (PollyLine) child.getModel();
 					p.setPoints(pollyLine.getList());
 					FigureUtilities.makeGhostShape(p);
-					p.setForegroundColor(ColorConstants.white);
+					p.setForegroundColor( FloorplanActivator.getDefault().getColor(FPStandardColor.WHITE) );
 					p.validate();
 					addFeedback(p);
 					return p;
@@ -139,7 +132,7 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 				else if (child.getModel() instanceof RectangleModel) {
 					final RectangleFigure r = new RectangleFigure();
 					FigureUtilities.makeGhostShape(r);
-					r.setForegroundColor(ColorConstants.white);
+					r.setForegroundColor( FloorplanActivator.getDefault().getColor(FPStandardColor.WHITE) );
 					r.setBounds(getInitialFeedbackBounds());
 					r.validate();
 					addFeedback(r);

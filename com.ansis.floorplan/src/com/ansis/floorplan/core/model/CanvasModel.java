@@ -9,6 +9,8 @@ import java.util.List;
 
 import org.eclipse.draw2d.geometry.Rectangle;
 
+import com.ansis.floorplan.util.FPConstPresentation;
+
 
 public class CanvasModel {
 
@@ -85,7 +87,7 @@ public class CanvasModel {
 		} else {
 			figure.setParent(this);
 			children.add(figure);
-			getListeners().firePropertyChange(new PropertyChangeEvent(this, "", null, null)); //$NON-NLS-1$
+			getListeners().firePropertyChange(new PropertyChangeEvent(this, FPConstPresentation.EMPTY_STRING, null, null)); 
 		}
 
 		return b;

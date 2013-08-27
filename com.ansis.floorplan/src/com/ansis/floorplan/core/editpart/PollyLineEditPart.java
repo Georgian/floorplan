@@ -4,8 +4,8 @@ import java.beans.PropertyChangeEvent;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.swt.graphics.Color;
 
+import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.core.editpolicy.AppDeletePolicy;
 import com.ansis.floorplan.core.figure.PollyLineFigure;
 import com.ansis.floorplan.core.model.CanvasModel;
@@ -19,11 +19,12 @@ public class PollyLineEditPart extends AppAbstractEditPart {
 	@Override
 	protected IFigure createFigure() {
 		final PollyLineFigure figure = new PollyLineFigure();
+		final PollyLine model = (PollyLine)getModel();
 
-		figure.setBounds( ((PollyLine)getModel()).getBounds());
-		figure.setList( ((PollyLine)getModel()).getList() );
-		figure.setForegroundColor( new Color(null, ((PollyLine)getModel()).getLineColor()) );
-		figure.setAlpha( ((PollyLine)getModel()).getOpacity() );
+		figure.setBounds( model.getBounds());
+		figure.setList( model.getList() );
+		figure.setForegroundColor( FloorplanActivator.getDefault().getColor(model.getLineColor()) );
+		figure.setAlpha( model.getOpacity() );
 
 		return figure;
 	}
@@ -45,7 +46,7 @@ public class PollyLineEditPart extends AppAbstractEditPart {
 
 		figure.setBounds(model.getBounds());
 		figure.setLayout(model.getLayout());
-		figure.setForegroundColor(new Color(null, model.getLineColor()));
+		figure.setForegroundColor( FloorplanActivator.getDefault().getColor(model.getLineColor()) );
 		figure.setAlpha(model.getOpacity());
 	}
 

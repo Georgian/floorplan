@@ -8,8 +8,8 @@ import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.tools.DragEditPartsTracker;
-import org.eclipse.swt.graphics.Color;
 
+import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.core.editpolicy.AppChangeColorPolicy;
 import com.ansis.floorplan.core.editpolicy.AppChangeLabelColorPolicy;
 import com.ansis.floorplan.core.editpolicy.AppDeletePolicy;
@@ -76,9 +76,9 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		// Etage
 		figure.setEtage( model.getEtage() );
 		// Color
-		figure.setBackgroundColor( new Color(null, model.getColor()) );
+		figure.setBackgroundColor( FloorplanActivator.getDefault().getColor(model.getColor()) );
 		// Line Color
-		figure.setForegroundColor( new Color(null, model.getLineColor()) );
+		figure.setForegroundColor( FloorplanActivator.getDefault().getColor(model.getLineColor()) );
 		// Opacity
 		figure.setAlpha( model.getOpacity() );
 		// FontStyle
@@ -86,11 +86,11 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		// FontSize
 		figure.setFontSize( model.getFontSize() );
 		// FontColor
-		figure.getLabelName().setForegroundColor( new Color(null, model.getFontColor()) );
-		figure.getLabelEtage().setForegroundColor( new Color(null, model.getFontColor()) );
+		figure.getLabelName().setForegroundColor( FloorplanActivator.getDefault().getColor(model.getFontColor()) );
+		figure.getLabelEtage().setForegroundColor( FloorplanActivator.getDefault().getColor(model.getFontColor()) );
 		// LabelColor
-		figure.getLabelName().setBackgroundColor( new Color(null, model.getLabelColor()) );
-		figure.getLabelEtage().setBackgroundColor( new Color(null, model.getLabelColor()) );
+		figure.getLabelName().setBackgroundColor( FloorplanActivator.getDefault().getColor(model.getLabelColor()) );
+		figure.getLabelEtage().setBackgroundColor( FloorplanActivator.getDefault().getColor(model.getLabelColor()) );
 
 		return figure;
 	}
@@ -150,9 +150,9 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		// Layout
 		figure.setLayout(model.getLayout());
 		// Color
-		figure.setBackgroundColor(new Color(null, model.getColor()));
+		figure.setBackgroundColor( FloorplanActivator.getDefault().getColor(model.getColor()) );
 		// Line Color
-		figure.setForegroundColor(new Color(null, model.getColor()));
+		figure.setForegroundColor( FloorplanActivator.getDefault().getColor(model.getColor()) );
 		// Opacity
 		figure.setAlpha(model.getOpacity());
 		// Font Style
@@ -160,11 +160,11 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		// Font Size
 		figure.setFontSize(model.getFontSize());
 		// Font Color
-		figure.getLabelName().setForegroundColor(new Color(null, model.getFontColor()));
-		figure.getLabelEtage().setForegroundColor(new Color(null, model.getFontColor()));
+		figure.getLabelName().setForegroundColor( FloorplanActivator.getDefault().getColor(model.getFontColor()) );
+		figure.getLabelEtage().setForegroundColor( FloorplanActivator.getDefault().getColor(model.getFontColor()) );
 		// Label Color
-		figure.getLabelName().setBackgroundColor(new Color(null, model.getLabelColor()));
-		figure.getLabelEtage().setBackgroundColor(new Color(null, model.getLabelColor()));
+		figure.getLabelName().setBackgroundColor( FloorplanActivator.getDefault().getColor(model.getLabelColor()) );
+		figure.getLabelEtage().setBackgroundColor( FloorplanActivator.getDefault().getColor(model.getLabelColor()) );
 	}
 
 	@Override
@@ -215,10 +215,10 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		nameLabelPosition = model.getLabelPosition();
 
 		nameLabelPosition.y = nameLabelPosition.height/2 - height;
-		nameLabelPosition.x = nameLabelPosition.width/2 - 50;
+		nameLabelPosition.x = nameLabelPosition.width/2 - (model.getName().length() * model.getFontSize())/2;
 
 		nameLabelPosition.height = height;
-		nameLabelPosition.width = 100;
+		nameLabelPosition.width = model.getName().length() * model.getFontSize();
 
 		etageLabelPosition = new Rectangle(nameLabelPosition);
 
@@ -232,16 +232,40 @@ public class RectangleEditPart extends AppAbstractEditPart {
 
 		height = height + model.getFontSize();
 
+		System.out.println("===========================================================================================");
+		System.out.println("nameLabelPosition.x before: " + nameLabelPosition.x);
+		System.out.println("nameLabelPosition.width before: " + nameLabelPosition.width);
+		System.out.println("model.getFontSize(): " + model.getFontSize());
+		System.out.println("oldFontSize: " + oldFontSize);
+		System.out.println("model.getName().length(): " + model.getName().length());
+		
 		if (oldFontSize < model.getFontSize()) {
 			nameLabelPosition.y = nameLabelPosition.y - (model.getFontSize() - oldFontSize);
+			System.out.println("----------------------------------------------------------------------------------------");
+			System.out.println( nameLabelPosition.x + " - ( ( " + model.getFontSize() + " - " + oldFontSize + " ) * " + model.getName().length() + " )/2 = " );
+			System.out.println( nameLabelPosition.x + " - ( " + (model.getFontSize() - oldFontSize) + " * " + model.getName().length() + " )/2 = " );
+			System.out.println( nameLabelPosition.x + " - " + ((model.getFontSize() - oldFontSize) * model.getName().length()) + "/2 = " );
+			System.out.println( nameLabelPosition.x + " - " + (((model.getFontSize() - oldFontSize) * model.getName().length())/2) + " = " );
+			
+			nameLabelPosition.x = nameLabelPosition.x - ( (model.getFontSize() - oldFontSize) * model.getName().length() )/2;
 		} else if (oldFontSize > model.getFontSize()) {
 			nameLabelPosition.y = nameLabelPosition.y + (oldFontSize - model.getFontSize());
+			System.out.println("----------------------------------------------------------------------------------------");
+			System.out.println( nameLabelPosition.x + " + ( ( " +  oldFontSize + " - " + model.getFontSize() + " ) * " + model.getName().length() + " )/2 = " );
+			System.out.println( nameLabelPosition.x + " + ( " +  (oldFontSize - model.getFontSize()) + " * " + model.getName().length() + " )/2 = " );
+			System.out.println( nameLabelPosition.x + " + " +  ((oldFontSize - model.getFontSize()) * model.getName().length()) + "/2 = " );
+			System.out.println( nameLabelPosition.x + " + " +  (((oldFontSize - model.getFontSize()) * model.getName().length())/2) + " = " );
+			
+			nameLabelPosition.x = nameLabelPosition.x + ( (oldFontSize - model.getFontSize()) * model.getName().length() )/2;
 		} else {
 			return null;
 		}
+		System.out.println( "nameLabelPosition.x after: " + nameLabelPosition.x );
 
 		nameLabelPosition.height = height;
-		nameLabelPosition.width = 100;
+		nameLabelPosition.width = model.getName().length() * (model.getFontSize() - 1);
+		
+		System.out.println("nameLabelPosition.width after: " + nameLabelPosition.width);
 
 		etageLabelPosition = new Rectangle(nameLabelPosition);
 

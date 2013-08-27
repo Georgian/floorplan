@@ -6,9 +6,9 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.ui.actions.SelectionAction;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
+
+import com.ansis.floorplan.util.FPConstPresentation;
 
 
 public class FontSizeSixteenAction extends SelectionAction{
@@ -48,7 +48,7 @@ public class FontSizeSixteenAction extends SelectionAction{
 
 	@Override
 	protected boolean calculateEnabled() {
-		final Command cmd = createFontSizeCommand(""); //$NON-NLS-1$
+		final Command cmd = createFontSizeCommand(FPConstPresentation.EMPTY_STRING); 
 		if (cmd == null)
 			return false;
 		return true;
@@ -58,9 +58,6 @@ public class FontSizeSixteenAction extends SelectionAction{
 	protected void init() {
 		setId(fontSizePropertySixteen);
 		setText(getSixteen());
-		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
-		if (icon != null)
-			setImageDescriptor(icon);
 		setEnabled(false);
 	}
 

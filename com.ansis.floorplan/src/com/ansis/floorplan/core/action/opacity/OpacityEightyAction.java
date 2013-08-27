@@ -6,9 +6,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.ui.actions.SelectionAction;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.ansis.floorplan.util.FPConstPresentation;
 
@@ -50,7 +48,7 @@ public class OpacityEightyAction extends SelectionAction{
 
 	@Override
 	protected boolean calculateEnabled() {
-		final Command cmd = createOpacityCommand(""); //$NON-NLS-1$
+		final Command cmd = createOpacityCommand(FPConstPresentation.EMPTY_STRING); 
 		if (cmd == null)
 			return false;
 		return true;
@@ -59,10 +57,7 @@ public class OpacityEightyAction extends SelectionAction{
 	@Override
 	protected void init() {
 		setId(opacityPropertyEighty);
-		setText(getEighty()+FPConstPresentation.PERCENT);  
-		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
-		if (icon != null)
-			setImageDescriptor(icon);
+		setText(getEighty() + FPConstPresentation.PERCENT);  
 		setEnabled(false);
 	}
 

@@ -12,7 +12,6 @@ import com.ansis.floorplan.core.model.PollyLine;
 
 public class PollyLineCreateCommand extends Command {
 
-
 	// ====================== 2. Instance Fields =============================
 
 	private Canvas canvas;
@@ -26,12 +25,12 @@ public class PollyLineCreateCommand extends Command {
 
 	// ==================== 6. Action Methods ====================
 
-
 	@Override
 	public boolean canExecute() {
 		return true;
 	}
 
+	@SuppressWarnings("static-access")
 	@Override
 	public void execute() {
 		if (canvas.getChildren().size() > 0)
@@ -47,33 +46,20 @@ public class PollyLineCreateCommand extends Command {
 					builderList.addPoint(location.x, location.y);
 					newPolly.setList(builderList);
 
-					//				final Rectangle boundsHelper = new Rectangle();
-					//
-					//				boundsHelper.x = 
-					//				boundsHelper.y = 
-					//				boundsHelper.height =
-					//				boundsHelper.width = 
 					newPolly.setBounds(new Rectangle(0,0, 1000,1000));
 					newPolly.setLayout(new Rectangle(0,0, 1000,1000));
-
 
 					if ( canvas.getChildren().size() >= 0)
 						canvas.removeChild(canvas.getChildren().get(canvas.getChildren().size() - 1));
 					canvas.addChild(newPolly);
 
-
-
 					builderList = new PointList();
-
-
 				}
 			}
 			else if (newPolly.isDrawingDenied() == false) {
-				//			System.out.println(location);
-				//			System.out.println(size);
+
 				pollyLine.setBounds(new Rectangle(location, size));
 				pollyLine.setLayout(new Rectangle(location, size));
-
 
 				final PointList pointList = new PointList(new int[] {0, 0, size.width, size.height});
 
@@ -84,11 +70,9 @@ public class PollyLineCreateCommand extends Command {
 			}
 		} 		
 		else if (size != null) {
-			//			System.out.println(location);
-			//			System.out.println(size);
+
 			pollyLine.setBounds(new Rectangle(location, size));
 			pollyLine.setLayout(new Rectangle(location, size));
-
 
 			final PointList pointList = new PointList(new int[] {0, 0, size.width, size.height});
 

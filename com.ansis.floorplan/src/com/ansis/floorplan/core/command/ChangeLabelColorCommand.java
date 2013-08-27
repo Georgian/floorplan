@@ -6,6 +6,7 @@ import org.eclipse.swt.widgets.ColorDialog;
 import org.eclipse.swt.widgets.Display;
 
 import com.ansis.floorplan.core.model.ChildModel;
+import com.ansis.floorplan.util.FPConstPresentation;
 
 
 public class ChangeLabelColorCommand extends Command {
@@ -31,7 +32,7 @@ public class ChangeLabelColorCommand extends Command {
 		final ColorDialog dlg = new ColorDialog(Display.getCurrent().getActiveShell());
 
 		// Change the title bar text
-		dlg.setText("Choose a font background color..."); //$NON-NLS-1$
+		dlg.setText("Choose a label color" + FPConstPresentation.ELIPSES); //$NON-NLS-1$
 
 		// Open the dialog and retrieve the selected color
 		final RGB rgb = dlg.open();

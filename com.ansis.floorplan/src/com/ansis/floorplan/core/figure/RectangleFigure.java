@@ -7,6 +7,8 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.RGB;
 
+import com.ansis.floorplan.util.FPConstPresentation;
+
 
 public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 
@@ -60,7 +62,7 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 	}
 
 	public void setEtage(final int etage) {
-		labelEtage.setText("Etage:"+etage); //$NON-NLS-1$
+		labelEtage.setText("Etage: " + etage); //$NON-NLS-1$
 	}
 
 	public void setLayout(final Rectangle rect) {
@@ -81,8 +83,8 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 
 	public void setFontStyle(final int fontStyle) {
 		this.fontStyle = fontStyle;
-		this.labelName.setFont(new Font(null, "", getFontSize(), fontStyle)); //$NON-NLS-1$
-		this.labelEtage.setFont(new Font(null, "", getFontSize(), fontStyle)); //$NON-NLS-1$
+		this.labelName.setFont(new Font(null, FPConstPresentation.EMPTY_STRING, getFontSize(), fontStyle)); 
+		this.labelEtage.setFont(new Font(null, FPConstPresentation.EMPTY_STRING, getFontSize(), fontStyle)); 
 	}
 
 	public int getFontSize() {
@@ -91,8 +93,8 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 
 	public void setFontSize(final int fontSize) {
 		this.fontSize = fontSize;
-		this.labelName.setFont(new Font(null, "", fontSize, getFontStyle())); //$NON-NLS-1$
-		this.labelEtage.setFont(new Font(null, "", fontSize, getFontStyle())); //$NON-NLS-1$
+		this.labelName.setFont(new Font(null, FPConstPresentation.EMPTY_STRING, fontSize, getFontStyle())); 
+		this.labelEtage.setFont(new Font(null, FPConstPresentation.EMPTY_STRING, fontSize, getFontStyle())); 
 	}
 
 	public RGB getFontColor() {

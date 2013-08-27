@@ -6,6 +6,7 @@ import org.eclipse.swt.widgets.ColorDialog;
 import org.eclipse.swt.widgets.Display;
 
 import com.ansis.floorplan.core.model.ChildModel;
+import com.ansis.floorplan.util.FPConstPresentation;
 
 
 public class FontColorCommand extends Command {
@@ -25,13 +26,12 @@ public class FontColorCommand extends Command {
 	@Override
 	public void execute() {
 		this.oldFontColor = model.getFontColor();
-		//		this.model.setColor(newColor);
 
 		// Create the color-change dialog
 		final ColorDialog dlg = new ColorDialog(Display.getCurrent().getActiveShell());
 
 		// Change the title bar text
-		dlg.setText("Choose a font color..."); //$NON-NLS-1$
+		dlg.setText("Choose a font color" + FPConstPresentation.ELIPSES); //$NON-NLS-1$
 
 		// Open the dialog and retrieve the selected color
 		final RGB rgb = dlg.open();

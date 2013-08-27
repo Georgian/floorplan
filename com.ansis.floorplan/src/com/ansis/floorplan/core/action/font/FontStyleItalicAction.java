@@ -6,11 +6,11 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.ui.actions.SelectionAction;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.ansis.floorplan.FloorplanActivator;
+import com.ansis.floorplan.IFloorplanImageKeys;
+import com.ansis.floorplan.util.FPConstPresentation;
 import com.ansis.floorplan.util.font.FPFontStyle;
 
 
@@ -51,7 +51,7 @@ public class FontStyleItalicAction extends SelectionAction{
 
 	@Override
 	protected boolean calculateEnabled() {
-		final Command cmd = createFontStyleCommand(""); //$NON-NLS-1$
+		final Command cmd = createFontStyleCommand(FPConstPresentation.EMPTY_STRING); 
 		if (cmd == null)
 			return false;
 		return true;
@@ -60,11 +60,8 @@ public class FontStyleItalicAction extends SelectionAction{
 	@Override
 	protected void init() {
 		setId(fontStylePropertyItalic);
-		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor("icons/font/fontItalic.png")); //$NON-NLS-1$
+		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_ITALIC)); 
 		setText(FPFontStyle.ITALIC.getName()); 
-		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
-		if (icon != null)
-			setImageDescriptor(icon);
 		setEnabled(false);
 	}
 

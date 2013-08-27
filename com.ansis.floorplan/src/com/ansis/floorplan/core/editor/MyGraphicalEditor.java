@@ -31,6 +31,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.ui.actions.ActionFactory;
 
 import com.ansis.floorplan.FloorplanActivator;
+import com.ansis.floorplan.IFloorplanImageKeys;
 import com.ansis.floorplan.app.MyTemplateTransferDropTargetListener;
 import com.ansis.floorplan.core.action.ChangeColorAction;
 import com.ansis.floorplan.core.action.ChangeLabelColorAction;
@@ -81,13 +82,6 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 	// ==================== 5. Creators ====================
 
-	//	public Canvas createContent() {
-	//		final Canvas canvas = new Canvas();
-	//
-	//		return canvas;
-	//	}
-
-	// For rename
 	@SuppressWarnings("unchecked")
 	@Override
 	public void createActions() {
@@ -291,8 +285,8 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final CreationToolEntry drawEntry = new CreationToolEntry("Draw", //$NON-NLS-1$ 
 				"Create Polygon object", //$NON-NLS-1$ 
 				new PollyLineCreationFactory(), 
-				FloorplanActivator.getDefault().getImageDescriptor("icons/draw16.ico"), //$NON-NLS-1$ 
-				FloorplanActivator.getDefault().getImageDescriptor("icons/draw.ico")); //$NON-NLS-1$ 
+				FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_DRAW_16), 
+				FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_DRAW_24)); 
 
 		instGroup.add(drawEntry);
 
@@ -300,8 +294,8 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final CreationToolEntry creationEntry = new CreationToolEntry("Rectangle", //$NON-NLS-1$ 
 				"Create Rectangle object", //$NON-NLS-1$ 
 				new RectangleCreationFactory(), 
-				FloorplanActivator.getDefault().getImageDescriptor("icons/rec16.png"), //$NON-NLS-1$ 
-				FloorplanActivator.getDefault().getImageDescriptor("icons/rec24.png")); //$NON-NLS-1$ 
+				FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_RECT_16), 
+				FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_RECT_24)); 
 
 		instGroup.add(creationEntry);
 

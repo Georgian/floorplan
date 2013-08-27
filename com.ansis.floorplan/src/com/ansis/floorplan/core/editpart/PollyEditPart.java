@@ -7,8 +7,8 @@ import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.tools.DragEditPartsTracker;
-import org.eclipse.swt.graphics.Color;
 
+import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.core.editpolicy.AppChangeColorPolicy;
 import com.ansis.floorplan.core.editpolicy.AppChangeLabelColorPolicy;
 import com.ansis.floorplan.core.editpolicy.AppDeletePolicy;
@@ -46,35 +46,36 @@ public class PollyEditPart extends AppAbstractEditPart {
 	@Override
 	protected IFigure createFigure() {
 		final PollyFigure figure = new PollyFigure( ((ChildModel)getModel()).getLabelPosition() );
+		final ChildModel model = (ChildModel)getModel();
 
 		// Name
-		figure.setName( ((ChildModel)getModel()).getName() );
+		figure.setName( model.getName() );
 		// Etage
-		figure.setEtage( ((ChildModel)getModel()).getEtage() );
+		figure.setEtage( model.getEtage() );
 		// Bounds
-		figure.setBounds( ((ChildModel)getModel()).getBounds() );
+		figure.setBounds( model.getBounds() );
 		// PointList
 		figure.setList( ((Polly)getModel()).getList() );
 		// Name
-		figure.setName( ((ChildModel)getModel()).getName() );
+		figure.setName( model.getName() );
 		// Etage
-		figure.setEtage( ((ChildModel)getModel()).getEtage() );
+		figure.setEtage( model.getEtage() );
 		// Color
-		figure.setBackgroundColor( new Color(null, ((ChildModel)getModel()).getColor()) );
+		figure.setBackgroundColor( FloorplanActivator.getDefault().getColor(model.getColor()) );
 		// Line Color
-		figure.setForegroundColor( new Color(null, ((ChildModel)getModel()).getLineColor()) );
+		figure.setForegroundColor( FloorplanActivator.getDefault().getColor(model.getLineColor()) );
 		// Opacity
-		figure.setAlpha( ((ChildModel)getModel()).getOpacity() );
+		figure.setAlpha( model.getOpacity() );
 		// FontStyle
-		figure.setFontStyle( ((ChildModel)getModel()).getFontStyle() );
+		figure.setFontStyle( model.getFontStyle() );
 		// FontSize
-		figure.setFontSize( ((ChildModel)getModel()).getFontSize() );
+		figure.setFontSize( model.getFontSize() );
 		// FontColor
-		figure.getLabelName().setForegroundColor( new Color(null, ((ChildModel)getModel()).getFontColor()) );
-		figure.getLabelEtage().setForegroundColor( new Color(null, ((ChildModel)getModel()).getFontColor()) );
+		figure.getLabelName().setForegroundColor( FloorplanActivator.getDefault().getColor(model.getFontColor()) );
+		figure.getLabelEtage().setForegroundColor( FloorplanActivator.getDefault().getColor(model.getFontColor()) );
 		// LabelColor
-		figure.getLabelName().setBackgroundColor( new Color(null, ((ChildModel)getModel()).getLabelColor()) );
-		figure.getLabelEtage().setBackgroundColor( new Color(null, ((ChildModel)getModel()).getLabelColor()) );
+		figure.getLabelName().setBackgroundColor( FloorplanActivator.getDefault().getColor(model.getLabelColor()) );
+		figure.getLabelEtage().setBackgroundColor( FloorplanActivator.getDefault().getColor(model.getLabelColor()) );
 
 		return figure;
 	}
@@ -146,9 +147,9 @@ public class PollyEditPart extends AppAbstractEditPart {
 		// Layout
 		figure.setLayout(model.getLayout());
 		// Color
-		figure.setBackgroundColor(new Color(null, model.getColor()));
+		figure.setBackgroundColor( FloorplanActivator.getDefault().getColor(model.getColor()) );
 		// LineColor
-		figure.setForegroundColor(new Color(null, model.getColor()));
+		figure.setForegroundColor( FloorplanActivator.getDefault().getColor(model.getColor()) );
 		// Opacity
 		figure.setAlpha(model.getOpacity());
 		// FontStyle
@@ -156,11 +157,11 @@ public class PollyEditPart extends AppAbstractEditPart {
 		// FontSize
 		figure.setFontSize(model.getFontSize());
 		// FontColor
-		figure.getLabelName().setForegroundColor(new Color(null, model.getFontColor()));
-		figure.getLabelEtage().setForegroundColor(new Color(null, model.getFontColor()));
+		figure.getLabelName().setForegroundColor( FloorplanActivator.getDefault().getColor(model.getFontColor()) );
+		figure.getLabelEtage().setForegroundColor( FloorplanActivator.getDefault().getColor(model.getFontColor()) );
 		// LabelColor
-		figure.getLabelName().setBackgroundColor(new Color(null, model.getLabelColor()));
-		figure.getLabelEtage().setBackgroundColor(new Color(null, model.getLabelColor()));
+		figure.getLabelName().setBackgroundColor( FloorplanActivator.getDefault().getColor(model.getLabelColor()) );
+		figure.getLabelEtage().setBackgroundColor( FloorplanActivator.getDefault().getColor(model.getLabelColor()) );
 	}
 
 	@Override

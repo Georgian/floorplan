@@ -6,10 +6,8 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.ui.actions.SelectionAction;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.util.FPConstPresentation;
@@ -63,9 +61,6 @@ public class FontColorAction extends SelectionAction {
 		setId(fontColorProperty);
 		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor("icons/font/fontColor.png")); //$NON-NLS-1$
 		setText("Font color"+FPConstPresentation.ELIPSES);  //$NON-NLS-1$
-		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
-		if (icon != null)
-			setImageDescriptor(icon);
 		setEnabled(false);
 	}
 

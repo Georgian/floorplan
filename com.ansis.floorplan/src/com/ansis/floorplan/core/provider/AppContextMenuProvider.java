@@ -10,6 +10,7 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.ui.actions.ActionFactory;
 
 import com.ansis.floorplan.FloorplanActivator;
+import com.ansis.floorplan.IFloorplanImageKeys;
 import com.ansis.floorplan.core.action.ChangeColorAction;
 import com.ansis.floorplan.core.action.ChangeLabelColorAction;
 import com.ansis.floorplan.core.action.font.FontColorAction;
@@ -75,7 +76,7 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		menu.appendToGroup(GEFActionConstants.GROUP_VIEW, action);
 
 		// Opacity
-		final MenuManager opacitySubmenu = new MenuManager("Figure opacity", FloorplanActivator.getDefault().getImageDescriptor("icons/figureOpacity.png"), "opacitySubmenuID"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		final MenuManager opacitySubmenu = new MenuManager("Figure opacity", FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_OPACITY), "opacitySubmenuID"); //$NON-NLS-1$ //$NON-NLS-2$ 
 
 		action = getActionRegistry().getAction(OpacityTenAction.opacityPropertyTen);
 		opacitySubmenu.add(action);
@@ -98,7 +99,7 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		menu.appendToGroup(GEFActionConstants.GROUP_VIEW, opacitySubmenu);
 
 		// Font Style
-		final MenuManager fontStyleSubmenu = new MenuManager("Font style", FloorplanActivator.getDefault().getImageDescriptor("icons/font/fontNormal.png"), "fontStyleSubmenuID"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		final MenuManager fontStyleSubmenu = new MenuManager("Font style", FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_NORMAL), "fontStyleSubmenuID"); //$NON-NLS-1$ //$NON-NLS-2$ 
 
 		action = getActionRegistry().getAction(FontStyleNormalAction.fontStylePropertyNormal);
 		fontStyleSubmenu.add(action);
@@ -115,7 +116,7 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		menu.appendToGroup(GEFActionConstants.GROUP_REST, fontStyleSubmenu);
 
 		// Font Size
-		final MenuManager fontSizeSubmenu = new MenuManager("Font size", FloorplanActivator.getDefault().getImageDescriptor("icons/font/fontSize.png"), "fontSizeSubmenuID"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		final MenuManager fontSizeSubmenu = new MenuManager("Font size", FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_SIZE), "fontSizeSubmenuID"); //$NON-NLS-1$ //$NON-NLS-2$ 
 
 		action = getActionRegistry().getAction(FontSizeSevenAction.fontSizePropertySeven);
 		fontSizeSubmenu.add(action);

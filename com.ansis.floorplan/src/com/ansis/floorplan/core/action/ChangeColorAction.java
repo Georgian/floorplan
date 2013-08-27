@@ -6,12 +6,11 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.ui.actions.SelectionAction;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.ansis.floorplan.FloorplanActivator;
+import com.ansis.floorplan.IFloorplanImageKeys;
 import com.ansis.floorplan.util.FPConstPresentation;
 
 
@@ -61,11 +60,8 @@ public class ChangeColorAction extends SelectionAction {
 	@Override
 	protected void init() {
 		setId(changeColorProperty);
-		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor("icons/figureColor.png")); //$NON-NLS-1$
-		setText("Figure color"+FPConstPresentation.ELIPSES);  //$NON-NLS-1$
-		final ImageDescriptor icon = AbstractUIPlugin.imageDescriptorFromPlugin("FloorPlan", "icons/rename-icon.png"); //$NON-NLS-1$ //$NON-NLS-2$
-		if (icon != null)
-			setImageDescriptor(icon);
+		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_COLOR)); 
+		setText("Figure color" + FPConstPresentation.ELIPSES);  //$NON-NLS-1$
 		setEnabled(false);
 	}
 
