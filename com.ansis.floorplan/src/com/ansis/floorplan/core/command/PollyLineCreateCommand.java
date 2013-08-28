@@ -46,6 +46,7 @@ public class PollyLineCreateCommand extends Command {
 					builderList.addPoint(location.x, location.y);
 					newPolly.setList(builderList);
 
+					//This will be properly computed, soon.
 					newPolly.setBounds(new Rectangle(0,0, 1000,1000));
 					newPolly.setLayout(new Rectangle(0,0, 1000,1000));
 
