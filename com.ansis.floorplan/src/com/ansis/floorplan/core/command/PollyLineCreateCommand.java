@@ -18,10 +18,13 @@ public class PollyLineCreateCommand extends Command {
 
 	private PollyLine pollyLine;
 
-	private Point location;
+	private Point location, helper = null, lastPoint = null;
 
 	private Dimension size;
 
+	private Rectangle bounds, tempBounds;
+
+	private Point minPoint = null, maxPoint = null, point;
 
 	// ==================== 6. Action Methods ====================
 
@@ -43,13 +46,81 @@ public class PollyLineCreateCommand extends Command {
 				{
 
 					PointList builderList = newPolly.getList();
+
 					builderList.addPoint(location.x, location.y);
+					
+					tempBounds = newPolly.getBounds();
+					helper = new Point();
+					helper.x = tempBounds.x;
+					helper.y = tempBounds.y;
+
+					lastPoint = new Point();
+					lastPoint = builderList.getPoint(builderList.size()-1);
+					lastPoint.x -= helper.x;
+					lastPoint.y -= helper.y;
+					
+					builderList.removePoint(builderList.size()-1);
+					builderList.addPoint(lastPoint);
+					
 					newPolly.setList(builderList);
+					
+					for (int i = 0; i < builderList.size(); i++) {
+						if (minPoint == null)
+							minPoint = builderList.getPoint(i);
 
-					//This will be properly computed, soon.
-					newPolly.setBounds(new Rectangle(0,0, 1000,1000));
-					newPolly.setLayout(new Rectangle(0,0, 1000,1000));
+						if (maxPoint == null)
+							maxPoint = builderList.getPoint(i);
 
+						point = builderList.getPoint(i);
+
+						if(point.x < minPoint.x)
+							minPoint.x = point.x;
+						if(point.x > maxPoint.x)
+							maxPoint.x = point.x;
+						if(point.y < minPoint.y)
+							minPoint.y = point.y;
+						if(point.y > maxPoint.y)
+							maxPoint.y = point.y;
+					}
+
+					//					if(minPoint.x != 0)
+					//						for (int i = 0; i < builderList.size(); i++) {
+					//							point = builderList.getPoint(i);
+					//							point.x = point.x - minPoint.x;
+					//							builderList.setPoint(point, i);
+					//						}
+
+					//					if(minPoint.y != 0)
+					//						for (int i = 0; i < builderList.size(); i++) {
+					//							point = builderList.getPoint(i);
+					//							point.y = point.y - minPoint.y;
+					//							builderList.setPoint(point, i);
+					//						}
+
+				
+					minPoint.x += helper.x;
+					minPoint.y += helper.y;
+					maxPoint.x += helper.x;
+					maxPoint.y += helper.y;
+
+//					if(minPoint.x > lastPoint.x)
+//						for (int i = 0; i < builderList.size(); i++) {
+//							minPoint.x = lastPoint.x;
+//						}
+//
+//					if(minPoint.y > lastPoint.y)
+//						for (int i = 0; i < builderList.size(); i++) {
+//							minPoint.y = lastPoint.y;
+//						}
+
+					
+					
+					
+					bounds = new Rectangle(minPoint,maxPoint);
+
+					newPolly.setBounds(bounds);
+					newPolly.setLayout(bounds);
+					
 					if ( canvas.getChildren().size() >= 0)
 						canvas.removeChild(canvas.getChildren().get(canvas.getChildren().size() - 1));
 					canvas.addChild(newPolly);
