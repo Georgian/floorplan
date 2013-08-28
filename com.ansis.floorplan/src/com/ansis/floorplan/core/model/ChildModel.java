@@ -79,7 +79,7 @@ public class ChildModel extends CanvasModel {
 
 	public String getName() {
 		if (name == null)
-			name = "New Figure"; //$NON-NLS-1$
+			name = "New Figure\nInteger: " + getEtage(); //$NON-NLS-1$
 		return name;
 	}
 
@@ -115,7 +115,7 @@ public class ChildModel extends CanvasModel {
 
 	public int getOpacity() {
 		if (opacity == 0)
-			opacity = 100;
+			opacity = 127;
 		return opacity;
 	}
 

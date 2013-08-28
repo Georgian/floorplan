@@ -16,8 +16,6 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 
 	private Label labelName = new Label();
 
-	private Label labelEtage = new Label();
-
 	private RGB lineColor;
 
 	private int fontStyle;
@@ -25,8 +23,6 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 	private int fontSize;
 
 	private RGB fontColor;
-
-	private RGB labelColor;
 
 
 	// ==================== 4. Constructors ====================
@@ -38,12 +34,6 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 
 		labelName.setOpaque(true);
 		add(labelName, OrderedLayout.ALIGN_CENTER);
-
-		labelEtage.setOpaque(true);
-		add(labelEtage, OrderedLayout.ALIGN_CENTER);
-
-		setLineStyle(1);
-		setLineWidth(5);
 	}
 
 
@@ -53,16 +43,8 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 		return labelName;
 	}
 
-	public Label getLabelEtage() {
-		return labelEtage;
-	}
-
 	public void setName(final String name) {
 		labelName.setText(name);
-	}
-
-	public void setEtage(final int etage) {
-		labelEtage.setText("Etage: " + etage); //$NON-NLS-1$
 	}
 
 	public void setLayout(final Rectangle rect) {
@@ -84,7 +66,6 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 	public void setFontStyle(final int fontStyle) {
 		this.fontStyle = fontStyle;
 		this.labelName.setFont(new Font(null, FPConstPresentation.EMPTY_STRING, getFontSize(), fontStyle)); 
-		this.labelEtage.setFont(new Font(null, FPConstPresentation.EMPTY_STRING, getFontSize(), fontStyle)); 
 	}
 
 	public int getFontSize() {
@@ -94,7 +75,6 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 	public void setFontSize(final int fontSize) {
 		this.fontSize = fontSize;
 		this.labelName.setFont(new Font(null, FPConstPresentation.EMPTY_STRING, fontSize, getFontStyle())); 
-		this.labelEtage.setFont(new Font(null, FPConstPresentation.EMPTY_STRING, fontSize, getFontStyle())); 
 	}
 
 	public RGB getFontColor() {
@@ -103,14 +83,6 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 
 	public void setFontColor(final RGB fontColor) {
 		this.fontColor = fontColor;
-	}
-
-	public RGB getLabelColor() {
-		return labelColor;
-	}
-
-	public void setLabelColor(final RGB labelColor) {
-		this.labelColor = labelColor;
 	}
 
 }

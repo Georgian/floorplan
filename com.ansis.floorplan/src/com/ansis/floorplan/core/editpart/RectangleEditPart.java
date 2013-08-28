@@ -42,11 +42,11 @@ public class RectangleEditPart extends AppAbstractEditPart {
 
 	private Rectangle nameLabelPosition;
 
-	private Rectangle etageLabelPosition;
-
 	private int oldFontSize;
 
 	private int height = 20;
+
+	private String[] lines;
 
 
 	// ==================== 5. Creators ====================
@@ -67,27 +67,27 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		// Name Label Position
 		figure.setConstraint(figure.getLabelName(), nameLabelPosition);
 		// Etage Label Position
-		figure.setConstraint(figure.getLabelEtage(), etageLabelPosition);
+//		figure.setConstraint(figure.getLabelEtage(), etageLabelPosition);
 		// Name
 		figure.setName( model.getName() );
 		// Etage
-		figure.setEtage( model.getEtage() );
+//		figure.setEtage( model.getEtage() );
 		// Color
 		figure.setBackgroundColor( FloorplanActivator.getDefault().getColor(model.getColor()) );
 		// Line Color
 		figure.setForegroundColor( FloorplanActivator.getDefault().getColor(model.getLineColor()) );
 		// Opacity
 		figure.setAlpha( model.getOpacity() );
-		// FontStyle
+		// Font Style
 		figure.setFontStyle( model.getFontStyle() );
-		// FontSize
+		// Font Size
 		figure.setFontSize( model.getFontSize() );
-		// FontColor
+		// Font Color
 		figure.getLabelName().setForegroundColor( FloorplanActivator.getDefault().getColor(model.getFontColor()) );
-		figure.getLabelEtage().setForegroundColor( FloorplanActivator.getDefault().getColor(model.getFontColor()) );
-		// LabelColor
+		// Label Color
 		figure.getLabelName().setBackgroundColor( FloorplanActivator.getDefault().getColor(model.getLabelColor()) );
-		figure.getLabelEtage().setBackgroundColor( FloorplanActivator.getDefault().getColor(model.getLabelColor()) );
+		// Line Width
+		figure.setLineWidth(3);
 
 		return figure;
 	}
@@ -135,15 +135,15 @@ public class RectangleEditPart extends AppAbstractEditPart {
 
 		// Bounds
 		figure.setBounds(model.getBounds());
-		// TODO Dynamic label positions
+		// TODO -bulanmaster- Dynamic label positions rectangle
 		// Name Label Position
 		figure.setConstraint(figure.getLabelName(), nameLabelPosition);
 		// Etage Label Position
-		figure.setConstraint(figure.getLabelEtage(), etageLabelPosition);
+//		figure.setConstraint(figure.getLabelEtage(), etageLabelPosition);
 		// Name
 		figure.setName(model.getName());
 		// Etage
-		figure.setEtage(model.getEtage());
+//		figure.setEtage(model.getEtage());
 		// Layout
 		figure.setLayout(model.getLayout());
 		// Color
@@ -158,10 +158,8 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		figure.setFontSize(model.getFontSize());
 		// Font Color
 		figure.getLabelName().setForegroundColor( FloorplanActivator.getDefault().getColor(model.getFontColor()) );
-		figure.getLabelEtage().setForegroundColor( FloorplanActivator.getDefault().getColor(model.getFontColor()) );
 		// Label Color
 		figure.getLabelName().setBackgroundColor( FloorplanActivator.getDefault().getColor(model.getLabelColor()) );
-		figure.getLabelEtage().setBackgroundColor( FloorplanActivator.getDefault().getColor(model.getLabelColor()) );
 	}
 
 	@Override
@@ -208,67 +206,62 @@ public class RectangleEditPart extends AppAbstractEditPart {
 			refreshVisuals();
 	}
 
-	@Override
-	public boolean hasFocus() {
-		final RectangleFigure figure = (RectangleFigure)getFigure();
-
-		figure.setLineStyle(2);
-		figure.setLineWidth(3);
-
-		if (getSelected() == SELECTED_NONE) {
-			figure.setLineStyle(1);
-			figure.setLineWidth(5);
-		}
-
-		return super.hasFocus();
-	}
-
 	private Rectangle initialLabelPositionAlgorythm(final ChildModel model) {
 		nameLabelPosition = model.getLabelPosition();
 
-		nameLabelPosition.y = nameLabelPosition.height/2 - height;
+		lines = model.getName().split("\r\n|\r|\n"); //$NON-NLS-1$
+
+		nameLabelPosition.y = nameLabelPosition.height/2 - (height*lines.length)/2;
 		nameLabelPosition.x = nameLabelPosition.width/2 - (model.getName().length() * model.getFontSize())/2;
 
-		nameLabelPosition.height = height;
+		nameLabelPosition.height = height*lines.length;
 		nameLabelPosition.width = model.getName().length() * model.getFontSize();
 
-		etageLabelPosition = new Rectangle(nameLabelPosition);
-
-		etageLabelPosition.y = etageLabelPosition.y + 20;
-
-		return etageLabelPosition;
+		return nameLabelPosition;
 	}
 
 	private Rectangle dynamicLabelPositionAlgorythm(final ChildModel model) {
-		height = 10;
+//		System.out.println("===========================================================================================");
+		height = 30;
+		// TODO -bulanmaster- label height rectangle
+//		if (oldFontSize > model.getFontSize()) {
+//			height = height - (oldFontSize - model.getFontSize());
+//		} else if (oldFontSize < model.getFontSize()) {
+//			height = height + (model.getFontSize() - oldFontSize);
+//		}
 
-		height = height + model.getFontSize();
+		lines = model.getName().split("\r\n|\r|\n"); //$NON-NLS-1$
 
-		//		System.out.println("===========================================================================================");
-		//		System.out.println("nameLabelPosition.x before: " + nameLabelPosition.x);
-		//		System.out.println("nameLabelPosition.width before: " + nameLabelPosition.width);
-		//		System.out.println("model.getFontSize(): " + model.getFontSize());
-		//		System.out.println("oldFontSize: " + oldFontSize);
-		//		System.out.println("model.getName().length(): " + model.getName().length());
+		height = height + model.getFontSize()*lines.length;
+
+		// useful information
+//		System.out.println("nameLabelPosition.x before: " + nameLabelPosition.x);
+//		System.out.println("nameLabelPosition.width before: " + nameLabelPosition.width);
+//		System.out.println("height: " + height);
+//		System.out.println("model.getFontSize(): " + model.getFontSize());
+//		System.out.println("oldFontSize: " + oldFontSize);
+//		System.out.println("model.getName().length(): " + model.getName().length());
 
 		if (oldFontSize < model.getFontSize()) {
-			nameLabelPosition.y = nameLabelPosition.y - (model.getFontSize() - oldFontSize);
+			nameLabelPosition.y = nameLabelPosition.y - (model.getFontSize() - oldFontSize)/2;
 
-			//			System.out.println("----------------------------------------------------------------------------------------");
-			//			System.out.println( nameLabelPosition.x + " - ( ( " + model.getFontSize() + " - " + oldFontSize + " ) * " + model.getName().length() + " )/2 = " );
-			//			System.out.println( nameLabelPosition.x + " - ( " + (model.getFontSize() - oldFontSize) + " * " + model.getName().length() + " )/2 = " );
-			//			System.out.println( nameLabelPosition.x + " - " + ((model.getFontSize() - oldFontSize) * model.getName().length()) + "/2 = " );
-			//			System.out.println( nameLabelPosition.x + " - " + (((model.getFontSize() - oldFontSize) * model.getName().length())/2) + " = " );
+			// TODO -bulanmaster- label width rectangle
+//			System.out.println("----------------------------------------------------------------------------------------");
+//			System.out.println( nameLabelPosition.x + " - ( ( " + model.getFontSize() + " - " + oldFontSize + " ) * " + model.getName().length() + " )/2 = " );
+//			System.out.println( nameLabelPosition.x + " - ( " + (model.getFontSize() - oldFontSize) + " * " + model.getName().length() + " )/2 = " );
+//			System.out.println( nameLabelPosition.x + " - " + ((model.getFontSize() - oldFontSize) * model.getName().length()) + "/2 = " );
+//			System.out.println( nameLabelPosition.x + " - " + (((model.getFontSize() - oldFontSize) * model.getName().length())/2) + " = " );
 
 			nameLabelPosition.x = nameLabelPosition.x - ( (model.getFontSize() - oldFontSize) * model.getName().length() )/2;
 		} else if (oldFontSize > model.getFontSize()) {
-			nameLabelPosition.y = nameLabelPosition.y + (oldFontSize - model.getFontSize());
+			nameLabelPosition.y = nameLabelPosition.y + (oldFontSize - model.getFontSize())/2;
 
-			//			System.out.println("----------------------------------------------------------------------------------------");
-			//			System.out.println( nameLabelPosition.x + " + ( ( " +  oldFontSize + " - " + model.getFontSize() + " ) * " + model.getName().length() + " )/2 = " );
-			//			System.out.println( nameLabelPosition.x + " + ( " +  (oldFontSize - model.getFontSize()) + " * " + model.getName().length() + " )/2 = " );
-			//			System.out.println( nameLabelPosition.x + " + " +  ((oldFontSize - model.getFontSize()) * model.getName().length()) + "/2 = " );
-			//			System.out.println( nameLabelPosition.x + " + " +  (((oldFontSize - model.getFontSize()) * model.getName().length())/2) + " = " );
+			// TODO -bulanmaster- label width rectangle
+//			System.out.println("----------------------------------------------------------------------------------------");
+//			System.out.println( nameLabelPosition.x + " + ( ( " +  oldFontSize + " - " + model.getFontSize() + " ) * " + model.getName().length() + " )/2 = " );
+//			System.out.println( nameLabelPosition.x + " + ( " +  (oldFontSize - model.getFontSize()) + " * " + model.getName().length() + " )/2 = " );
+//			System.out.println( nameLabelPosition.x + " + " +  ((oldFontSize - model.getFontSize()) * model.getName().length()) + "/2 = " );
+//			System.out.println( nameLabelPosition.x + " + " +  (((oldFontSize - model.getFontSize()) * model.getName().length())/2) + " = " );
 
 			nameLabelPosition.x = nameLabelPosition.x + ( (oldFontSize - model.getFontSize()) * model.getName().length() )/2;
 		} else {
@@ -278,16 +271,27 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		nameLabelPosition.height = height;
 		nameLabelPosition.width = model.getName().length() * (model.getFontSize() - 1);
 
-		//		System.out.println( "nameLabelPosition.x after: " + nameLabelPosition.x );
-		//		System.out.println("nameLabelPosition.width after: " + nameLabelPosition.width);
-
-		etageLabelPosition = new Rectangle(nameLabelPosition);
-
-		etageLabelPosition.y = etageLabelPosition.y + height;
+//		System.out.println( "nameLabelPosition.x after: " + nameLabelPosition.x );
+//		System.out.println("nameLabelPosition.width after: " + nameLabelPosition.width);
 
 		oldFontSize = model.getFontSize();
 
-		return etageLabelPosition;
+		return nameLabelPosition;
+	}
+
+	// For selection/deselection
+	@Override
+	public boolean hasFocus() {
+		final RectangleFigure figure = (RectangleFigure)getFigure();
+
+		figure.setLineStyle(2);
+		
+
+		if (getSelected() == SELECTED_NONE) {
+			figure.setLineStyle(1);
+		}
+
+		return super.hasFocus();
 	}
 
 }

@@ -21,8 +21,6 @@ public class PollyFigure extends PolygonShape implements IFigure {
 
 	private Label labelName = new Label();
 
-	private Label labelEtage = new Label();
-
 	private RGB lineColor;
 
 	private int fontStyle;
@@ -30,10 +28,6 @@ public class PollyFigure extends PolygonShape implements IFigure {
 	private int fontSize;
 
 	private RGB fontColor;
-
-	private RGB labelColor;
-
-	private Rectangle etageLabelPosition;
 
 
 	// ==================== 4. Constructors ====================
@@ -43,22 +37,9 @@ public class PollyFigure extends PolygonShape implements IFigure {
 		final XYLayout layout = new XYLayout();
 		setLayoutManager(layout);
 
-		etageLabelPosition = new Rectangle(labelPosition);
-
-		// Label positions/sizes
-		etageLabelPosition.y = etageLabelPosition.y + 15;
-		etageLabelPosition.height = etageLabelPosition.height +20;
-
 		labelName.setOpaque(true);
 		add(labelName, OrderedLayout.ALIGN_CENTER);
 		setConstraint(labelName, labelPosition);
-
-		labelEtage.setOpaque(true);
-		add(labelEtage, OrderedLayout.ALIGN_CENTER);
-		setConstraint(labelEtage, etageLabelPosition);
-
-		setLineStyle(1);
-		setLineWidth(5);
 
 		setPoints(list);
 	}
@@ -70,16 +51,8 @@ public class PollyFigure extends PolygonShape implements IFigure {
 		return labelName;
 	}
 
-	public Label getLabelEtage() {
-		return labelEtage;
-	}
-
 	public void setName(final String name) {
 		labelName.setText(name);
-	}
-
-	public void setEtage(final int etage) {
-		labelEtage.setText("Etage: " + etage); //$NON-NLS-1$
 	}
 
 	public void setLayout(final Rectangle rect) {
@@ -106,7 +79,6 @@ public class PollyFigure extends PolygonShape implements IFigure {
 	public void setFontStyle(final int fontStyle) {
 		this.fontStyle = fontStyle;
 		this.labelName.setFont(new Font(null, FPConstPresentation.EMPTY_STRING, getFontSize(), fontStyle)); 
-		this.labelEtage.setFont(new Font(null, FPConstPresentation.EMPTY_STRING, getFontSize(), fontStyle)); 
 	}
 
 	public int getFontSize() {
@@ -116,7 +88,6 @@ public class PollyFigure extends PolygonShape implements IFigure {
 	public void setFontSize(final int fontSize) {
 		this.fontSize = fontSize;
 		this.labelName.setFont(new Font(null, FPConstPresentation.EMPTY_STRING, fontSize, getFontStyle())); 
-		this.labelEtage.setFont(new Font(null, FPConstPresentation.EMPTY_STRING, fontSize, getFontStyle())); 
 	}
 
 	public RGB getFontColor() {
@@ -125,14 +96,6 @@ public class PollyFigure extends PolygonShape implements IFigure {
 
 	public void setFontColor(final RGB fontColor) {
 		this.fontColor = fontColor;
-	}
-
-	public RGB getLabelColor() {
-		return labelColor;
-	}
-
-	public void setLabelColor(final RGB labelColor) {
-		this.labelColor = labelColor;
 	}
 
 }

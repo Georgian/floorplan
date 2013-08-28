@@ -45,8 +45,6 @@ public class ColorCache
 			return colorMap.get(color);
 
 		// Create color and return:
-		// Color c = new Color(PlatformUI.getWorkbench().getDisplay(), colorID.red(), colorID.green(), colorID.blue());
-		// TODO is there a reason, why we should use workbench???
 		// changed, to be able to run TotalRowPOTest
 		final Color c = new Color(Display.getCurrent(), color.red(), color.green(), color.blue());
 		colorMap.put(color, c);
