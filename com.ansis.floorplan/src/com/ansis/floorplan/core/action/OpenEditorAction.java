@@ -10,6 +10,8 @@ import com.ansis.floorplan.core.editor.MyGraphicalEditor;
 
 public class OpenEditorAction extends Action {
 
+	// ==================== 6. Action Methods ====================
+
 	@Override
 	public void run() {
 
@@ -20,7 +22,10 @@ public class OpenEditorAction extends Action {
 			e.printStackTrace();
 		}
 	}
+	
 
+	// ==================== 7. Getters & Setters ====================
+	
 	@Override
 	public String getText() {
 		return "Open Editor"; //$NON-NLS-1$

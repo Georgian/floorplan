@@ -28,15 +28,7 @@ public class CanvasFigure extends Figure {
 	}
 
 
-	// ==================== 7. Getters & Setters ====================
-
-	public void setLayout(final Rectangle rect) {
-		setBounds(rect);
-	}
-
-	public void setImage(final InputStream imageStream) {
-		FloorplanActivator.getDefault().getImageCache().cacheImage(CACHED_IMG_ID, new Image(Display.getCurrent(), imageStream));
-	}
+	// ==================== 6. Action Methods ====================
 
 	@Override
 	protected void paintFigure(final Graphics graphics) {
@@ -53,6 +45,17 @@ public class CanvasFigure extends Figure {
 		graphics.drawImage(image, 0, 0, imgBox.width, imgBox.height, rect.x, rect.y, imgBox.width, imgBox.height);
 
 		super.paintFigure(graphics);
+	}
+
+
+	// ==================== 7. Getters & Setters ====================
+
+	public void setLayout(final Rectangle rect) {
+		setBounds(rect);
+	}
+
+	public void setImage(final InputStream imageStream) {
+		FloorplanActivator.getDefault().getImageCache().cacheImage(CACHED_IMG_ID, new Image(Display.getCurrent(), imageStream));
 	}
 
 }
