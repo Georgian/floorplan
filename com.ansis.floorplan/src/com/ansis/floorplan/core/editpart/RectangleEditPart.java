@@ -4,10 +4,7 @@ import java.beans.PropertyChangeEvent;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.tools.DragEditPartsTracker;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.core.editpolicy.AppChangeColorPolicy;
@@ -211,6 +208,21 @@ public class RectangleEditPart extends AppAbstractEditPart {
 			refreshVisuals();
 	}
 
+	@Override
+	public boolean hasFocus() {
+		final RectangleFigure figure = (RectangleFigure)getFigure();
+
+		figure.setLineStyle(2);
+		figure.setLineWidth(3);
+
+		if (getSelected() == SELECTED_NONE) {
+			figure.setLineStyle(1);
+			figure.setLineWidth(5);
+		}
+
+		return super.hasFocus();
+	}
+
 	private Rectangle initialLabelPositionAlgorythm(final ChildModel model) {
 		nameLabelPosition = model.getLabelPosition();
 
@@ -232,40 +244,42 @@ public class RectangleEditPart extends AppAbstractEditPart {
 
 		height = height + model.getFontSize();
 
-		System.out.println("===========================================================================================");
-		System.out.println("nameLabelPosition.x before: " + nameLabelPosition.x);
-		System.out.println("nameLabelPosition.width before: " + nameLabelPosition.width);
-		System.out.println("model.getFontSize(): " + model.getFontSize());
-		System.out.println("oldFontSize: " + oldFontSize);
-		System.out.println("model.getName().length(): " + model.getName().length());
-		
+		//		System.out.println("===========================================================================================");
+		//		System.out.println("nameLabelPosition.x before: " + nameLabelPosition.x);
+		//		System.out.println("nameLabelPosition.width before: " + nameLabelPosition.width);
+		//		System.out.println("model.getFontSize(): " + model.getFontSize());
+		//		System.out.println("oldFontSize: " + oldFontSize);
+		//		System.out.println("model.getName().length(): " + model.getName().length());
+
 		if (oldFontSize < model.getFontSize()) {
 			nameLabelPosition.y = nameLabelPosition.y - (model.getFontSize() - oldFontSize);
-			System.out.println("----------------------------------------------------------------------------------------");
-			System.out.println( nameLabelPosition.x + " - ( ( " + model.getFontSize() + " - " + oldFontSize + " ) * " + model.getName().length() + " )/2 = " );
-			System.out.println( nameLabelPosition.x + " - ( " + (model.getFontSize() - oldFontSize) + " * " + model.getName().length() + " )/2 = " );
-			System.out.println( nameLabelPosition.x + " - " + ((model.getFontSize() - oldFontSize) * model.getName().length()) + "/2 = " );
-			System.out.println( nameLabelPosition.x + " - " + (((model.getFontSize() - oldFontSize) * model.getName().length())/2) + " = " );
-			
+
+			//			System.out.println("----------------------------------------------------------------------------------------");
+			//			System.out.println( nameLabelPosition.x + " - ( ( " + model.getFontSize() + " - " + oldFontSize + " ) * " + model.getName().length() + " )/2 = " );
+			//			System.out.println( nameLabelPosition.x + " - ( " + (model.getFontSize() - oldFontSize) + " * " + model.getName().length() + " )/2 = " );
+			//			System.out.println( nameLabelPosition.x + " - " + ((model.getFontSize() - oldFontSize) * model.getName().length()) + "/2 = " );
+			//			System.out.println( nameLabelPosition.x + " - " + (((model.getFontSize() - oldFontSize) * model.getName().length())/2) + " = " );
+
 			nameLabelPosition.x = nameLabelPosition.x - ( (model.getFontSize() - oldFontSize) * model.getName().length() )/2;
 		} else if (oldFontSize > model.getFontSize()) {
 			nameLabelPosition.y = nameLabelPosition.y + (oldFontSize - model.getFontSize());
-			System.out.println("----------------------------------------------------------------------------------------");
-			System.out.println( nameLabelPosition.x + " + ( ( " +  oldFontSize + " - " + model.getFontSize() + " ) * " + model.getName().length() + " )/2 = " );
-			System.out.println( nameLabelPosition.x + " + ( " +  (oldFontSize - model.getFontSize()) + " * " + model.getName().length() + " )/2 = " );
-			System.out.println( nameLabelPosition.x + " + " +  ((oldFontSize - model.getFontSize()) * model.getName().length()) + "/2 = " );
-			System.out.println( nameLabelPosition.x + " + " +  (((oldFontSize - model.getFontSize()) * model.getName().length())/2) + " = " );
-			
+
+			//			System.out.println("----------------------------------------------------------------------------------------");
+			//			System.out.println( nameLabelPosition.x + " + ( ( " +  oldFontSize + " - " + model.getFontSize() + " ) * " + model.getName().length() + " )/2 = " );
+			//			System.out.println( nameLabelPosition.x + " + ( " +  (oldFontSize - model.getFontSize()) + " * " + model.getName().length() + " )/2 = " );
+			//			System.out.println( nameLabelPosition.x + " + " +  ((oldFontSize - model.getFontSize()) * model.getName().length()) + "/2 = " );
+			//			System.out.println( nameLabelPosition.x + " + " +  (((oldFontSize - model.getFontSize()) * model.getName().length())/2) + " = " );
+
 			nameLabelPosition.x = nameLabelPosition.x + ( (oldFontSize - model.getFontSize()) * model.getName().length() )/2;
 		} else {
 			return null;
 		}
-		System.out.println( "nameLabelPosition.x after: " + nameLabelPosition.x );
 
 		nameLabelPosition.height = height;
 		nameLabelPosition.width = model.getName().length() * (model.getFontSize() - 1);
-		
-		System.out.println("nameLabelPosition.width after: " + nameLabelPosition.width);
+
+		//		System.out.println( "nameLabelPosition.x after: " + nameLabelPosition.x );
+		//		System.out.println("nameLabelPosition.width after: " + nameLabelPosition.width);
 
 		etageLabelPosition = new Rectangle(nameLabelPosition);
 
@@ -274,27 +288,6 @@ public class RectangleEditPart extends AppAbstractEditPart {
 		oldFontSize = model.getFontSize();
 
 		return etageLabelPosition;
-	}
-
-
-	// ==================== 7. Getters & Setters ====================
-
-	// This is an experimental way of checking for selection
-	@Override
-	public DragTracker getDragTracker(final Request request) {
-		return new DragEditPartsTracker(this) {
-
-			@Override
-			protected void performConditionalSelection() {
-				super.performConditionalSelection();
-				// This condition is not needed since the figure is always active after a selection
-				if (isActive()) {
-					final RectangleFigure figure = (RectangleFigure)getFigure();
-					figure.setLineStyle(2);
-					figure.setLineWidth(3);
-				}
-			}
-		};
 	}
 
 }

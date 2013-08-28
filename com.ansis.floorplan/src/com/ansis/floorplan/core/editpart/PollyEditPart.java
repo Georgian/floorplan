@@ -3,10 +3,7 @@ package com.ansis.floorplan.core.editpart;
 import java.beans.PropertyChangeEvent;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.tools.DragEditPartsTracker;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.core.editpolicy.AppChangeColorPolicy;
@@ -111,26 +108,20 @@ public class PollyEditPart extends AppAbstractEditPart {
 		installEditPolicy(LABEL_COLOR_EDIT_PART, new AppChangeLabelColorPolicy());
 	}
 
-	// This is an experimental way of checking for selection
 	@Override
-	public DragTracker getDragTracker(final Request request) {
-		return new DragEditPartsTracker(this) {
+	public boolean hasFocus() {
+		final PollyFigure figure = (PollyFigure)getFigure();
 
-			@Override
-			protected void performConditionalSelection() {
-				super.performConditionalSelection();
-				// This condition is not needed since the figure is always active after a selection
-				if (isActive()) {
-					//					System.out.println("the part was selected and is now active");
+		figure.setLineStyle(2);
+		figure.setLineWidth(3);
 
-					final PollyFigure figure = (PollyFigure)getFigure();
-					figure.setLineStyle(2);
-					figure.setLineWidth(3);
-				}
-			}
-		};
+		if (getSelected() == SELECTED_NONE) {
+			figure.setLineStyle(1);
+			figure.setLineWidth(5);
+		}
+
+		return super.hasFocus();
 	}
-
 	// ==================== 6. Action Methods ====================
 
 	@Override
