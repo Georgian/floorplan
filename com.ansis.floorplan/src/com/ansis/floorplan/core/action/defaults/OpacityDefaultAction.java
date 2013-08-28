@@ -1,4 +1,4 @@
-package com.ansis.floorplan.core.action.font;
+package com.ansis.floorplan.core.action.defaults;
 
 import java.util.HashMap;
 
@@ -9,27 +9,29 @@ import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.ui.IWorkbenchPart;
 
 import com.ansis.floorplan.util.FPConstPresentation;
+
 /**
  * 
  * @author PsYCh
  *
  */
 
-public class FontSizeDefaultAction extends SelectionAction{
+
+public class OpacityDefaultAction extends SelectionAction{
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String fontSizePropertyDefault = "fontSizePropertyDefault"; //$NON-NLS-1$
+	public static final String opacityPropertyDefault = "opacityPropertyDefault"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
 
-	private final String defaultFontSize = "10"; //$NON-NLS-1$
+	private final String defaultOpacity = "50"; //$NON-NLS-1$
 
 
 	// ==================== 4. Constructors ====================
 
-	public FontSizeDefaultAction(final IWorkbenchPart part) {
+	public OpacityDefaultAction(final IWorkbenchPart part) {
 		super(part);
 		setLazyEnablementCalculation(true);
 	}
@@ -37,13 +39,13 @@ public class FontSizeDefaultAction extends SelectionAction{
 
 	// ==================== 5. Creators ====================
 
-	public Command createFontSizeCommand(final String fontSize) {
-		final Request fontSizeReq = new Request("fontSize"); //$NON-NLS-1$
+	public Command createOpacityCommand(final String opacity) {
+		final Request opacityReq = new Request("opacity"); //$NON-NLS-1$
 		final HashMap<String, String> reqData = new HashMap<String, String>();
-		reqData.put("newFontSize", fontSize); //$NON-NLS-1$
-		fontSizeReq.setExtendedData(reqData);
+		reqData.put("newOpacity", opacity); //$NON-NLS-1$
+		opacityReq.setExtendedData(reqData);
 		final EditPart object = (EditPart)getSelectedObjects().get(0);
-		final Command cmd = object.getCommand(fontSizeReq);
+		final Command cmd = object.getCommand(opacityReq);
 		return cmd; 
 	}
 
@@ -52,7 +54,7 @@ public class FontSizeDefaultAction extends SelectionAction{
 
 	@Override
 	protected boolean calculateEnabled() {
-		final Command cmd = createFontSizeCommand(FPConstPresentation.EMPTY_STRING); 
+		final Command cmd = createOpacityCommand(FPConstPresentation.EMPTY_STRING); 
 		if (cmd == null)
 			return false;
 		return true;
@@ -60,21 +62,21 @@ public class FontSizeDefaultAction extends SelectionAction{
 
 	@Override
 	protected void init() {
-		setId(fontSizePropertyDefault);
-		setText("Default Font Size");
+		setId(opacityPropertyDefault);
+		setText("Default Opacity");  
 		setEnabled(false);
 	}
 
 	@Override
 	public void run() {
-		execute(createFontSizeCommand(getDefault()));
+		execute(createOpacityCommand(getDefault()));
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
 	public String getDefault() {
-		return defaultFontSize;
+		return defaultOpacity;
 	}
 
 }
