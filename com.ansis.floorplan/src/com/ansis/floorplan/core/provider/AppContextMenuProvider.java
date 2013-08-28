@@ -7,7 +7,6 @@ import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
-import org.eclipse.jface.action.Separator;
 import org.eclipse.ui.actions.ActionFactory;
 
 import com.ansis.floorplan.FloorplanActivator;
@@ -91,8 +90,6 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		action = getActionRegistry().getAction(OpacityFourtyAction.opacityPropertyFourty);
 		opacitySubmenu.add(action);
 		
-		
-		
 		action = getActionRegistry().getAction(OpacitySixtyAction.opacityPropertySixty);
 		opacitySubmenu.add(action);
 
@@ -155,9 +152,7 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		action = getActionRegistry().getAction(ChangeLabelColorAction.changeLabelColorProperty);
 		menu.appendToGroup(GEFActionConstants.GROUP_REST, action);
 		
-		menu.add(new Separator());
-		
-		// Defaults Submenu-- opacity, font size, font color, font background color, 
+		// Defaults Sub menu-- opacity, font size, font color, font background color, line color, figure color. 
 		final MenuManager defaultsSubmenu = new MenuManager("Default"+ FPConstPresentation.ELIPSES, "defaultsSubmenuID");
 		action = getActionRegistry().getAction(OpacityDefaultAction.opacityPropertyDefault);
 		defaultsSubmenu.add(action);
