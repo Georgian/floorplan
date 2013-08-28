@@ -63,7 +63,7 @@ public class OpacityDefaultAction extends SelectionAction{
 	@Override
 	protected void init() {
 		setId(opacityPropertyDefault);
-		setText("Default Opacity");  
+		setText("Default Opacity");   //$NON-NLS-1$
 		setEnabled(false);
 	}
 

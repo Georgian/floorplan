@@ -61,7 +61,7 @@ public class FontSizeDefaultAction extends SelectionAction{
 	@Override
 	protected void init() {
 		setId(fontSizePropertyDefault);
-		setText("Default Font Size");
+		setText("Default Font Size"); //$NON-NLS-1$
 		setEnabled(false);
 	}
 
