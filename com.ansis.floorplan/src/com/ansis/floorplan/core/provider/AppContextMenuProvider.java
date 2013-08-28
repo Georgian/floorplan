@@ -14,6 +14,7 @@ import com.ansis.floorplan.IFloorplanImageKeys;
 import com.ansis.floorplan.core.action.ChangeColorAction;
 import com.ansis.floorplan.core.action.ChangeLabelColorAction;
 import com.ansis.floorplan.core.action.font.FontColorAction;
+import com.ansis.floorplan.core.action.font.FontSizeDefaultAction;
 import com.ansis.floorplan.core.action.font.FontSizeNineAction;
 import com.ansis.floorplan.core.action.font.FontSizeSevenAction;
 import com.ansis.floorplan.core.action.font.FontSizeSixteenAction;
@@ -25,12 +26,14 @@ import com.ansis.floorplan.core.action.font.FontStyleBoldAction;
 import com.ansis.floorplan.core.action.font.FontStyleBoldItalicAction;
 import com.ansis.floorplan.core.action.font.FontStyleItalicAction;
 import com.ansis.floorplan.core.action.font.FontStyleNormalAction;
+import com.ansis.floorplan.core.action.opacity.OpacityDefaultAction;
 import com.ansis.floorplan.core.action.opacity.OpacityEightyAction;
 import com.ansis.floorplan.core.action.opacity.OpacityFourtyAction;
 import com.ansis.floorplan.core.action.opacity.OpacityHundredAction;
 import com.ansis.floorplan.core.action.opacity.OpacitySixtyAction;
 import com.ansis.floorplan.core.action.opacity.OpacityTenAction;
 import com.ansis.floorplan.core.action.opacity.OpacityTwentyAction;
+import com.ansis.floorplan.util.FPConstPresentation;
 
 
 public class AppContextMenuProvider extends ContextMenuProvider{
@@ -86,7 +89,9 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 
 		action = getActionRegistry().getAction(OpacityFourtyAction.opacityPropertyFourty);
 		opacitySubmenu.add(action);
-
+		
+		
+		
 		action = getActionRegistry().getAction(OpacitySixtyAction.opacityPropertySixty);
 		opacitySubmenu.add(action);
 
@@ -148,6 +153,16 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		// Label Color
 		action = getActionRegistry().getAction(ChangeLabelColorAction.changeLabelColorProperty);
 		menu.appendToGroup(GEFActionConstants.GROUP_REST, action);
+		
+		// Defaults Submenu-- opacity, font size, font color, font background color, 
+		final MenuManager defaultsSubmenu = new MenuManager("Default"+ FPConstPresentation.ELIPSES, "defaultsSubmenuID");
+		action = getActionRegistry().getAction(OpacityDefaultAction.opacityPropertyDefault);
+		defaultsSubmenu.add(action);
+		
+		action = getActionRegistry().getAction(FontSizeDefaultAction.fontSizePropertyDefault);
+		defaultsSubmenu.add(action);
+		
+		menu.appendToGroup(GEFActionConstants.GROUP_REST, defaultsSubmenu );
 	}
 
 

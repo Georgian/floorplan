@@ -37,6 +37,7 @@ import com.ansis.floorplan.core.action.ChangeColorAction;
 import com.ansis.floorplan.core.action.ChangeLabelColorAction;
 import com.ansis.floorplan.core.action.RenameAction;
 import com.ansis.floorplan.core.action.font.FontColorAction;
+import com.ansis.floorplan.core.action.font.FontSizeDefaultAction;
 import com.ansis.floorplan.core.action.font.FontSizeNineAction;
 import com.ansis.floorplan.core.action.font.FontSizeSevenAction;
 import com.ansis.floorplan.core.action.font.FontSizeSixteenAction;
@@ -48,6 +49,7 @@ import com.ansis.floorplan.core.action.font.FontStyleBoldAction;
 import com.ansis.floorplan.core.action.font.FontStyleBoldItalicAction;
 import com.ansis.floorplan.core.action.font.FontStyleItalicAction;
 import com.ansis.floorplan.core.action.font.FontStyleNormalAction;
+import com.ansis.floorplan.core.action.opacity.OpacityDefaultAction;
 import com.ansis.floorplan.core.action.opacity.OpacityEightyAction;
 import com.ansis.floorplan.core.action.opacity.OpacityFourtyAction;
 import com.ansis.floorplan.core.action.opacity.OpacityHundredAction;
@@ -102,6 +104,10 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final OpacityFourtyAction fourtyOpacityAction = new OpacityFourtyAction(this);
 		registry.registerAction(fourtyOpacityAction);
 		getSelectionActions().add(fourtyOpacityAction.getId());
+		
+		final OpacityDefaultAction defaultOpacityAction = new OpacityDefaultAction(this);
+		registry.registerAction(defaultOpacityAction);
+		getSelectionActions().add(defaultOpacityAction.getId());
 
 		final OpacitySixtyAction sixyOpacityAction = new OpacitySixtyAction(this);
 		registry.registerAction(sixyOpacityAction);
@@ -142,6 +148,10 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final FontSizeTenAction tenFontSizeAction = new FontSizeTenAction(this);
 		registry.registerAction(tenFontSizeAction);
 		getSelectionActions().add(tenFontSizeAction.getId());
+		
+		final FontSizeDefaultAction defaultFontSizeAction=  new FontSizeDefaultAction(this);
+		registry.registerAction(defaultFontSizeAction);
+		getSelectionActions().add(defaultFontSizeAction.getId());
 
 		final FontSizeThirteenAction thirteenFontSizeAction = new FontSizeThirteenAction(this);
 		registry.registerAction(thirteenFontSizeAction);
