@@ -21,7 +21,6 @@ public class DefaultLabelColorAction extends SelectionAction {
 	public static final String defaultLabelColorProperty = "defaultLabelColorProperty"; //$NON-NLS-1$
 
 
-
 	// ==================== 4. Constructors ====================
 
 	public DefaultLabelColorAction(final IWorkbenchPart part) {

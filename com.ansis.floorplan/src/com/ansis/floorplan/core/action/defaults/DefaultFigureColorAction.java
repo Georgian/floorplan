@@ -20,6 +20,7 @@ public class DefaultFigureColorAction extends SelectionAction {
 
 	public static final String defaultFigureColorProperty = "defaultFigureColorProperty"; //$NON-NLS-1$
 
+
 	// ==================== 4. Constructors ====================
 
 	public DefaultFigureColorAction(final IWorkbenchPart part) {

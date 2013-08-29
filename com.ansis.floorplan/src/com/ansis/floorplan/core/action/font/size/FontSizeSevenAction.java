@@ -18,6 +18,7 @@ public class FontSizeSevenAction extends SelectionAction {
 
 	public static final String fontSizePropertySeven = "fontSizePropertySeven"; //$NON-NLS-1$
 
+
 	// ==================== 4. Constructors ====================
 
 	public FontSizeSevenAction(final IWorkbenchPart part) {

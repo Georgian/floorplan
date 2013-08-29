@@ -21,7 +21,6 @@ public class DefaultFontStyleAction extends SelectionAction {
 	public static final String defaultFontStyleProperty = "defaultFontStyleProperty"; //$NON-NLS-1$
 
 
-
 	// ==================== 4. Constructors ====================
 
 	public DefaultFontStyleAction(final IWorkbenchPart part) {
@@ -72,5 +71,5 @@ public class DefaultFontStyleAction extends SelectionAction {
 	public String getDefaultNormal() {
 		return String.valueOf( FPFontStyle.NORMAL.getStyle() );
 	}
-	
+
 }
