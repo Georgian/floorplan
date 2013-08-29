@@ -1,32 +1,32 @@
-package com.ansis.floorplan.core.command;
+package com.ansis.floorplan.core.command.font;
 
 import org.eclipse.gef.commands.Command;
 
 import com.ansis.floorplan.core.model.ChildModel;
 
 
-public class FontSizeCommand extends Command {
+public class FontStyleCommand extends Command {
 
 	// ====================== 2. Instance Fields =============================
 
 	private ChildModel model;
 
-	private String oldFontSize;
+	private String oldFontStyle;
 
-	private String newFontSize;
+	private String newFontStyle;
 
 
 	// ==================== 6. Action Methods ====================
 
 	@Override
 	public void execute() {
-		this.oldFontSize = Integer.toString(model.getFontSize());
-		this.model.setFontSize(Integer.parseInt(newFontSize));
+		this.oldFontStyle = Integer.toString(model.getFontStyle());
+		this.model.setFontStyle(Integer.parseInt(newFontStyle));
 	}
 
 	@Override
 	public void undo() {
-		this.model.setFontSize(Integer.parseInt(oldFontSize));
+		this.model.setFontStyle(Integer.parseInt(oldFontStyle));
 	}
 
 
@@ -36,8 +36,8 @@ public class FontSizeCommand extends Command {
 		this.model = (ChildModel)model;
 	}
 
-	public void setNewFontSize(final String newFontSize) {
-		this.newFontSize = newFontSize;
+	public void setNewFontStyle(final String newFontStyle) {
+		this.newFontStyle = newFontStyle;
 	}
 
 }

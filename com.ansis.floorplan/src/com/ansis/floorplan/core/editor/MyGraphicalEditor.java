@@ -36,7 +36,11 @@ import com.ansis.floorplan.app.MyTemplateTransferDropTargetListener;
 import com.ansis.floorplan.core.action.FigureColorAction;
 import com.ansis.floorplan.core.action.LabelColorAction;
 import com.ansis.floorplan.core.action.RenameAction;
+import com.ansis.floorplan.core.action.defaults.DefaultFigureColorAction;
+import com.ansis.floorplan.core.action.defaults.DefaultFontColorAction;
 import com.ansis.floorplan.core.action.defaults.DefaultFontSizeAction;
+import com.ansis.floorplan.core.action.defaults.DefaultFontStyleAction;
+import com.ansis.floorplan.core.action.defaults.DefaultLabelColorAction;
 import com.ansis.floorplan.core.action.defaults.DefaultOpacityAction;
 import com.ansis.floorplan.core.action.font.FontColorAction;
 import com.ansis.floorplan.core.action.font.FontSizeNineAction;
@@ -95,6 +99,12 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		registry.registerAction(action);
 		getSelectionActions().add(action.getId());
 
+		// Figure Color
+		final FigureColorAction changeColorAction = new FigureColorAction(this);
+		registry.registerAction(changeColorAction);
+		getSelectionActions().add(changeColorAction.getId());
+
+		// Opacity
 		final OpacityTenAction tenOpacityAction = new OpacityTenAction(this);
 		registry.registerAction(tenOpacityAction);
 		getSelectionActions().add(tenOpacityAction.getId());
@@ -106,10 +116,6 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final OpacityFourtyAction fourtyOpacityAction = new OpacityFourtyAction(this);
 		registry.registerAction(fourtyOpacityAction);
 		getSelectionActions().add(fourtyOpacityAction.getId());
-
-		final DefaultOpacityAction defaultOpacityAction = new DefaultOpacityAction(this);
-		registry.registerAction(defaultOpacityAction);
-		getSelectionActions().add(defaultOpacityAction.getId());
 
 		final OpacitySixtyAction sixyOpacityAction = new OpacitySixtyAction(this);
 		registry.registerAction(sixyOpacityAction);
@@ -123,6 +129,17 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		registry.registerAction(hundredOpacityAction);
 		getSelectionActions().add(hundredOpacityAction.getId());
 
+		// Label Color
+		final LabelColorAction labelColorAction = new LabelColorAction(this);
+		registry.registerAction(labelColorAction);
+		getSelectionActions().add(labelColorAction.getId());
+
+		// Font Color
+		final FontColorAction fontColorAction = new FontColorAction(this);
+		registry.registerAction(fontColorAction);
+		getSelectionActions().add(fontColorAction.getId());
+
+		// Font Style
 		final FontStyleNormalAction normalFontStyleAction = new FontStyleNormalAction(this);
 		registry.registerAction(normalFontStyleAction);
 		getSelectionActions().add(normalFontStyleAction.getId());
@@ -139,6 +156,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		registry.registerAction(boldItalicFontStyleAction);
 		getSelectionActions().add(boldItalicFontStyleAction.getId());
 
+		// Font Size
 		final FontSizeSevenAction sevenFontSizeAction = new FontSizeSevenAction(this);
 		registry.registerAction(sevenFontSizeAction);
 		getSelectionActions().add(sevenFontSizeAction.getId());
@@ -150,10 +168,6 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final FontSizeTenAction tenFontSizeAction = new FontSizeTenAction(this);
 		registry.registerAction(tenFontSizeAction);
 		getSelectionActions().add(tenFontSizeAction.getId());
-
-		final DefaultFontSizeAction defaultFontSizeAction=  new DefaultFontSizeAction(this);
-		registry.registerAction(defaultFontSizeAction);
-		getSelectionActions().add(defaultFontSizeAction.getId());
 
 		final FontSizeThirteenAction thirteenFontSizeAction = new FontSizeThirteenAction(this);
 		registry.registerAction(thirteenFontSizeAction);
@@ -171,21 +185,40 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		registry.registerAction(twentyfiveFontSizeAction);
 		getSelectionActions().add(twentyfiveFontSizeAction.getId());
 
-		final FigureColorAction changeColorAction = new FigureColorAction(this);
-		registry.registerAction(changeColorAction);
-		getSelectionActions().add(changeColorAction.getId());
+		// Default Figure Color
+		final DefaultFigureColorAction defaultFigureColorAction = new DefaultFigureColorAction(this);
+		registry.registerAction(defaultFigureColorAction);
+		getSelectionActions().add(defaultFigureColorAction.getId());
 
-		final FontColorAction fontColorAction = new FontColorAction(this);
-		registry.registerAction(fontColorAction);
-		getSelectionActions().add(fontColorAction.getId());
+		// Default Opacity
+		final DefaultOpacityAction defaultOpacityAction = new DefaultOpacityAction(this);
+		registry.registerAction(defaultOpacityAction);
+		getSelectionActions().add(defaultOpacityAction.getId());
 
-//		final DefaultFontColorAction defaultFontColorAction = new DefaultFontColorAction(this);
-//		registry.registerAction(defaultFontColorAction);
-//		getSelectionActions().add(defaultFontColorAction.getId());
+		// Default Label Color
+		final DefaultLabelColorAction defaultLabelColorAction = new DefaultLabelColorAction(this);
+		registry.registerAction(defaultLabelColorAction);
+		getSelectionActions().add(defaultLabelColorAction.getId());
 
-		final LabelColorAction labelColorAction = new LabelColorAction(this);
-		registry.registerAction(labelColorAction);
-		getSelectionActions().add(labelColorAction.getId());
+		// Default Font Color
+		final DefaultFontColorAction defaultFontColorAction = new DefaultFontColorAction(this);
+		registry.registerAction(defaultFontColorAction);
+		getSelectionActions().add(defaultFontColorAction.getId());
+
+		// Default Font Size
+		final DefaultFontSizeAction defaultFontSizeAction = new DefaultFontSizeAction(this);
+		registry.registerAction(defaultFontSizeAction);
+		getSelectionActions().add(defaultFontSizeAction.getId());
+
+		// Default Font Style
+		final DefaultFontStyleAction defaultFontStyleAction = new DefaultFontStyleAction(this);
+		registry.registerAction(defaultFontStyleAction);
+		getSelectionActions().add(defaultFontStyleAction.getId());
+
+		// Default All
+//		final DefaultAllAction defaultAllAction = new DefaultAllAction(this);
+//		registry.registerAction(defaultAllAction);
+//		getSelectionActions().add(defaultAllAction.getId());
 	}
 
 

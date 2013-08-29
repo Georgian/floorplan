@@ -7,15 +7,18 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPolicy;
 
 import com.ansis.floorplan.FloorplanActivator;
-import com.ansis.floorplan.core.editpolicy.AppDeletePolicy;
-import com.ansis.floorplan.core.editpolicy.AppEditLayoutPolicy;
-import com.ansis.floorplan.core.editpolicy.AppFigureColorPolicy;
-import com.ansis.floorplan.core.editpolicy.AppFontColorPolicy;
-import com.ansis.floorplan.core.editpolicy.AppFontSizePolicy;
-import com.ansis.floorplan.core.editpolicy.AppFontStylePolicy;
-import com.ansis.floorplan.core.editpolicy.AppLabelColorPolicy;
-import com.ansis.floorplan.core.editpolicy.AppOpacityPolicy;
-import com.ansis.floorplan.core.editpolicy.AppRenamePolicy;
+import com.ansis.floorplan.core.editpolicy.DeletePolicy;
+import com.ansis.floorplan.core.editpolicy.EditLayoutPolicy;
+import com.ansis.floorplan.core.editpolicy.FigureColorPolicy;
+import com.ansis.floorplan.core.editpolicy.OpacityPolicy;
+import com.ansis.floorplan.core.editpolicy.RenamePolicy;
+import com.ansis.floorplan.core.editpolicy.defaults.DefaultFigureColorPolicy;
+import com.ansis.floorplan.core.editpolicy.defaults.DefaultFontColorPolicy;
+import com.ansis.floorplan.core.editpolicy.defaults.DefaultLabelColorPolicy;
+import com.ansis.floorplan.core.editpolicy.font.FontColorPolicy;
+import com.ansis.floorplan.core.editpolicy.font.FontSizePolicy;
+import com.ansis.floorplan.core.editpolicy.font.FontStylePolicy;
+import com.ansis.floorplan.core.editpolicy.font.LabelColorPolicy;
 import com.ansis.floorplan.core.figure.RectangleFigure;
 import com.ansis.floorplan.core.model.CanvasModel;
 import com.ansis.floorplan.core.model.ChildModel;
@@ -25,17 +28,23 @@ public class RectangleEditPart extends AppAbstractEditPart {
 
 	// ==================== 1. Static Fields ========================
 
-	private static final String OPACITY_EDIT_POLICY = "Opacity"; //$NON-NLS-1$
+	private static final String OPACITY_EDIT_POLICY = "opacity"; //$NON-NLS-1$
 
-	private static final String COLOR_EDIT_POLICY = "Color"; //$NON-NLS-1$
+	private static final String FIGURE_COLOR_EDIT_POLICY = "figureColor"; //$NON-NLS-1$
 
-	private static final String FONT_STYLE_EDIT_POLICY = "FontStyle"; //$NON-NLS-1$
+	private static final String FONT_STYLE_EDIT_POLICY = "fontStyle"; //$NON-NLS-1$
 
-	private static final String FONT_SIZE_EDIT_POLICY = "FontSize"; //$NON-NLS-1$
+	private static final String FONT_SIZE_EDIT_POLICY = "fontSize"; //$NON-NLS-1$
 
-	private static final String FONT_COLOR_EDIT_PART = "FontColor"; //$NON-NLS-1$
+	private static final String FONT_COLOR_EDIT_PART = "fontColor"; //$NON-NLS-1$
 
-	private static final String LABEL_COLOR_EDIT_PART = "LabelColor"; //$NON-NLS-1$
+	private static final String LABEL_COLOR_EDIT_PART = "labelColor"; //$NON-NLS-1$
+
+	private static final String DEFAULT_FONT_COLOR_EDIT_PART = "defaultFontColor"; //$NON-NLS-1$
+
+	private static final String DEFAULT_LABEL_COLOR_EDIT_PART = "defaultLabelColor"; //$NON-NLS-1$
+
+	private static final String DEFAULT_FIGURE_COLOR_EDIT_POLICY = "defaultFigureColor"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
@@ -92,31 +101,40 @@ public class RectangleEditPart extends AppAbstractEditPart {
 	protected void createEditPolicies() {
 
 		// Move
-		installEditPolicy(EditPolicy.LAYOUT_ROLE, new AppEditLayoutPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new EditLayoutPolicy());
 
 		// Create
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppDeletePolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new DeletePolicy());
 
 		// Rename
-		installEditPolicy(EditPolicy.NODE_ROLE, new AppRenamePolicy());
+		installEditPolicy(EditPolicy.NODE_ROLE, new RenamePolicy());
 
-		// Color
-		installEditPolicy(COLOR_EDIT_POLICY, new AppFigureColorPolicy());
+		// Figure Color
+		installEditPolicy(FIGURE_COLOR_EDIT_POLICY, new FigureColorPolicy());
 
 		// Opacity
-		installEditPolicy(OPACITY_EDIT_POLICY, new AppOpacityPolicy());
+		installEditPolicy(OPACITY_EDIT_POLICY, new OpacityPolicy());
 
 		// Font Style
-		installEditPolicy(FONT_STYLE_EDIT_POLICY, new AppFontStylePolicy());
+		installEditPolicy(FONT_STYLE_EDIT_POLICY, new FontStylePolicy());
 
 		// Font Size
-		installEditPolicy(FONT_SIZE_EDIT_POLICY, new AppFontSizePolicy());
+		installEditPolicy(FONT_SIZE_EDIT_POLICY, new FontSizePolicy());
 
 		// Font Color
-		installEditPolicy(FONT_COLOR_EDIT_PART, new AppFontColorPolicy());
+		installEditPolicy(FONT_COLOR_EDIT_PART, new FontColorPolicy());
 
 		// Label Color
-		installEditPolicy(LABEL_COLOR_EDIT_PART, new AppLabelColorPolicy());
+		installEditPolicy(LABEL_COLOR_EDIT_PART, new LabelColorPolicy());
+
+		// Default Font Color
+		installEditPolicy(DEFAULT_FONT_COLOR_EDIT_PART, new DefaultFontColorPolicy());
+
+		// Default Label Color
+		installEditPolicy(DEFAULT_LABEL_COLOR_EDIT_PART, new DefaultLabelColorPolicy());
+
+		// Default Figure Color
+		installEditPolicy(DEFAULT_FIGURE_COLOR_EDIT_POLICY, new DefaultFigureColorPolicy());
 	}
 
 

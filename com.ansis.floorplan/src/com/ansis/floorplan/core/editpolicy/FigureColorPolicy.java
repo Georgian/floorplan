@@ -8,11 +8,11 @@ import org.eclipse.swt.graphics.RGB;
 import com.ansis.floorplan.core.command.FigureColorCommand;
 
 
-public class AppFigureColorPolicy extends AbstractEditPolicy {
+public class FigureColorPolicy extends AbstractEditPolicy {
 
 	// ==================== 5. Creators ====================
 
-	protected Command createChangeColorCommand(final Request figureColorRequest) {
+	protected Command createFigureColorCommand(final Request figureColorRequest) {
 		final FigureColorCommand command = new FigureColorCommand();
 
 		command.setModel(getHost().getModel()); 
@@ -27,7 +27,7 @@ public class AppFigureColorPolicy extends AbstractEditPolicy {
 	@Override
 	public Command getCommand(final Request request) {
 		if (request.getType().equals("figureColor"))  //$NON-NLS-1$
-			return createChangeColorCommand(request);
+			return createFigureColorCommand(request);
 		return null;
 	}
 

@@ -1,4 +1,4 @@
-package com.ansis.floorplan.core.command;
+package com.ansis.floorplan.core.command.font;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.swt.graphics.RGB;

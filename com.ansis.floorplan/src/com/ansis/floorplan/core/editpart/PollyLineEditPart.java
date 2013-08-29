@@ -6,7 +6,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPolicy;
 
 import com.ansis.floorplan.FloorplanActivator;
-import com.ansis.floorplan.core.editpolicy.AppDeletePolicy;
+import com.ansis.floorplan.core.editpolicy.DeletePolicy;
 import com.ansis.floorplan.core.figure.PollyLineFigure;
 import com.ansis.floorplan.core.model.CanvasModel;
 import com.ansis.floorplan.core.model.PollyLine;
@@ -32,7 +32,7 @@ public class PollyLineEditPart extends AppAbstractEditPart {
 	@Override
 	protected void createEditPolicies() {
 		// Create
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppDeletePolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new DeletePolicy());
 	}
 
 

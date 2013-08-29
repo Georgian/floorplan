@@ -35,7 +35,7 @@ import com.ansis.floorplan.core.model.RectangleModel;
 import com.ansis.floorplan.util.color.FPStandardColor;
 
 
-public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
+public class EditLayoutPolicy extends XYLayoutEditPolicy {
 
 	// ==================== 5. Creators ====================
 

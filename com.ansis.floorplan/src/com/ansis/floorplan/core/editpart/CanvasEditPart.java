@@ -9,7 +9,7 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.tools.DragEditPartsTracker;
 
-import com.ansis.floorplan.core.editpolicy.AppEditLayoutPolicy;
+import com.ansis.floorplan.core.editpolicy.EditLayoutPolicy;
 import com.ansis.floorplan.core.figure.CanvasFigure;
 import com.ansis.floorplan.core.listener.MyListener;
 import com.ansis.floorplan.core.model.Canvas;
@@ -23,7 +23,7 @@ public class CanvasEditPart extends AppAbstractEditPart {
 
 	@Override
 	protected void createEditPolicies() {
-		installEditPolicy(EditPolicy.LAYOUT_ROLE, new AppEditLayoutPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new EditLayoutPolicy());
 	}
 
 	@Override

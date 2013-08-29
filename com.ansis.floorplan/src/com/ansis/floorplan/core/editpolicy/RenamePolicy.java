@@ -4,18 +4,18 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
 
-import com.ansis.floorplan.core.command.OpacityCommand;
+import com.ansis.floorplan.core.command.RenameCommand;
 
 
-public class AppOpacityPolicy extends AbstractEditPolicy {
+public class RenamePolicy extends AbstractEditPolicy {
 
 	// ==================== 5. Creators ====================
 
-	protected Command createOpacityCommand(final Request opacityRequest) {
-		final OpacityCommand command = new OpacityCommand();
+	protected Command createRenameCommand(final Request renameRequest) {
+		final RenameCommand command = new RenameCommand();
 
 		command.setModel(getHost().getModel()); 
-		command.setNewOpacity((String)opacityRequest.getExtendedData().get("newOpacity")); //$NON-NLS-1$
+		command.setNewName((String)renameRequest.getExtendedData().get("newName")); //$NON-NLS-1$
 
 		return command;
 	}
@@ -25,8 +25,9 @@ public class AppOpacityPolicy extends AbstractEditPolicy {
 
 	@Override
 	public Command getCommand(final Request request) {
-		if (request.getType().equals("opacity"))  //$NON-NLS-1$
-			return createOpacityCommand(request);
+		if (request.getType().equals("rename"))  //$NON-NLS-1$
+			return createRenameCommand(request);
+
 		return null;
 	}
 

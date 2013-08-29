@@ -1,14 +1,14 @@
-package com.ansis.floorplan.core.editpolicy;
+package com.ansis.floorplan.core.editpolicy.font;
 
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
 import org.eclipse.swt.graphics.RGB;
 
-import com.ansis.floorplan.core.command.LabelColorCommand;
+import com.ansis.floorplan.core.command.font.LabelColorCommand;
 
 
-public class AppLabelColorPolicy extends AbstractEditPolicy {
+public class LabelColorPolicy extends AbstractEditPolicy {
 
 	// ==================== 5. Creators ====================
 

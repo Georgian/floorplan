@@ -1,13 +1,13 @@
-package com.ansis.floorplan.core.editpolicy;
+package com.ansis.floorplan.core.editpolicy.font;
 
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
 
-import com.ansis.floorplan.core.command.FontSizeCommand;
+import com.ansis.floorplan.core.command.font.FontSizeCommand;
 
 
-public class AppFontSizePolicy extends AbstractEditPolicy {
+public class FontSizePolicy extends AbstractEditPolicy {
 
 	// ==================== 5. Creators ====================
 

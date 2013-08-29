@@ -1,4 +1,4 @@
-package com.ansis.floorplan.core.action.font;
+package com.ansis.floorplan.core.action.defaults;
 
 import java.util.HashMap;
 
@@ -11,24 +11,23 @@ import org.eclipse.ui.IWorkbenchPart;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
-import com.ansis.floorplan.util.FPConstPresentation;
 
 
-public class FontColorAction extends SelectionAction {
+public class DefaultFigureColorAction extends SelectionAction {
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String fontColorProperty = "fontColorProperty"; //$NON-NLS-1$
+	public static final String defaultFigureColorProperty = "defaultFigureColorProperty"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
 
-	private RGB fontColor;
+	private RGB defaultFigureColor;
 
 
 	// ==================== 4. Constructors ====================
 
-	public FontColorAction(final IWorkbenchPart part) {
+	public DefaultFigureColorAction(final IWorkbenchPart part) {
 		super(part);
 		setLazyEnablementCalculation(true);
 	}
@@ -36,13 +35,13 @@ public class FontColorAction extends SelectionAction {
 
 	// ==================== 5. Creators ====================
 
-	public Command createFontColorCommand(final RGB fontColor) {
-		final Request fontColorReq = new Request("fontColor"); //$NON-NLS-1$
+	public Command createDefaultFigureColorCommand(final RGB defaultFigureColor) {
+		final Request defaultFigureColorReq = new Request("defaultFigureColor"); //$NON-NLS-1$
 		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
-		reqData.put("newFontColor", fontColor); //$NON-NLS-1$
-		fontColorReq.setExtendedData(reqData);
+		reqData.put("newDefaultFigureColor", defaultFigureColor); //$NON-NLS-1$
+		defaultFigureColorReq.setExtendedData(reqData);
 		final EditPart object = (EditPart)getSelectedObjects().get(0);
-		final Command cmd = object.getCommand(fontColorReq);
+		final Command cmd = object.getCommand(defaultFigureColorReq);
 		return cmd; 
 	}
 
@@ -51,7 +50,7 @@ public class FontColorAction extends SelectionAction {
 
 	@Override
 	protected boolean calculateEnabled() {
-		final Command cmd = createFontColorCommand(null); 
+		final Command cmd = createDefaultFigureColorCommand(null); 
 		if (cmd == null)
 			return false;
 		return true;
@@ -59,22 +58,22 @@ public class FontColorAction extends SelectionAction {
 
 	@Override
 	protected void init() {
-		setId(fontColorProperty);
-		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_COLOR)); 
-		setText("Font color"+FPConstPresentation.ELIPSES);  //$NON-NLS-1$
+		setId(defaultFigureColorProperty);
+		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_COLOR)); 
+		setText("Default figure color");  //$NON-NLS-1$
 		setEnabled(false);
 	}
 
 	@Override
 	public void run() {
-		execute(createFontColorCommand(getFontColor()));
+		execute(createDefaultFigureColorCommand(getDefaultFigureColor()));
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public RGB getFontColor() {
-		return fontColor;
+	public RGB getDefaultFigureColor() {
+		return defaultFigureColor;
 	}
 
 }

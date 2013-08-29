@@ -7,7 +7,7 @@ import org.eclipse.gef.requests.GroupRequest;
 import com.ansis.floorplan.core.command.DeleteCommand;
 
 
-public class AppDeletePolicy extends ComponentEditPolicy {
+public class DeletePolicy extends ComponentEditPolicy {
 
 	// ==================== 5. Creators ====================
 

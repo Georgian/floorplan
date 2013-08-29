@@ -61,7 +61,7 @@ public class LabelColorAction extends SelectionAction {
 	protected void init() {
 		setId(labelColorProperty);
 		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_BACKGROUND)); 
-		setText("Font background color" + FPConstPresentation.ELIPSES);  //$NON-NLS-1$
+		setText("Label color" + FPConstPresentation.ELIPSES);  //$NON-NLS-1$
 		setEnabled(false);
 	}
 

@@ -7,13 +7,18 @@ import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.ui.actions.ActionFactory;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
 import com.ansis.floorplan.core.action.FigureColorAction;
 import com.ansis.floorplan.core.action.LabelColorAction;
+import com.ansis.floorplan.core.action.defaults.DefaultFigureColorAction;
+import com.ansis.floorplan.core.action.defaults.DefaultFontColorAction;
 import com.ansis.floorplan.core.action.defaults.DefaultFontSizeAction;
+import com.ansis.floorplan.core.action.defaults.DefaultFontStyleAction;
+import com.ansis.floorplan.core.action.defaults.DefaultLabelColorAction;
 import com.ansis.floorplan.core.action.defaults.DefaultOpacityAction;
 import com.ansis.floorplan.core.action.font.FontColorAction;
 import com.ansis.floorplan.core.action.font.FontSizeNineAction;
@@ -153,16 +158,31 @@ public class AppContextMenuProvider extends ContextMenuProvider {
 		
 		// Defaults Sub menu-- opacity, font size, font color, font background color, line color, figure color. 
 		final MenuManager defaultsSubmenu = new MenuManager("Default", "defaultsSubmenuID");  //$NON-NLS-1$//$NON-NLS-2$
-		
+
+		action = getActionRegistry().getAction(DefaultFigureColorAction.defaultFigureColorProperty);
+		defaultsSubmenu.add(action);
+
 		action = getActionRegistry().getAction(DefaultOpacityAction.defaultOpacityProperty);
 		defaultsSubmenu.add(action);
-		
+
+		defaultsSubmenu.add(new Separator());
+
+		action = getActionRegistry().getAction(DefaultFontStyleAction.defaultFontStyleProperty);
+		defaultsSubmenu.add(action);
+
 		action = getActionRegistry().getAction(DefaultFontSizeAction.defaultFontSizeProperty);
 		defaultsSubmenu.add(action);
-		
-//		action = getActionRegistry().getAction(DefaultFontColorAction.defaultFontColorProperty);
-//		defaultsSubmenu.add(action);
-		
+
+		action = getActionRegistry().getAction(DefaultFontColorAction.defaultFontColorProperty);
+		defaultsSubmenu.add(action);
+
+		action = getActionRegistry().getAction(DefaultLabelColorAction.defaultLabelColorProperty);
+		defaultsSubmenu.add(action);
+
+		defaultsSubmenu.add(new Separator());
+
+//		action = getActionRegistry().getAction(DefaultAllAction.defaultAllProperty);
+
 		menu.appendToGroup(GEFActionConstants.GROUP_SAVE, defaultsSubmenu );
 	}
 
