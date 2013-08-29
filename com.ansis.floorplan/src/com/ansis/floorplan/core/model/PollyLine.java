@@ -24,10 +24,10 @@ public class PollyLine extends ChildModel {
 
 	public void setDrawingDenied(final boolean b) {
 		this.b = b;
-
 	}
+
 	public boolean isDrawingDenied() {
 		return b;
-
 	}
+
 }

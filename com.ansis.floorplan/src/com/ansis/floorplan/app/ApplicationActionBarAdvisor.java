@@ -22,14 +22,14 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 
 	@Override
 	protected void makeActions(final IWorkbenchWindow window) {
+
 	}
 
 	@Override
 	protected void fillMenuBar(final IMenuManager menuBar) {
 		final MenuManager fileMenu = new MenuManager("&File", "file");  //$NON-NLS-1$ //$NON-NLS-2$
-    	fileMenu.add(new OpenEditorAction());
-    	menuBar.add(fileMenu);
-    	
+		fileMenu.add(new OpenEditorAction());
+		menuBar.add(fileMenu);
 	}
 
 }

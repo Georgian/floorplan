@@ -9,42 +9,42 @@ import com.ansis.floorplan.core.model.ChildModel;
 import com.ansis.floorplan.util.FPConstPresentation;
 
 
-public class ChangeLabelColorCommand extends Command {
+public class FigureColorCommand extends Command {
 
 	// ====================== 2. Instance Fields =============================
 
 	private ChildModel model;
 
-	private RGB oldLabelColor;
+	private RGB oldFigureColor;
 
 	@SuppressWarnings("unused")
-	private RGB newLabelColor;
+	private RGB newFigureColor;
 
 
 	// ==================== 6. Action Methods ====================
 
 	@Override
 	public void execute() {
-		this.oldLabelColor = model.getLabelColor();
+		this.oldFigureColor = model.getColor();
 		//		this.model.setColor(newColor);
 
 		// Create the color-change dialog
 		final ColorDialog dlg = new ColorDialog(Display.getCurrent().getActiveShell());
 
 		// Change the title bar text
-		dlg.setText("Choose a label color" + FPConstPresentation.ELIPSES); //$NON-NLS-1$
+		dlg.setText("Choose a figure color" + FPConstPresentation.ELIPSES); //$NON-NLS-1$
 
 		// Open the dialog and retrieve the selected color
 		final RGB rgb = dlg.open();
 
 		if (rgb != null) 
-			model.setLabelColor(rgb);
+			model.setColor(rgb);
 
 	}
 
 	@Override
 	public void undo() {
-		this.model.setLabelColor(oldLabelColor);
+		this.model.setColor(oldFigureColor);
 	}
 
 
@@ -54,8 +54,8 @@ public class ChangeLabelColorCommand extends Command {
 		this.model = (ChildModel)model;
 	}
 
-	public void setNewChangeLabelColor(final RGB newLabelColor) {
-		this.newLabelColor = newLabelColor;
+	public void setNewFigureColor(final RGB newFigureColor) {
+		this.newFigureColor = newFigureColor;
 	}
 
 }

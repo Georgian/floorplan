@@ -8,13 +8,13 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
+
 /**
  * 
  * @author ggrec
  *
  */
-public class ImageCache 
-{
+public class ImageCache {
 
 	// ====================== 2. Instance Fields =============================
 
@@ -32,8 +32,7 @@ public class ImageCache
 	/**
 	 * Plugin specific image cache
 	 */
-	public ImageCache(final String pluginID) 
-	{
+	public ImageCache(final String pluginID) {
 		this.pluginID = pluginID;
 	}
 
@@ -43,8 +42,7 @@ public class ImageCache
 	/**
 	 * Overridden to dispose all images
 	 */
-	public void dispose() 
-	{
+	public void dispose() {
 		final Iterator<Image> iter = imageMap.values().iterator();
 		while (iter.hasNext())
 			iter.next().dispose();
@@ -61,11 +59,9 @@ public class ImageCache
 	 * @param path - the path to the existing image
 	 * @return The image
 	 */
-	public Image getImage(final String path)
-	{
+	public Image getImage(final String path) {
 		Image image = imageMap.get(path);
-		if (image == null) 
-		{
+		if (image == null) 	{
 			image = getImageDescriptor(path).createImage();
 			imageMap.put(path, image);
 		}
@@ -81,8 +77,7 @@ public class ImageCache
 	 * @param key
 	 * @return
 	 */
-	public Image getCachedImage(final String key) 
-	{
+	public Image getCachedImage(final String key) {
 		return imageMap.get(key);
 	}
 
@@ -93,8 +88,7 @@ public class ImageCache
 	 * @param path the path
 	 * @return the image descriptor
 	 */
-	public ImageDescriptor getImageDescriptor(final String path) 
-	{
+	public ImageDescriptor getImageDescriptor(final String path) {
 		return AbstractUIPlugin.imageDescriptorFromPlugin(pluginID, path);
 	}
 
@@ -103,15 +97,13 @@ public class ImageCache
 	 * @param imageDescriptor
 	 * @return the image
 	 */
-	public Image getImage(final ImageDescriptor imageDescriptor) 
-	{
+	public Image getImage(final ImageDescriptor imageDescriptor) {
 		if (imageDescriptor == null)
 			return null;
 
 		final String key = "IMG_DESC-" + imageDescriptor.hashCode(); //$NON-NLS-1$
 		Image image = imageMap.get(key);
-		if (image == null) 
-		{
+		if (image == null) {
 			image = imageDescriptor.createImage();
 			cacheImage(key, image);
 		}
@@ -124,8 +116,8 @@ public class ImageCache
 	 * @param key
 	 * @param image
 	 */
-	public void cacheImage(final String key, final Image image) 
-	{
+	public void cacheImage(final String key, final Image image) {
 		imageMap.put(key, image);
 	}
+
 }

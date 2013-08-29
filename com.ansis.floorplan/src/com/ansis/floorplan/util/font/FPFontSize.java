@@ -1,12 +1,13 @@
 package com.ansis.floorplan.util.font;
 
+
 /**
  * 
  * @author ggrec
  *
  */
-public enum FPFontSize 
-{
+public enum FPFontSize {
+
 	XS     (70, 7),
 	S      (90, 7),
 	M      (100, 8),
@@ -16,17 +17,26 @@ public enum FPFontSize
 	XXL    (200, 16),
 	XXXL   (250, 18);
 
+
+	// ====================== 2. Instance Fields =============================
+
 	final public int percent;
+
 	final public int points;
 
-	private FPFontSize(final int sizePercent, final int sizePoints)
-	{
+
+	// ==================== 4. Constructors ====================
+
+	private FPFontSize(final int sizePercent, final int sizePoints)	{
 		percent = sizePercent;
 		points = sizePoints;
 	}
 
-	public String getName() 
-	{
+
+	// ==================== 7. Getters & Setters ====================
+
+	public String getName() {
 		return toString();
 	}
+
 }

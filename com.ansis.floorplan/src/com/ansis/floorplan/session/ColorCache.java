@@ -10,14 +10,14 @@ import org.eclipse.swt.widgets.Display;
 
 import com.ansis.floorplan.util.color.FPColor;
 
+
 /**
  * Creates and caches colors. Call dispose in the end.
  * 
  * @author akozma
  *
  */
-public class ColorCache
-{
+public class ColorCache {
 
 	// ====================== 2. Instance Fields =============================
 
@@ -28,19 +28,16 @@ public class ColorCache
 
 	// ==================== 6. Action Methods ====================
 
-	public Color getColor(final RGB rgb) 
-	{
+	public Color getColor(final RGB rgb) {
 		Color color = fColorTable.get(rgb);
-		if (color == null) 
-		{
+		if (color == null) {
 			color = new Color(Display.getCurrent(), rgb);
 			fColorTable.put(rgb, color);
 		}
 		return color;
 	}
 
-	public Color getColor(final FPColor color) 
-	{
+	public Color getColor(final FPColor color) {
 		if (colorMap.containsKey(color))
 			return colorMap.get(color);
 
@@ -51,8 +48,7 @@ public class ColorCache
 		return c;
 	}
 
-	public void dispose() 
-	{
+	public void dispose() {
 		final Iterator<Color> e = fColorTable.values().iterator();
 		while (e.hasNext())
 			e.next().dispose();
@@ -63,13 +59,11 @@ public class ColorCache
 	/**
 	 * Destroy all colors in map and sets colorMap to null. Null-safe.
 	 */
-	private void destroyColors() 
-	{
+	private void destroyColors() {
 		if (colorMap == null)
 			return;
 
-		for (final Color c : colorMap.values()) 
-		{
+		for (final Color c : colorMap.values()) {
 			if (c != null)
 				c.dispose();
 		}
@@ -77,4 +71,5 @@ public class ColorCache
 		colorMap.clear();
 		fColorTable.clear();
 	}
+
 }

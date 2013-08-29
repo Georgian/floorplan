@@ -14,7 +14,7 @@ import com.ansis.floorplan.util.FPConstPresentation;
 import com.ansis.floorplan.util.font.FPFontStyle;
 
 
-public class FontStyleBoldAction extends SelectionAction{
+public class FontStyleBoldAction extends SelectionAction {
 
 	// ==================== 1. Static Fields ========================
 

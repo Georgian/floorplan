@@ -11,7 +11,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import com.ansis.floorplan.util.FPConstPresentation;
 
 
-public class FontSizeNineAction extends SelectionAction{
+public class FontSizeNineAction extends SelectionAction {
 
 	// ==================== 1. Static Fields ========================
 

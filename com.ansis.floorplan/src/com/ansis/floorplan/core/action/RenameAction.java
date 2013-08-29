@@ -89,4 +89,5 @@ public class RenameAction extends SelectionAction {
 		final EditPart part = (EditPart)objects.get(0);
 		return (ChildModel)part.getModel();
 	}
+
 }

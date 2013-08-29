@@ -21,8 +21,7 @@ import com.ansis.floorplan.util.font.FPFont;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class FloorplanActivator extends AbstractUIPlugin 
-{
+public class FloorplanActivator extends AbstractUIPlugin {
 
 	// ==================== 1. Static Fields ========================
 
@@ -49,8 +48,7 @@ public class FloorplanActivator extends AbstractUIPlugin
 	 *
 	 * @return the shared instance
 	 */
-	public static FloorplanActivator getDefault()
-	{
+	public static FloorplanActivator getDefault() {
 		return plugin;
 	}
 
@@ -72,8 +70,7 @@ public class FloorplanActivator extends AbstractUIPlugin
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
 	@Override
-	public void start(final BundleContext context) throws Exception 
-	{
+	public void start(final BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
 	}
@@ -83,8 +80,7 @@ public class FloorplanActivator extends AbstractUIPlugin
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
 	@Override
-	public void stop(final BundleContext context) throws Exception 
-	{
+	public void stop(final BundleContext context) throws Exception {
 		plugin = null;
 
 		if (colorCache != null)
@@ -99,30 +95,26 @@ public class FloorplanActivator extends AbstractUIPlugin
 		super.stop(context);
 	}
 
-	public String getPluginID() 
-	{
+	public String getPluginID() {
 		return PLUGIN_ID;
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	private ColorCache getColorCache() 
-	{
+	private ColorCache getColorCache() {
 		if (colorCache == null)
 			colorCache = new ColorCache();
 		return colorCache;
 	}
 
-	public ImageCache getImageCache() 
-	{
+	public ImageCache getImageCache() {
 		if (imageCache == null)
 			imageCache = new ImageCache(getPluginID());
 		return imageCache;
 	}
 
-	private FontCache getFontCache() 
-	{
+	private FontCache getFontCache() {
 		if (fontCache == null)
 			fontCache = new FontCache();
 		return fontCache;
@@ -140,8 +132,7 @@ public class FloorplanActivator extends AbstractUIPlugin
 	 * @param path the path
 	 * @return the image descriptor
 	 */
-	public ImageDescriptor getImageDescriptor(final String path) 
-	{
+	public ImageDescriptor getImageDescriptor(final String path) {
 		return getImageCache().getImageDescriptor(path);
 	}
 
@@ -156,8 +147,7 @@ public class FloorplanActivator extends AbstractUIPlugin
 	 * @param path
 	 * @return Image
 	 */
-	public Image getImage(final String path) 
-	{
+	public Image getImage(final String path) {
 		// Wrapper method for hiding delegate ImageCache
 		return getImageCache().getImage(path);
 	}
@@ -173,12 +163,9 @@ public class FloorplanActivator extends AbstractUIPlugin
 	 * @param imageData
 	 * @return Image
 	 */
-	public Image getImage(final ImageData imageData) 
-	{
-		return getImage(new ImageDescriptor() 
-		{
-			@Override public ImageData getImageData() 
-			{
+	public Image getImage(final ImageData imageData) {
+		return getImage(new ImageDescriptor() {
+			@Override public ImageData getImageData() {
 				return imageData;
 			}
 		});
@@ -193,8 +180,7 @@ public class FloorplanActivator extends AbstractUIPlugin
 	 * @param path
 	 * @return Image
 	 */
-	public Image getImage(final ImageDescriptor imageDescriptor)
-	{
+	public Image getImage(final ImageDescriptor imageDescriptor) {
 		// Wrapper method for hiding delegate ImageCache
 		return getImageCache().getImage(imageDescriptor);
 	}
@@ -202,33 +188,28 @@ public class FloorplanActivator extends AbstractUIPlugin
 
 	// ==================== Color Cache ========================
 
-	public Color getColor(final FPColor color) 
-	{
+	public Color getColor(final FPColor color) {
 		if (color == null)
 			return null;
 		return getColorCache().getColor(color);
 	}
 
-	public Color getColor(final RGB rgb) 
-	{
+	public Color getColor(final RGB rgb) {
 		return getColorCache().getColor(rgb);
 	}
 
 
 	// ==================== Font Cache ============================
 
-	public Font getFont(final FPFont style) 
-	{
+	public Font getFont(final FPFont style) {
 		return getFontCache().getFont(style);
 	}
 
-	public Font getCustomizedFont(final Font referenceFont, final int sizePercent, final int style) 
-	{
+	public Font getCustomizedFont(final Font referenceFont, final int sizePercent, final int style) {
 		return getFontCache().getCustomisedFont(referenceFont, sizePercent, style);
 	}
 
-	public Font getMonospaceFont() 
-	{
+	public Font getMonospaceFont() {
 		return getFontCache().getMonospaceFont();
 	}
 
@@ -242,9 +223,9 @@ public class FloorplanActivator extends AbstractUIPlugin
 	 * @param fileNameWithinPlugin IMPORTANT: needs to start with a /
 	 * @return
 	 */
-	public InputStream getInputStreamForFile(final String fileName) 
-	{
+	public InputStream getInputStreamForFile(final String fileName) {
 		// This method can also read from a JAR, not only from file system:
 		return this.getClass().getResourceAsStream(fileName);
 	}
+
 }

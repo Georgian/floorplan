@@ -8,20 +8,21 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.ui.IWorkbenchPart;
 
+import com.ansis.floorplan.FloorplanActivator;
+import com.ansis.floorplan.IFloorplanImageKeys;
 import com.ansis.floorplan.util.FPConstPresentation;
+
 
 /**
  * 
  * @author PsYCh
  *
  */
-
-
-public class OpacityDefaultAction extends SelectionAction{
+public class DefaultOpacityAction extends SelectionAction {
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String opacityPropertyDefault = "opacityPropertyDefault"; //$NON-NLS-1$
+	public static final String defaultOpacityProperty = "defaultOpacityProperty"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
@@ -31,7 +32,7 @@ public class OpacityDefaultAction extends SelectionAction{
 
 	// ==================== 4. Constructors ====================
 
-	public OpacityDefaultAction(final IWorkbenchPart part) {
+	public DefaultOpacityAction(final IWorkbenchPart part) {
 		super(part);
 		setLazyEnablementCalculation(true);
 	}
@@ -39,13 +40,13 @@ public class OpacityDefaultAction extends SelectionAction{
 
 	// ==================== 5. Creators ====================
 
-	public Command createOpacityCommand(final String opacity) {
-		final Request opacityReq = new Request("opacity"); //$NON-NLS-1$
+	public Command createDefaultOpacityCommand(final String defaultOpacity) {
+		final Request defaultOpacityReq = new Request("opacity"); //$NON-NLS-1$
 		final HashMap<String, String> reqData = new HashMap<String, String>();
-		reqData.put("newOpacity", opacity); //$NON-NLS-1$
-		opacityReq.setExtendedData(reqData);
+		reqData.put("newOpacity", defaultOpacity); //$NON-NLS-1$
+		defaultOpacityReq.setExtendedData(reqData);
 		final EditPart object = (EditPart)getSelectedObjects().get(0);
-		final Command cmd = object.getCommand(opacityReq);
+		final Command cmd = object.getCommand(defaultOpacityReq);
 		return cmd; 
 	}
 
@@ -54,7 +55,7 @@ public class OpacityDefaultAction extends SelectionAction{
 
 	@Override
 	protected boolean calculateEnabled() {
-		final Command cmd = createOpacityCommand(FPConstPresentation.EMPTY_STRING); 
+		final Command cmd = createDefaultOpacityCommand(FPConstPresentation.EMPTY_STRING); 
 		if (cmd == null)
 			return false;
 		return true;
@@ -62,20 +63,21 @@ public class OpacityDefaultAction extends SelectionAction{
 
 	@Override
 	protected void init() {
-		setId(opacityPropertyDefault);
+		setId(defaultOpacityProperty);
+		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_OPACITY)); 
 		setText("Default Opacity");   //$NON-NLS-1$
 		setEnabled(false);
 	}
 
 	@Override
 	public void run() {
-		execute(createOpacityCommand(getDefault()));
+		execute(createDefaultOpacityCommand(getDefaultOpacity()));
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public String getDefault() {
+	public String getDefaultOpacity() {
 		return defaultOpacity;
 	}
 

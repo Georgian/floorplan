@@ -10,13 +10,13 @@ import org.eclipse.swt.widgets.Display;
 
 import com.ansis.floorplan.util.font.FPFont;
 
+
 /**
  * 
  * @author ggrec
  *
  */
-public class FontCache 
-{
+public class FontCache {
 
 	// ====================== 2. Instance Fields =============================
 
@@ -30,15 +30,13 @@ public class FontCache
 	/**
 	 * Get an font by style. Caches the font. 
 	 */
-	public Font getFont(final FPFont fontStyle) 
-	{
+	public Font getFont(final FPFont fontStyle) {
 		if (fontStyle == null)
 			return null;
 
 		Font font = fontMap.get(fontStyle);
 
-		if (font == null) 
-		{
+		if (font == null) {
 			font = Display.getDefault().getSystemFont();
 
 			// Make a font accordingly to user specifications
@@ -53,8 +51,7 @@ public class FontCache
 	 * Overridden to dispose all fonts
 	 *
 	 */
-	public void dispose() 
-	{
+	public void dispose() {
 		final Iterator<Font> iter = fontMap.values().iterator();
 		while (iter.hasNext())
 			(iter.next()).dispose();
@@ -81,8 +78,7 @@ public class FontCache
 	 *            them.
 	 * @return
 	 */
-	public Font getCustomisedFont(final Font referenceFont, final int sizePercent, final int style) 
-	{
+	public Font getCustomisedFont(final Font referenceFont, final int sizePercent, final int style) {
 		final FontData fontData = referenceFont.getFontData()[0];
 		fontData.setHeight((int) (fontData.getHeight() * sizePercent / 100.0 + 0.5));
 		fontData.setStyle(style);
@@ -96,13 +92,12 @@ public class FontCache
 	 * 
 	 * @return
 	 */
-	public Font getMonospaceFont() 
-	{
-		if (monospacedFont == null) 
-		{
+	public Font getMonospaceFont() {
+		if (monospacedFont == null) {
 			final Font font = Display.getDefault().getSystemFont();
 			monospacedFont = new Font(font.getDevice(), "courier", font.getFontData()[0].getHeight(), font.getFontData()[0].getStyle()); //$NON-NLS-1$
 		}		
 		return monospacedFont;
 	}
+
 }

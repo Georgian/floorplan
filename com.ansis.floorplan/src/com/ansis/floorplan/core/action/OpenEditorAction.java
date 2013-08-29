@@ -22,10 +22,10 @@ public class OpenEditorAction extends Action {
 			e.printStackTrace();
 		}
 	}
-	
+
 
 	// ==================== 7. Getters & Setters ====================
-	
+
 	@Override
 	public String getText() {
 		return "Open Editor"; //$NON-NLS-1$

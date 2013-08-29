@@ -11,7 +11,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import com.ansis.floorplan.util.FPConstPresentation;
 
 
-public class OpacityFourtyAction extends SelectionAction{
+public class OpacityFourtyAction extends SelectionAction {
 
 	// ==================== 1. Static Fields ========================
 

@@ -33,12 +33,11 @@ import org.eclipse.ui.actions.ActionFactory;
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
 import com.ansis.floorplan.app.MyTemplateTransferDropTargetListener;
-import com.ansis.floorplan.core.action.ChangeColorAction;
-import com.ansis.floorplan.core.action.ChangeLabelColorAction;
+import com.ansis.floorplan.core.action.FigureColorAction;
+import com.ansis.floorplan.core.action.LabelColorAction;
 import com.ansis.floorplan.core.action.RenameAction;
-import com.ansis.floorplan.core.action.defaults.DefaultFontColorAction;
-import com.ansis.floorplan.core.action.defaults.FontSizeDefaultAction;
-import com.ansis.floorplan.core.action.defaults.OpacityDefaultAction;
+import com.ansis.floorplan.core.action.defaults.DefaultFontSizeAction;
+import com.ansis.floorplan.core.action.defaults.DefaultOpacityAction;
 import com.ansis.floorplan.core.action.font.FontColorAction;
 import com.ansis.floorplan.core.action.font.FontSizeNineAction;
 import com.ansis.floorplan.core.action.font.FontSizeSevenAction;
@@ -89,7 +88,9 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 	@Override
 	public void createActions() {
 		super.createActions(); 
+
 		final ActionRegistry registry = getActionRegistry();
+
 		final IAction action = new RenameAction(this);
 		registry.registerAction(action);
 		getSelectionActions().add(action.getId());
@@ -105,8 +106,8 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final OpacityFourtyAction fourtyOpacityAction = new OpacityFourtyAction(this);
 		registry.registerAction(fourtyOpacityAction);
 		getSelectionActions().add(fourtyOpacityAction.getId());
-		
-		final OpacityDefaultAction defaultOpacityAction = new OpacityDefaultAction(this);
+
+		final DefaultOpacityAction defaultOpacityAction = new DefaultOpacityAction(this);
 		registry.registerAction(defaultOpacityAction);
 		getSelectionActions().add(defaultOpacityAction.getId());
 
@@ -149,8 +150,8 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final FontSizeTenAction tenFontSizeAction = new FontSizeTenAction(this);
 		registry.registerAction(tenFontSizeAction);
 		getSelectionActions().add(tenFontSizeAction.getId());
-		
-		final FontSizeDefaultAction defaultFontSizeAction=  new FontSizeDefaultAction(this);
+
+		final DefaultFontSizeAction defaultFontSizeAction=  new DefaultFontSizeAction(this);
 		registry.registerAction(defaultFontSizeAction);
 		getSelectionActions().add(defaultFontSizeAction.getId());
 
@@ -170,19 +171,19 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		registry.registerAction(twentyfiveFontSizeAction);
 		getSelectionActions().add(twentyfiveFontSizeAction.getId());
 
-		final ChangeColorAction changeColorAction = new ChangeColorAction(this);
+		final FigureColorAction changeColorAction = new FigureColorAction(this);
 		registry.registerAction(changeColorAction);
 		getSelectionActions().add(changeColorAction.getId());
 
 		final FontColorAction fontColorAction = new FontColorAction(this);
 		registry.registerAction(fontColorAction);
 		getSelectionActions().add(fontColorAction.getId());
-		
-		final DefaultFontColorAction defaultFontColorAction = new DefaultFontColorAction(this);
-		registry.registerAction(defaultFontColorAction);
-		getSelectionActions().add(defaultFontColorAction.getId());
 
-		final ChangeLabelColorAction labelColorAction = new ChangeLabelColorAction(this);
+//		final DefaultFontColorAction defaultFontColorAction = new DefaultFontColorAction(this);
+//		registry.registerAction(defaultFontColorAction);
+//		getSelectionActions().add(defaultFontColorAction.getId());
+
+		final LabelColorAction labelColorAction = new LabelColorAction(this);
 		registry.registerAction(labelColorAction);
 		getSelectionActions().add(labelColorAction.getId());
 	}
@@ -235,9 +236,9 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		zoomLevels = new double[] { 0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5 };
 		manager.setZoomLevels(zoomLevels);
 		zoomContributions = new ArrayList<String>();
-		/*zoomContributions.add(ZoomManager.FIT_ALL); 
-		zoomContributions.add(ZoomManager.FIT_HEIGHT); 
-		zoomContributions.add(ZoomManager.FIT_WIDTH);*/
+//		zoomContributions.add(ZoomManager.FIT_ALL); 
+//		zoomContributions.add(ZoomManager.FIT_HEIGHT); 
+//		zoomContributions.add(ZoomManager.FIT_WIDTH);
 		manager.setZoomLevelContributions(zoomContributions);
 		//Zooming END
 

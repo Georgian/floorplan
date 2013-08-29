@@ -2,6 +2,7 @@ package com.ansis.floorplan.util.font;
 
 import com.ansis.floorplan.util.FPConstPresentation;
 
+
 /**
  * 
  * @author ggrec
@@ -18,44 +19,46 @@ public enum FPFont {
 	ITALIC       (FPFontSize.NORMAL, FPFontStyle.ITALIC),
 	LARGE_BOLD   (FPFontSize.XXL,    FPFontStyle.BOLD);
 
+
+	// ====================== 2. Instance Fields =============================
+
 	private final FPFontSize size;
+
 	private final FPFontStyle style;
 
-	private FPFont(final FPFontSize size, final FPFontStyle style) 
-	{
+
+	// ==================== 4. Constructors ====================
+
+	private FPFont(final FPFontSize size, final FPFontStyle style) {
 		this.size = size;
 		this.style = style;
 	}
 
-	public int getSizePercent() 
-	{
+
+	// ==================== 7. Getters & Setters ====================
+
+	public int getSizePercent() {
 		return size.percent;
 	}
 
-	public int getSizePoints() 
-	{	
+	public int getSizePoints() {	
 		return size.points;
 	}
 
-	public FPFontSize getSize()
-	{
+	public FPFontSize getSize() {
 		return size;
 	}
 
-	public FPFontStyle getStyle() 
-	{
+	public FPFontStyle getStyle() {
 		return style;
 	}
 
-	public int getSwtStyle() 
-	{
+	public int getSwtStyle() {
 		return style.getStyle();
 	}
 
-	public static FPFont fontForStyle(final int style)
-	{
-		switch (style) 
-		{
+	public static FPFont fontForStyle(final int style) {
+		switch (style) {
 		case FPConstPresentation.SWT_BOLD:
 			return BOLD;
 
@@ -72,4 +75,5 @@ public enum FPFont {
 			return null;
 		}
 	}
+
 }

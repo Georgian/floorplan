@@ -45,14 +45,11 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 
 		if (child instanceof CanvasEditPart) {
 			command = new CanvasChangeLayoutCommand();
-		}
-		else if (child instanceof PollyEditPart) {
+		} else if (child instanceof PollyEditPart) {
 			command = new PollyChangeLayoutCommand();
-		}
-		else if (child instanceof PollyLineEditPart) {
+		} else if (child instanceof PollyLineEditPart) {
 			command = new PollyLineChangeLayoutCommand();
-		}
-		else if (child instanceof RectangleEditPart) {
+		} else if (child instanceof RectangleEditPart) {
 			command = new RectangleChangeLayoutCommand();
 		}
 
@@ -78,8 +75,7 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 				command.setRectangle((RectangleModel) request.getNewObject());
 
 				return command;
-			}
-			else if ( request.getNewObject() instanceof PollyLine) {
+			} else if ( request.getNewObject() instanceof PollyLine) {
 				final PollyLineCreateCommand command = new PollyLineCreateCommand();
 
 				command.setLocation(request.getLocation());
@@ -99,11 +95,13 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 	@Override 
 	protected EditPolicy createChildEditPolicy(final EditPart child) { 
 		return new NonResizableEditPolicy() {
+
 			@SuppressWarnings("rawtypes")
 			@Override
 			protected List createSelectionHandles() {
 				return new ArrayList<>();
 			}
+
 			@Override
 			protected IFigure createDragSourceFeedbackFigure() {
 				// Use a ghost rectangle for feedback
@@ -118,8 +116,7 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 					addFeedback(p);
 					return p;
 
-				}
-				else if (child.getModel() instanceof PollyLine) {
+				} else if (child.getModel() instanceof PollyLine) {
 					final PolylineShape p = new PolylineShape();
 					final PollyLine pollyLine = (PollyLine) child.getModel();
 					p.setPoints(pollyLine.getList());
@@ -128,8 +125,7 @@ public class AppEditLayoutPolicy extends XYLayoutEditPolicy {
 					p.validate();
 					addFeedback(p);
 					return p;
-				}
-				else if (child.getModel() instanceof RectangleModel) {
+				} else if (child.getModel() instanceof RectangleModel) {
 					final RectangleFigure r = new RectangleFigure();
 					FigureUtilities.makeGhostShape(r);
 					r.setForegroundColor( FloorplanActivator.getDefault().getColor(FPStandardColor.WHITE) );

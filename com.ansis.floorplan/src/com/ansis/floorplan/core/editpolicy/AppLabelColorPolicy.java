@@ -5,18 +5,18 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
 import org.eclipse.swt.graphics.RGB;
 
-import com.ansis.floorplan.core.command.ChangeLabelColorCommand;
+import com.ansis.floorplan.core.command.LabelColorCommand;
 
 
-public class AppChangeLabelColorPolicy extends AbstractEditPolicy {
+public class AppLabelColorPolicy extends AbstractEditPolicy {
 
 	// ==================== 5. Creators ====================
 
-	protected Command createChangeLabelColorCommand(final Request changeLabelColorRequest) {
-		final ChangeLabelColorCommand command = new ChangeLabelColorCommand();
+	protected Command createChangeLabelColorCommand(final Request labelColorRequest) {
+		final LabelColorCommand command = new LabelColorCommand();
 
 		command.setModel(getHost().getModel()); 
-		command.setNewChangeLabelColor((RGB)changeLabelColorRequest.getExtendedData().get("newLabelColor")); //$NON-NLS-1$
+		command.setNewLabelColor((RGB)labelColorRequest.getExtendedData().get("newLabelColor")); //$NON-NLS-1$
 
 		return command;
 	}
@@ -26,7 +26,7 @@ public class AppChangeLabelColorPolicy extends AbstractEditPolicy {
 
 	@Override
 	public Command getCommand(final Request request) {
-		if (request.getType().equals("changeLabelColor"))  //$NON-NLS-1$
+		if (request.getType().equals("labelColor"))  //$NON-NLS-1$
 			return createChangeLabelColorCommand(request);
 		return null;
 	}

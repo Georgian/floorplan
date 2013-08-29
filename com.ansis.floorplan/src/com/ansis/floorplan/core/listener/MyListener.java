@@ -128,8 +128,7 @@ public class MyListener {
 
 							isShiftPressed = false;
 							tempPointList = new PointList();
-						} 
-						else {
+						} else {
 
 							mainPointList.addPoint(new Point(lastPoint.x, me.y));
 

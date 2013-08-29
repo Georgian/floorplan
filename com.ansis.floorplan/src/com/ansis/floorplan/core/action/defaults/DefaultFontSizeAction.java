@@ -8,18 +8,21 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.ui.IWorkbenchPart;
 
+import com.ansis.floorplan.FloorplanActivator;
+import com.ansis.floorplan.IFloorplanImageKeys;
 import com.ansis.floorplan.util.FPConstPresentation;
+
+
 /**
  * 
  * @author PsYCh
  *
  */
-
-public class FontSizeDefaultAction extends SelectionAction{
+public class DefaultFontSizeAction extends SelectionAction {
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String fontSizePropertyDefault = "fontSizePropertyDefault"; //$NON-NLS-1$
+	public static final String defaultFontSizeProperty = "defaultFontSizeProperty"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
@@ -29,7 +32,7 @@ public class FontSizeDefaultAction extends SelectionAction{
 
 	// ==================== 4. Constructors ====================
 
-	public FontSizeDefaultAction(final IWorkbenchPart part) {
+	public DefaultFontSizeAction(final IWorkbenchPart part) {
 		super(part);
 		setLazyEnablementCalculation(true);
 	}
@@ -37,13 +40,13 @@ public class FontSizeDefaultAction extends SelectionAction{
 
 	// ==================== 5. Creators ====================
 
-	public Command createFontSizeCommand(final String fontSize) {
-		final Request fontSizeReq = new Request("fontSize"); //$NON-NLS-1$
+	public Command createFontSizeCommand(final String defaultFontSize) {
+		final Request defaultFontSizeReq = new Request("fontSize"); //$NON-NLS-1$
 		final HashMap<String, String> reqData = new HashMap<String, String>();
-		reqData.put("newFontSize", fontSize); //$NON-NLS-1$
-		fontSizeReq.setExtendedData(reqData);
+		reqData.put("newFontSize", defaultFontSize); //$NON-NLS-1$
+		defaultFontSizeReq.setExtendedData(reqData);
 		final EditPart object = (EditPart)getSelectedObjects().get(0);
-		final Command cmd = object.getCommand(fontSizeReq);
+		final Command cmd = object.getCommand(defaultFontSizeReq);
 		return cmd; 
 	}
 
@@ -60,20 +63,21 @@ public class FontSizeDefaultAction extends SelectionAction{
 
 	@Override
 	protected void init() {
-		setId(fontSizePropertyDefault);
+		setId(defaultFontSizeProperty);
+		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_SIZE)); 
 		setText("Default Font Size"); //$NON-NLS-1$
 		setEnabled(false);
 	}
 
 	@Override
 	public void run() {
-		execute(createFontSizeCommand(getDefault()));
+		execute(createFontSizeCommand(getDefaultFontSize()));
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public String getDefault() {
+	public String getDefaultFontSize() {
 		return defaultFontSize;
 	}
 

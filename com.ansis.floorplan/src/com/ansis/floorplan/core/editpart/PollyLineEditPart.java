@@ -21,7 +21,7 @@ public class PollyLineEditPart extends AppAbstractEditPart {
 		final PollyLineFigure figure = new PollyLineFigure();
 		final PollyLine model = (PollyLine)getModel();
 
-		figure.setBounds( model.getBounds());
+		figure.setBounds( model.getBounds() );
 		figure.setList( model.getList() );
 		figure.setForegroundColor( FloorplanActivator.getDefault().getColor(model.getLineColor()) );
 		figure.setAlpha( model.getOpacity() );
@@ -33,7 +33,6 @@ public class PollyLineEditPart extends AppAbstractEditPart {
 	protected void createEditPolicies() {
 		// Create
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppDeletePolicy());
-
 	}
 
 

@@ -7,8 +7,8 @@ package com.ansis.floorplan.util.color;
  * @author ggrec
  *
  */
-public enum FPStandardColor implements FPColor 
-{
+public enum FPStandardColor implements FPColor {
+
 	PEPITA_STRONG(172, 255, 181),
 	PEPITA_LIGHT(220, 255, 223),
 	PEPITA_VERY_LIGHT(235, 235, 255), 
@@ -58,15 +58,26 @@ public enum FPStandardColor implements FPColor
 	IREMS_DARK_GREEN(147, 190, 142);
 
 
-	// ==================== 3. Static Methods ====================
+	// ==================== 1. Static Fields ========================
 
 	private static final String COLOR_SEP = "_"; //$NON-NLS-1$
+
+
+	// ====================== 2. Instance Fields =============================
+
+	private int red;
+
+	private int green;
+
+	private int blue;
+
+
+	// ==================== 3. Static Methods ====================
 
 	/**
 	 * @return the proper font color (black or white) for the given background color
 	 */
-	public static FPStandardColor getFontColorForBackground(final FPColor color) 
-	{
+	public static FPStandardColor getFontColorForBackground(final FPColor color) {
 		final int min = Math.min(color.red(), Math.min(color.green(), color.blue()));
 		final int max = Math.max(color.red(), Math.max(color.green(), color.blue()));
 
@@ -79,11 +90,7 @@ public enum FPStandardColor implements FPColor
 	}
 
 
-	// ====================== 2. Instance Fields =============================
-
-	private int red;
-	private int green;
-	private int blue;
+	// ==================== 4. Constructors ====================
 
 	private FPStandardColor(final int r, final int g, final int b) {
 		this.red = r;
@@ -96,6 +103,8 @@ public enum FPStandardColor implements FPColor
 		this.green = color.green;
 		this.blue = color.blue;
 	}
+
+	// ==================== 7. Getters & Setters ====================
 
 	@Override
 	public int red() {
@@ -116,8 +125,7 @@ public enum FPStandardColor implements FPColor
 		return new int[] {red, green, blue};
 	}
 
-	public static FPColor colorFromString(final String value) 
-	{
+	public static FPColor colorFromString(final String value) {
 		if (value == null)
 			return null;
 
@@ -129,16 +137,14 @@ public enum FPStandardColor implements FPColor
 		return FPStandardColor.fromRGB(red, green, blue);
 	}
 
-	public static String colorToString(final FPColor color)
-	{
+	public static String colorToString(final FPColor color) {
 		if (color == null)
 			return null;
 
 		return color.red() + COLOR_SEP + color.green() + COLOR_SEP + color.blue();
 	}
 
-	public static FPColor fromRGB(final int red2, final int green2, final int blue2) 
-	{
+	public static FPColor fromRGB(final int red2, final int green2, final int blue2) {
 		// First, see whether it was a standard color:
 		for (final FPStandardColor c : FPStandardColor.values())
 			if (c.red == red2 && c.green == green2 && c.blue == blue2)
@@ -147,4 +153,5 @@ public enum FPStandardColor implements FPColor
 		// Create a custom color:
 		return new FPCustomColor(red2, green2, blue2);
 	}
+
 }

@@ -32,7 +32,7 @@ public class ChildModel extends CanvasModel {
 
 	private Rectangle bounds;
 
-	private int etage;
+	private int integer;
 
 	private String name;
 
@@ -63,11 +63,11 @@ public class ChildModel extends CanvasModel {
 		return parent;
 	}
 
-	public void setBounds(final Rectangle bounds){
+	public void setBounds(final Rectangle bounds) {
 		this.bounds = bounds;
 	}
 
-	public Rectangle getBounds(){
+	public Rectangle getBounds() {
 		return bounds;
 	}
 
@@ -79,16 +79,16 @@ public class ChildModel extends CanvasModel {
 
 	public String getName() {
 		if (name == null)
-			name = "New Figure\nInteger: " + getEtage(); //$NON-NLS-1$
+			name = "New Figure\nInteger: " + getInteger(); //$NON-NLS-1$
 		return name;
 	}
 
-	public void setEtage(final int etage) {
-		this.etage = etage;
+	public void setInteger(final int integer) {
+		this.integer = integer;
 	}
 
-	public int getEtage() {
-		return etage;
+	public int getInteger() {
+		return integer;
 	}
 
 	public RGB getColor() {

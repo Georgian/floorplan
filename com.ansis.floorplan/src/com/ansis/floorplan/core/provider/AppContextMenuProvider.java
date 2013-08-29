@@ -11,11 +11,10 @@ import org.eclipse.ui.actions.ActionFactory;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
-import com.ansis.floorplan.core.action.ChangeColorAction;
-import com.ansis.floorplan.core.action.ChangeLabelColorAction;
-import com.ansis.floorplan.core.action.defaults.DefaultFontColorAction;
-import com.ansis.floorplan.core.action.defaults.FontSizeDefaultAction;
-import com.ansis.floorplan.core.action.defaults.OpacityDefaultAction;
+import com.ansis.floorplan.core.action.FigureColorAction;
+import com.ansis.floorplan.core.action.LabelColorAction;
+import com.ansis.floorplan.core.action.defaults.DefaultFontSizeAction;
+import com.ansis.floorplan.core.action.defaults.DefaultOpacityAction;
 import com.ansis.floorplan.core.action.font.FontColorAction;
 import com.ansis.floorplan.core.action.font.FontSizeNineAction;
 import com.ansis.floorplan.core.action.font.FontSizeSevenAction;
@@ -36,7 +35,7 @@ import com.ansis.floorplan.core.action.opacity.OpacityTenAction;
 import com.ansis.floorplan.core.action.opacity.OpacityTwentyAction;
 
 
-public class AppContextMenuProvider extends ContextMenuProvider{
+public class AppContextMenuProvider extends ContextMenuProvider {
 
 	// ====================== 2. Instance Fields =============================
 
@@ -75,7 +74,7 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		menu.appendToGroup(GEFActionConstants.GROUP_COPY, action);
 
 		// Color
-		action = getActionRegistry().getAction(ChangeColorAction.changeColorProperty);
+		action = getActionRegistry().getAction(FigureColorAction.figureColorProperty);
 		menu.appendToGroup(GEFActionConstants.GROUP_VIEW, action);
 
 		// Opacity
@@ -149,20 +148,20 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		menu.appendToGroup(GEFActionConstants.GROUP_REST, action);
 
 		// Label Color
-		action = getActionRegistry().getAction(ChangeLabelColorAction.changeLabelColorProperty);
+		action = getActionRegistry().getAction(LabelColorAction.labelColorProperty);
 		menu.appendToGroup(GEFActionConstants.GROUP_REST, action);
 		
 		// Defaults Sub menu-- opacity, font size, font color, font background color, line color, figure color. 
 		final MenuManager defaultsSubmenu = new MenuManager("Default", "defaultsSubmenuID");  //$NON-NLS-1$//$NON-NLS-2$
 		
-		action = getActionRegistry().getAction(OpacityDefaultAction.opacityPropertyDefault);
+		action = getActionRegistry().getAction(DefaultOpacityAction.defaultOpacityProperty);
 		defaultsSubmenu.add(action);
 		
-		action = getActionRegistry().getAction(FontSizeDefaultAction.fontSizePropertyDefault);
+		action = getActionRegistry().getAction(DefaultFontSizeAction.defaultFontSizeProperty);
 		defaultsSubmenu.add(action);
 		
-		action = getActionRegistry().getAction(DefaultFontColorAction.defaultFontColorProperty);
-		defaultsSubmenu.add(action);
+//		action = getActionRegistry().getAction(DefaultFontColorAction.defaultFontColorProperty);
+//		defaultsSubmenu.add(action);
 		
 		menu.appendToGroup(GEFActionConstants.GROUP_SAVE, defaultsSubmenu );
 	}

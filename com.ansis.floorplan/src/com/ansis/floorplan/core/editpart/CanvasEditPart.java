@@ -38,7 +38,6 @@ public class CanvasEditPart extends AppAbstractEditPart {
 	@Override
 	public DragTracker getDragTracker(final Request request) {
 		return new DragEditPartsTracker(this) {
-
 			@Override
 			protected void performConditionalSelection() {
 				super.performConditionalSelection();
@@ -62,12 +61,12 @@ public class CanvasEditPart extends AppAbstractEditPart {
 	public void propertyChange(final PropertyChangeEvent evt) {
 
 		if (evt.getPropertyName().equals(CanvasModel.PROPERTY_BACKGROUND))
-			changeBkg();
+			changeBackground();
 		else
 			refreshChildren();
 	}
 
-	private void changeBkg() {
+	private void changeBackground() {
 		final CanvasFigure figure = (CanvasFigure) getFigure();
 		final Canvas model = (Canvas) getModel();
 

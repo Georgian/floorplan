@@ -100,7 +100,7 @@ public class CanvasModel {
 			getListeners().firePropertyChange(PROPERTY_REMOVE, child, null);
 		return b;
 	}
-	
+
 	// ==================== 7. Getters & Setters ====================
 
 	public InputStream getImage() {

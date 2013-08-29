@@ -10,6 +10,7 @@ import org.eclipse.swt.graphics.RGB;
 import org.eclipse.ui.IWorkbenchPart;
 
 import com.ansis.floorplan.FloorplanActivator;
+import com.ansis.floorplan.IFloorplanImageKeys;
 import com.ansis.floorplan.util.FPConstPresentation;
 
 
@@ -59,7 +60,7 @@ public class FontColorAction extends SelectionAction {
 	@Override
 	protected void init() {
 		setId(fontColorProperty);
-		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor("icons/font/fontColor.png")); //$NON-NLS-1$
+		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_COLOR)); 
 		setText("Font color"+FPConstPresentation.ELIPSES);  //$NON-NLS-1$
 		setEnabled(false);
 	}

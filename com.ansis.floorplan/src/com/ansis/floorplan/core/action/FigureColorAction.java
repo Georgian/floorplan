@@ -14,20 +14,21 @@ import com.ansis.floorplan.IFloorplanImageKeys;
 import com.ansis.floorplan.util.FPConstPresentation;
 
 
-public class ChangeLabelColorAction extends SelectionAction {
+public class FigureColorAction extends SelectionAction {
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String changeLabelColorProperty = "changeLabelColorProperty"; //$NON-NLS-1$
+	public static final String figureColorProperty = "figureColorProperty"; //$NON-NLS-1$
 
 
 	// ====================== 2. Instance Fields =============================
 
-	private RGB labelColor;
+	private RGB figureColor;
+
 
 	// ==================== 4. Constructors ====================
 
-	public ChangeLabelColorAction(final IWorkbenchPart part) {
+	public FigureColorAction(final IWorkbenchPart part) {
 		super(part);
 		setLazyEnablementCalculation(true);
 	}
@@ -35,13 +36,13 @@ public class ChangeLabelColorAction extends SelectionAction {
 
 	// ==================== 5. Creators ====================
 
-	public Command createChangeLabelColorCommand(final RGB labelColor) {
-		final Request changeLabelColorReq = new Request("changeLabelColor"); //$NON-NLS-1$
+	public Command createFigureColorCommand(final RGB figureColor) {
+		final Request figureColorReq = new Request("figureColor"); //$NON-NLS-1$
 		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
-		reqData.put("newLabelColor", labelColor); //$NON-NLS-1$
-		changeLabelColorReq.setExtendedData(reqData);
+		reqData.put("newFigureColor", figureColor); //$NON-NLS-1$
+		figureColorReq.setExtendedData(reqData);
 		final EditPart object = (EditPart)getSelectedObjects().get(0);
-		final Command cmd = object.getCommand(changeLabelColorReq);
+		final Command cmd = object.getCommand(figureColorReq);
 		return cmd; 
 	}
 
@@ -50,7 +51,7 @@ public class ChangeLabelColorAction extends SelectionAction {
 
 	@Override
 	protected boolean calculateEnabled() {
-		final Command cmd = createChangeLabelColorCommand(null); 
+		final Command cmd = createFigureColorCommand(null); 
 		if (cmd == null)
 			return false;
 		return true;
@@ -58,22 +59,22 @@ public class ChangeLabelColorAction extends SelectionAction {
 
 	@Override
 	protected void init() {
-		setId(changeLabelColorProperty);
-		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_BACKGROUND)); 
-		setText("Font background color" + FPConstPresentation.ELIPSES);  //$NON-NLS-1$
+		setId(figureColorProperty);
+		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_COLOR)); 
+		setText("Figure color" + FPConstPresentation.ELIPSES);  //$NON-NLS-1$
 		setEnabled(false);
 	}
 
 	@Override
 	public void run() {
-		execute(createChangeLabelColorCommand(getLabelColor()));
+		execute(createFigureColorCommand(getFigureColor()));
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public RGB getLabelColor() {
-		return labelColor;
+	public RGB getFigureColor() {
+		return figureColor;
 	}
 
 }

@@ -7,13 +7,13 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPolicy;
 
 import com.ansis.floorplan.FloorplanActivator;
-import com.ansis.floorplan.core.editpolicy.AppChangeColorPolicy;
-import com.ansis.floorplan.core.editpolicy.AppChangeLabelColorPolicy;
 import com.ansis.floorplan.core.editpolicy.AppDeletePolicy;
 import com.ansis.floorplan.core.editpolicy.AppEditLayoutPolicy;
+import com.ansis.floorplan.core.editpolicy.AppFigureColorPolicy;
 import com.ansis.floorplan.core.editpolicy.AppFontColorPolicy;
 import com.ansis.floorplan.core.editpolicy.AppFontSizePolicy;
 import com.ansis.floorplan.core.editpolicy.AppFontStylePolicy;
+import com.ansis.floorplan.core.editpolicy.AppLabelColorPolicy;
 import com.ansis.floorplan.core.editpolicy.AppOpacityPolicy;
 import com.ansis.floorplan.core.editpolicy.AppRenamePolicy;
 import com.ansis.floorplan.core.figure.PollyFigure;
@@ -43,9 +43,6 @@ public class PollyEditPart extends AppAbstractEditPart {
 
 	private Rectangle labelSize;
 
-	@SuppressWarnings("unused")
-	private int oldFontSize;
-
 	private int height = 20;
 
 	private String[] lines;
@@ -62,8 +59,6 @@ public class PollyEditPart extends AppAbstractEditPart {
 
 		// Name
 		figure.setName( model.getName() );
-		// Etage
-//		figure.setEtage( model.getEtage() );
 		// Bounds
 		figure.setBounds( model.getBounds() );
 		// PointList
@@ -101,7 +96,7 @@ public class PollyEditPart extends AppAbstractEditPart {
 		installEditPolicy(EditPolicy.NODE_ROLE, new AppRenamePolicy());
 
 		// Color
-		installEditPolicy(COLOR_EDIT_POLICY, new AppChangeColorPolicy());
+		installEditPolicy(COLOR_EDIT_POLICY, new AppFigureColorPolicy());
 
 		// Opacity
 		installEditPolicy(OPACITY_EDIT_POLICY, new AppOpacityPolicy());
@@ -116,7 +111,7 @@ public class PollyEditPart extends AppAbstractEditPart {
 		installEditPolicy(FONT_COLOR_EDIT_PART, new AppFontColorPolicy());
 
 		// Label Color
-		installEditPolicy(LABEL_COLOR_EDIT_PART, new AppChangeLabelColorPolicy());
+		installEditPolicy(LABEL_COLOR_EDIT_PART, new AppLabelColorPolicy());
 	}
 
 
@@ -133,8 +128,6 @@ public class PollyEditPart extends AppAbstractEditPart {
 		figure.setBounds(model.getBounds());
 		// Name
 		figure.setName(model.getName());
-		// Etage
-//		figure.setEtage(model.getEtage());
 		// Layout
 		figure.setLayout(model.getLayout());
 		// Color
@@ -207,6 +200,7 @@ public class PollyEditPart extends AppAbstractEditPart {
 
 		return labelSize;
 	}
+
 	private Rectangle dynamicLabelPositionAlgorythm(final ChildModel model) {
 		height = 30;
 
@@ -218,8 +212,6 @@ public class PollyEditPart extends AppAbstractEditPart {
 
 		labelSize.height = height;
 		labelSize.width = model.getName().length() * (model.getFontSize() - 1);
-
-		oldFontSize = model.getFontSize();
 
 		return labelSize;
 	}

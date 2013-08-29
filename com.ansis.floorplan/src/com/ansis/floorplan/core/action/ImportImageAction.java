@@ -17,11 +17,6 @@ import com.ansis.floorplan.core.editor.MyGraphicalEditor;
 
 public class ImportImageAction implements IEditorActionDelegate {
 
-	// ==================== 1. Static Fields ========================
-
-	public static final String ID = "com.ansis.floorplan.importImage.action"; //$NON-NLS-1$
-
-
 	// ====================== 2. Instance Fields =============================
 
 	private String image;
@@ -55,11 +50,9 @@ public class ImportImageAction implements IEditorActionDelegate {
 			return;
 
 		try {
-
-			InputStream stream = new FileInputStream(selected);
+			final InputStream stream = new FileInputStream(selected);
 			editor.getModel().setImage(stream);
-
-		} catch (FileNotFoundException e) {
+		} catch (final FileNotFoundException e) {
 			e.printStackTrace();
 		}
 

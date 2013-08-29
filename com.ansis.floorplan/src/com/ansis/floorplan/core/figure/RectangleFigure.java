@@ -36,7 +36,7 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 		add(labelName, OrderedLayout.ALIGN_CENTER);
 
 		// TODO -bulanmaster- Tooltip
-//		setToolTip(getLabelName());
+		//		setToolTip(getLabelName());
 	}
 
 
