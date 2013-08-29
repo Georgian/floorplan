@@ -38,7 +38,7 @@
                class="com.ansis.floorplan.core.action.ImportImageAction"
                hoverIcon="icons/back.png"
                id="com.ansis.floorplan.importImage.action"
-               label=" "
+               label="Import"
                state="true"
                style="push"
                toolbarPath="additions"

@@ -38,5 +38,13 @@ public enum FPFontSize {
 	public String getName() {
 		return toString();
 	}
+	
+	public int getPoints() {
+		return points;
+	}
+	
+	public int getPercent() {
+		return percent;
+	}
 
 }

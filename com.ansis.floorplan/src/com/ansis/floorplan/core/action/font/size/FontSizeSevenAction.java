@@ -1,4 +1,4 @@
-package com.ansis.floorplan.core.action.font;
+package com.ansis.floorplan.core.action.font.size;
 
 import java.util.HashMap;
 
@@ -9,23 +9,18 @@ import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.ui.IWorkbenchPart;
 
 import com.ansis.floorplan.util.FPConstPresentation;
+import com.ansis.floorplan.util.font.FPFontSize;
 
 
-public class FontSizeTwentyAction extends SelectionAction {
+public class FontSizeSevenAction extends SelectionAction {
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String fontSizePropertyTwenty = "fontSizePropertyTwenty"; //$NON-NLS-1$
-
-
-	// ====================== 2. Instance Fields =============================
-
-	private final String twenty = "20"; //$NON-NLS-1$
-
+	public static final String fontSizePropertySeven = "fontSizePropertySeven"; //$NON-NLS-1$
 
 	// ==================== 4. Constructors ====================
 
-	public FontSizeTwentyAction(final IWorkbenchPart part) {
+	public FontSizeSevenAction(final IWorkbenchPart part) {
 		super(part);
 		setLazyEnablementCalculation(true);
 	}
@@ -56,21 +51,21 @@ public class FontSizeTwentyAction extends SelectionAction {
 
 	@Override
 	protected void init() {
-		setId(fontSizePropertyTwenty);
-		setText(getTwenty());
+		setId(fontSizePropertySeven);
+		setText(getValue());
 		setEnabled(false);
 	}
 
 	@Override
 	public void run() {
-		execute(createFontSizeCommand(getTwenty()));
+		execute(createFontSizeCommand(getValue()));
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public String getTwenty() {
-		return twenty;
+	public String getValue() {
+		return String.valueOf( FPFontSize.XS.getPercent()/10 );
 	}
 
 }

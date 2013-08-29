@@ -11,6 +11,7 @@ import org.eclipse.ui.IWorkbenchPart;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
+import com.ansis.floorplan.util.color.FPStandardColor;
 
 
 public class DefaultFigureColorAction extends SelectionAction {
@@ -18,12 +19,6 @@ public class DefaultFigureColorAction extends SelectionAction {
 	// ==================== 1. Static Fields ========================
 
 	public static final String defaultFigureColorProperty = "defaultFigureColorProperty"; //$NON-NLS-1$
-
-
-	// ====================== 2. Instance Fields =============================
-
-	private RGB defaultFigureColor;
-
 
 	// ==================== 4. Constructors ====================
 
@@ -73,7 +68,7 @@ public class DefaultFigureColorAction extends SelectionAction {
 	// ==================== 7. Getters & Setters ====================
 
 	public RGB getDefaultFigureColor() {
-		return defaultFigureColor;
+		return FloorplanActivator.getDefault().getColor(FPStandardColor.BLUE_NAVY).getRGB();
 	}
 
 }

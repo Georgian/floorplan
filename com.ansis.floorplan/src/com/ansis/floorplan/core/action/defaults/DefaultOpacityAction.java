@@ -15,7 +15,7 @@ import com.ansis.floorplan.util.FPConstPresentation;
 
 /**
  * 
- * @author PsYCh
+ * @author sbrosteanu
  *
  */
 public class DefaultOpacityAction extends SelectionAction {
@@ -65,7 +65,7 @@ public class DefaultOpacityAction extends SelectionAction {
 	protected void init() {
 		setId(defaultOpacityProperty);
 		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_OPACITY)); 
-		setText("Default Opacity");   //$NON-NLS-1$
+		setText("Default opacity");   //$NON-NLS-1$
 		setEnabled(false);
 	}
 

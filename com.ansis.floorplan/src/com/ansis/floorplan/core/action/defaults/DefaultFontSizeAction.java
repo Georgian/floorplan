@@ -11,11 +11,12 @@ import org.eclipse.ui.IWorkbenchPart;
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
 import com.ansis.floorplan.util.FPConstPresentation;
+import com.ansis.floorplan.util.font.FPFontSize;
 
 
 /**
  * 
- * @author PsYCh
+ * @author sbrosteanu
  *
  */
 public class DefaultFontSizeAction extends SelectionAction {
@@ -23,11 +24,6 @@ public class DefaultFontSizeAction extends SelectionAction {
 	// ==================== 1. Static Fields ========================
 
 	public static final String defaultFontSizeProperty = "defaultFontSizeProperty"; //$NON-NLS-1$
-
-
-	// ====================== 2. Instance Fields =============================
-
-	private final String defaultFontSize = "10"; //$NON-NLS-1$
 
 
 	// ==================== 4. Constructors ====================
@@ -65,7 +61,7 @@ public class DefaultFontSizeAction extends SelectionAction {
 	protected void init() {
 		setId(defaultFontSizeProperty);
 		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_SIZE)); 
-		setText("Default Font Size"); //$NON-NLS-1$
+		setText("Default font size"); //$NON-NLS-1$
 		setEnabled(false);
 	}
 
@@ -78,7 +74,7 @@ public class DefaultFontSizeAction extends SelectionAction {
 	// ==================== 7. Getters & Setters ====================
 
 	public String getDefaultFontSize() {
-		return defaultFontSize;
+		return String.valueOf( FPFontSize.NORMAL.getPercent()/10 );
 	}
 
 }

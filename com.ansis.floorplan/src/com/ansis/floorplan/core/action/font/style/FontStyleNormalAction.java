@@ -1,4 +1,4 @@
-package com.ansis.floorplan.core.action.font;
+package com.ansis.floorplan.core.action.font.style;
 
 import java.util.HashMap;
 
@@ -14,21 +14,16 @@ import com.ansis.floorplan.util.FPConstPresentation;
 import com.ansis.floorplan.util.font.FPFontStyle;
 
 
-public class FontStyleBoldItalicAction extends SelectionAction {
+public class FontStyleNormalAction extends SelectionAction {
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String fontStylePropertyBoldItalic = "fontStylePropertyBoldItalic"; //$NON-NLS-1$
-
-
-	// ====================== 2. Instance Fields =============================
-
-	private final String boldItalic = "3"; //$NON-NLS-1$
+	public static final String fontStylePropertyNormal = "fontStylePropertyNormal"; //$NON-NLS-1$
 
 
 	// ==================== 4. Constructors ====================
 
-	public FontStyleBoldItalicAction(final IWorkbenchPart part) {
+	public FontStyleNormalAction(final IWorkbenchPart part) {
 		super(part);
 		setLazyEnablementCalculation(true);
 	}
@@ -59,22 +54,22 @@ public class FontStyleBoldItalicAction extends SelectionAction {
 
 	@Override
 	protected void init() {
-		setId(fontStylePropertyBoldItalic);
-		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_BOLDITALIC)); 
-		setText(FPFontStyle.BOLD_ITALIC.getName()); 
+		setId(fontStylePropertyNormal);
+		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_NORMAL)); 
+		setText(FPFontStyle.NORMAL.getName()); 
 		setEnabled(false);
 	}
 
 	@Override
 	public void run() {
-		execute(createFontStyleCommand(getBoldItalic()));
+		execute(createFontStyleCommand(getNormal()));
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public String getBoldItalic() {
-		return boldItalic;
+	public String getNormal() {
+		return String.valueOf( FPFontStyle.NORMAL.getStyle() );
 	}
-	
+
 }

@@ -1,4 +1,4 @@
-package com.ansis.floorplan.core.action.font;
+package com.ansis.floorplan.core.action.font.style;
 
 import java.util.HashMap;
 
@@ -14,21 +14,16 @@ import com.ansis.floorplan.util.FPConstPresentation;
 import com.ansis.floorplan.util.font.FPFontStyle;
 
 
-public class FontStyleItalicAction extends SelectionAction {
+public class FontStyleBoldAction extends SelectionAction {
 
 	// ==================== 1. Static Fields ========================
 
-	public static final String fontStylePropertyItalic = "fontStylePropertyItalic"; //$NON-NLS-1$
-
-
-	// ====================== 2. Instance Fields =============================
-
-	private final String italic = "2"; //$NON-NLS-1$
+	public static final String fontStylePropertyBold = "fontStylePropertyBold"; //$NON-NLS-1$
 
 
 	// ==================== 4. Constructors ====================
 
-	public FontStyleItalicAction(final IWorkbenchPart part) {
+	public FontStyleBoldAction(final IWorkbenchPart part) {
 		super(part);
 		setLazyEnablementCalculation(true);
 	}
@@ -59,22 +54,22 @@ public class FontStyleItalicAction extends SelectionAction {
 
 	@Override
 	protected void init() {
-		setId(fontStylePropertyItalic);
-		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_ITALIC)); 
-		setText(FPFontStyle.ITALIC.getName()); 
+		setId(fontStylePropertyBold);
+		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_BOLD)); 
+		setText(FPFontStyle.BOLD.getName());
 		setEnabled(false);
 	}
 
 	@Override
 	public void run() {
-		execute(createFontStyleCommand(getItalic()));
+		execute(createFontStyleCommand(getBold()));
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public String getItalic() {
-		return italic;
+	public String getBold() {
+		return String.valueOf( FPFontStyle.BOLD.getStyle() );
 	}
-	
+
 }

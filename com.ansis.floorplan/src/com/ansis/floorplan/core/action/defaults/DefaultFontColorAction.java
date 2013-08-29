@@ -11,6 +11,7 @@ import org.eclipse.ui.IWorkbenchPart;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
+import com.ansis.floorplan.util.color.FPStandardColor;
 
 
 public class DefaultFontColorAction extends SelectionAction {
@@ -18,11 +19,6 @@ public class DefaultFontColorAction extends SelectionAction {
 	// ==================== 1. Static Fields ========================
 
 	public static final String defaultFontColorProperty = "defaultFontColorProperty"; //$NON-NLS-1$
-
-
-	// ====================== 2. Instance Fields =============================
-
-	private RGB defaultFontColor;
 
 
 	// ==================== 4. Constructors ====================
@@ -73,7 +69,7 @@ public class DefaultFontColorAction extends SelectionAction {
 	// ==================== 7. Getters & Setters ====================
 
 	public RGB getDefaultFontColor() {
-		return defaultFontColor;
+		return FloorplanActivator.getDefault().getColor(FPStandardColor.BLACK).getRGB();
 	}
 
 }

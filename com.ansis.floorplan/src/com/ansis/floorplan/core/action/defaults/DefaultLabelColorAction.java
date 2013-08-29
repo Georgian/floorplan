@@ -11,6 +11,7 @@ import org.eclipse.ui.IWorkbenchPart;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
+import com.ansis.floorplan.util.color.FPStandardColor;
 
 
 public class DefaultLabelColorAction extends SelectionAction {
@@ -19,10 +20,6 @@ public class DefaultLabelColorAction extends SelectionAction {
 
 	public static final String defaultLabelColorProperty = "defaultLabelColorProperty"; //$NON-NLS-1$
 
-
-	// ====================== 2. Instance Fields =============================
-
-	private RGB defaultLabelColor;
 
 
 	// ==================== 4. Constructors ====================
@@ -73,7 +70,7 @@ public class DefaultLabelColorAction extends SelectionAction {
 	// ==================== 7. Getters & Setters ====================
 
 	public RGB getDefaultLabelColor() {
-		return defaultLabelColor;
+		return FloorplanActivator.getDefault().getColor(FPStandardColor.WHITE).getRGB();
 	}
 
 }
