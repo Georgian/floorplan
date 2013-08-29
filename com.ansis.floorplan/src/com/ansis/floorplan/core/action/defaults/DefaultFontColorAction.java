@@ -56,7 +56,7 @@ public class DefaultFontColorAction extends SelectionAction {
 	protected void init() {
 		setId(defaultFontColorProperty);
 		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_COLOR)); 
-		setText("Default font color");  //$NON-NLS-1$
+		setText("Default font color (Black)");
 		setEnabled(false);
 	}
 

@@ -319,7 +319,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 	@Override
 	protected PaletteRoot getPaletteRoot() {
 		final PaletteRoot root = new PaletteRoot();
-		final PaletteGroup manipGroup = new PaletteGroup("Manipulating the objects"); //$NON-NLS-1$
+		final PaletteGroup manipGroup = new PaletteGroup("Manipulating the objects");
 		root.add(manipGroup);
 		final SelectionToolEntry selectionToolEntry = new SelectionToolEntry();
 		manipGroup.add(selectionToolEntry);
@@ -327,12 +327,12 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 		final PaletteSeparator sep2 = new PaletteSeparator();
 		root.add(sep2);
-		final PaletteGroup instGroup = new PaletteGroup("Element Creation"); //$NON-NLS-1$
+		final PaletteGroup instGroup = new PaletteGroup("Element Creation");
 		root.add(instGroup);
 
 		// Create the Polygon creation tool
-		final CreationToolEntry drawEntry = new CreationToolEntry("Draw", //$NON-NLS-1$ 
-				"Create Polygon object", //$NON-NLS-1$ 
+		final CreationToolEntry drawEntry = new CreationToolEntry("Draw",
+				"Create Polygon object",
 				new PollyLineCreationFactory(), 
 				FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_DRAW_16), 
 				FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_DRAW_24)); 
@@ -340,8 +340,8 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		instGroup.add(drawEntry);
 
 		// Create the Rectangle creation tool
-		final CreationToolEntry creationEntry = new CreationToolEntry("Rectangle", //$NON-NLS-1$ 
-				"Create Rectangle object", //$NON-NLS-1$ 
+		final CreationToolEntry creationEntry = new CreationToolEntry("Rectangle",
+				"Create Rectangle object",
 				new RectangleCreationFactory(), 
 				FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_RECT_16), 
 				FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_RECT_24)); 

@@ -61,7 +61,7 @@ public class FontColorAction extends SelectionAction {
 	protected void init() {
 		setId(fontColorProperty);
 		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_COLOR)); 
-		setText("Font color"+FPConstPresentation.ELIPSES);  //$NON-NLS-1$
+		setText("Font color"+FPConstPresentation.ELIPSES);
 		setEnabled(false);
 	}
 

@@ -56,7 +56,7 @@ public class DefaultFontStyleAction extends SelectionAction {
 	protected void init() {
 		setId(defaultFontStyleProperty);
 		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_NORMAL)); 
-		setText("Default font style");  //$NON-NLS-1$
+		setText("Default font style (Normal)");
 		setEnabled(false);
 	}
 

@@ -56,7 +56,7 @@ public class DefaultLabelColorAction extends SelectionAction {
 	protected void init() {
 		setId(defaultLabelColorProperty);
 		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_BACKGROUND)); 
-		setText("Default label color");  //$NON-NLS-1$
+		setText("Default label color (White)");
 		setEnabled(false);
 	}
 

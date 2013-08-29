@@ -56,7 +56,7 @@ public class DefaultFigureColorAction extends SelectionAction {
 	protected void init() {
 		setId(defaultFigureColorProperty);
 		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_COLOR)); 
-		setText("Default figure color");  //$NON-NLS-1$
+		setText("Default figure color (Navy Blue)");
 		setEnabled(false);
 	}
 

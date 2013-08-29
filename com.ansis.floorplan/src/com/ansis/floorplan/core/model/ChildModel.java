@@ -79,7 +79,7 @@ public class ChildModel extends CanvasModel {
 
 	public String getName() {
 		if (name == null)
-			name = "New Figure\nInteger: " + getInteger(); //$NON-NLS-1$
+			name = "New Figure\nInteger: " + getInteger();
 		return name;
 	}
 

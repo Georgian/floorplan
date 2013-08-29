@@ -17,7 +17,7 @@ public class OpenEditorAction extends Action {
 
 		try {
 			final IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-			page.openEditor(new MyEditorInput("FloorPlan"), MyGraphicalEditor.ID, false); //$NON-NLS-1$
+			page.openEditor(new MyEditorInput("FloorPlan"), MyGraphicalEditor.ID, false);
 		} catch (final Exception e) {
 			e.printStackTrace();
 		}
@@ -28,7 +28,7 @@ public class OpenEditorAction extends Action {
 
 	@Override
 	public String getText() {
-		return "Open Editor"; //$NON-NLS-1$
+		return "Open Editor";
 	}
 
 }

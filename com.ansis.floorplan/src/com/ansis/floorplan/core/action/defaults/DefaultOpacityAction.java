@@ -65,7 +65,7 @@ public class DefaultOpacityAction extends SelectionAction {
 	protected void init() {
 		setId(defaultOpacityProperty);
 		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_OPACITY)); 
-		setText("Default opacity");   //$NON-NLS-1$
+		setText("Default opacity (" + getDefaultOpacity() + FPConstPresentation.PERCENT + ")");
 		setEnabled(false);
 	}
 

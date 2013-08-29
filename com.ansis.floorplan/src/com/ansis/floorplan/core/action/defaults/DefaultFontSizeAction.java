@@ -61,7 +61,7 @@ public class DefaultFontSizeAction extends SelectionAction {
 	protected void init() {
 		setId(defaultFontSizeProperty);
 		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_SIZE)); 
-		setText("Default font size"); //$NON-NLS-1$
+		setText("Default font size (" + FPFontSize.NORMAL.getPercent()/10 + ")");
 		setEnabled(false);
 	}
 

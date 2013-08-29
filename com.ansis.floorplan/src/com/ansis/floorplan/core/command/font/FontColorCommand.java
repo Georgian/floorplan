@@ -31,7 +31,7 @@ public class FontColorCommand extends Command {
 		final ColorDialog dlg = new ColorDialog(Display.getCurrent().getActiveShell());
 
 		// Change the title bar text
-		dlg.setText("Choose a font color" + FPConstPresentation.ELIPSES); //$NON-NLS-1$
+		dlg.setText("Choose a font color" + FPConstPresentation.ELIPSES);
 
 		// Open the dialog and retrieve the selected color
 		final RGB rgb = dlg.open();

@@ -61,7 +61,7 @@ public class FigureColorAction extends SelectionAction {
 	protected void init() {
 		setId(figureColorProperty);
 		setImageDescriptor(FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_COLOR)); 
-		setText("Figure color" + FPConstPresentation.ELIPSES);  //$NON-NLS-1$
+		setText("Figure color" + FPConstPresentation.ELIPSES);
 		setEnabled(false);
 	}
 
