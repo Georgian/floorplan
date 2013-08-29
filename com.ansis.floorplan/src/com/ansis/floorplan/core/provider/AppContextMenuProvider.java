@@ -13,6 +13,7 @@ import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
 import com.ansis.floorplan.core.action.ChangeColorAction;
 import com.ansis.floorplan.core.action.ChangeLabelColorAction;
+import com.ansis.floorplan.core.action.defaults.DefaultFontColorAction;
 import com.ansis.floorplan.core.action.defaults.FontSizeDefaultAction;
 import com.ansis.floorplan.core.action.defaults.OpacityDefaultAction;
 import com.ansis.floorplan.core.action.font.FontColorAction;
@@ -158,6 +159,9 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		defaultsSubmenu.add(action);
 		
 		action = getActionRegistry().getAction(FontSizeDefaultAction.fontSizePropertyDefault);
+		defaultsSubmenu.add(action);
+		
+		action = getActionRegistry().getAction(DefaultFontColorAction.defaultFontColorProperty);
 		defaultsSubmenu.add(action);
 		
 		menu.appendToGroup(GEFActionConstants.GROUP_SAVE, defaultsSubmenu );

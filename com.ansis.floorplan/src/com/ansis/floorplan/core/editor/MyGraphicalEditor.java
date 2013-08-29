@@ -36,6 +36,7 @@ import com.ansis.floorplan.app.MyTemplateTransferDropTargetListener;
 import com.ansis.floorplan.core.action.ChangeColorAction;
 import com.ansis.floorplan.core.action.ChangeLabelColorAction;
 import com.ansis.floorplan.core.action.RenameAction;
+import com.ansis.floorplan.core.action.defaults.DefaultFontColorAction;
 import com.ansis.floorplan.core.action.defaults.FontSizeDefaultAction;
 import com.ansis.floorplan.core.action.defaults.OpacityDefaultAction;
 import com.ansis.floorplan.core.action.font.FontColorAction;
@@ -176,6 +177,10 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final FontColorAction fontColorAction = new FontColorAction(this);
 		registry.registerAction(fontColorAction);
 		getSelectionActions().add(fontColorAction.getId());
+		
+		final DefaultFontColorAction defaultFontColorAction = new DefaultFontColorAction(this);
+		registry.registerAction(defaultFontColorAction);
+		getSelectionActions().add(defaultFontColorAction.getId());
 
 		final ChangeLabelColorAction labelColorAction = new ChangeLabelColorAction(this);
 		registry.registerAction(labelColorAction);
