@@ -11,6 +11,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
 import com.ansis.floorplan.util.FPConstPresentation;
+import com.ansis.floorplan.util.font.FPFontStyle;
 
 
 public class DefaultFontStyleAction extends SelectionAction {
@@ -19,10 +20,6 @@ public class DefaultFontStyleAction extends SelectionAction {
 
 	public static final String defaultFontStyleProperty = "defaultFontStyleProperty"; //$NON-NLS-1$
 
-
-	// ====================== 2. Instance Fields =============================
-
-	private final String defaultNormal = "0"; //$NON-NLS-1$
 
 
 	// ==================== 4. Constructors ====================
@@ -38,7 +35,7 @@ public class DefaultFontStyleAction extends SelectionAction {
 	public Command createDefaultFontStyleCommand(final String defaultFontStyle) {
 		final Request defaultFontStyleReq = new Request("fontStyle"); //$NON-NLS-1$
 		final HashMap<String, String> reqData = new HashMap<String, String>();
-		reqData.put("newFontStyle", defaultFontStyle); //$NON-NLS-1$
+		reqData.put("newFontStyle", getDefaultNormal()); //$NON-NLS-1$
 		defaultFontStyleReq.setExtendedData(reqData);
 		final EditPart object = (EditPart)getSelectedObjects().get(0);
 		final Command cmd = object.getCommand(defaultFontStyleReq);
@@ -73,7 +70,7 @@ public class DefaultFontStyleAction extends SelectionAction {
 	// ==================== 7. Getters & Setters ====================
 
 	public String getDefaultNormal() {
-		return defaultNormal;
+		return String.valueOf( FPFontStyle.NORMAL.getStyle() );
 	}
 	
 }

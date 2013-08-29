@@ -167,44 +167,11 @@ public class PollyEditPart extends AppAbstractEditPart {
 	@Override
 	public void propertyChange(final PropertyChangeEvent evt) {
 
-		// Move
-		if (evt.getPropertyName().equals(CanvasModel.PROPERTY_LAYOUT))
-			refreshVisuals();
+		String propName = evt.getPropertyName();
 
-		// Create
-		if (evt.getPropertyName().equals(CanvasModel.PROPERTY_ADD))
+		if (CanvasModel.PROPERTY_ADD.equalsIgnoreCase(propName) || CanvasModel.PROPERTY_REMOVE.equalsIgnoreCase(propName))
 			refreshChildren();
-
-		// Delete
-		if (evt.getPropertyName().equals(CanvasModel.PROPERTY_REMOVE))
-			refreshChildren();
-
-		// Rename
-		if (evt.getPropertyName().equals(ChildModel.PROPERTY_RENAME))
-			refreshVisuals();
-
-		// Color
-		if (evt.getPropertyName().equals(ChildModel.PROPERTY_COLOR))
-			refreshVisuals();
-
-		// Opacity
-		if (evt.getPropertyName().equals(ChildModel.PROPERTY_OPACITY))
-			refreshVisuals();
-
-		// Font Style
-		if (evt.getPropertyName().equals(ChildModel.PROPERTY_FONT_STYLE))
-			refreshVisuals();
-
-		// Font Size
-		if (evt.getPropertyName().equals(ChildModel.PROPERTY_FONT_SIZE))
-			refreshVisuals();
-
-		// Font Color
-		if (evt.getPropertyName().equals(ChildModel.PROPERTY_FONT_COLOR))
-			refreshVisuals();
-
-		// Label Color
-		if (evt.getPropertyName().equals(ChildModel.PROPERTY_LABEL_COLOR))
+		else
 			refreshVisuals();
 	}
 
