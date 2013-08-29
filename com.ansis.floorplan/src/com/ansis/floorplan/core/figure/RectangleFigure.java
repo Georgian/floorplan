@@ -16,6 +16,8 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 
 	private Label labelName = new Label();
 
+	private Label toolTip = new Label();
+
 	private RGB lineColor;
 
 	private int fontStyle;
@@ -33,10 +35,15 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 		setLayoutManager(layout);
 
 		labelName.setOpaque(true);
+
+		toolTip.setOpaque(false);
+
 		add(labelName, OrderedLayout.ALIGN_CENTER);
 
-		// TODO -bulanmaster- Tooltip
-		//		setToolTip(getLabelName());
+		add(toolTip, OrderedLayout.ALIGN_CENTER);
+
+		setToolTip(toolTip);
+
 	}
 
 
@@ -48,6 +55,7 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 
 	public void setName(final String name) {
 		labelName.setText(name);
+		toolTip.setText(name);
 	}
 
 	public void setLayout(final Rectangle rect) {

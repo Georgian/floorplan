@@ -20,6 +20,8 @@ public class PollyFigure extends PolygonShape implements IFigure {
 	private PointList list = new PointList();
 
 	private Label labelName = new Label();
+	
+	private Label toolTip = new Label();
 
 	private RGB lineColor;
 
@@ -38,8 +40,18 @@ public class PollyFigure extends PolygonShape implements IFigure {
 		setLayoutManager(layout);
 
 		labelName.setOpaque(true);
+		
+		toolTip.setOpaque(false);
+		
 		add(labelName, OrderedLayout.ALIGN_CENTER);
+		
+		add(toolTip, OrderedLayout.ALIGN_CENTER);
+		
 		setConstraint(labelName, labelPosition);
+		
+		setConstraint(toolTip, labelPosition);
+
+		setToolTip(toolTip);
 
 		setPoints(list);
 	}
@@ -53,6 +65,7 @@ public class PollyFigure extends PolygonShape implements IFigure {
 
 	public void setName(final String name) {
 		labelName.setText(name);
+		toolTip.setText(name);
 	}
 
 	public void setLayout(final Rectangle rect) {
