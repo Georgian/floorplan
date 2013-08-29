@@ -33,7 +33,6 @@ import com.ansis.floorplan.core.action.opacity.OpacityHundredAction;
 import com.ansis.floorplan.core.action.opacity.OpacitySixtyAction;
 import com.ansis.floorplan.core.action.opacity.OpacityTenAction;
 import com.ansis.floorplan.core.action.opacity.OpacityTwentyAction;
-import com.ansis.floorplan.util.FPConstPresentation;
 
 
 public class AppContextMenuProvider extends ContextMenuProvider{
@@ -153,7 +152,8 @@ public class AppContextMenuProvider extends ContextMenuProvider{
 		menu.appendToGroup(GEFActionConstants.GROUP_REST, action);
 		
 		// Defaults Sub menu-- opacity, font size, font color, font background color, line color, figure color. 
-		final MenuManager defaultsSubmenu = new MenuManager("Default"+ FPConstPresentation.ELIPSES, "defaultsSubmenuID");
+		final MenuManager defaultsSubmenu = new MenuManager("Default", "defaultsSubmenuID");  //$NON-NLS-1$//$NON-NLS-2$
+		
 		action = getActionRegistry().getAction(OpacityDefaultAction.opacityPropertyDefault);
 		defaultsSubmenu.add(action);
 		

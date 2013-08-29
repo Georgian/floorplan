@@ -34,6 +34,9 @@ public class RectangleFigure extends org.eclipse.draw2d.RectangleFigure {
 
 		labelName.setOpaque(true);
 		add(labelName, OrderedLayout.ALIGN_CENTER);
+
+		// TODO -bulanmaster- Tooltip
+//		setToolTip(getLabelName());
 	}
 
 
