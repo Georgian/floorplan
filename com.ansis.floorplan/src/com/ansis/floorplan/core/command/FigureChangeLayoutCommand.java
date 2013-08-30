@@ -5,7 +5,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import com.ansis.floorplan.core.model.ChildModel;
 
 
-public class PollyChangeLayoutCommand extends AbstractLayoutCommand {
+public class FigureChangeLayoutCommand extends AbstractLayoutCommand {
 
 	// ====================== 2. Instance Fields =============================
 

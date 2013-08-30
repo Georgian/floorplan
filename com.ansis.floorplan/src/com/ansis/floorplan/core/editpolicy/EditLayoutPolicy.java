@@ -19,10 +19,9 @@ import org.eclipse.gef.requests.CreateRequest;
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.core.command.AbstractLayoutCommand;
 import com.ansis.floorplan.core.command.CanvasChangeLayoutCommand;
-import com.ansis.floorplan.core.command.PollyChangeLayoutCommand;
+import com.ansis.floorplan.core.command.FigureChangeLayoutCommand;
 import com.ansis.floorplan.core.command.PollyLineChangeLayoutCommand;
 import com.ansis.floorplan.core.command.PollyLineCreateCommand;
-import com.ansis.floorplan.core.command.RectangleChangeLayoutCommand;
 import com.ansis.floorplan.core.command.RectangleCreateCommand;
 import com.ansis.floorplan.core.editpart.CanvasEditPart;
 import com.ansis.floorplan.core.editpart.PollyEditPart;
@@ -45,14 +44,11 @@ public class EditLayoutPolicy extends XYLayoutEditPolicy {
 
 		if (child instanceof CanvasEditPart) {
 			command = new CanvasChangeLayoutCommand();
-		} else if (child instanceof PollyEditPart) {
-			command = new PollyChangeLayoutCommand();
+		} else if (child instanceof PollyEditPart || child instanceof RectangleEditPart) {
+			command = new FigureChangeLayoutCommand();
 		} else if (child instanceof PollyLineEditPart) {
 			command = new PollyLineChangeLayoutCommand();
-		} else if (child instanceof RectangleEditPart) {
-			command = new RectangleChangeLayoutCommand();
 		}
-
 		command.setModel(child.getModel());
 		command.setConstraint((Rectangle)constraint);
 
