@@ -1,6 +1,5 @@
 package com.ansis.floorplan.core.figure;
 
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.OrderedLayout;
 import org.eclipse.draw2d.PolygonShape;
@@ -13,7 +12,7 @@ import org.eclipse.swt.graphics.RGB;
 import com.ansis.floorplan.util.FPConstPresentation;
 
 
-public class PollyFigure extends PolygonShape implements IFigure {
+public class PollyFigure extends PolygonShape  {
 
 	// ====================== 2. Instance Fields =============================
 
