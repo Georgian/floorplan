@@ -4,8 +4,6 @@ import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.dnd.TemplateTransferDropTargetListener;
 import org.eclipse.gef.requests.CreationFactory;
 
-import com.ansis.floorplan.core.factory.ModelTestCreationFactory;
-
 
 public class MyTemplateTransferDropTargetListener extends TemplateTransferDropTargetListener {
 
@@ -20,7 +18,8 @@ public class MyTemplateTransferDropTargetListener extends TemplateTransferDropTa
 
 	@Override
 	protected CreationFactory getFactory(final Object template) {
-		return new ModelTestCreationFactory((Class<?>)template);
+//		return new ModelTestCreationFactory((Class<?>)template);
+		return null;
 	}
 
 }

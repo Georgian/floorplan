@@ -359,7 +359,8 @@ public class MyListener {
 					finalPolly.setList(mainPointList);
 
 					finalPolly.setBounds(rect);
-					finalPolly.setLabelPosition(label);
+
+
 
 					model.addChild(finalPolly);
 

@@ -39,17 +39,19 @@ public class PollyLineCreateCommand extends Command {
 	public void execute() {
 		if (canvas.getChildren().size() == 0)
 		{	
-			final PollyLine newPolly = new PollyLine();
+			final Polly newPolly = new Polly();
 			final PointList builderList = new PointList();
 
 			builderList.addPoint(location.x, location.y);
 			point = new Point();
 			point.x = 3;
 			point.y = 3;
-			bounds = new Rectangle(location,point);
+			bounds = new Rectangle(new Point(-100,-100),new Point(100,100));
 
 			newPolly.setBounds(bounds);
 			newPolly.setLayout(bounds);
+			newPolly.setLabelPosition(new Rectangle(0,0,10,10));
+
 			newPolly.setList(builderList);
 			
 			canvas.addChild(newPolly);
@@ -59,7 +61,7 @@ public class PollyLineCreateCommand extends Command {
 			{ 	
 				if (canvas.getChildren().size() > 0)
 				{
-					final PollyLine newPolly = (PollyLine) canvas.getChildren().get(canvas.getChildren().size()-1);
+					final Polly newPolly = (Polly) canvas.getChildren().get(canvas.getChildren().size()-1);
 					PointList builderList = newPolly.getList();
 
 					builderList.addPoint(location.x, location.y);
@@ -157,6 +159,8 @@ public class PollyLineCreateCommand extends Command {
 
 						newPolly.setBounds(bounds);
 						newPolly.setLayout(bounds);
+						newPolly.setLabelPosition(new Rectangle(0,0,10,10));
+
 						if ( canvas.getChildren().size() >= 0)
 							canvas.removeChild(canvas.getChildren().get(canvas.getChildren().size() - 1));
 						canvas.addChild(newPolly);
