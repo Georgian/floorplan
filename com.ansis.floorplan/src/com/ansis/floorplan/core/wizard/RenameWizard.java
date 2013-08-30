@@ -33,7 +33,7 @@ public class RenameWizard extends Wizard {
 	public boolean performFinish() {
 		final RenamePage page = (RenamePage)getPage("MyRenamePage"); //$NON-NLS-1$
 		if (page.nameText.getText().isEmpty()) {
-			page.setErrorMessage("You left the field empty!");  //$NON-NLS-1$
+			page.setErrorMessage("You left the field empty!");
 			return false;
 		}
 		newName = page.nameText.getText();
@@ -63,8 +63,8 @@ public class RenameWizard extends Wizard {
 
 		public RenamePage(final String pageName) {
 			super(pageName);
-			setTitle("Rename"); //$NON-NLS-1$
-			setDescription("Rename a component"); //$NON-NLS-1$
+			setTitle("Rename");
+			setDescription("Rename a component");
 		}
 
 
@@ -75,7 +75,7 @@ public class RenameWizard extends Wizard {
 			final Composite composite = new Composite(parent, SWT.NONE);
 
 			final Label nameLabel = new Label(composite, SWT.NONE);
-			nameLabel.setText("Rename to: "); //$NON-NLS-1$
+			nameLabel.setText("Rename to: ");
 
 			nameText = new Text(composite, SWT.NONE);
 			nameText.setText(oldName);

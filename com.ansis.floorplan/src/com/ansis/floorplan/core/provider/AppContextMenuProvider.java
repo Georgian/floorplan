@@ -42,6 +42,17 @@ import com.ansis.floorplan.core.action.opacity.OpacityTwentyAction;
 
 public class AppContextMenuProvider extends ContextMenuProvider {
 
+	// ==================== 1. Static Fields ========================
+
+	private static final String opacitySubmenuID = "opacitySubmenuID"; //$NON-NLS-1$
+
+	private static final String fontStyleSubmenuID = "fontStyleSubmenuID"; //$NON-NLS-1$
+
+	private static final String fontSizeSubmenuID = "fontSizeSubmenuID"; //$NON-NLS-1$
+
+	private static final String defaultsSubmenuID = "defaultsSubmenuID"; //$NON-NLS-1$
+
+
 	// ====================== 2. Instance Fields =============================
 
 	private ActionRegistry actionRegistry;
@@ -83,7 +94,7 @@ public class AppContextMenuProvider extends ContextMenuProvider {
 		menu.appendToGroup(GEFActionConstants.GROUP_VIEW, action);
 
 		// Opacity
-		final MenuManager opacitySubmenu = new MenuManager("Figure opacity", FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_OPACITY), "opacitySubmenuID"); //$NON-NLS-1$ //$NON-NLS-2$ 
+		final MenuManager opacitySubmenu = new MenuManager("Figure opacity", FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_OPACITY), opacitySubmenuID);
 
 		action = getActionRegistry().getAction(OpacityTenAction.opacityPropertyTen);
 		opacitySubmenu.add(action);
@@ -106,7 +117,7 @@ public class AppContextMenuProvider extends ContextMenuProvider {
 		menu.appendToGroup(GEFActionConstants.GROUP_VIEW, opacitySubmenu);
 
 		// Font Style
-		final MenuManager fontStyleSubmenu = new MenuManager("Font style", FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_NORMAL), "fontStyleSubmenuID"); //$NON-NLS-1$ //$NON-NLS-2$ 
+		final MenuManager fontStyleSubmenu = new MenuManager("Font style", FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_NORMAL), fontStyleSubmenuID); 
 
 		action = getActionRegistry().getAction(FontStyleNormalAction.fontStylePropertyNormal);
 		fontStyleSubmenu.add(action);
@@ -123,7 +134,7 @@ public class AppContextMenuProvider extends ContextMenuProvider {
 		menu.appendToGroup(GEFActionConstants.GROUP_REST, fontStyleSubmenu);
 
 		// Font Size
-		final MenuManager fontSizeSubmenu = new MenuManager("Font size", FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_SIZE), "fontSizeSubmenuID"); //$NON-NLS-1$ //$NON-NLS-2$ 
+		final MenuManager fontSizeSubmenu = new MenuManager("Font size", FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_SIZE), fontSizeSubmenuID); 
 
 		action = getActionRegistry().getAction(FontSizeSevenAction.fontSizePropertySeven);
 		fontSizeSubmenu.add(action);
@@ -157,7 +168,7 @@ public class AppContextMenuProvider extends ContextMenuProvider {
 		menu.appendToGroup(GEFActionConstants.GROUP_REST, action);
 		
 		// Defaults Sub menu-- opacity, font size, font color, font background color, line color, figure color. 
-		final MenuManager defaultsSubmenu = new MenuManager("Default", "defaultsSubmenuID");  //$NON-NLS-1$//$NON-NLS-2$
+		final MenuManager defaultsSubmenu = new MenuManager("Default", defaultsSubmenuID);
 
 		action = getActionRegistry().getAction(DefaultFigureColorAction.defaultFigureColorProperty);
 		defaultsSubmenu.add(action);
