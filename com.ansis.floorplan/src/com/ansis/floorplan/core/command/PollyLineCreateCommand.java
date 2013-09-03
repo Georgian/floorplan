@@ -27,6 +27,7 @@ public class PollyLineCreateCommand extends Command {
 
 	private Point minPoint = null, maxPoint = null, point;
 
+	private int i, hasLine = 0, lineLocation = 0;
 	// ==================== 6. Action Methods ====================
 
 	@Override
@@ -37,7 +38,17 @@ public class PollyLineCreateCommand extends Command {
 	@SuppressWarnings("static-access")
 	@Override
 	public void execute() {
-		if (canvas.getChildren().size() == 0 && size == null)
+		for(i = 0; i < canvas.getChildren().size(); i++)
+		{
+			if ( canvas.getChildren().get(i) instanceof PollyLine ) 
+			{	
+				hasLine = 1;
+				lineLocation = i;
+				break;
+			}
+
+		}
+		if ( (canvas.getChildren().size() == 0 && size == null) || (hasLine == 0 && size == null) )
 		{	
 			final PollyLine newPolly = new PollyLine();
 			final PointList builderList = new PointList();
@@ -56,9 +67,11 @@ public class PollyLineCreateCommand extends Command {
 			canvas.addChild(newPolly);
 
 		}
-		else if (size == null && canvas.getChildren().size() > 0 )
+		else if (size == null && canvas.getChildren().size() > 0 && hasLine == 1)
 		{ 	
-			final PollyLine newPolly = (PollyLine) canvas.getChildren().get(canvas.getChildren().size()-1);
+			final PollyLine newPolly = (PollyLine) canvas.getChildren().get(lineLocation);
+
+
 			PointList builderList = newPolly.getList();
 
 			builderList.addPoint(location.x, location.y);
@@ -169,7 +182,7 @@ public class PollyLineCreateCommand extends Command {
 
 				builderList.removePoint(builderList.size()-1);
 				builderList.addPoint(firstPoint);
-				
+
 				polly.setList(builderList);
 
 				//				maxPoint.x += helper.x;
@@ -182,10 +195,16 @@ public class PollyLineCreateCommand extends Command {
 				polly.setBounds(bounds);
 				polly.setLayout(bounds);
 				polly.setLabelPosition(new Rectangle(0,0,10,10));
-				if ( canvas.getChildren().size() >= 0)
-					canvas.removeChild(canvas.getChildren().get(canvas.getChildren().size() - 1));
-				canvas.addChild(polly);
-
+				//				if ( canvas.getChildren().size() >= 0)
+				for(i = 0; i < canvas.getChildren().size(); i++)
+				{
+					if ( canvas.getChildren().get(i) instanceof PollyLine ) 
+					{
+						canvas.removeChild(canvas.getChildren().get(i));
+						canvas.addChild(polly);
+						break;
+					}
+				}
 			}
 			else {
 				newPolly.setList(builderList);
@@ -198,9 +217,17 @@ public class PollyLineCreateCommand extends Command {
 				newPolly.setLayout(bounds);
 				newPolly.setLabelPosition(new Rectangle(0,0,10,10));
 
-				if ( canvas.getChildren().size() >= 0)
-					canvas.removeChild(canvas.getChildren().get(canvas.getChildren().size() - 1));
-				canvas.addChild(newPolly);
+				//				if ( canvas.getChildren().size() >= 0)
+				for(i = 0; i < canvas.getChildren().size(); i++)
+				{
+					if ( canvas.getChildren().get(i) instanceof PollyLine ) 
+					{
+
+						canvas.removeChild(canvas.getChildren().get(i));
+						canvas.addChild(newPolly);
+						break;
+					}
+				}
 			}
 
 
