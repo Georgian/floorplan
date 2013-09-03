@@ -166,6 +166,10 @@ public class PollyLineCreateCommand extends Command {
 			{
 
 				final Polly polly = new Polly();
+
+				builderList.removePoint(builderList.size()-1);
+				builderList.addPoint(firstPoint);
+				
 				polly.setList(builderList);
 
 				//				maxPoint.x += helper.x;
