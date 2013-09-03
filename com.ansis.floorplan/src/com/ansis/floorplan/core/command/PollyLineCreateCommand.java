@@ -60,14 +60,16 @@ public class PollyLineCreateCommand extends Command {
 			final PollyLine newPolly = new PollyLine();
 			final PointList builderList = new PointList();
 
-			// Add curent mouse location to the pointlist
-			builderList.addPoint(location.x, location.y);
+			// First point must be in the origin of the bounds
+			builderList.addPoint(0, 0);
+			// Add an aditional point for visual fixes
+			builderList.addPoint(3, 3);
 
 			// Create temporary bounds for the single point in the list
 			point = new Point();
 			point.x = location.x + 3;
 			point.y = location.y + 3;
-			bounds = new Rectangle(location, point);
+			bounds = new Rectangle(location.x-1,location.y-1,point.x,point.y);
 
 			// Create the point on the canvas
 			newPolly.setBounds(bounds);
@@ -76,7 +78,6 @@ public class PollyLineCreateCommand extends Command {
 			newPolly.setList(builderList);
 
 			canvas.addChild(newPolly);
-
 		}
 		// If yes, get the unfinished Polyline and continue building it (also force recheck for open Polygons)
 		else if (size == null && canvas.getChildren().size() > 0 && hasLine == 1)
@@ -87,19 +88,29 @@ public class PollyLineCreateCommand extends Command {
 			// Get the old pointlist
 			PointList builderList = newPolly.getList();
 
-			// Add curent mouse location to the pointlist
-			builderList.addPoint(location.x, location.y);
-
 			// Create temporary bounds to update new bounds
 			tempBounds = newPolly.getBounds();
 
+			// Remove the first two points which were used for visual representation and replace them with the original mouse location
+			if( builderList.getPoint(1).x == 3 && builderList.getPoint(1).y == 3 )
+			{
+				builderList.removeAllPoints();
+				builderList.addPoint(new Point(tempBounds.x, tempBounds.y));
+			}
+
+			// Create a helper point
 			helper = new Point();
 			helper.x = 0;
 			helper.y = 0;
 
+			// Add current mouse location to the pointlist
+			builderList.addPoint(location.x, location.y);
+
+			
 			// Check if points in the pointlist had been fixed or not
-			if(newPolly.isDrawingDenied() == true)
+			if(newPolly.isDrawingDenied() /*rename this*/ == true)
 			{
+				// Helper becomes the (x,y) of the old bounds (aka old minPoint)
 				helper.x = tempBounds.x;
 				helper.y = tempBounds.y;
 
