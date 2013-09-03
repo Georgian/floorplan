@@ -66,10 +66,7 @@ public class PollyLineCreateCommand extends Command {
 			builderList.addPoint(3, 3);
 
 			// Create temporary bounds for the single point in the list
-			point = new Point();
-			point.x = location.x + 3;
-			point.y = location.y + 3;
-			bounds = new Rectangle(location.x-1,location.y-1,point.x,point.y);
+			bounds = new Rectangle(location.x-1,location.y-1,3,3);
 
 			// Create the point on the canvas
 			newPolly.setBounds(bounds);

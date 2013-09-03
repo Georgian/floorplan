@@ -30,7 +30,7 @@ public class CanvasEditPart extends AppAbstractEditPart {
 	protected IFigure createFigure() {
 		final IFigure figure = new CanvasFigure();
 
-		new MyListener( ((Canvas)getModel()), figure );
+//		new MyListener( ((Canvas)getModel()), figure );
 		return figure;
 	}
 
