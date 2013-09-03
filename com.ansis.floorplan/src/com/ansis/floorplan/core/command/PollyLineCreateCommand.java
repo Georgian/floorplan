@@ -28,6 +28,8 @@ public class PollyLineCreateCommand extends Command {
 	private Point minPoint = null, maxPoint = null, point;
 
 	private int i, hasLine = 0, lineLocation = 0;
+
+
 	// ==================== 6. Action Methods ====================
 
 	@Override
@@ -38,27 +40,36 @@ public class PollyLineCreateCommand extends Command {
 	@SuppressWarnings("static-access")
 	@Override
 	public void execute() {
+
+		// Check for open Polygons
 		for(i = 0; i < canvas.getChildren().size(); i++)
 		{
 			if ( canvas.getChildren().get(i) instanceof PollyLine ) 
 			{	
 				hasLine = 1;
+				// Set list location of the open Polygon
 				lineLocation = i;
 				break;
 			}
-
 		}
+
+		// Check if Drawing was started or not
 		if ( (canvas.getChildren().size() == 0 && size == null) || (hasLine == 0 && size == null) )
 		{	
+			// If not, start a new Polyline
 			final PollyLine newPolly = new PollyLine();
 			final PointList builderList = new PointList();
 
+			// Add curent mouse location to the pointlist
 			builderList.addPoint(location.x, location.y);
+
+			// Create temporary bounds for the single point in the list
 			point = new Point();
-			point.x = location.x +3;
-			point.y = location.y +3;
+			point.x = location.x + 3;
+			point.y = location.y + 3;
 			bounds = new Rectangle(location, point);
 
+			// Create the point on the canvas
 			newPolly.setBounds(bounds);
 			newPolly.setLayout(bounds);
 			newPolly.setDrawingDenied(false);
@@ -67,32 +78,32 @@ public class PollyLineCreateCommand extends Command {
 			canvas.addChild(newPolly);
 
 		}
+		// If yes, get the unfinished Polyline and continue building it (also force recheck for open Polygons)
 		else if (size == null && canvas.getChildren().size() > 0 && hasLine == 1)
 		{ 	
+			// Get the unfinished Polyline
 			final PollyLine newPolly = (PollyLine) canvas.getChildren().get(lineLocation);
 
-
+			// Get the old pointlist
 			PointList builderList = newPolly.getList();
 
+			// Add curent mouse location to the pointlist
 			builderList.addPoint(location.x, location.y);
 
-
+			// Create temporary bounds to update new bounds
 			tempBounds = newPolly.getBounds();
-			System.out.println(newPolly.getBounds());
-			System.out.println("//////////");
-			helper = new Point();
 
+			helper = new Point();
 			helper.x = 0;
 			helper.y = 0;
 
+			// Check if points in the pointlist had been fixed or not
 			if(newPolly.isDrawingDenied() == true)
 			{
 				helper.x = tempBounds.x;
 				helper.y = tempBounds.y;
-				System.out.println(helper.x);
-				System.out.println(helper.y);
 
-
+				// Parse list and fix point locations
 				for (int i = 0; i < builderList.size()-1; i++) {
 					point = builderList.getPoint(i);
 					point.x = point.x + helper.x;
@@ -103,15 +114,19 @@ public class PollyLineCreateCommand extends Command {
 					point.y = point.y + helper.y;
 					builderList.setPoint(point, i);
 				}
+
 				minPoint = new Point();
 
+				// This is needed. NPE if it is removed
 				minPoint.x = helper.x;
 				minPoint.y = helper.y;
 			}
 
+			// Schedule pointlist fix on next addpoint
 			newPolly.setDrawingDenied(true);
 
 
+			// Compute new minPoint and maxPoint
 			for (int i = 0; i < builderList.size(); i++) {
 				if (minPoint == null)
 					minPoint = builderList.getPoint(i);
@@ -131,16 +146,14 @@ public class PollyLineCreateCommand extends Command {
 					maxPoint.y = point.y;
 			}
 
-			System.out.println(minPoint);
-			System.out.println(maxPoint);
-
+			// If minPoint differs from the origins of the canvas, fix points in the pointlist
+			// This is needed so points won't float inside the bounds rectangle
 			if(minPoint.x != 0)
 				for (int i = 0; i < builderList.size(); i++) {
 					point = builderList.getPoint(i);
 					point.x = point.x - minPoint.x;
 					builderList.setPoint(point, i);
 				}
-			System.out.println("execute once");
 			if(minPoint.y != 0)
 				for (int i = 0; i < builderList.size(); i++) {
 					point = builderList.getPoint(i);
@@ -148,54 +161,31 @@ public class PollyLineCreateCommand extends Command {
 					builderList.setPoint(point, i);
 				}
 
-			//
-			//
-			//					minPoint.x += helper.x;
-			//					minPoint.y += helper.y;
-			//					maxPoint.x += helper.x;
-			//					maxPoint.y += helper.y;
-			//
-			//					if(minPoint.x > lastPoint.x)
-			//						for (int i = 0; i < builderList.size(); i++) {
-			//							minPoint.x = lastPoint.x;
-			//						}
-			//
-			//					if(minPoint.y > lastPoint.y)
-			//						for (int i = 0; i < builderList.size(); i++) {
-			//							minPoint.y = lastPoint.y;
-			//						}
+			// Create bounds after the points were computed
+			bounds = new Rectangle(minPoint,maxPoint);
 
-
+			// Get lastpoint and firstpoint of the list
 			lastPoint = new Point();
 			lastPoint = builderList.getPoint(builderList.size()-1);
 			final Point firstPoint = builderList.getPoint(0);
-			//					lastPoint.x -= helper.x;
-			//					lastPoint.y -= helper.y;
-			//
-			//					builderList.removePoint(builderList.size()-1);
-			//					builderList.addPoint(lastPoint);
 
+			// Check if user wants to close the Polygon
 			if ( (lastPoint.x + 10 >= firstPoint.x && lastPoint.x - 10 <= firstPoint.x) && (lastPoint.y + 10 >= firstPoint.y && lastPoint.y - 10 <= firstPoint.y)) 
 			{
-
+				// If yes, create a new Polygon
 				final Polly polly = new Polly();
 
+				// Make the lastpoint become the firstpoint in order to close the Polygon
 				builderList.removePoint(builderList.size()-1);
 				builderList.addPoint(firstPoint);
 
+				// Set the properties of the Polygon
 				polly.setList(builderList);
-
-				//				maxPoint.x += helper.x;
-				//				maxPoint.y += helper.y;
-
-
-				bounds = new Rectangle(minPoint,maxPoint);
-				System.out.println(bounds);
-
 				polly.setBounds(bounds);
 				polly.setLayout(bounds);
 				polly.setLabelPosition(new Rectangle(0,0,10,10));
-				//				if ( canvas.getChildren().size() >= 0)
+
+				// Find the location of the Polyline (in the childlist), delete it and add the newly finished Polygon
 				for(i = 0; i < canvas.getChildren().size(); i++)
 				{
 					if ( canvas.getChildren().get(i) instanceof PollyLine ) 
@@ -206,23 +196,19 @@ public class PollyLineCreateCommand extends Command {
 					}
 				}
 			}
+			// If not, create a new Polyline
 			else {
+				// Set the properties of the Polyline
 				newPolly.setList(builderList);
-
-
-				bounds = new Rectangle(minPoint,maxPoint);
-				System.out.println(bounds);
-
 				newPolly.setBounds(bounds);
 				newPolly.setLayout(bounds);
 				newPolly.setLabelPosition(new Rectangle(0,0,10,10));
 
-				//				if ( canvas.getChildren().size() >= 0)
+				// Find the location of the Polyline (in the childlist), delete it and add the updated Polyline
 				for(i = 0; i < canvas.getChildren().size(); i++)
 				{
 					if ( canvas.getChildren().get(i) instanceof PollyLine ) 
 					{
-
 						canvas.removeChild(canvas.getChildren().get(i));
 						canvas.addChild(newPolly);
 						break;
@@ -230,37 +216,10 @@ public class PollyLineCreateCommand extends Command {
 				}
 			}
 
-
+			// Reset the pointlist
 			builderList = new PointList();
 		}
 	}
-	//			else if (newPolly.isDrawingDenied() == false) {
-	//
-	//				pollyLine.setBounds(new Rectangle(location, size));
-	//				pollyLine.setLayout(new Rectangle(location, size));
-	//
-	//				final PointList pointList = new PointList(new int[] {0, 0, size.width, size.height});
-	//
-	//				pollyLine.setList(pointList);
-	//				pollyLine.setDrawingDenied(true);
-	//
-	//				canvas.addChild(pollyLine);
-	//			}
-	//		} 		
-	//		else if (size != null) {
-	//
-	//			pollyLine.setBounds(new Rectangle(location, size));
-	//			pollyLine.setLayout(new Rectangle(location, size));
-	//
-	//			final PointList pointList = new PointList(new int[] {0, 0, size.width, size.height});
-	//
-	//			pollyLine.setList(pointList);
-	//			pollyLine.setDrawingDenied(true);
-	//
-	//			canvas.addChild(pollyLine);
-	//		}
-
-
 
 
 	// ==================== 7. Getters & Setters ====================
