@@ -26,7 +26,6 @@ public class FigureColorCommand extends Command {
 	@Override
 	public void execute() {
 		this.oldFigureColor = model.getColor();
-		//		this.model.setColor(newColor);
 
 		// Create the color-change dialog
 		final ColorDialog dlg = new ColorDialog(Display.getCurrent().getActiveShell());

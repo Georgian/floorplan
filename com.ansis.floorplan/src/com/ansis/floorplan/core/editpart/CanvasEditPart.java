@@ -29,8 +29,6 @@ public class CanvasEditPart extends AppAbstractEditPart {
 	@Override
 	protected IFigure createFigure() {
 		final IFigure figure = new CanvasFigure();
-
-//		new MyListener( ((Canvas)getModel()), figure );
 		return figure;
 	}
 

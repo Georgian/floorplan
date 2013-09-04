@@ -214,11 +214,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final DefaultFontStyleAction defaultFontStyleAction = new DefaultFontStyleAction(this);
 		registry.registerAction(defaultFontStyleAction);
 		getSelectionActions().add(defaultFontStyleAction.getId());
-
-		// Default All
-//		final DefaultAllAction defaultAllAction = new DefaultAllAction(this);
-//		registry.registerAction(defaultAllAction);
-//		getSelectionActions().add(defaultAllAction.getId());
+		
 	}
 
 
