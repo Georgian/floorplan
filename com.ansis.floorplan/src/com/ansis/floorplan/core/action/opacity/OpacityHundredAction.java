@@ -63,7 +63,20 @@ public class OpacityHundredAction extends SelectionAction {
 
 	@Override
 	public void run() {
-		execute(createOpacityCommand(getHundred()));
+
+		final Request opacityReq = new Request("opacity"); //$NON-NLS-1$
+		final HashMap<String, String> reqData = new HashMap<String, String>();
+		reqData.put("newOpacity", getHundred()); //$NON-NLS-1$
+		opacityReq.setExtendedData(reqData);
+		for (Object ob : getSelectedObjects()) {
+
+			final EditPart object = (EditPart)ob;
+			final Command cmd = object.getCommand(opacityReq);
+
+			execute(cmd);
+
+		}
+	
 	}
 
 

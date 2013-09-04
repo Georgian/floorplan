@@ -62,7 +62,20 @@ public class FontStyleBoldAction extends SelectionAction {
 
 	@Override
 	public void run() {
-		execute(createFontStyleCommand(getBold()));
+		
+		final Request fontStyleReq = new Request("fontStyle"); //$NON-NLS-1$
+		final HashMap<String, String> reqData = new HashMap<String, String>();
+		reqData.put("newFontStyle", getBold()); //$NON-NLS-1$
+		fontStyleReq.setExtendedData(reqData);
+		for (Object ob : getSelectedObjects()) {
+
+			final EditPart object = (EditPart)ob;
+			final Command cmd = object.getCommand(fontStyleReq);
+
+			execute(cmd);
+
+		}
+		
 	}
 
 

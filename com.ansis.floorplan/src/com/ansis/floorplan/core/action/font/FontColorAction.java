@@ -67,7 +67,22 @@ public class FontColorAction extends SelectionAction {
 
 	@Override
 	public void run() {
-		execute(createFontColorCommand(getFontColor()));
+		
+		final Request fontColorReq = new Request("fontColor"); //$NON-NLS-1$
+		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
+		reqData.put("newFontColor", fontColor); //$NON-NLS-1$
+		fontColorReq.setExtendedData(reqData);
+		
+		for (Object ob : getSelectedObjects()) {
+
+			final EditPart object = (EditPart)ob;
+			final Command cmd = object.getCommand(fontColorReq);
+
+			execute(cmd);
+			//Still WIP.
+		}
+		
+		
 	}
 
 
