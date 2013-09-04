@@ -67,7 +67,24 @@ public class DefaultFontSizeAction extends SelectionAction {
 
 	@Override
 	public void run() {
-		execute(createFontSizeCommand(getDefaultFontSize()));
+		
+		final Request defaultFontSizeReq = new Request("fontSize"); //$NON-NLS-1$
+		final HashMap<String, String> reqData = new HashMap<String, String>();
+		reqData.put("newFontSize", getDefaultFontSize()); //$NON-NLS-1$
+		defaultFontSizeReq.setExtendedData(reqData);
+		
+		for (Object ob : getSelectedObjects()) {
+
+			final EditPart object = (EditPart)ob;
+			final Command cmd = object.getCommand(defaultFontSizeReq);
+
+			execute(cmd);
+
+		}
+		
+		
+		
+		//execute(createFontSizeCommand(getDefaultFontSize()));
 	}
 
 

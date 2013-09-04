@@ -61,8 +61,20 @@ public class DefaultFigureColorAction extends SelectionAction {
 	}
 
 	@Override
-	public void run() {
-		execute(createDefaultFigureColorCommand(getDefaultFigureColor()));
+	public void run() 
+	{
+		final Request defaultFigureColorReq = new Request("defaultFigureColor"); //$NON-NLS-1$
+		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
+		reqData.put("newDefaultFigureColor", getDefaultFigureColor()); //$NON-NLS-1$
+		defaultFigureColorReq.setExtendedData(reqData);
+		for (Object ob : getSelectedObjects()) {
+
+			final EditPart object = (EditPart)ob;
+			final Command cmd = object.getCommand(defaultFigureColorReq);
+
+			execute(cmd);
+
+		}		
 	}
 
 

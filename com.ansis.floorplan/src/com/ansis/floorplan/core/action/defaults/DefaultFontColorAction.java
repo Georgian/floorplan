@@ -62,7 +62,18 @@ public class DefaultFontColorAction extends SelectionAction {
 
 	@Override
 	public void run() {
-		execute(createDefaultFontColorCommand(getDefaultFontColor()));
+		final Request defaultFontColorReq = new Request("defaultFontColor"); //$NON-NLS-1$
+		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
+		reqData.put("newDefaultFontColor", getDefaultFontColor()); //$NON-NLS-1$
+		defaultFontColorReq.setExtendedData(reqData);
+		for (Object ob : getSelectedObjects()) {
+
+			final EditPart object = (EditPart)ob;
+			final Command cmd = object.getCommand(defaultFontColorReq);
+
+			execute(cmd);
+
+		}
 	}
 
 

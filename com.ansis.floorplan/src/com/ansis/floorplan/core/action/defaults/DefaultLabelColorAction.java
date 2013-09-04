@@ -62,7 +62,23 @@ public class DefaultLabelColorAction extends SelectionAction {
 
 	@Override
 	public void run() {
-		execute(createDefaultLabelColorCommand(getDefaultLabelColor()));
+		final Request defaultLabelColorReq = new Request("defaultLabelColor"); //$NON-NLS-1$
+		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
+		reqData.put("newDefaultLabelColor", getDefaultLabelColor()); //$NON-NLS-1$
+		defaultLabelColorReq.setExtendedData(reqData);
+		for (Object ob : getSelectedObjects()) {
+
+			final EditPart object = (EditPart)ob;
+			final Command cmd = object.getCommand(defaultLabelColorReq);
+
+			execute(cmd);
+
+		}
+		
+		
+		
+		
+		//execute(createDefaultLabelColorCommand(getDefaultLabelColor()));
 	}
 
 

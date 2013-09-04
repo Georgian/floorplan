@@ -71,7 +71,24 @@ public class DefaultOpacityAction extends SelectionAction {
 
 	@Override
 	public void run() {
-		execute(createDefaultOpacityCommand(getDefaultOpacity()));
+		
+		final Request defaultOpacityReq = new Request("opacity"); //$NON-NLS-1$
+		final HashMap<String, String> reqData = new HashMap<String, String>();
+		reqData.put("newOpacity", defaultOpacity); //$NON-NLS-1$
+		defaultOpacityReq.setExtendedData(reqData);
+		
+		for (Object ob : getSelectedObjects()) {
+
+			final EditPart object = (EditPart)ob;
+			final Command cmd = object.getCommand(defaultOpacityReq);
+
+			execute(cmd);
+
+		}
+		
+		
+		
+		//execute(createDefaultOpacityCommand(getDefaultOpacity()));
 	}
 
 

@@ -62,7 +62,23 @@ public class DefaultFontStyleAction extends SelectionAction {
 
 	@Override
 	public void run() {
-		execute(createDefaultFontStyleCommand(getDefaultNormal()));
+		
+		final Request defaultFontStyleReq = new Request("fontStyle"); //$NON-NLS-1$
+		final HashMap<String, String> reqData = new HashMap<String, String>();
+		reqData.put("newFontStyle", getDefaultNormal()); //$NON-NLS-1$
+		defaultFontStyleReq.setExtendedData(reqData);
+		for (Object ob : getSelectedObjects()) {
+
+			final EditPart object = (EditPart)ob;
+			final Command cmd = object.getCommand(defaultFontStyleReq);
+
+			execute(cmd);
+
+		}
+		
+		
+		
+		//execute(createDefaultFontStyleCommand(getDefaultNormal()));
 	}
 
 
