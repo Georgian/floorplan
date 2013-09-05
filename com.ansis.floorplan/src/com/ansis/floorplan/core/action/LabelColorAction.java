@@ -11,6 +11,7 @@ import org.eclipse.ui.IWorkbenchPart;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
+import com.ansis.floorplan.core.model.ChildModel;
 import com.ansis.floorplan.util.FPConstPresentation;
 
 
@@ -67,7 +68,25 @@ public class LabelColorAction extends SelectionAction {
 
 	@Override
 	public void run() {
-		execute(createLabelColorCommand(getLabelColor()));
+		final Request labelColorReq = new Request("labelColor"); //$NON-NLS-1$
+		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
+		reqData.put("newLabelColor", getLabelColor()); //$NON-NLS-1$
+		labelColorReq.setExtendedData(reqData);
+		
+		final EditPart object = (EditPart)getSelectedObjects().get(0);
+		final Command cmd = object.getCommand(labelColorReq);
+		
+		execute(cmd);
+		
+		final ChildModel firstChild  = (ChildModel) object.getModel();
+
+		for (final Object ob : getSelectedObjects()) {
+
+			final EditPart objects = (EditPart)ob;
+
+			final ChildModel children = (ChildModel) objects.getModel();
+			children.setLabelColor(firstChild.getLabelColor());
+		}
 	}
 
 

@@ -11,6 +11,7 @@ import org.eclipse.ui.IWorkbenchPart;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
+import com.ansis.floorplan.core.model.ChildModel;
 import com.ansis.floorplan.util.FPConstPresentation;
 
 
@@ -67,22 +68,28 @@ public class FontColorAction extends SelectionAction {
 
 	@Override
 	public void run() {
-		
-		final Request fontColorReq = new Request("fontColor"); //$NON-NLS-1$
+
+		final Request fontColorReq = new Request("fontColor"); 
 		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
-		reqData.put("newFontColor", fontColor); //$NON-NLS-1$
-		fontColorReq.setExtendedData(reqData);
-		
-		for (Object ob : getSelectedObjects()) {
+		reqData.put("newFontColor", getFontColor()); //$NON-NLS-1$
+		fontColorReq.setExtendedData(reqData);	
 
-			final EditPart object = (EditPart)ob;
-			final Command cmd = object.getCommand(fontColorReq);
+		final EditPart object = (EditPart)getSelectedObjects().get(0);
+		final Command cmd = object.getCommand(fontColorReq);
 
-			execute(cmd);
-			//Still WIP.
+		execute(cmd);
+
+		final ChildModel firstChild  = (ChildModel) object.getModel();
+
+		for (final Object ob : getSelectedObjects()) {
+
+			final EditPart objects = (EditPart)ob;
+
+			final ChildModel children = (ChildModel) objects.getModel();
+			children.setFontColor(firstChild.getFontColor());
+			// Still WIP. - sbrosteanu
+			// Should work now. - nmona
 		}
-		
-		
 	}
 
 
