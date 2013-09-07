@@ -10,6 +10,8 @@ import org.eclipse.ui.IWorkbenchPart;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
+import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.ChildModel;
 import com.ansis.floorplan.util.FPConstPresentation;
 import com.ansis.floorplan.util.font.FPFontStyle;
 
@@ -21,10 +23,18 @@ public class FontStyleBoldItalicAction extends SelectionAction {
 	public static final String fontStylePropertyBoldItalic = "fontStylePropertyBoldItalic"; //$NON-NLS-1$
 
 
+	// ====================== 2. Instance Fields =============================
+
+	private Canvas model;
+	
+	private int selection = 0;
+	
+	
 	// ==================== 4. Constructors ====================
 
-	public FontStyleBoldItalicAction(final IWorkbenchPart part) {
+	public FontStyleBoldItalicAction(final IWorkbenchPart part, final Canvas model) {
 		super(part);
+		this.model = model;
 		setLazyEnablementCalculation(true);
 	}
 
@@ -67,15 +77,18 @@ public class FontStyleBoldItalicAction extends SelectionAction {
 		final HashMap<String, String> reqData = new HashMap<String, String>();
 		reqData.put("newFontStyle", getBoldItalic()); //$NON-NLS-1$
 		fontStyleReq.setExtendedData(reqData);
-		for (Object ob : getSelectedObjects()) {
+		for (final Object ob : getSelectedObjects()) {
 
 			final EditPart object = (EditPart)ob;
 			final Command cmd = object.getCommand(fontStyleReq);
-
+			selection = 1;
 			execute(cmd);
 
 		}
-		
+		if (selection == 0) {
+			for (final ChildModel childModel : model.getChildren())
+				childModel.setFontStyle( FPFontStyle.BOLD_ITALIC.getStyle() );
+		}
 	}
 
 

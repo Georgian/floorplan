@@ -8,6 +8,8 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.ui.IWorkbenchPart;
 
+import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.ChildModel;
 import com.ansis.floorplan.util.FPConstPresentation;
 import com.ansis.floorplan.util.font.FPFontSize;
 
@@ -18,11 +20,19 @@ public class FontSizeSevenAction extends SelectionAction {
 
 	public static final String fontSizePropertySeven = "fontSizePropertySeven"; //$NON-NLS-1$
 
+	
+	// ====================== 2. Instance Fields =============================
 
+	private Canvas model;
+	
+	private int selection = 0;
+	
+	
 	// ==================== 4. Constructors ====================
 
-	public FontSizeSevenAction(final IWorkbenchPart part) {
+	public FontSizeSevenAction(final IWorkbenchPart part, final Canvas model) {
 		super(part);
+		this.model = model;
 		setLazyEnablementCalculation(true);
 	}
 
@@ -63,15 +73,20 @@ public class FontSizeSevenAction extends SelectionAction {
 		final HashMap<String, String> reqData = new HashMap<String, String>();
 		reqData.put("newFontSize", getValue()); //$NON-NLS-1$
 		fontSizeReq.setExtendedData(reqData);
-		for (Object ob : getSelectedObjects()) {
+		for (final Object ob : getSelectedObjects()) {
 
 			final EditPart object = (EditPart)ob;
 			final Command cmd = object.getCommand(fontSizeReq);
-
+			selection = 1;
 			execute(cmd);
 
 		}
+		if (selection == 0) {
+			for (final ChildModel childModel : model.getChildren())
+				childModel.setFontSize( FPFontSize.XS.getPercent()/10 );
+		}
 	}
+
 
 
 	// ==================== 7. Getters & Setters ====================

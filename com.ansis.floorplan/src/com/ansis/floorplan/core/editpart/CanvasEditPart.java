@@ -19,11 +19,15 @@ import com.ansis.floorplan.core.model.ChildModel;
 
 public class CanvasEditPart extends AppAbstractEditPart {
 
+	protected static final String DEFAULT_FIGURE_COLOR_EDIT_POLICY = "defaultFigureColor"; //$NON-NLS-1$
+
+	
 	// ==================== 5. Creators ====================
 
 	@Override
 	protected void createEditPolicies() {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new EditLayoutPolicy());
+
 	}
 
 	@Override
@@ -52,6 +56,7 @@ public class CanvasEditPart extends AppAbstractEditPart {
 		};
 	}
 
+	
 
 	// ==================== 6. Action Methods ====================
 

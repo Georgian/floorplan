@@ -11,6 +11,8 @@ import org.eclipse.ui.IWorkbenchPart;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
+import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.ChildModel;
 import com.ansis.floorplan.util.color.FPStandardColor;
 
 
@@ -21,10 +23,18 @@ public class DefaultLabelColorAction extends SelectionAction {
 	public static final String defaultLabelColorProperty = "defaultLabelColorProperty"; //$NON-NLS-1$
 
 
+	// ====================== 2. Instance Fields =============================
+
+	private Canvas model;
+
+	private int selection = 0;
+	
+	
 	// ==================== 4. Constructors ====================
 
-	public DefaultLabelColorAction(final IWorkbenchPart part) {
+	public DefaultLabelColorAction(final IWorkbenchPart part, final Canvas model) {
 		super(part);
+		this.model = model;
 		setLazyEnablementCalculation(true);
 	}
 
@@ -66,19 +76,19 @@ public class DefaultLabelColorAction extends SelectionAction {
 		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
 		reqData.put("newDefaultLabelColor", getDefaultLabelColor()); //$NON-NLS-1$
 		defaultLabelColorReq.setExtendedData(reqData);
-		for (Object ob : getSelectedObjects()) {
+		for (final Object ob : getSelectedObjects()) {
 
 			final EditPart object = (EditPart)ob;
 			final Command cmd = object.getCommand(defaultLabelColorReq);
-
+			selection = 1;
 			execute(cmd);
 
 		}
 		
-		
-		
-		
-		//execute(createDefaultLabelColorCommand(getDefaultLabelColor()));
+		if (selection == 0) {
+			for (final ChildModel childModel : model.getChildren())
+				childModel.setLabelColor(getDefaultLabelColor());
+		}
 	}
 
 

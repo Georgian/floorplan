@@ -11,6 +11,7 @@ import org.eclipse.ui.IWorkbenchPart;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
+import com.ansis.floorplan.core.model.Canvas;
 import com.ansis.floorplan.core.model.ChildModel;
 import com.ansis.floorplan.util.FPConstPresentation;
 
@@ -26,11 +27,13 @@ public class FontColorAction extends SelectionAction {
 
 	private RGB fontColor;
 
+	private Canvas model;
 
 	// ==================== 4. Constructors ====================
 
-	public FontColorAction(final IWorkbenchPart part) {
+	public FontColorAction(final IWorkbenchPart part, final Canvas model) {
 		super(part);
+		this.model = model;
 		setLazyEnablementCalculation(true);
 	}
 
@@ -74,21 +77,34 @@ public class FontColorAction extends SelectionAction {
 		reqData.put("newFontColor", getFontColor()); //$NON-NLS-1$
 		fontColorReq.setExtendedData(reqData);	
 
-		final EditPart object = (EditPart)getSelectedObjects().get(0);
-		final Command cmd = object.getCommand(fontColorReq);
+		if (getSelectedObjects().get(0) != null) {
+			final EditPart object = (EditPart)getSelectedObjects().get(0);
+			final Command cmd = object.getCommand(fontColorReq);
 
-		execute(cmd);
+			execute(cmd);
 
-		final ChildModel firstChild  = (ChildModel) object.getModel();
+			final ChildModel firstChild  = (ChildModel) object.getModel();
 
-		for (final Object ob : getSelectedObjects()) {
+			for (final Object ob : getSelectedObjects()) {
 
-			final EditPart objects = (EditPart)ob;
+				final EditPart objects = (EditPart)ob;
 
-			final ChildModel children = (ChildModel) objects.getModel();
-			children.setFontColor(firstChild.getFontColor());
-			// Still WIP. - sbrosteanu
-			// Should work now. - nmona
+				final ChildModel children = (ChildModel) objects.getModel();
+				children.setFontColor(firstChild.getFontColor());
+			}
+		}
+		else
+		{
+			// This is not yet working
+//			final EditPart object = (EditPart)getSelectedObjects().get(0);
+//			final Command cmd = object.getCommand(fontColorReq);
+//
+//			execute(cmd);
+//
+//			final ChildModel firstChild  = (ChildModel) object.getModel();
+//
+//			for (final ChildModel childModel : model.getChildren())
+//				childModel.setFontColor(firstChild.getFontColor());
 		}
 	}
 

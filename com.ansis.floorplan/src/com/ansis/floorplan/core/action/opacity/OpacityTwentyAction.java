@@ -8,6 +8,8 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.ui.IWorkbenchPart;
 
+import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.ChildModel;
 import com.ansis.floorplan.util.FPConstPresentation;
 
 
@@ -22,11 +24,16 @@ public class OpacityTwentyAction extends SelectionAction {
 
 	private final String twenty = "20"; //$NON-NLS-1$
 
+	private Canvas model;
+	
+	private int selection = 0;
+	
 
 	// ==================== 4. Constructors ====================
 
-	public OpacityTwentyAction(final IWorkbenchPart part) {
+	public OpacityTwentyAction(final IWorkbenchPart part, final Canvas model) {
 		super(part);
+		this.model = model;
 		setLazyEnablementCalculation(true);
 	}
 
@@ -68,15 +75,18 @@ public class OpacityTwentyAction extends SelectionAction {
 		final HashMap<String, String> reqData = new HashMap<String, String>();
 		reqData.put("newOpacity", getTwenty()); //$NON-NLS-1$
 		opacityReq.setExtendedData(reqData);
-		for (Object ob : getSelectedObjects()) {
+		for (final Object ob : getSelectedObjects()) {
 
 			final EditPart object = (EditPart)ob;
 			final Command cmd = object.getCommand(opacityReq);
-
+			selection = 1;
 			execute(cmd);
 
 		}
-	
+		if (selection == 0) {
+			for (final ChildModel childModel : model.getChildren())
+				childModel.setOpacity( Integer.parseInt(getTwenty()) );
+		}
 	}
 
 

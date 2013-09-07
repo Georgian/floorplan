@@ -10,6 +10,8 @@ import org.eclipse.ui.IWorkbenchPart;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
+import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.ChildModel;
 import com.ansis.floorplan.util.FPConstPresentation;
 import com.ansis.floorplan.util.font.FPFontSize;
 
@@ -26,10 +28,18 @@ public class DefaultFontSizeAction extends SelectionAction {
 	public static final String defaultFontSizeProperty = "defaultFontSizeProperty"; //$NON-NLS-1$
 
 
+	// ====================== 2. Instance Fields =============================
+
+	private Canvas model;
+
+	private int selection = 0;
+
+	
 	// ==================== 4. Constructors ====================
 
-	public DefaultFontSizeAction(final IWorkbenchPart part) {
+	public DefaultFontSizeAction(final IWorkbenchPart part, final Canvas model) {
 		super(part);
+		this.model = model;
 		setLazyEnablementCalculation(true);
 	}
 
@@ -72,19 +82,19 @@ public class DefaultFontSizeAction extends SelectionAction {
 		final HashMap<String, String> reqData = new HashMap<String, String>();
 		reqData.put("newFontSize", getDefaultFontSize()); //$NON-NLS-1$
 		defaultFontSizeReq.setExtendedData(reqData);
-		
-		for (Object ob : getSelectedObjects()) {
+		for (final Object ob : getSelectedObjects()) {
 
 			final EditPart object = (EditPart)ob;
 			final Command cmd = object.getCommand(defaultFontSizeReq);
-
+			selection = 1;
 			execute(cmd);
 
 		}
 		
-		
-		
-		//execute(createFontSizeCommand(getDefaultFontSize()));
+		if (selection == 0) {
+			for (final ChildModel childModel : model.getChildren())
+				childModel.setFontSize(FPFontSize.NORMAL.getPercent()/10);
+		}
 	}
 
 

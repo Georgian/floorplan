@@ -11,6 +11,7 @@ import org.eclipse.ui.IWorkbenchPart;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
+import com.ansis.floorplan.core.model.Canvas;
 import com.ansis.floorplan.core.model.ChildModel;
 import com.ansis.floorplan.util.FPConstPresentation;
 
@@ -26,11 +27,16 @@ public class FigureColorAction extends SelectionAction {
 
 	private RGB figureColor;
 
+	private final Canvas model;
+	
+	private int selection = 0;
+
 
 	// ==================== 4. Constructors ====================
 
-	public FigureColorAction(final IWorkbenchPart part) {
+	public FigureColorAction(final IWorkbenchPart part, final Canvas model) {
 		super(part);
+		this.model = model;
 		setLazyEnablementCalculation(true);
 	}
 
@@ -72,20 +78,34 @@ public class FigureColorAction extends SelectionAction {
 		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
 		reqData.put("newFigureColor", getFigureColor()); //$NON-NLS-1$
 		figureColorReq.setExtendedData(reqData);
-		
-		final EditPart object = (EditPart)getSelectedObjects().get(0);
-		final Command cmd = object.getCommand(figureColorReq);
-		
-		execute(cmd);
-		
-		final ChildModel firstChild  = (ChildModel) object.getModel();
 
-		for (final Object ob : getSelectedObjects()) {
+		if (getSelectedObjects().get(0) != null) {
+			final EditPart object = (EditPart)getSelectedObjects().get(0);
+			final Command cmd = object.getCommand(figureColorReq);
 
-			final EditPart objects = (EditPart)ob;
+			execute(cmd);
 
-			final ChildModel children = (ChildModel) objects.getModel();
-			children.setColor(firstChild.getColor());
+			final ChildModel firstChild  = (ChildModel) object.getModel();
+
+			for (final Object ob : getSelectedObjects()) {
+
+				final EditPart objects = (EditPart)ob;
+
+				final ChildModel children = (ChildModel) objects.getModel();
+				children.setColor(firstChild.getColor());
+			}
+		}
+		else {
+			// This is not yet working
+//			final EditPart object = (EditPart)getSelectedObjects().get(0);
+//			final Command cmd = object.getCommand(figureColorReq);
+//
+//			execute(cmd);
+//
+//			final ChildModel firstChild  = (ChildModel) object.getModel();
+//
+//			for (final ChildModel childModel : model.getChildren())
+//				childModel.setColor(firstChild.getColor());
 		}
 	}
 

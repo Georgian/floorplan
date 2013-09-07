@@ -100,118 +100,118 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		getSelectionActions().add(action.getId());
 
 		// Figure Color
-		final FigureColorAction changeColorAction = new FigureColorAction(this);
+		final FigureColorAction changeColorAction = new FigureColorAction(this, model);
 		registry.registerAction(changeColorAction);
 		getSelectionActions().add(changeColorAction.getId());
 
 		// Opacity
-		final OpacityTenAction tenOpacityAction = new OpacityTenAction(this);
+		final OpacityTenAction tenOpacityAction = new OpacityTenAction(this, model);
 		registry.registerAction(tenOpacityAction);
 		getSelectionActions().add(tenOpacityAction.getId());
 
-		final OpacityTwentyAction twentyOpacityAction = new OpacityTwentyAction(this);
+		final OpacityTwentyAction twentyOpacityAction = new OpacityTwentyAction(this, model);
 		registry.registerAction(twentyOpacityAction);
 		getSelectionActions().add(twentyOpacityAction.getId());
 
-		final OpacityFourtyAction fourtyOpacityAction = new OpacityFourtyAction(this);
+		final OpacityFourtyAction fourtyOpacityAction = new OpacityFourtyAction(this, model);
 		registry.registerAction(fourtyOpacityAction);
 		getSelectionActions().add(fourtyOpacityAction.getId());
 
-		final OpacitySixtyAction sixyOpacityAction = new OpacitySixtyAction(this);
+		final OpacitySixtyAction sixyOpacityAction = new OpacitySixtyAction(this, model);
 		registry.registerAction(sixyOpacityAction);
 		getSelectionActions().add(sixyOpacityAction.getId());
 
-		final OpacityEightyAction eightyOpacityAction = new OpacityEightyAction(this);
+		final OpacityEightyAction eightyOpacityAction = new OpacityEightyAction(this, model);
 		registry.registerAction(eightyOpacityAction);
 		getSelectionActions().add(eightyOpacityAction.getId());
 
-		final OpacityHundredAction hundredOpacityAction = new OpacityHundredAction(this);
+		final OpacityHundredAction hundredOpacityAction = new OpacityHundredAction(this, model);
 		registry.registerAction(hundredOpacityAction);
 		getSelectionActions().add(hundredOpacityAction.getId());
 
 		// Label Color
-		final LabelColorAction labelColorAction = new LabelColorAction(this);
+		final LabelColorAction labelColorAction = new LabelColorAction(this, model);
 		registry.registerAction(labelColorAction);
 		getSelectionActions().add(labelColorAction.getId());
 
 		// Font Color
-		final FontColorAction fontColorAction = new FontColorAction(this);
+		final FontColorAction fontColorAction = new FontColorAction(this, model);
 		registry.registerAction(fontColorAction);
 		getSelectionActions().add(fontColorAction.getId());
 
 		// Font Style
-		final FontStyleNormalAction normalFontStyleAction = new FontStyleNormalAction(this);
+		final FontStyleNormalAction normalFontStyleAction = new FontStyleNormalAction(this, model);
 		registry.registerAction(normalFontStyleAction);
 		getSelectionActions().add(normalFontStyleAction.getId());
 
-		final FontStyleBoldAction boldFontStyleAction = new FontStyleBoldAction(this);
+		final FontStyleBoldAction boldFontStyleAction = new FontStyleBoldAction(this, model);
 		registry.registerAction(boldFontStyleAction);
 		getSelectionActions().add(boldFontStyleAction.getId());
 
-		final FontStyleItalicAction italicFontStyleAction = new FontStyleItalicAction(this);
+		final FontStyleItalicAction italicFontStyleAction = new FontStyleItalicAction(this, model);
 		registry.registerAction(italicFontStyleAction);
 		getSelectionActions().add(italicFontStyleAction.getId());
 
-		final FontStyleBoldItalicAction boldItalicFontStyleAction = new FontStyleBoldItalicAction(this);
+		final FontStyleBoldItalicAction boldItalicFontStyleAction = new FontStyleBoldItalicAction(this, model);
 		registry.registerAction(boldItalicFontStyleAction);
 		getSelectionActions().add(boldItalicFontStyleAction.getId());
 
 		// Font Size
-		final FontSizeSevenAction sevenFontSizeAction = new FontSizeSevenAction(this);
+		final FontSizeSevenAction sevenFontSizeAction = new FontSizeSevenAction(this, model);
 		registry.registerAction(sevenFontSizeAction);
 		getSelectionActions().add(sevenFontSizeAction.getId());
 
-		final FontSizeNineAction nineFontSizeAction = new FontSizeNineAction(this);
+		final FontSizeNineAction nineFontSizeAction = new FontSizeNineAction(this, model);
 		registry.registerAction(nineFontSizeAction);
 		getSelectionActions().add(nineFontSizeAction.getId());
 
-		final FontSizeTenAction tenFontSizeAction = new FontSizeTenAction(this);
+		final FontSizeTenAction tenFontSizeAction = new FontSizeTenAction(this, model);
 		registry.registerAction(tenFontSizeAction);
 		getSelectionActions().add(tenFontSizeAction.getId());
 
-		final FontSizeThirteenAction thirteenFontSizeAction = new FontSizeThirteenAction(this);
+		final FontSizeThirteenAction thirteenFontSizeAction = new FontSizeThirteenAction(this, model);
 		registry.registerAction(thirteenFontSizeAction);
 		getSelectionActions().add(thirteenFontSizeAction.getId());
 
-		final FontSizeSixteenAction sixteenFontSizeAction = new FontSizeSixteenAction(this);
+		final FontSizeSixteenAction sixteenFontSizeAction = new FontSizeSixteenAction(this, model);
 		registry.registerAction(sixteenFontSizeAction);
 		getSelectionActions().add(sixteenFontSizeAction.getId());
 
-		final FontSizeTwentyAction twentyFontSizeAction = new FontSizeTwentyAction(this);
+		final FontSizeTwentyAction twentyFontSizeAction = new FontSizeTwentyAction(this, model);
 		registry.registerAction(twentyFontSizeAction);
 		getSelectionActions().add(twentyFontSizeAction.getId());
 
-		final FontSizeTwentyfiveAction twentyfiveFontSizeAction = new FontSizeTwentyfiveAction(this);
+		final FontSizeTwentyfiveAction twentyfiveFontSizeAction = new FontSizeTwentyfiveAction(this, model);
 		registry.registerAction(twentyfiveFontSizeAction);
 		getSelectionActions().add(twentyfiveFontSizeAction.getId());
 
 		// Default Figure Color
-		final DefaultFigureColorAction defaultFigureColorAction = new DefaultFigureColorAction(this);
+		final DefaultFigureColorAction defaultFigureColorAction = new DefaultFigureColorAction(this, model);
 		registry.registerAction(defaultFigureColorAction);
 		getSelectionActions().add(defaultFigureColorAction.getId());
 
 		// Default Opacity
-		final DefaultOpacityAction defaultOpacityAction = new DefaultOpacityAction(this);
+		final DefaultOpacityAction defaultOpacityAction = new DefaultOpacityAction(this, model);
 		registry.registerAction(defaultOpacityAction);
 		getSelectionActions().add(defaultOpacityAction.getId());
 
 		// Default Label Color
-		final DefaultLabelColorAction defaultLabelColorAction = new DefaultLabelColorAction(this);
+		final DefaultLabelColorAction defaultLabelColorAction = new DefaultLabelColorAction(this, model);
 		registry.registerAction(defaultLabelColorAction);
 		getSelectionActions().add(defaultLabelColorAction.getId());
 
 		// Default Font Color
-		final DefaultFontColorAction defaultFontColorAction = new DefaultFontColorAction(this);
+		final DefaultFontColorAction defaultFontColorAction = new DefaultFontColorAction(this, model);
 		registry.registerAction(defaultFontColorAction);
 		getSelectionActions().add(defaultFontColorAction.getId());
 
 		// Default Font Size
-		final DefaultFontSizeAction defaultFontSizeAction = new DefaultFontSizeAction(this);
+		final DefaultFontSizeAction defaultFontSizeAction = new DefaultFontSizeAction(this, model);
 		registry.registerAction(defaultFontSizeAction);
 		getSelectionActions().add(defaultFontSizeAction.getId());
 
 		// Default Font Style
-		final DefaultFontStyleAction defaultFontStyleAction = new DefaultFontStyleAction(this);
+		final DefaultFontStyleAction defaultFontStyleAction = new DefaultFontStyleAction(this, model);
 		registry.registerAction(defaultFontStyleAction);
 		getSelectionActions().add(defaultFontStyleAction.getId());
 		

@@ -10,6 +10,8 @@ import org.eclipse.ui.IWorkbenchPart;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
+import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.ChildModel;
 import com.ansis.floorplan.util.FPConstPresentation;
 
 
@@ -29,11 +31,16 @@ public class DefaultOpacityAction extends SelectionAction {
 
 	private final String defaultOpacity = "50"; //$NON-NLS-1$
 
+	private Canvas model;
+
+	private int selection = 0;
+
 
 	// ==================== 4. Constructors ====================
 
-	public DefaultOpacityAction(final IWorkbenchPart part) {
+	public DefaultOpacityAction(final IWorkbenchPart part, final Canvas model) {
 		super(part);
+		this.model = model;
 		setLazyEnablementCalculation(true);
 	}
 
@@ -71,24 +78,25 @@ public class DefaultOpacityAction extends SelectionAction {
 
 	@Override
 	public void run() {
-		
+
 		final Request defaultOpacityReq = new Request("opacity"); //$NON-NLS-1$
 		final HashMap<String, String> reqData = new HashMap<String, String>();
 		reqData.put("newOpacity", defaultOpacity); //$NON-NLS-1$
 		defaultOpacityReq.setExtendedData(reqData);
-		
-		for (Object ob : getSelectedObjects()) {
+
+		for (final Object ob : getSelectedObjects()) {
 
 			final EditPart object = (EditPart)ob;
 			final Command cmd = object.getCommand(defaultOpacityReq);
-
+			selection = 1;
 			execute(cmd);
 
 		}
-		
-		
-		
-		//execute(createDefaultOpacityCommand(getDefaultOpacity()));
+
+		if (selection == 0) {
+			for (final ChildModel childModel : model.getChildren())
+				childModel.setOpacity(Integer.parseInt(getDefaultOpacity()));
+		}
 	}
 
 
