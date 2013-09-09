@@ -11,6 +11,7 @@ import org.eclipse.ui.IWorkbenchPart;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.ChildModel;
 import com.ansis.floorplan.util.color.FPStandardColor;
 import com.ansis.floorplan.util.font.FPFontSize;
 import com.ansis.floorplan.util.font.FPFontStyle;
@@ -86,9 +87,18 @@ public abstract class BaseDefaultAction extends SelectionAction {
 
 			final EditPart object = (EditPart)ob;
 			final Command cmd = object.getCommand(request);
-
+			selection = 1;
 			execute(cmd);
-
+		}
+		if ( selection == 0 ) {
+			for (final ChildModel childModel : model.getChildren()) {	
+				childModel.setColor(getDefaultFigureColor());
+				childModel.setFontColor(getDefaultFontColor());
+				childModel.setFontSize(FPFontSize.NORMAL.getPercent()/10);
+				childModel.setFontStyle( FPFontStyle.NORMAL.getStyle() );
+				childModel.setLabelColor(getDefaultLabelColor());
+				childModel.setOpacity(Integer.parseInt(getDefaultOpacity()));
+			}
 		}
 	}
 
