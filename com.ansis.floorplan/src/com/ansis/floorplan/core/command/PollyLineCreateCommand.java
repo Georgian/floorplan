@@ -6,7 +6,7 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
 
-import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.CanvasModel;
 import com.ansis.floorplan.core.model.Polly;
 import com.ansis.floorplan.core.model.PollyLine;
 
@@ -17,7 +17,7 @@ public class PollyLineCreateCommand extends Command {
 
 	public static boolean isShiftPressed = false;
 
-	private Canvas canvas;
+	private CanvasModel canvas;
 
 	private PollyLine pollyLine;
 
@@ -241,7 +241,7 @@ public class PollyLineCreateCommand extends Command {
 		this.pollyLine = pollyLine;
 	}
 
-	public void setCanvas(final Canvas canvas) {
+	public void setCanvas(final CanvasModel canvas) {
 		this.canvas = canvas;
 	}
 

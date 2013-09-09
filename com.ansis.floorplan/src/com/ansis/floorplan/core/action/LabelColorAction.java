@@ -11,7 +11,7 @@ import org.eclipse.ui.IWorkbenchPart;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
-import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.CanvasModel;
 import com.ansis.floorplan.core.model.ChildModel;
 import com.ansis.floorplan.util.FPConstPresentation;
 
@@ -27,13 +27,13 @@ public class LabelColorAction extends SelectionAction {
 
 	private RGB labelColor;
 
-	private Canvas model;
+	private CanvasModel model;
 	
 	private int selection = 0;
 
 	// ==================== 4. Constructors ====================
 
-	public LabelColorAction(final IWorkbenchPart part, final Canvas model) {
+	public LabelColorAction(final IWorkbenchPart part, final CanvasModel model) {
 		super(part);
 		this.model = model;
 		setLazyEnablementCalculation(true);

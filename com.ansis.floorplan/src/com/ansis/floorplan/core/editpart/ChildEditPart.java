@@ -1,9 +1,11 @@
 package com.ansis.floorplan.core.editpart;
 
 import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 
 import com.ansis.floorplan.core.editpolicy.DeletePolicy;
 import com.ansis.floorplan.core.editpolicy.EditLayoutPolicy;
@@ -18,9 +20,10 @@ import com.ansis.floorplan.core.editpolicy.font.FontSizePolicy;
 import com.ansis.floorplan.core.editpolicy.font.FontStylePolicy;
 import com.ansis.floorplan.core.editpolicy.font.LabelColorPolicy;
 import com.ansis.floorplan.core.model.CanvasModel;
+import com.ansis.floorplan.core.model.ChildModel;
 
 
-public class ChildEditPart extends AppAbstractEditPart {
+public class ChildEditPart extends AbstractGraphicalEditPart implements PropertyChangeListener {
 
 	// ==================== 1. Static Fields ========================
 
@@ -109,6 +112,18 @@ public class ChildEditPart extends AppAbstractEditPart {
 			refreshChildren();
 		else
 			refreshVisuals();
+	}
+	
+	@Override
+	public void activate() {
+		super.activate();
+		((ChildModel) getModel()).addPropertyChangeListener(this);
+	}
+
+	@Override
+	public void deactivate() {
+		super.deactivate();
+		((ChildModel) getModel()).removePropertyChangeListener(this);
 	}
 
 }

@@ -1,28 +1,26 @@
 package com.ansis.floorplan.core.model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.RGB;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.util.color.FPStandardColor;
 
+public class ChildModel {
 
-public class ChildModel extends CanvasModel {
-
+	
 	// ==================== 1. Static Fields ========================
 
+	public static final String PROPERTY_LAYOUT = "ChangedLayout"; //$NON-NLS-1$
 	public static final String PROPERTY_RENAME = "Rename"; //$NON-NLS-1$
-
 	public static final String PROPERTY_COLOR = "Color"; //$NON-NLS-1$
-
 	public static final String PROPERTY_OPACITY = "Opacity"; //$NON-NLS-1$
-
 	public static final String PROPERTY_FONT_STYLE = "FontStyle"; //$NON-NLS-1$
-
 	public static final String PROPERTY_FONT_SIZE = "FontSize"; //$NON-NLS-1$
-
 	public static final String PROPERTY_FONT_COLOR = "FontColor"; //$NON-NLS-1$
-
 	public static final String PROPERTY_LABEL_COLOR = "LabelColor"; //$NON-NLS-1$
 
 
@@ -31,6 +29,8 @@ public class ChildModel extends CanvasModel {
 	private CanvasModel parent;
 
 	private Rectangle bounds;
+	
+	private Rectangle layout;
 
 	private int integer;
 
@@ -51,8 +51,17 @@ public class ChildModel extends CanvasModel {
 	private RGB labelColor;
 
 	private Rectangle labelPosition;
+	
+	private PropertyChangeSupport listeners;
 
 
+	// ==================== 4. Constructors ====================
+
+	public ChildModel() {
+		this.listeners = new PropertyChangeSupport(this);
+	}
+	
+	
 	// ==================== 7. Getters & Setters ====================
 
 	public void setParent(final CanvasModel parent) {
@@ -69,6 +78,18 @@ public class ChildModel extends CanvasModel {
 
 	public Rectangle getBounds() {
 		return bounds;
+	}
+	
+	public void setLayout(final Rectangle layout) 
+	{ 
+		final Rectangle oldLayout = this.layout;
+		this.layout = layout;
+		listeners.firePropertyChange(PROPERTY_LAYOUT, oldLayout, layout);
+	}
+
+	public Rectangle getLayout() 
+	{
+		return layout;
 	}
 
 	public void setName(final String name) {
@@ -177,6 +198,18 @@ public class ChildModel extends CanvasModel {
 
 	public void setLabelPosition(final Rectangle labelPosition) {
 		this.labelPosition = labelPosition;
+	}
+	
+	public void addPropertyChangeListener(final PropertyChangeListener listener) {
+		listeners.addPropertyChangeListener(listener);
+	}
+
+	public PropertyChangeSupport getListeners() { 
+		return listeners; 
+	}
+
+	public void removePropertyChangeListener(final PropertyChangeListener listener) {
+		listeners.removePropertyChangeListener(listener);
 	}
 
 }

@@ -3,7 +3,7 @@ package com.ansis.floorplan.core.command;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
 
-import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.CanvasModel;
 import com.ansis.floorplan.core.model.Polly;
 
 
@@ -11,7 +11,7 @@ public class PollyCreateCommand extends Command {
 
 	// ====================== 2. Instance Fields =============================
 
-	private Canvas en;
+	private CanvasModel en;
 
 	private Polly srv;
 
@@ -49,8 +49,8 @@ public class PollyCreateCommand extends Command {
 	}
 
 	public void setCanvas(final Object e) {
-		if (e instanceof Canvas)
-			this.en = (Canvas)e;
+		if (e instanceof CanvasModel)
+			this.en = (CanvasModel)e;
 	}
 
 	public void setLayout(final Rectangle r) {

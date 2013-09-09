@@ -63,7 +63,7 @@ import com.ansis.floorplan.core.action.opacity.OpacityTwentyAction;
 import com.ansis.floorplan.core.factory.PartEditFactory;
 import com.ansis.floorplan.core.factory.PollyLineCreationFactory;
 import com.ansis.floorplan.core.factory.RectangleCreationFactory;
-import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.CanvasModel;
 import com.ansis.floorplan.core.provider.AppContextMenuProvider;
 
 
@@ -76,7 +76,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 	// ====================== 2. Instance Fields =============================
 
-	private Canvas model;
+	private CanvasModel model;
 
 
 	// ==================== 4. Constructors ====================
@@ -223,7 +223,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 	@Override
 	protected void initializeGraphicalViewer() {
 		final GraphicalViewer viewer = getGraphicalViewer();
-		model = new Canvas();
+		model = new CanvasModel();
 
 		viewer.setContents(model);
 		viewer.addDropTargetListener(new MyTemplateTransferDropTargetListener(viewer));
@@ -358,7 +358,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 			return super.getAdapter(type);
 	}
 
-	public Canvas getModel() {
+	public CanvasModel getModel() {
 		return model;
 	}
 

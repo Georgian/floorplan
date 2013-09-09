@@ -2,14 +2,14 @@ package com.ansis.floorplan.core.command;
 
 import org.eclipse.draw2d.geometry.Rectangle;
 
-import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.CanvasModel;
 
 
 public class CanvasChangeLayoutCommand  extends AbstractLayoutCommand {
 
 	// ====================== 2. Instance Fields =============================
 
-	private Canvas model;
+	private CanvasModel model;
 
 	private Rectangle oldLayout;
 
@@ -38,8 +38,8 @@ public class CanvasChangeLayoutCommand  extends AbstractLayoutCommand {
 
 	@Override
 	public void setModel(final Object model) {
-		this.model = (Canvas)model;
-		this.oldLayout = ((Canvas)model).getLayout();
+		this.model = (CanvasModel)model;
+		this.oldLayout = ((CanvasModel)model).getLayout();
 	}
 
 }

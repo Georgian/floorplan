@@ -5,7 +5,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
 
-import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.CanvasModel;
 import com.ansis.floorplan.core.model.RectangleModel;
 
 
@@ -13,7 +13,7 @@ public class RectangleCreateCommand extends Command {
 
 	// ====================== 2. Instance Fields =============================
 
-	private Canvas canvas;
+	private CanvasModel canvas;
 
 	private RectangleModel rectModel;
 
@@ -50,7 +50,7 @@ public class RectangleCreateCommand extends Command {
 		this.rectModel = rectModel;
 	}
 
-	public void setCanvas(final Canvas canvas) {
+	public void setCanvas(final CanvasModel canvas) {
 		this.canvas = canvas;
 	}
 

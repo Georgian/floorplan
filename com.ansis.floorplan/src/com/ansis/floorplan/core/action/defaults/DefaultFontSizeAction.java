@@ -10,7 +10,7 @@ import org.eclipse.ui.IWorkbenchPart;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.IFloorplanImageKeys;
-import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.CanvasModel;
 import com.ansis.floorplan.core.model.ChildModel;
 import com.ansis.floorplan.util.FPConstPresentation;
 import com.ansis.floorplan.util.font.FPFontSize;
@@ -30,14 +30,14 @@ public class DefaultFontSizeAction extends SelectionAction {
 
 	// ====================== 2. Instance Fields =============================
 
-	private Canvas model;
+	private CanvasModel model;
 
 	private int selection = 0;
 
 	
 	// ==================== 4. Constructors ====================
 
-	public DefaultFontSizeAction(final IWorkbenchPart part, final Canvas model) {
+	public DefaultFontSizeAction(final IWorkbenchPart part, final CanvasModel model) {
 		super(part);
 		this.model = model;
 		setLazyEnablementCalculation(true);

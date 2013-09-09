@@ -27,7 +27,7 @@ import com.ansis.floorplan.core.editpart.CanvasEditPart;
 import com.ansis.floorplan.core.editpart.PollyEditPart;
 import com.ansis.floorplan.core.editpart.PollyLineEditPart;
 import com.ansis.floorplan.core.editpart.RectangleEditPart;
-import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.CanvasModel;
 import com.ansis.floorplan.core.model.Polly;
 import com.ansis.floorplan.core.model.PollyLine;
 import com.ansis.floorplan.core.model.RectangleModel;
@@ -67,7 +67,7 @@ public class EditLayoutPolicy extends XYLayoutEditPolicy {
 
 				command.setLocation(request.getLocation());
 				command.setSize(request.getSize());
-				command.setCanvas((Canvas) getHost().getModel());
+				command.setCanvas((CanvasModel) getHost().getModel());
 				command.setRectangle((RectangleModel) request.getNewObject());
 
 				return command;
@@ -76,7 +76,7 @@ public class EditLayoutPolicy extends XYLayoutEditPolicy {
 
 				command.setLocation(request.getLocation());
 				command.setSize(request.getSize());
-				command.setCanvas((Canvas) getHost().getModel());
+				command.setCanvas((CanvasModel) getHost().getModel());
 				command.setPollyLine((PollyLine) request.getNewObject());
 
 				return command;

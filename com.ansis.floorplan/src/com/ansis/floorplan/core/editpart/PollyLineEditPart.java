@@ -1,9 +1,11 @@
 package com.ansis.floorplan.core.editpart;
 
 import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 
 import com.ansis.floorplan.FloorplanActivator;
 import com.ansis.floorplan.core.editpolicy.DeletePolicy;
@@ -12,7 +14,7 @@ import com.ansis.floorplan.core.model.CanvasModel;
 import com.ansis.floorplan.core.model.PollyLine;
 
 
-public class PollyLineEditPart extends AppAbstractEditPart {
+public class PollyLineEditPart extends AbstractGraphicalEditPart implements PropertyChangeListener {
 
 	// ==================== 5. Creators ====================
 
@@ -60,5 +62,17 @@ public class PollyLineEditPart extends AppAbstractEditPart {
 		if (evt.getPropertyName().equals(CanvasModel.PROPERTY_REMOVE))
 			refreshChildren();
 	}
+	
+//	@Override
+//	public void activate() {
+//		super.activate();
+//		((ChildModel) getModel()).addPropertyChangeListener(this);
+//	}
+//
+//	@Override
+//	public void deactivate() {
+//		super.deactivate();
+//		((ChildModel) getModel()).removePropertyChangeListener(this);
+//	}
 
 }

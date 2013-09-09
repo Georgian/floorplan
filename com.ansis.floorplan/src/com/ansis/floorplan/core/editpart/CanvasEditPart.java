@@ -1,23 +1,24 @@
 package com.ansis.floorplan.core.editpart;
 
 import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.tools.DragEditPartsTracker;
 
 import com.ansis.floorplan.core.command.PollyLineCreateCommand;
 import com.ansis.floorplan.core.editpolicy.EditLayoutPolicy;
 import com.ansis.floorplan.core.figure.CanvasFigure;
-import com.ansis.floorplan.core.model.Canvas;
 import com.ansis.floorplan.core.model.CanvasModel;
 import com.ansis.floorplan.core.model.ChildModel;
 
 
-public class CanvasEditPart extends AppAbstractEditPart {
+public class CanvasEditPart extends AbstractGraphicalEditPart implements PropertyChangeListener {
 
 	protected static final String DEFAULT_FIGURE_COLOR_EDIT_POLICY = "defaultFigureColor"; //$NON-NLS-1$
 
@@ -71,7 +72,7 @@ public class CanvasEditPart extends AppAbstractEditPart {
 
 	private void changeBackground() {
 		final CanvasFigure figure = (CanvasFigure) getFigure();
-		final Canvas model = (Canvas) getModel();
+		final CanvasModel model = (CanvasModel) getModel();
 
 		figure.setImage(model.getImage());
 		figure.repaint();
@@ -81,12 +82,25 @@ public class CanvasEditPart extends AppAbstractEditPart {
 	protected void refreshVisuals() {
 
 	}
+	
+	@Override
+	public void activate() {
+		super.activate();
+		((CanvasModel) getModel()).addPropertyChangeListener(this);
+	}
+
+	@Override
+	public void deactivate() {
+		super.deactivate();
+		((CanvasModel) getModel()).removePropertyChangeListener(this);
+	}
+	
 
 	// ==================== 7. Getters & Setters ====================
 
 	@Override
 	protected List<ChildModel> getModelChildren() {
-		return CanvasModel.getChildren();
+		return ((CanvasModel) getModel()).getChildren();
 	}
 
 }

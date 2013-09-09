@@ -8,7 +8,7 @@ import com.ansis.floorplan.core.editpart.CanvasEditPart;
 import com.ansis.floorplan.core.editpart.PollyEditPart;
 import com.ansis.floorplan.core.editpart.PollyLineEditPart;
 import com.ansis.floorplan.core.editpart.RectangleEditPart;
-import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.CanvasModel;
 import com.ansis.floorplan.core.model.Polly;
 import com.ansis.floorplan.core.model.PollyLine;
 import com.ansis.floorplan.core.model.RectangleModel;
@@ -23,7 +23,7 @@ public class PartEditFactory implements EditPartFactory {
 
 		AbstractGraphicalEditPart part = null;
 
-		if (model instanceof Canvas)
+		if (model instanceof CanvasModel)
 			part = new CanvasEditPart();
 		else if (model instanceof Polly)
 			part = new PollyEditPart();

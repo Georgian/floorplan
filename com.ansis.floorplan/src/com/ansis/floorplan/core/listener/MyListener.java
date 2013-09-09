@@ -7,12 +7,12 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 
-import com.ansis.floorplan.core.model.Canvas;
 import com.ansis.floorplan.core.model.CanvasModel;
 import com.ansis.floorplan.core.model.Polly;
 import com.ansis.floorplan.core.model.PollyLine;
 
 
+@Deprecated // Use a creation tool for creating polygons
 public class MyListener {
 
 	// ====================== 2. Instance Fields =============================
@@ -36,7 +36,7 @@ public class MyListener {
 
 	// ==================== 4. Constructors ====================
 
-	public MyListener(final Canvas model, final IFigure figure) {
+	public MyListener(final CanvasModel model, final IFigure figure) {
 
 		figure.addMouseListener(new MouseListener() {
 
@@ -123,8 +123,8 @@ public class MyListener {
 
 							final CanvasModel model2 = new CanvasModel();
 
-							if ( CanvasModel.getChildren().size() >= 1 && ok == 1)
-								model2.removeChild(CanvasModel.getChildren().get(CanvasModel.getChildren().size() - 1));
+							if ( model2.getChildren().size() >= 1 && ok == 1)
+								model2.removeChild(model2.getChildren().get(model2.getChildren().size() - 1));
 
 							isShiftPressed = false;
 							tempPointList = new PointList();
@@ -201,8 +201,8 @@ public class MyListener {
 
 							final CanvasModel model2 = new CanvasModel();
 
-							if ( CanvasModel.getChildren().size() >= 1 && ok == 1)
-								model2.removeChild(CanvasModel.getChildren().get(CanvasModel.getChildren().size() - 1));
+							if ( model2.getChildren().size() >= 1 && ok == 1)
+								model2.removeChild(model2.getChildren().get(model2.getChildren().size() - 1));
 
 							isShiftPressed = false;
 							tempPointList = new PointList();
@@ -290,8 +290,8 @@ public class MyListener {
 
 						final CanvasModel model2 = new CanvasModel();
 
-						if ( CanvasModel.getChildren().size() >= 1 && ok == 1)
-							model2.removeChild(CanvasModel.getChildren().get(CanvasModel.getChildren().size() - 1));
+						if ( model2.getChildren().size() >= 1 && ok == 1)
+							model2.removeChild(model2.getChildren().get(model2.getChildren().size() - 1));
 
 						tempPointList = new PointList();
 

@@ -8,7 +8,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.ui.IWorkbenchPart;
 
-import com.ansis.floorplan.core.model.Canvas;
+import com.ansis.floorplan.core.model.CanvasModel;
 import com.ansis.floorplan.core.model.ChildModel;
 import com.ansis.floorplan.util.FPConstPresentation;
 import com.ansis.floorplan.util.font.FPFontSize;
@@ -23,13 +23,13 @@ public class FontSizeNineAction extends SelectionAction {
 	
 	// ====================== 2. Instance Fields =============================
 
-	private Canvas model;
+	private CanvasModel model;
 	
 	private int selection = 0;
 
 	// ==================== 4. Constructors ====================
 
-	public FontSizeNineAction(final IWorkbenchPart part, final Canvas model) {
+	public FontSizeNineAction(final IWorkbenchPart part, final CanvasModel model) {
 		super(part);
 		this.model = model;
 		setLazyEnablementCalculation(true);

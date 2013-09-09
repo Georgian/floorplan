@@ -1,6 +1,5 @@
 package com.ansis.floorplan.core.model;
 
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.InputStream;
@@ -9,22 +8,17 @@ import java.util.List;
 
 import org.eclipse.draw2d.geometry.Rectangle;
 
-import com.ansis.floorplan.util.FPConstPresentation;
-
-
-public class CanvasModel {
+public class CanvasModel 
+{
 
 	// ==================== 1. Static Fields ========================
 
 	public static final String PROPERTY_LAYOUT = "CanvasModel"; //$NON-NLS-1$
-
 	public static final String PROPERTY_ADD = "CanvasModelAddChild"; //$NON-NLS-1$
-
 	public static final String PROPERTY_REMOVE = "CanvasModelRemoveChild"; //$NON-NLS-1$
-
 	public static final String PROPERTY_BACKGROUND = "ModelBkgImage"; //$NON-NLS-1$
 
-	private static List<ChildModel> children = new ArrayList<>();
+	private List<ChildModel> children = new ArrayList<>();
 
 
 	// ====================== 2. Instance Fields =============================
@@ -36,78 +30,75 @@ public class CanvasModel {
 	private PropertyChangeSupport listeners;
 
 
-	// ==================== 3. Static Methods ====================
-
-	public static List<ChildModel> getChildren() {
-		return children;
-	}
-
 	// ==================== 4. Constructors ====================
 
-	public CanvasModel() {
+	public CanvasModel() 
+	{
 		this.listeners = new PropertyChangeSupport(this);
 	}
 
 
 	// ==================== 7. Getters & Setters ====================
 
-	public void setLayout(final Rectangle newLayout) { 
+	public void setLayout(final Rectangle layout) 
+	{ 
 		final Rectangle oldLayout = this.layout;
-
-		this.layout = newLayout;
-
-		getListeners().firePropertyChange(PROPERTY_LAYOUT, oldLayout, newLayout);
+		this.layout = layout;
+		getListeners().firePropertyChange(PROPERTY_LAYOUT, oldLayout, layout);
 	}
 
-	public Rectangle getLayout() {
-		return this.layout;
+	public Rectangle getLayout() 
+	{
+		return layout;
 	}
 
 
 	// ==================== 6. Action Methods ====================
 
-	public void addPropertyChangeListener(final PropertyChangeListener listener) {
+	public void addPropertyChangeListener(final PropertyChangeListener listener) 
+	{
 		listeners.addPropertyChangeListener(listener);
 	}
 
-	public PropertyChangeSupport getListeners() { 
+	public PropertyChangeSupport getListeners() 
+	{ 
 		return listeners; 
 	}
 
-	public void removePropertyChangeListener(final PropertyChangeListener listener) {
+	public void removePropertyChangeListener(final PropertyChangeListener listener) 
+	{
 		listeners.removePropertyChangeListener(listener);
 	}
 
-	public boolean addChild(final ChildModel figure) {
-		final boolean b = CanvasModel.getChildren().add(figure);
-
-		if (b) {
-			figure.setParent(this);
-			getListeners().firePropertyChange(PROPERTY_ADD, null, figure);
-		} else {
-			figure.setParent(this);
-			children.add(figure);
-			getListeners().firePropertyChange(new PropertyChangeEvent(this, FPConstPresentation.EMPTY_STRING, null, null)); 
-		}
-
-		return b;
+	public void addChild(final ChildModel child) 
+	{
+		children.add(child);
+		child.setParent(this);
+		getListeners().firePropertyChange(PROPERTY_ADD, null, child);
 	}
 
-	public boolean removeChild(final CanvasModel child) {
-		final boolean b = CanvasModel.getChildren().remove(child);
-
-		if (b)
-			getListeners().firePropertyChange(PROPERTY_REMOVE, child, null);
-		return b;
+	public void removeChild(final ChildModel child) 
+	{
+		children.remove(child);
+		child.setParent(null);
+		getListeners().firePropertyChange(PROPERTY_REMOVE, child, null);
 	}
+
 
 	// ==================== 7. Getters & Setters ====================
 
-	public InputStream getImage() {
+	public List<ChildModel> getChildren()
+	{
+		return children;
+	}
+
+	public InputStream getImage() 
+	{
 		return image;
 	}
 
-	public void setImage(final InputStream image) {
+	public void setImage(final InputStream image) 
+	{
 		this.image = image;
 		getListeners().firePropertyChange(PROPERTY_BACKGROUND, null, image);
 	}
