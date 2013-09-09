@@ -344,7 +344,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 		instGroup.add(creationEntry);
 
-		root.setDefaultEntry(selectionToolEntry);
+		root.setDefaultEntry(drawEntry);
 		return root;
 	}
 

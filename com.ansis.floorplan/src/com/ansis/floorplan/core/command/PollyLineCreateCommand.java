@@ -15,6 +15,8 @@ public class PollyLineCreateCommand extends Command {
 
 	// ====================== 2. Instance Fields =============================
 
+	public static boolean isShiftPressed = false;
+
 	private Canvas canvas;
 
 	private PollyLine pollyLine;
@@ -79,6 +81,9 @@ public class PollyLineCreateCommand extends Command {
 		// If yes, get the unfinished Polyline and continue building it (also force recheck for open Polygons)
 		else if (size == null && canvas.getChildren().size() > 0 && hasLine == 1)
 		{ 	
+			// Test shift presses. WIP
+			System.out.println(isShiftPressed);
+
 			// Get the unfinished Polyline
 			final PollyLine newPolly = (PollyLine) canvas.getChildren().get(lineLocation);
 
@@ -103,7 +108,7 @@ public class PollyLineCreateCommand extends Command {
 			// Add current mouse location to the pointlist
 			builderList.addPoint(location.x, location.y);
 
-			
+
 			// Check if points in the pointlist had been fixed or not
 			if(newPolly.isDrawingDenied() /*rename this*/ == true)
 			{
@@ -178,7 +183,7 @@ public class PollyLineCreateCommand extends Command {
 			final Point firstPoint = builderList.getPoint(0);
 
 			// Check if user wants to close the Polygon
-			if ( (lastPoint.x + 10 >= firstPoint.x && lastPoint.x - 10 <= firstPoint.x) && (lastPoint.y + 10 >= firstPoint.y && lastPoint.y - 10 <= firstPoint.y)) 
+			if ( (lastPoint.x + 10 >= firstPoint.x && lastPoint.x - 10 <= firstPoint.x) && (lastPoint.y + 10 >= firstPoint.y && lastPoint.y - 10 <= firstPoint.y) && builderList.size() > 3) 
 			{
 				// If yes, create a new Polygon
 				final Polly polly = new Polly();

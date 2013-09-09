@@ -9,9 +9,9 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.tools.DragEditPartsTracker;
 
+import com.ansis.floorplan.core.command.PollyLineCreateCommand;
 import com.ansis.floorplan.core.editpolicy.EditLayoutPolicy;
 import com.ansis.floorplan.core.figure.CanvasFigure;
-import com.ansis.floorplan.core.listener.MyListener;
 import com.ansis.floorplan.core.model.Canvas;
 import com.ansis.floorplan.core.model.CanvasModel;
 import com.ansis.floorplan.core.model.ChildModel;
@@ -44,14 +44,14 @@ public class CanvasEditPart extends AppAbstractEditPart {
 			protected void performConditionalSelection() {
 				super.performConditionalSelection();
 				if (getCurrentInput().isShiftKeyDown())	
-					MyListener.isShiftPressed = true;
+					PollyLineCreateCommand.isShiftPressed = true;
 				else 
-					MyListener.isShiftPressed = false;
+					PollyLineCreateCommand.isShiftPressed = false;
 
-				if (getCurrentInput().isControlKeyDown())	
-					MyListener.isControlPressed = true;
-				else
-					MyListener.isControlPressed = false;
+//				if (getCurrentInput().isControlKeyDown())	
+//					MyListener.isControlPressed = true;
+//				else
+//					MyListener.isControlPressed = false;
 			}
 		};
 	}
