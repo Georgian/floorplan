@@ -53,6 +53,8 @@ public class ChildModel {
 	private Rectangle labelPosition;
 	
 	private PropertyChangeSupport listeners;
+	
+	private boolean isFontColorChanged;
 
 
 	// ==================== 4. Constructors ====================
@@ -210,6 +212,16 @@ public class ChildModel {
 
 	public void removePropertyChangeListener(final PropertyChangeListener listener) {
 		listeners.removePropertyChangeListener(listener);
+	}
+
+
+	public boolean getFontColorChanged() {
+		return isFontColorChanged;
+	}
+
+
+	public void setFontColorChanged(boolean isFontColorChanged) {
+		this.isFontColorChanged = isFontColorChanged;
 	}
 
 }

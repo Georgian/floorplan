@@ -29,7 +29,7 @@ public class DefaultFontColorAction extends SelectionAction {
 
 	private int selection = 0;
 
-	
+
 	// ==================== 4. Constructors ====================
 
 	public DefaultFontColorAction(final IWorkbenchPart part, final CanvasModel model) {
@@ -76,18 +76,36 @@ public class DefaultFontColorAction extends SelectionAction {
 		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
 		reqData.put("newDefaultFontColor", getDefaultFontColor()); //$NON-NLS-1$
 		defaultFontColorReq.setExtendedData(reqData);
-		for (final Object ob : getSelectedObjects()) {
 
-			final EditPart object = (EditPart)ob;
+		if (getSelectedObjects().get(0) != null) {
+			final EditPart object = (EditPart)getSelectedObjects().get(0);
 			final Command cmd = object.getCommand(defaultFontColorReq);
-			selection = 1;
+
 			execute(cmd);
 
+			for (final Object ob : getSelectedObjects()) {
+
+				final EditPart objects = (EditPart)ob;
+
+				final ChildModel children = (ChildModel) objects.getModel();
+
+				children.setFontColor(getDefaultFontColor());
+				children.setFontColorChanged(false);
+
+			}
 		}
-		
-		if (selection == 0) {
-			for (final ChildModel childModel : model.getChildren())
-				childModel.setFontColor(getDefaultFontColor());
+		else
+		{
+			// This is not yet working
+			//		final EditPart object = (EditPart)getSelectedObjects().get(0);
+			//		final Command cmd = object.getCommand(defaultFontColorReq);
+			//
+			//		execute(cmd);
+			//
+			//		final ChildModel firstChild  = (ChildModel) object.getModel();
+			//
+			//		for (final ChildModel childModel : model.getChildren())
+			//			childModel.setFontColor(firstChild.getFontColor());
 		}
 	}
 

@@ -77,18 +77,38 @@ public class DefaultFigureColorAction extends SelectionAction {
 		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
 		reqData.put("newDefaultFigureColor", getDefaultFigureColor()); //$NON-NLS-1$
 		defaultFigureColorReq.setExtendedData(reqData);
-		for (final Object ob : getSelectedObjects()) {
 
-			final EditPart object = (EditPart)ob;
+		if (getSelectedObjects().get(0) != null) {
+			final EditPart object = (EditPart)getSelectedObjects().get(0);
 			final Command cmd = object.getCommand(defaultFigureColorReq);
-			selection = 1;
+
 			execute(cmd);
 
-		}		
+			for (final Object ob : getSelectedObjects()) {
 
-		if (selection == 0) {
-			for (final ChildModel childModel : model.getChildren())
-				childModel.setColor(getDefaultFigureColor());
+				final EditPart objects = (EditPart)ob;
+
+				final ChildModel children = (ChildModel) objects.getModel();
+				
+				children.setColor(getDefaultFigureColor());
+				
+				if ( children.getFontColorChanged() == false )
+					children.setFontColor(FloorplanActivator.getDefault().getColor(FPStandardColor.BLACK).getRGB());
+
+			}
+		}
+		else
+		{
+			// This is not yet working
+			//		final EditPart object = (EditPart)getSelectedObjects().get(0);
+			//		final Command cmd = object.getCommand(defaultFigureColorReq);
+			//
+			//		execute(cmd);
+			//
+			//		final ChildModel firstChild  = (ChildModel) object.getModel();
+			//
+			//		for (final ChildModel childModel : model.getChildren())
+			//			childModel.setFontColor(firstChild.getFontColor());
 		}
 	}
 

@@ -90,7 +90,9 @@ public class FontColorAction extends SelectionAction {
 				final EditPart objects = (EditPart)ob;
 
 				final ChildModel children = (ChildModel) objects.getModel();
+				
 				children.setFontColor(firstChild.getFontColor());
+				children.setFontColorChanged(true);
 			}
 		}
 		else

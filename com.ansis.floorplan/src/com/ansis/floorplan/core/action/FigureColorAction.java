@@ -93,6 +93,9 @@ public class FigureColorAction extends SelectionAction {
 
 				final ChildModel children = (ChildModel) objects.getModel();
 				children.setColor(firstChild.getColor());
+				
+				if ( children.getFontColorChanged() == false )
+					children.setFontColor(firstChild.getColor());
 			}
 		}
 		else {
