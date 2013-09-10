@@ -4,7 +4,6 @@ import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
-import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
@@ -39,17 +38,19 @@ import com.ansis.floorplan.core.action.opacity.OpacitySixtyAction;
 import com.ansis.floorplan.core.action.opacity.OpacityTenAction;
 import com.ansis.floorplan.core.action.opacity.OpacityTwentyAction;
 
-
-public class AppContextMenuProvider extends ContextMenuProvider {
+/**
+ * 
+ * @author 
+ *
+ */
+public class AppContextMenuProvider extends ContextMenuProvider 
+{
 
 	// ==================== 1. Static Fields ========================
 
 	private static final String opacitySubmenuID = "opacitySubmenuID"; //$NON-NLS-1$
-
 	private static final String fontStyleSubmenuID = "fontStyleSubmenuID"; //$NON-NLS-1$
-
 	private static final String fontSizeSubmenuID = "fontSizeSubmenuID"; //$NON-NLS-1$
-
 	private static final String defaultsSubmenuID = "defaultsSubmenuID"; //$NON-NLS-1$
 
 
@@ -60,152 +61,111 @@ public class AppContextMenuProvider extends ContextMenuProvider {
 
 	// ==================== 4. Constructors ====================
 
-	public AppContextMenuProvider(final EditPartViewer viewer, final ActionRegistry registry) {
+	public AppContextMenuProvider(final EditPartViewer viewer, final ActionRegistry actionRegistry) 
+	{
 		super(viewer);
-		setActionRegistry(registry);
+		this.actionRegistry = actionRegistry;
 	}
 
 
 	// ==================== 6. Action Methods ====================
 
 	@Override
-	public void buildContextMenu(final IMenuManager menu) {
-		IAction action;
+	public void buildContextMenu(final IMenuManager menu) 
+	{
 		GEFActionConstants.addStandardActionGroups(menu);
 
 		// Undo
-		action = getActionRegistry().getAction(ActionFactory.UNDO.getId());
-		menu.appendToGroup(GEFActionConstants.GROUP_UNDO, action);
+		menu.appendToGroup(GEFActionConstants.GROUP_UNDO, actionRegistry.getAction(ActionFactory.UNDO.getId()));
 
 		// Redo
-		action = getActionRegistry().getAction(ActionFactory.REDO.getId());
-		menu.appendToGroup(GEFActionConstants.GROUP_UNDO, action);
+		menu.appendToGroup(GEFActionConstants.GROUP_UNDO, actionRegistry.getAction(ActionFactory.REDO.getId()));
 
 		// Delete
-		action = getActionRegistry().getAction(ActionFactory.DELETE.getId());
-		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
+		menu.appendToGroup(GEFActionConstants.GROUP_EDIT, actionRegistry.getAction(ActionFactory.DELETE.getId()));
 
 		// Rename
-		action = getActionRegistry().getAction(ActionFactory.RENAME.getId());
-		menu.appendToGroup(GEFActionConstants.GROUP_COPY, action);
+		menu.appendToGroup(GEFActionConstants.GROUP_COPY, actionRegistry.getAction(ActionFactory.RENAME.getId()));
 
 		// Color
-		action = getActionRegistry().getAction(FigureColorAction.figureColorProperty);
-		menu.appendToGroup(GEFActionConstants.GROUP_VIEW, action);
+		menu.appendToGroup(GEFActionConstants.GROUP_VIEW, actionRegistry.getAction(FigureColorAction.figureColorProperty));
 
 		// Opacity
 		final MenuManager opacitySubmenu = new MenuManager("Figure opacity", FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_OPACITY), opacitySubmenuID);
 
-		action = getActionRegistry().getAction(OpacityTenAction.opacityPropertyTen);
-		opacitySubmenu.add(action);
+		opacitySubmenu.add(actionRegistry.getAction(OpacityTenAction.opacityPropertyTen));
 
-		action = getActionRegistry().getAction(OpacityTwentyAction.opacityPropertyTwenty);
-		opacitySubmenu.add(action);
+		opacitySubmenu.add(actionRegistry.getAction(OpacityTwentyAction.opacityPropertyTwenty));
 
-		action = getActionRegistry().getAction(OpacityFourtyAction.opacityPropertyFourty);
-		opacitySubmenu.add(action);
+		opacitySubmenu.add(actionRegistry.getAction(OpacityFourtyAction.opacityPropertyFourty));
 		
-		action = getActionRegistry().getAction(OpacitySixtyAction.opacityPropertySixty);
-		opacitySubmenu.add(action);
+		opacitySubmenu.add(actionRegistry.getAction(OpacitySixtyAction.opacityPropertySixty));
 
-		action = getActionRegistry().getAction(OpacityEightyAction.opacityPropertyEighty);
-		opacitySubmenu.add(action);
+		opacitySubmenu.add(actionRegistry.getAction(OpacityEightyAction.opacityPropertyEighty));
 
-		action = getActionRegistry().getAction(OpacityHundredAction.opacityPropertyHundred);
-		opacitySubmenu.add(action);
+		opacitySubmenu.add(actionRegistry.getAction(OpacityHundredAction.opacityPropertyHundred));
 
 		menu.appendToGroup(GEFActionConstants.GROUP_VIEW, opacitySubmenu);
 
 		// Font Style
 		final MenuManager fontStyleSubmenu = new MenuManager("Font style", FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_NORMAL), fontStyleSubmenuID); 
 
-		action = getActionRegistry().getAction(FontStyleNormalAction.fontStylePropertyNormal);
-		fontStyleSubmenu.add(action);
+		fontStyleSubmenu.add(actionRegistry.getAction(FontStyleNormalAction.fontStylePropertyNormal));
 
-		action = getActionRegistry().getAction(FontStyleBoldAction.fontStylePropertyBold);
-		fontStyleSubmenu.add(action);
+		fontStyleSubmenu.add(actionRegistry.getAction(FontStyleBoldAction.fontStylePropertyBold));
 
-		action = getActionRegistry().getAction(FontStyleItalicAction.fontStylePropertyItalic);
-		fontStyleSubmenu.add(action);
+		fontStyleSubmenu.add(actionRegistry.getAction(FontStyleItalicAction.fontStylePropertyItalic));
 		
-		action = getActionRegistry().getAction(FontStyleBoldItalicAction.fontStylePropertyBoldItalic);
-		fontStyleSubmenu.add(action);
+		fontStyleSubmenu.add(actionRegistry.getAction(FontStyleBoldItalicAction.fontStylePropertyBoldItalic));
 
 		menu.appendToGroup(GEFActionConstants.GROUP_REST, fontStyleSubmenu);
 
 		// Font Size
 		final MenuManager fontSizeSubmenu = new MenuManager("Font size", FloorplanActivator.getDefault().getImageDescriptor(IFloorplanImageKeys.ICON_FONT_SIZE), fontSizeSubmenuID); 
 
-		action = getActionRegistry().getAction(FontSizeSevenAction.fontSizePropertySeven);
-		fontSizeSubmenu.add(action);
+		fontSizeSubmenu.add(actionRegistry.getAction(FontSizeSevenAction.fontSizePropertySeven));
 
-		action = getActionRegistry().getAction(FontSizeNineAction.fontSizePropertyNine);
-		fontSizeSubmenu.add(action);
+		fontSizeSubmenu.add(actionRegistry.getAction(FontSizeNineAction.fontSizePropertyNine));
 
-		action = getActionRegistry().getAction(FontSizeTenAction.fontSizePropertyTen);
-		fontSizeSubmenu.add(action);
+		fontSizeSubmenu.add(actionRegistry.getAction(FontSizeTenAction.fontSizePropertyTen));
 
-		action = getActionRegistry().getAction(FontSizeThirteenAction.fontSizePropertyThirteen);
-		fontSizeSubmenu.add(action);
+		fontSizeSubmenu.add(actionRegistry.getAction(FontSizeThirteenAction.fontSizePropertyThirteen));
 
-		action = getActionRegistry().getAction(FontSizeSixteenAction.fontSizePropertySixteen);
-		fontSizeSubmenu.add(action);
+		fontSizeSubmenu.add(actionRegistry.getAction(FontSizeSixteenAction.fontSizePropertySixteen));
 
-		action = getActionRegistry().getAction(FontSizeTwentyAction.fontSizePropertyTwenty);
-		fontSizeSubmenu.add(action);
+		fontSizeSubmenu.add(actionRegistry.getAction(FontSizeTwentyAction.fontSizePropertyTwenty));
 
-		action = getActionRegistry().getAction(FontSizeTwentyfiveAction.fontSizePropertyTwentyfive);
-		fontSizeSubmenu.add(action);
+		fontSizeSubmenu.add(actionRegistry.getAction(FontSizeTwentyfiveAction.fontSizePropertyTwentyfive));
 
 		menu.appendToGroup(GEFActionConstants.GROUP_REST, fontSizeSubmenu);
 
 		// Font Color
-		action = getActionRegistry().getAction(FontColorAction.fontColorProperty);
-		menu.appendToGroup(GEFActionConstants.GROUP_REST, action);
+		menu.appendToGroup(GEFActionConstants.GROUP_REST, actionRegistry.getAction(FontColorAction.fontColorProperty));
 
 		// Label Color
-		action = getActionRegistry().getAction(LabelColorAction.labelColorProperty);
-		menu.appendToGroup(GEFActionConstants.GROUP_REST, action);
+		menu.appendToGroup(GEFActionConstants.GROUP_REST, actionRegistry.getAction(LabelColorAction.labelColorProperty));
 		
 		// Defaults Sub menu-- opacity, font size, font color, font background color, line color, figure color. 
 		final MenuManager defaultsSubmenu = new MenuManager("Default", defaultsSubmenuID);
 
-		action = getActionRegistry().getAction(DefaultFigureColorAction.defaultFigureColorProperty);
-		defaultsSubmenu.add(action);
+		defaultsSubmenu.add(actionRegistry.getAction(DefaultFigureColorAction.defaultFigureColorProperty));
 
-		action = getActionRegistry().getAction(DefaultOpacityAction.defaultOpacityProperty);
-		defaultsSubmenu.add(action);
+		defaultsSubmenu.add(actionRegistry.getAction(DefaultOpacityAction.defaultOpacityProperty));
 
 		defaultsSubmenu.add(new Separator());
 
-		action = getActionRegistry().getAction(DefaultFontStyleAction.defaultFontStyleProperty);
-		defaultsSubmenu.add(action);
+		defaultsSubmenu.add(actionRegistry.getAction(DefaultFontStyleAction.defaultFontStyleProperty));
 
-		action = getActionRegistry().getAction(DefaultFontSizeAction.defaultFontSizeProperty);
-		defaultsSubmenu.add(action);
+		defaultsSubmenu.add(actionRegistry.getAction(DefaultFontSizeAction.defaultFontSizeProperty));
 
-		action = getActionRegistry().getAction(DefaultFontColorAction.defaultFontColorProperty);
-		defaultsSubmenu.add(action);
+		defaultsSubmenu.add(actionRegistry.getAction(DefaultFontColorAction.defaultFontColorProperty));
 
-		action = getActionRegistry().getAction(DefaultLabelColorAction.defaultLabelColorProperty);
-		defaultsSubmenu.add(action);
+		defaultsSubmenu.add(actionRegistry.getAction(DefaultLabelColorAction.defaultLabelColorProperty));
 
 		defaultsSubmenu.add(new Separator());
 
-//		action = getActionRegistry().getAction(DefaultAllAction.defaultAllProperty);
+		// action = actionRegistry.getAction(DefaultAllAction.defaultAllProperty);
 
 		menu.appendToGroup(GEFActionConstants.GROUP_SAVE, defaultsSubmenu );
 	}
-
-
-	// ==================== 7. Getters & Setters ====================
-
-	private ActionRegistry getActionRegistry() {
-		return actionRegistry;
-	}
-
-	private void setActionRegistry(final ActionRegistry registry) {
-		actionRegistry = registry;
-	}
-
 }
