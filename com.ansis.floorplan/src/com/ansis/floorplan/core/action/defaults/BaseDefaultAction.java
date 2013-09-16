@@ -1,12 +1,9 @@
 package com.ansis.floorplan.core.action.defaults;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.ui.IWorkbenchPart;
@@ -18,20 +15,12 @@ import com.ansis.floorplan.util.color.FPStandardColor;
 import com.ansis.floorplan.util.font.FPFontSize;
 import com.ansis.floorplan.util.font.FPFontStyle;
 
-/**
- * 
- * @author stefan
- *
- */
+
 public abstract class BaseDefaultAction extends SelectionAction {
 
 	// ==================== 1. Static Fields ========================
 
 	private final String defaultOpacity = "50"; //$NON-NLS-1$
-
-
-	// ====================== 2. Instance Fields =============================
-
 
 
 	// ==================== 4. Constructors ====================
@@ -41,12 +30,15 @@ public abstract class BaseDefaultAction extends SelectionAction {
 		setLazyEnablementCalculation(true);
 
 	}
-	
+
+
+	// ==================== 6. Action Methods ====================
+
 	@Override
 	public void run() 
 	{
-			for (final ChildModel children : getSelected()) 
-				changeProperty(children);
+		for (final ChildModel children : getSelected()) 
+			changeProperty(children);
 	}
 
 	abstract protected void changeProperty(final ChildModel children);
@@ -57,84 +49,26 @@ public abstract class BaseDefaultAction extends SelectionAction {
 		return !getSelected().isEmpty();
 	}
 
+
+	// ==================== 13. Utility Methods ====================
+
 	public List<ChildModel> getSelected()
 	{
-		List<ChildModel> selectedList = new ArrayList<>();
-		
-		for (Object object : getSelectedObjects())
+		final List<ChildModel> selectedList = new ArrayList<>();
+
+		for (final Object object : getSelectedObjects())
 			if (object instanceof EditPart)
 				if (((EditPart) object).getModel() instanceof ChildModel)
 					selectedList.add((ChildModel) ((EditPart) object).getModel());
-		
-//		if (selectedList.isEmpty())
-			
+
+		if (selectedList.isEmpty())
+		{
+			final CanvasModel canvas = new CanvasModel();
+			for ( final ChildModel childModel : canvas.getChildren())
+				selectedList.add(childModel);
+		}
 		return selectedList;
 	}
-
-//
-//	public void prepareSetDefaultFigureColor() 
-//	{
-//		final Request defaultFigureColorReq = new Request("defaultFigureColor"); //$NON-NLS-1$
-//		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
-//		reqData.put("newDefaultFigureColor", getDefaultFigureColor()); //$NON-NLS-1$
-//		defaultFigureColorReq.setExtendedData(reqData);
-//	}
-//
-//	public void prepareSetDefaultOpacity() {
-//		final Request defaultOpacityReq = new Request("opacity"); //$NON-NLS-1$
-//		final HashMap<String, String> reqData = new HashMap<String, String>();
-//		reqData.put("newOpacity", getDefaultOpacity()); //$NON-NLS-1$
-//		defaultOpacityReq.setExtendedData(reqData);
-//	}
-//
-//	public void prepareSetDefaulFontColor() {
-//		final Request defaultFontColorReq = new Request("defaultFontColor"); //$NON-NLS-1$
-//		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
-//		reqData.put("newDefaultFontColor", getDefaultFontColor()); //$NON-NLS-1$
-//		defaultFontColorReq.setExtendedData(reqData);
-//	}
-//
-//	public void prepareSetDefaultFontSize() {
-//		final Request defaultFontSizeReq = new Request("fontSize"); //$NON-NLS-1$
-//		final HashMap<String, String> reqData = new HashMap<String, String>();
-//		reqData.put("newFontSize", getDefaultFontSize()); //$NON-NLS-1$
-//		defaultFontSizeReq.setExtendedData(reqData);
-//	}
-//
-//	public void prepareSetDefaultFontStyle() {
-//		final Request defaultFontStyleReq = new Request("fontStyle"); //$NON-NLS-1$
-//		final HashMap<String, String> reqData = new HashMap<String, String>();
-//		reqData.put("newFontStyle", getDefaultNormal()); //$NON-NLS-1$
-//		defaultFontStyleReq.setExtendedData(reqData);
-//	}
-//
-//	public void prepareSetDefaultLabelColor() {
-//		final Request defaultLabelColorReq = new Request("defaultLabelColor"); //$NON-NLS-1$
-//		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
-//		reqData.put("newDefaultLabelColor", getDefaultLabelColor()); //$NON-NLS-1$
-//		defaultLabelColorReq.setExtendedData(reqData);
-//	}
-
-//	protected void executeAction(final Request request) {
-//		
-//		for (final Object ob : getSelectedObjects()) {
-//
-//			final EditPart object = (EditPart)ob;
-//			final Command cmd = object.getCommand(request);
-//			selection = 1;
-//			execute(cmd);
-//		}
-//		if ( selection == 0 ) {
-//			for (final ChildModel childModel : model.getChildren()) {	
-//				childModel.setColor(getDefaultFigureColor());
-//				childModel.setFontColor(getDefaultFontColor());
-//				childModel.setFontSize(FPFontSize.NORMAL.getPercent()/10);
-//				childModel.setFontStyle( FPFontStyle.NORMAL.getStyle() );
-//				childModel.setLabelColor(getDefaultLabelColor());
-//				childModel.setOpacity(Integer.parseInt(getDefaultOpacity()));
-//			}
-//		}
-//	}
 
 
 	// ==================== 7. Getters & Setters ====================

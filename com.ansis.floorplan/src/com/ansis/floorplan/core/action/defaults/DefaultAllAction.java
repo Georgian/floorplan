@@ -5,12 +5,10 @@ import java.util.HashMap;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.ui.IWorkbenchPart;
 
 import com.ansis.floorplan.FloorplanActivator;
-import com.ansis.floorplan.IFloorplanImageKeys;
 import com.ansis.floorplan.core.model.CanvasModel;
 import com.ansis.floorplan.core.model.ChildModel;
 import com.ansis.floorplan.util.color.FPStandardColor;
@@ -22,14 +20,6 @@ public class DefaultAllAction extends BaseDefaultAction {
 	// ==================== 1. Static Fields ========================
 
 	private final String defaultOpacity = "50"; //$NON-NLS-1$
-	
-
-
-	// ====================== 2. Instance Fields =============================
-
-	private CanvasModel model;
-
-	private int selection = 0;
 
 
 	// ==================== 4. Constructors ====================
@@ -40,20 +30,21 @@ public class DefaultAllAction extends BaseDefaultAction {
 
 	}
 
-	
 
+	// ==================== 6. Action Methods ====================
+
+	@Override
 	protected boolean calculateEnabled() {
 		return true;
 	}
 
 	@Override
 	protected void init() {
-		String defaultAllAction = null;
+		final String defaultAllAction = null;
 		setId(defaultAllAction);
 		setText("Default All");
 		setEnabled(false);
 	}
-
 
 	public void prepareSetDefaultFigureColor() 
 	{
@@ -103,38 +94,37 @@ public class DefaultAllAction extends BaseDefaultAction {
 
 			final EditPart object = (EditPart)ob;
 			final Command cmd = object.getCommand(request);
-			selection = 1;
+			//			selection = 1;
 			execute(cmd);
 		}
-		if ( selection == 0 ) {
-			for (final ChildModel childModel : model.getChildren()) {	
-				childModel.setColor(getDefaultFigureColor());
-				childModel.setFontColor(getDefaultFontColor());
-				childModel.setFontSize(FPFontSize.NORMAL.getPercent()/10);
-				childModel.setFontStyle( FPFontStyle.NORMAL.getStyle() );
-				childModel.setLabelColor(getDefaultLabelColor());
-				childModel.setOpacity(Integer.parseInt(getDefaultOpacity()));
-			}
+		//		if ( selection == 0 ) {
+		final CanvasModel canvas = new CanvasModel();
+		for (final ChildModel childModel : canvas.getChildren()) {	
+			childModel.setColor(getDefaultFigureColor());
+			childModel.setFontColor(getDefaultFontColor());
+			childModel.setFontSize(FPFontSize.NORMAL.getPercent()/10);
+			childModel.setFontStyle( FPFontStyle.NORMAL.getStyle() );
+			childModel.setLabelColor(getDefaultLabelColor());
+			childModel.setOpacity(Integer.parseInt(getDefaultOpacity()));
 		}
 	}
-	
+
 	@Override
-	protected void changeProperty(ChildModel childModel) {
-		
+	protected void changeProperty(final ChildModel childModel) {
+
 		childModel.setColor(getDefaultFigureColor());
 		childModel.setFontColor(getDefaultFontColor());
 		childModel.setFontSize(FPFontSize.NORMAL.getPercent()/10);
 		childModel.setFontStyle( FPFontStyle.NORMAL.getStyle() );
 		childModel.setLabelColor(getDefaultLabelColor());
 		childModel.setOpacity(Integer.parseInt(getDefaultOpacity()));
-			
+
 	}
 
-
+	@Override
 	public void run() {
 
 		prepareSetDefaulFontColor();
-
 		prepareSetDefaultFigureColor();
 		prepareSetDefaultFontSize();
 		prepareSetDefaultFontStyle();
@@ -144,31 +134,34 @@ public class DefaultAllAction extends BaseDefaultAction {
 	}
 
 
-
-
-
 	// ==================== 7. Getters & Setters ====================
 
+	@Override
 	public RGB getDefaultFigureColor() {
 		return FloorplanActivator.getDefault().getColor(FPStandardColor.BLUE_NAVY).getRGB();
 	}
 
+	@Override
 	public String getDefaultOpacity() {
 		return defaultOpacity;
 	}
 
+	@Override
 	public RGB getDefaultFontColor() {
 		return FloorplanActivator.getDefault().getColor(FPStandardColor.BLACK).getRGB();
 	}
 
+	@Override
 	public String getDefaultFontSize() {
 		return String.valueOf( FPFontSize.NORMAL.getPercent()/10 );
 	}
 
+	@Override
 	public String getDefaultNormal() {
 		return String.valueOf( FPFontStyle.NORMAL.getStyle() );
 	}
 
+	@Override
 	public RGB getDefaultLabelColor() {
 		return FloorplanActivator.getDefault().getColor(FPStandardColor.WHITE).getRGB();
 	}
