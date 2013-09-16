@@ -21,14 +21,17 @@ public abstract class BaseDefaultAction extends SelectionAction {
 	// ==================== 1. Static Fields ========================
 
 	private final String defaultOpacity = "50"; //$NON-NLS-1$
+	
+	// ====================== 2. Instance Fields =============================
 
+	private CanvasModel model;
 
 	// ==================== 4. Constructors ====================
 
 	public BaseDefaultAction(final IWorkbenchPart part, final CanvasModel model) {
 		super(part);
 		setLazyEnablementCalculation(true);
-
+		this.model = model;
 	}
 
 
@@ -45,8 +48,8 @@ public abstract class BaseDefaultAction extends SelectionAction {
 
 	@Override
 	protected boolean calculateEnabled() {
-		System.out.println("!getSelected().isEmpty() : " + !getSelected().isEmpty());
-		return !getSelected().isEmpty();
+//		System.out.println("!getSelected().isEmpty() : " + !getSelected().isEmpty());
+		return /*!getSelected().isEmpty()*/ true;
 	}
 
 
@@ -63,10 +66,11 @@ public abstract class BaseDefaultAction extends SelectionAction {
 
 		if (selectedList.isEmpty())
 		{
-			final CanvasModel canvas = new CanvasModel();
-			for ( final ChildModel childModel : canvas.getChildren())
+			for ( final ChildModel childModel : model.getChildren())
 				selectedList.add(childModel);
+			System.out.println(model.getChildren().size());
 		}
+		
 		return selectedList;
 	}
 

@@ -1,7 +1,5 @@
 package com.ansis.floorplan.core.editor;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -83,8 +81,9 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 	public MyGraphicalEditor() {
 		setEditDomain(new DefaultEditDomain(this));
-	}
+		model = new CanvasModel(); 
 
+	}
 
 	// ==================== 5. Creators ====================
 
@@ -214,7 +213,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		final DefaultFontStyleAction defaultFontStyleAction = new DefaultFontStyleAction(this, model);
 		registry.registerAction(defaultFontStyleAction);
 		getSelectionActions().add(defaultFontStyleAction.getId());
-		
+
 	}
 
 
@@ -223,18 +222,12 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 	@Override
 	protected void initializeGraphicalViewer() {
 		final GraphicalViewer viewer = getGraphicalViewer();
-		model = new CanvasModel();
+
 
 		viewer.setContents(model);
 		viewer.addDropTargetListener(new MyTemplateTransferDropTargetListener(viewer));
 
-		model.addPropertyChangeListener(new PropertyChangeListener() {
 
-			@Override
-			public void propertyChange(final PropertyChangeEvent evt) {
-				//				viewContents(model);
-			}
-		});
 	}
 
 	@Override
@@ -265,9 +258,9 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		zoomLevels = new double[] { 0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5 };
 		manager.setZoomLevels(zoomLevels);
 		zoomContributions = new ArrayList<String>();
-//		zoomContributions.add(ZoomManager.FIT_ALL); 
-//		zoomContributions.add(ZoomManager.FIT_HEIGHT); 
-//		zoomContributions.add(ZoomManager.FIT_WIDTH);
+		//		zoomContributions.add(ZoomManager.FIT_ALL); 
+		//		zoomContributions.add(ZoomManager.FIT_HEIGHT); 
+		//		zoomContributions.add(ZoomManager.FIT_WIDTH);
 		manager.setZoomLevelContributions(zoomContributions);
 		//Zooming END
 
@@ -277,13 +270,13 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 				KeyStroke.getPressed(SWT.DEL, 127, 0),
 				getActionRegistry().getAction(ActionFactory.DELETE.getId()));
 
-//		keyHandler.put(
-//				KeyStroke.getPressed(SWT.CTRL+'Z', 0),
-//				getActionRegistry().getAction(ActionFactory.UNDO.getId()));
-//
-//		keyHandler.put(
-//				KeyStroke.getPressed(SWT.CTRL+'Y', 0),
-//				getActionRegistry().getAction(ActionFactory.REDO.getId()));
+		//		keyHandler.put(
+		//				KeyStroke.getPressed(SWT.CTRL+'Z', 0),
+		//				getActionRegistry().getAction(ActionFactory.UNDO.getId()));
+		//
+		//		keyHandler.put(
+		//				KeyStroke.getPressed(SWT.CTRL+'Y', 0),
+		//				getActionRegistry().getAction(ActionFactory.REDO.getId()));
 
 		keyHandler.put(
 				KeyStroke.getPressed('+', SWT.KEYPAD_ADD, 0),
