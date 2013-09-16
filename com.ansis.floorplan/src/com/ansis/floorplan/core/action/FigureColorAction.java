@@ -57,18 +57,18 @@ public class FigureColorAction extends BaseAction {
 
 		execute(cmd);		
 
-		final ChildModel firstChild  = (ChildModel) object.getModel();
+//		final ChildModel firstChild  = children;
+//
+//		for (final Object ob : getSelectedObjects()) {
+//
+//			final EditPart objects = (EditPart)ob;
+//
+//			final ChildModel test = (ChildModel) objects.getModel();
+//			children.setColor(children.getColor());
 
-		for (final Object ob : getSelectedObjects()) {
-
-			final EditPart objects = (EditPart)ob;
-
-			final ChildModel test = (ChildModel) objects.getModel();
-			test.setColor(firstChild.getColor());
-
-			if ( test.getFontColorChanged() == false )
-				test.setFontColor(firstChild.getColor());
-		}
+			if ( children.getFontColorChanged() == false )
+				children.setFontColor(children.getColor());
+//		}
 	}
 	
 	

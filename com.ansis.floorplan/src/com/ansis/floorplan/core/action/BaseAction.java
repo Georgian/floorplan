@@ -33,7 +33,18 @@ public abstract class BaseAction extends SelectionAction {
 	public void run() 
 	{
 		for (final ChildModel children : getSelected()) 
+		{
 			changeProperty(children);
+			break;
+		}
+		
+		final ChildModel firstChild = getSelected().get(0);
+		for (final ChildModel children : getSelected())
+		{
+			children.setColor(firstChild.getColor());
+			if ( children.getFontColorChanged() == false )
+				children.setFontColor(children.getColor());
+		}
 	}
 
 	abstract protected void changeProperty(final ChildModel children);
