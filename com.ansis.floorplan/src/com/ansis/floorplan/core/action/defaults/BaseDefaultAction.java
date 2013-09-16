@@ -1,6 +1,8 @@
 package com.ansis.floorplan.core.action.defaults;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
@@ -16,6 +18,11 @@ import com.ansis.floorplan.util.color.FPStandardColor;
 import com.ansis.floorplan.util.font.FPFontSize;
 import com.ansis.floorplan.util.font.FPFontStyle;
 
+/**
+ * 
+ * @author stefan
+ *
+ */
 public abstract class BaseDefaultAction extends SelectionAction {
 
 	// ==================== 1. Static Fields ========================
@@ -25,82 +32,109 @@ public abstract class BaseDefaultAction extends SelectionAction {
 
 	// ====================== 2. Instance Fields =============================
 
-	private CanvasModel model;
-
-	private int selection = 0;
 
 
 	// ==================== 4. Constructors ====================
 
 	public BaseDefaultAction(final IWorkbenchPart part, final CanvasModel model) {
 		super(part);
-		this.model = model;
 		setLazyEnablementCalculation(true);
 
 	}
-
-	public void prepareSetDefaultFigureColor() 
+	
+	@Override
+	public void run() 
 	{
-		final Request defaultFigureColorReq = new Request("defaultFigureColor"); //$NON-NLS-1$
-		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
-		reqData.put("newDefaultFigureColor", getDefaultFigureColor()); //$NON-NLS-1$
-		defaultFigureColorReq.setExtendedData(reqData);
+			for (final ChildModel children : getSelected()) 
+				changeProperty(children);
 	}
 
-	public void prepareSetDefaultOpacity() {
-		final Request defaultOpacityReq = new Request("opacity"); //$NON-NLS-1$
-		final HashMap<String, String> reqData = new HashMap<String, String>();
-		reqData.put("newOpacity", getDefaultOpacity()); //$NON-NLS-1$
-		defaultOpacityReq.setExtendedData(reqData);
+	abstract protected void changeProperty(final ChildModel children);
+
+	@Override
+	protected boolean calculateEnabled() {
+		System.out.println("!getSelected().isEmpty() : " + !getSelected().isEmpty());
+		return !getSelected().isEmpty();
 	}
 
-	public void prepareSetDefaulFontColor() {
-		final Request defaultFontColorReq = new Request("defaultFontColor"); //$NON-NLS-1$
-		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
-		reqData.put("newDefaultFontColor", getDefaultFontColor()); //$NON-NLS-1$
-		defaultFontColorReq.setExtendedData(reqData);
+	public List<ChildModel> getSelected()
+	{
+		List<ChildModel> selectedList = new ArrayList<>();
+		
+		for (Object object : getSelectedObjects())
+			if (object instanceof EditPart)
+				if (((EditPart) object).getModel() instanceof ChildModel)
+					selectedList.add((ChildModel) ((EditPart) object).getModel());
+		
+//		if (selectedList.isEmpty())
+			
+		return selectedList;
 	}
 
-	public void prepareSetDefaultFontSize() {
-		final Request defaultFontSizeReq = new Request("fontSize"); //$NON-NLS-1$
-		final HashMap<String, String> reqData = new HashMap<String, String>();
-		reqData.put("newFontSize", getDefaultFontSize()); //$NON-NLS-1$
-		defaultFontSizeReq.setExtendedData(reqData);
-	}
+//
+//	public void prepareSetDefaultFigureColor() 
+//	{
+//		final Request defaultFigureColorReq = new Request("defaultFigureColor"); //$NON-NLS-1$
+//		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
+//		reqData.put("newDefaultFigureColor", getDefaultFigureColor()); //$NON-NLS-1$
+//		defaultFigureColorReq.setExtendedData(reqData);
+//	}
+//
+//	public void prepareSetDefaultOpacity() {
+//		final Request defaultOpacityReq = new Request("opacity"); //$NON-NLS-1$
+//		final HashMap<String, String> reqData = new HashMap<String, String>();
+//		reqData.put("newOpacity", getDefaultOpacity()); //$NON-NLS-1$
+//		defaultOpacityReq.setExtendedData(reqData);
+//	}
+//
+//	public void prepareSetDefaulFontColor() {
+//		final Request defaultFontColorReq = new Request("defaultFontColor"); //$NON-NLS-1$
+//		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
+//		reqData.put("newDefaultFontColor", getDefaultFontColor()); //$NON-NLS-1$
+//		defaultFontColorReq.setExtendedData(reqData);
+//	}
+//
+//	public void prepareSetDefaultFontSize() {
+//		final Request defaultFontSizeReq = new Request("fontSize"); //$NON-NLS-1$
+//		final HashMap<String, String> reqData = new HashMap<String, String>();
+//		reqData.put("newFontSize", getDefaultFontSize()); //$NON-NLS-1$
+//		defaultFontSizeReq.setExtendedData(reqData);
+//	}
+//
+//	public void prepareSetDefaultFontStyle() {
+//		final Request defaultFontStyleReq = new Request("fontStyle"); //$NON-NLS-1$
+//		final HashMap<String, String> reqData = new HashMap<String, String>();
+//		reqData.put("newFontStyle", getDefaultNormal()); //$NON-NLS-1$
+//		defaultFontStyleReq.setExtendedData(reqData);
+//	}
+//
+//	public void prepareSetDefaultLabelColor() {
+//		final Request defaultLabelColorReq = new Request("defaultLabelColor"); //$NON-NLS-1$
+//		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
+//		reqData.put("newDefaultLabelColor", getDefaultLabelColor()); //$NON-NLS-1$
+//		defaultLabelColorReq.setExtendedData(reqData);
+//	}
 
-	public void prepareSetDefaultFontStyle() {
-		final Request defaultFontStyleReq = new Request("fontStyle"); //$NON-NLS-1$
-		final HashMap<String, String> reqData = new HashMap<String, String>();
-		reqData.put("newFontStyle", getDefaultNormal()); //$NON-NLS-1$
-		defaultFontStyleReq.setExtendedData(reqData);
-	}
-
-	public void prepareSetDefaultLabelColor() {
-		final Request defaultLabelColorReq = new Request("defaultLabelColor"); //$NON-NLS-1$
-		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
-		reqData.put("newDefaultLabelColor", getDefaultLabelColor()); //$NON-NLS-1$
-		defaultLabelColorReq.setExtendedData(reqData);
-	}
-
-	protected void executeAction(final Request request) {
-		for (final Object ob : getSelectedObjects()) {
-
-			final EditPart object = (EditPart)ob;
-			final Command cmd = object.getCommand(request);
-			selection = 1;
-			execute(cmd);
-		}
-		if ( selection == 0 ) {
-			for (final ChildModel childModel : model.getChildren()) {	
-				childModel.setColor(getDefaultFigureColor());
-				childModel.setFontColor(getDefaultFontColor());
-				childModel.setFontSize(FPFontSize.NORMAL.getPercent()/10);
-				childModel.setFontStyle( FPFontStyle.NORMAL.getStyle() );
-				childModel.setLabelColor(getDefaultLabelColor());
-				childModel.setOpacity(Integer.parseInt(getDefaultOpacity()));
-			}
-		}
-	}
+//	protected void executeAction(final Request request) {
+//		
+//		for (final Object ob : getSelectedObjects()) {
+//
+//			final EditPart object = (EditPart)ob;
+//			final Command cmd = object.getCommand(request);
+//			selection = 1;
+//			execute(cmd);
+//		}
+//		if ( selection == 0 ) {
+//			for (final ChildModel childModel : model.getChildren()) {	
+//				childModel.setColor(getDefaultFigureColor());
+//				childModel.setFontColor(getDefaultFontColor());
+//				childModel.setFontSize(FPFontSize.NORMAL.getPercent()/10);
+//				childModel.setFontStyle( FPFontStyle.NORMAL.getStyle() );
+//				childModel.setLabelColor(getDefaultLabelColor());
+//				childModel.setOpacity(Integer.parseInt(getDefaultOpacity()));
+//			}
+//		}
+//	}
 
 
 	// ==================== 7. Getters & Setters ====================

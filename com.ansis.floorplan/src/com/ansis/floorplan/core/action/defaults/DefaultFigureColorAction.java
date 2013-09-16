@@ -16,7 +16,7 @@ import com.ansis.floorplan.core.model.ChildModel;
 import com.ansis.floorplan.util.color.FPStandardColor;
 
 
-public class DefaultFigureColorAction extends SelectionAction {
+public class DefaultFigureColorAction extends BaseDefaultAction {
 
 	// ==================== 1. Static Fields ========================
 
@@ -25,41 +25,12 @@ public class DefaultFigureColorAction extends SelectionAction {
 
 	// ====================== 2. Instance Fields =============================
 
-	private CanvasModel model;
-
-	private int selection = 0;
-
 
 	// ==================== 4. Constructors ====================
 
 	public DefaultFigureColorAction(final IWorkbenchPart part, final CanvasModel model) {
-		super(part);
-		this.model = model;
+		super(part, model);
 		setLazyEnablementCalculation(true);
-	}
-
-
-	// ==================== 5. Creators ====================
-
-	public Command createDefaultFigureColorCommand(final RGB defaultFigureColor) {
-		final Request defaultFigureColorReq = new Request("defaultFigureColor"); //$NON-NLS-1$
-		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
-		reqData.put("newDefaultFigureColor", defaultFigureColor); //$NON-NLS-1$
-		defaultFigureColorReq.setExtendedData(reqData);
-		final EditPart object = (EditPart)getSelectedObjects().get(0);
-		final Command cmd = object.getCommand(defaultFigureColorReq);
-		return cmd; 
-	}
-
-
-	// ==================== 6. Action Methods ====================
-
-	@Override
-	protected boolean calculateEnabled() {
-		final Command cmd = createDefaultFigureColorCommand(null); 
-		if (cmd == null)
-			return false;
-		return true;
 	}
 
 	@Override
@@ -70,47 +41,39 @@ public class DefaultFigureColorAction extends SelectionAction {
 		setEnabled(false);
 	}
 
-	@Override
-	public void run() 
+	// ==================== 5. Creators ====================
+
+//	public Command createDefaultFigureColorCommand(final RGB defaultFigureColor) {
+//		final Request defaultFigureColorReq = new Request("defaultFigureColor"); //$NON-NLS-1$
+//		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
+//		reqData.put("newDefaultFigureColor", defaultFigureColor); //$NON-NLS-1$
+//		defaultFigureColorReq.setExtendedData(reqData);
+//		final EditPart object = (EditPart)getSelectedObjects().get(0);
+//		final Command cmd = object.getCommand(defaultFigureColorReq);
+//		return cmd; 
+//	}
+
+
+	// ==================== 6. Action Methods ====================
+
+//	@Override
+//	protected boolean calculateEnabled() {
+//		final Command cmd = createDefaultFigureColorCommand(null); 
+//		if (cmd == null)
+//			return false;
+//		return true;
+//	}
+
+
+	protected void changeProperty(final ChildModel children) 
 	{
-		final Request defaultFigureColorReq = new Request("defaultFigureColor"); //$NON-NLS-1$
-		final HashMap<String, RGB> reqData = new HashMap<String, RGB>();
-		reqData.put("newDefaultFigureColor", getDefaultFigureColor()); //$NON-NLS-1$
-		defaultFigureColorReq.setExtendedData(reqData);
-
-		if (getSelectedObjects().get(0) != null) {
-			final EditPart object = (EditPart)getSelectedObjects().get(0);
-			final Command cmd = object.getCommand(defaultFigureColorReq);
-
-			execute(cmd);
-
-			for (final Object ob : getSelectedObjects()) {
-
-				final EditPart objects = (EditPart)ob;
-
-				final ChildModel children = (ChildModel) objects.getModel();
-				
-				children.setColor(getDefaultFigureColor());
-				
-				if ( children.getFontColorChanged() == false )
-					children.setFontColor(FloorplanActivator.getDefault().getColor(FPStandardColor.BLACK).getRGB());
-
-			}
-		}
-		else
-		{
-			// This is not yet working
-			//		final EditPart object = (EditPart)getSelectedObjects().get(0);
-			//		final Command cmd = object.getCommand(defaultFigureColorReq);
-			//
-			//		execute(cmd);
-			//
-			//		final ChildModel firstChild  = (ChildModel) object.getModel();
-			//
-			//		for (final ChildModel childModel : model.getChildren())
-			//			childModel.setFontColor(firstChild.getFontColor());
-		}
+		children.setColor(getDefaultFigureColor());
+		
+		if ( children.getFontColorChanged() == false )
+			children.setFontColor(FloorplanActivator.getDefault().getColor(FPStandardColor.BLACK).getRGB());
 	}
+
+
 
 
 	// ==================== 7. Getters & Setters ====================
