@@ -14,6 +14,7 @@ import org.eclipse.gef.tools.DragEditPartsTracker;
 import com.ansis.floorplan.core.command.PollyLineCreateCommand;
 import com.ansis.floorplan.core.editpolicy.EditLayoutPolicy;
 import com.ansis.floorplan.core.figure.CanvasFigure;
+import com.ansis.floorplan.core.listener.MyListener;
 import com.ansis.floorplan.core.model.CanvasModel;
 import com.ansis.floorplan.core.model.ChildModel;
 
@@ -22,7 +23,7 @@ public class CanvasEditPart extends AbstractGraphicalEditPart implements Propert
 
 	protected static final String DEFAULT_FIGURE_COLOR_EDIT_POLICY = "defaultFigureColor"; //$NON-NLS-1$
 
-	
+
 	// ==================== 5. Creators ====================
 
 	@Override
@@ -34,6 +35,13 @@ public class CanvasEditPart extends AbstractGraphicalEditPart implements Propert
 	@Override
 	protected IFigure createFigure() {
 		final IFigure figure = new CanvasFigure();
+		
+		figure.setRequestFocusEnabled(true);
+		figure.requestFocus();
+		figure.setFocusTraversable(true);
+
+		new MyListener((CanvasModel) getModel(), figure);
+
 		return figure;
 	}
 
@@ -49,15 +57,15 @@ public class CanvasEditPart extends AbstractGraphicalEditPart implements Propert
 				else 
 					PollyLineCreateCommand.isShiftPressed = false;
 
-//				if (getCurrentInput().isControlKeyDown())	
-//					MyListener.isControlPressed = true;
-//				else
-//					MyListener.isControlPressed = false;
+				//				if (getCurrentInput().isControlKeyDown())	
+				//					MyListener.isControlPressed = true;
+				//				else
+				//					MyListener.isControlPressed = false;
 			}
 		};
 	}
 
-	
+
 
 	// ==================== 6. Action Methods ====================
 
@@ -82,7 +90,7 @@ public class CanvasEditPart extends AbstractGraphicalEditPart implements Propert
 	protected void refreshVisuals() {
 
 	}
-	
+
 	@Override
 	public void activate() {
 		super.activate();
@@ -94,7 +102,7 @@ public class CanvasEditPart extends AbstractGraphicalEditPart implements Propert
 		super.deactivate();
 		((CanvasModel) getModel()).removePropertyChangeListener(this);
 	}
-	
+
 
 	// ==================== 7. Getters & Setters ====================
 
